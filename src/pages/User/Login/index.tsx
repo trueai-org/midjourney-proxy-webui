@@ -49,7 +49,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (values: API.LoginParams) => {
     try {
       // 登录
-      const msg = await login(JSON.stringify(values.password));
+      const msg = await login(JSON.stringify(values.password || ""));
       if (msg.code === 1) {
         if (msg && msg.apiSecret) {
           sessionStorage.setItem('mj-api-secret', msg.apiSecret);
