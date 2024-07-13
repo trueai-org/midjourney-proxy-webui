@@ -155,9 +155,9 @@ const MoreContent: React.FC<MoreContentProps> = ({ record, onSuccess }) => {
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}>
             {record.privateChannelId}
           </Descriptions.Item>
-          {/* <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}>
+          <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}>
             {record.nijiBotChannelId}
-          </Descriptions.Item> */}
+          </Descriptions.Item>
         </Descriptions>
       </Card>
 

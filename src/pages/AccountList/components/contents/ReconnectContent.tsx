@@ -48,9 +48,9 @@ const ReconnectContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.mjChannelId' })} name="privateChannelId">
               <Input />
             </Form.Item>
-            {/* <Form.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })} name="nijiBotChannelId">
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })} name="nijiBotChannelId">
               <Input />
-            </Form.Item> */}
+            </Form.Item>
             <Form.Item label="User Agent" name="userAgent">
               <Input />
             </Form.Item>

@@ -91,7 +91,7 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
       </Card>
       <Card type="inner" title={intl.formatMessage({ id: 'pages.task.extendedInfo' })} style={{ margin: '10px' }}>
         <Descriptions column={2}>
-          <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.botType' })}>{getBotTypeTag(record['properties']['botType'])}</Descriptions.Item>
+          <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.botType' })}>{getBotTypeTag(record.botType)}</Descriptions.Item>
           <Descriptions.Item label="Nonce">{record['properties']['nonce']}</Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.channelId' })}>{record['properties']['discordChannelId']}</Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.instanceId' })}>{record['properties']['discordInstanceId']}</Descriptions.Item>

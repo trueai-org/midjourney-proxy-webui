@@ -68,12 +68,12 @@ const AddContent = ({
             >
               <Input />
             </Form.Item>
-            {/* <Form.Item
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}
               name="nijiBotChannelId"
             >
               <Input />
-            </Form.Item> */}
+            </Form.Item>
             <Form.Item label="User Agent" name="userAgent">
               <Input />
             </Form.Item>

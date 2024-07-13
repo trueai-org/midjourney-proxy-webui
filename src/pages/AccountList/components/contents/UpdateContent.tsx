@@ -40,9 +40,9 @@ const UpdateContent = ({
             >
               <Input />
             </Form.Item>
-            {/* <Form.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })} name="nijiBotChannelId">
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })} name="nijiBotChannelId">
               <Input />
-            </Form.Item> */}
+            </Form.Item>
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}
               name="remixAutoSubmit"
