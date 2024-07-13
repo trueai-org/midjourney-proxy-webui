@@ -134,7 +134,9 @@ export async function queryTask(data: any, options?: { [key: string]: any }) {
         predicate: '',
         reverse: true,
       },
-      search: {},
+      search: {
+        ...data
+      },
     },
     ...(options || {}),
   });

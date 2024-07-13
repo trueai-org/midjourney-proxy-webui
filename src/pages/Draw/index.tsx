@@ -552,7 +552,7 @@ const Draw: React.FC = () => {
         <Upload {...props} listType="picture-card">
           {images.length >= 2 ? null : uploadButton}
         </Upload>
-        <Button style={{ marginTop: '10px' }} type="primary" onClick={submit} loading={submitLoading}>{intl.formatMessage({ id: 'pages.draw.swapDesc' })}</Button>
+        <Button disabled style={{ marginTop: '10px' }} type="primary" onClick={submit} loading={submitLoading}>{intl.formatMessage({ id: 'pages.draw.swapDesc' })}</Button>
       </Flex>
     } else if (action == 'show') {
       return <Space.Compact style={{ width: '100%' }}>
