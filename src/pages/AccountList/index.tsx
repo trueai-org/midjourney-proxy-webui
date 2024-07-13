@@ -163,9 +163,9 @@ const AccountList: React.FC = () => {
     //   ellipsis: true,
     // } as ColumnType<Record<string, any>>,
     {
-      title: intl.formatMessage({ id: 'pages.account.status' }),
+      title: `${intl.formatMessage({ id: 'pages.account.status' })}`,
       dataIndex: 'enable',
-      width: 100,
+      width: 120,
       align: 'center',
       request: async () => [
         {
@@ -177,12 +177,21 @@ const AccountList: React.FC = () => {
           value: 'false',
         },
       ],
-      render: (enable: boolean) => {
+      render: (enable: boolean, record) => {
         let color = enable ? 'green' : 'volcano';
         let text = enable
           ? intl.formatMessage({ id: 'pages.enable' })
           : intl.formatMessage({ id: 'pages.disable' });
-        return <Tag color={color}>{text}</Tag>;
+        return (
+          <>
+            <Tag color={color}>{text}</Tag>
+            <span>
+              <Tooltip title={`running: ${record?.runningCount}, queue: ${record?.queueCount}`}>
+                {record?.runningCount}/{record?.queueCount}
+              </Tooltip>
+            </span>
+          </>
+        );
       },
     } as ColumnType<Record<string, any>>,
     {
@@ -337,9 +346,7 @@ const AccountList: React.FC = () => {
             onClick={() => {
               triggerRefreshAccount();
             }}
-          >
-            
-          </Button>
+          ></Button>
         </div>
 
         <Table
