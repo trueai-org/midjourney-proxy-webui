@@ -41,7 +41,7 @@ const Draw: React.FC = () => {
   const [images, setImages] = useState<UploadFile[]>([]);
 
   const [loadingButton, setLoadingButton] = useState('');
-  const [submitLoading, setsubmitLoading] = useState(false);
+  const [submitLoading, setSubmitLoading] = useState(false);
   const [waitTaskIds] = useState(new Set<string>());
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -55,10 +55,10 @@ const Draw: React.FC = () => {
   const intl = useIntl();
 
   const cbSaver = useRef<any[]>([]);
+  const syncRunningTasksFutureRef = useRef<NodeJS.Timeout | null>(null);
 
   const customState = 'midjourney-proxy-admin';
   const imagePrefix = sessionStorage.getItem('mj-image-prefix') || '';
-  let syncRunningTasksFuture: any;
 
   useEffect(() => {
     fetchData({
@@ -68,16 +68,27 @@ const Draw: React.FC = () => {
       statusSet: ['NOT_START', 'SUBMITTED', 'IN_PROGRESS', 'FAILURE', 'SUCCESS'],
       sort: 'submitTime,desc',
     });
-    if (syncRunningTasksFuture != null) clearInterval(syncRunningTasksFuture);
-    syncRunningTasksFuture = setInterval(() => {
-      if (waitTaskIds.size == 0) return;
+
+    if (syncRunningTasksFutureRef.current) {
+      clearInterval(syncRunningTasksFutureRef.current);
+    }
+
+    syncRunningTasksFutureRef.current = setInterval(() => {
+      if (waitTaskIds.size === 0) return;
       syncRunningTasks();
     }, 2000);
+
+    return () => {
+      if (syncRunningTasksFutureRef.current) {
+        clearInterval(syncRunningTasksFutureRef.current);
+        syncRunningTasksFutureRef.current = null;
+      }
+    };
   }, []);
 
   const syncRunningTasks = async () => {
     const taskIds = Array.from(waitTaskIds);
-    let tmpTaskIds = new Set(taskIds);
+    const tmpTaskIds = new Set(taskIds);
     const array = await queryTaskByIds(taskIds);
     let hasChange = false;
     const targetTasks = [...cbSaver.current];
@@ -113,9 +124,9 @@ const Draw: React.FC = () => {
 
   const scrollToBottom = () => {
     setTimeout(() => {
-      const pannel = document.getElementById('task-panel');
-      if (!pannel) return;
-      pannel.scrollTo(0, pannel.scrollHeight);
+      const panel = document.getElementById('task-panel');
+      if (!panel) return;
+      panel.scrollTo(0, panel.scrollHeight);
     }, 20);
   };
 
@@ -162,8 +173,8 @@ const Draw: React.FC = () => {
 
   const readFileAsBase64 = async (file: any) => {
     return await new Promise((resolve) => {
-      let fileReader = new FileReader();
-      fileReader.onload = (e) => resolve(fileReader.result);
+      const fileReader = new FileReader();
+      fileReader.onload = () => resolve(fileReader.result);
       fileReader.readAsDataURL(file);
     });
   };
@@ -174,24 +185,22 @@ const Draw: React.FC = () => {
         message.error(intl.formatMessage({ id: 'pages.draw.swapTip' }));
         return;
       }
-      setsubmitLoading(true);
+      setSubmitLoading(true);
       const sourceBase64 = await readFileAsBase64(images[0].originFileObj);
       const targetBase64 = await readFileAsBase64(images[1].originFileObj);
-      swapFace({ sourceBase64: sourceBase64, targetBase64: targetBase64, state: customState }).then(
-        (res) => {
-          setsubmitLoading(false);
-          if (res.code == 1) {
-            message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
-            waitTaskIds.add(res.result);
-            setImages([]);
-          } else {
-            api.error({
-              message: 'error',
-              description: res.description,
-            });
-          }
-        },
-      );
+      swapFace({ sourceBase64, targetBase64, state: customState }).then((res) => {
+        setSubmitLoading(false);
+        if (res.code === 1) {
+          message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+          waitTaskIds.add(res.result);
+          setImages([]);
+        } else {
+          api.error({
+            message: 'error',
+            description: res.description,
+          });
+        }
+      });
     } else if (action === 'show') {
       if (!prompt) {
         message.error(intl.formatMessage({ id: 'pages.draw.taskIdNotBlank' }));
@@ -204,19 +213,19 @@ const Draw: React.FC = () => {
         message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
         return;
       }
-      setsubmitLoading(true);
+      setSubmitLoading(true);
       const base64Array = [];
       for (const item of images) {
         const base64 = await readFileAsBase64(item.originFileObj);
         base64Array.push(base64);
       }
       submitTask(action, {
-        botType: botType,
-        prompt: prompt,
-        base64Array: base64Array,
+        botType,
+        prompt,
+        base64Array,
         state: customState,
       }).then((res) => {
-        setsubmitLoading(false);
+        setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
           waitTaskIds.add(res.result);
@@ -229,19 +238,19 @@ const Draw: React.FC = () => {
         message.error(intl.formatMessage({ id: 'pages.draw.blendTip' }));
         return;
       }
-      setsubmitLoading(true);
+      setSubmitLoading(true);
       const base64Array = [];
       for (const item of images) {
         const base64 = await readFileAsBase64(item.originFileObj);
         base64Array.push(base64);
       }
       submitTask(action, {
-        botType: botType,
-        base64Array: base64Array,
-        dimensions: dimensions,
+        botType,
+        base64Array,
+        dimensions,
         state: customState,
       }).then((res) => {
-        setsubmitLoading(false);
+        setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
           waitTaskIds.add(res.result);
@@ -253,10 +262,10 @@ const Draw: React.FC = () => {
         message.error(intl.formatMessage({ id: 'pages.draw.imageEmptyTip' }));
         return;
       }
-      setsubmitLoading(true);
+      setSubmitLoading(true);
       const base64 = await readFileAsBase64(images[0].originFileObj);
-      submitTask(action, { botType: botType, base64: base64, state: customState }).then((res) => {
-        setsubmitLoading(false);
+      submitTask(action, { botType, base64, state: customState }).then((res) => {
+        setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
           waitTaskIds.add(res.result);
@@ -268,9 +277,9 @@ const Draw: React.FC = () => {
         message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
         return;
       }
-      setsubmitLoading(true);
-      submitTask(action, { botType: botType, prompt: prompt, state: customState }).then((res) => {
-        setsubmitLoading(false);
+      setSubmitLoading(true);
+      submitTask(action, { botType, prompt, state: customState }).then((res) => {
+        setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
           waitTaskIds.add(res.result);
@@ -283,8 +292,8 @@ const Draw: React.FC = () => {
   };
 
   const submitResultCheck = (res: any) => {
-    if (res.code == 22 || res.code == 1) {
-      if (res.code == 22) {
+    if (res.code === 22 || res.code === 1) {
+      if (res.code === 22) {
         api.warning({
           message: 'warn',
           description: res.description,
@@ -305,31 +314,31 @@ const Draw: React.FC = () => {
   const actionTask = (task: any, button: any) => {
     const customId = button.customId;
     const taskId = task.id;
-    const label = button.emoji + ' ' + button.label;
-    setLoadingButton(taskId + ':' + customId);
+    const label = `${button.emoji} ${button.label}`;
+    setLoadingButton(`${taskId}:${customId}`);
     submitTask('action', {
-      taskId: taskId,
-      customId: customId,
+      taskId,
+      customId,
       state: customState,
       chooseSameChannel: true,
     }).then((res) => {
       setLoadingButton('');
-      if (res.code == 22) {
+      if (res.code === 22) {
         api.warning({
           message: 'warn',
           description: res.description,
         });
         button.style = 3;
         waitTaskIds.add(res.result);
-      } else if (res.code == 21) {
+      } else if (res.code === 21) {
         button.style = 3;
-        setModalTitle(res.result + ' ' + label);
+        setModalTitle(`${res.result} ${label}`);
         setCustomTaskId(res.result);
         setCustomPrompt(res.properties['finalPrompt']);
         setModalRemix(res.properties['remix'] || false);
         if (customId.startsWith('MJ::Inpaint:')) {
-          const imgUrl = imagePrefix + task.imageUrl;
-          let img = new Image();
+          const imgUrl = `${imagePrefix}${task.imageUrl}`;
+          const img = new Image();
           img.src = imgUrl;
           img.onload = function () {
             setModalImageHeight(Math.floor((550 / img.width) * img.height));
@@ -344,7 +353,7 @@ const Draw: React.FC = () => {
           setModalVisible(true);
         }
         setModalVisible(true);
-      } else if (res.code == 1) {
+      } else if (res.code === 1) {
         button.style = 3;
         waitTaskIds.add(res.result);
         message.success(intl.formatMessage({ id: 'pages.draw.actionSuccess' }));
@@ -404,14 +413,14 @@ const Draw: React.FC = () => {
     }
     submitTask('modal', params).then((res) => {
       setLoadingModal(false);
-      if (res.code == 22) {
+      if (res.code === 22) {
         api.warning({
           message: 'warn',
           description: res.description,
         });
         waitTaskIds.add(res.result);
         setModalVisible(false);
-      } else if (res.code == 1) {
+      } else if (res.code === 1) {
         waitTaskIds.add(res.result);
         setModalVisible(false);
         message.success(intl.formatMessage({ id: 'pages.draw.subSuccess' }));
@@ -427,16 +436,15 @@ const Draw: React.FC = () => {
   const getMaskBase64 = async (img: any) => {
     return await new Promise((resolve) => {
       img.onload = function () {
-        let width = img.width,
-          height = img.height;
+        const { width, height } = img;
         const canvas: any = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = width;
         canvas.height = height;
         ctx.drawImage(img, 0, 0, width, height);
-        var imageData = ctx.getImageData(0, 0, width, height);
-        var data = imageData.data;
-        for (var i = 0; i < data.length; i += 4) {
+        const imageData = ctx.getImageData(0, 0, width, height);
+        const data = imageData.data;
+        for (let i = 0; i < data.length; i += 4) {
           if (data[i] !== 0 || data[i + 1] !== 0 || data[i + 2] !== 0) {
             data[i] = parseInt('0xff');
             data[i + 1] = parseInt('0xff');
@@ -456,11 +464,11 @@ const Draw: React.FC = () => {
   };
 
   const taskCardTitle = (task: any) => {
-    let botName = 'Midjourney - ' + task['displays']['discordInstanceId'];
+    let botName = `Midjourney - ${task['displays']['discordInstanceId']}`;
     if (task.botType === 'NIJI_JOURNEY') {
-      botName = 'niji・journey - ' + task['displays']['discordInstanceId'];
-    } else if (task.botType == 'INSIGHT_FACE') {
-      botName = 'InsightFaceSwap - ' + task['displays']['discordInstanceId'];
+      botName = `niji・journey - ${task['displays']['discordInstanceId']}`;
+    } else if (task.botType === 'INSIGHT_FACE') {
+      botName = `InsightFaceSwap - ${task['displays']['discordInstanceId']}`;
     }
     if (
       task.status !== 'SUCCESS' &&
@@ -530,13 +538,13 @@ const Draw: React.FC = () => {
   };
 
   const getTaskCard = (task: any) => {
-    if (task.action == 'DESCRIBE') {
+    if (task.action === 'DESCRIBE') {
       return (
         <>
           {getTaskStatus(task)} {getTaskMarkdownInfo(task)} {getTaskImage(task.imageUrl, 120)}
         </>
       );
-    } else if (task.action == 'SHORTEN') {
+    } else if (task.action === 'SHORTEN') {
       return (
         <>
           {getTaskStatus(task)} {getTaskMarkdownInfo(task)}
@@ -561,19 +569,19 @@ const Draw: React.FC = () => {
   };
 
   const getTaskStatus = (task: any) => {
-    if (task.status == 'FAILURE') {
+    if (task.status === 'FAILURE') {
       return <span className={styles.taskErrorTip}>{task.failReason}</span>;
-    } else if (task.status == 'SUCCESS') {
+    } else if (task.status === 'SUCCESS') {
       return <></>;
-    } else if (task.status == 'IN_PROGRESS') {
+    } else if (task.status === 'IN_PROGRESS') {
       return <>{getProgress(task)}</>;
     } else {
       let color = 'purple';
-      if (task.status == 'SUBMITTED') {
+      if (task.status === 'SUBMITTED') {
         color = 'lime';
-      } else if (task.status == 'CANCEL') {
+      } else if (task.status === 'CANCEL') {
         color = 'magenta';
-      } else if (task.status == 'MODAL') {
+      } else if (task.status === 'MODAL') {
         color = 'warning';
       }
       return (
@@ -589,7 +597,7 @@ const Draw: React.FC = () => {
     return (
       <AntdImage
         width={width}
-        src={imagePrefix + imageUrl}
+        src={`${imagePrefix}${imageUrl}`}
         placeholder={<Spin tip="Loading" size="large"></Spin>}
       />
     );
@@ -613,12 +621,12 @@ const Draw: React.FC = () => {
       return (
         <Button
           ghost
-          key={task.id + ':' + button.customId}
-          style={{ backgroundColor: button.style == 3 ? '#258146' : 'rgb(131 133 142)' }}
+          key={`${task.id}:${button.customId}`}
+          style={{ backgroundColor: button.style === 3 ? '#258146' : 'rgb(131 133 142)' }}
           onClick={() => {
             actionTask(task, button);
           }}
-          loading={loadingButton == task.id + ':' + button.customId}
+          loading={loadingButton === `${task.id}:${button.customId}`}
         >
           {button.emoji} {button.label}
         </Button>
@@ -641,7 +649,6 @@ const Draw: React.FC = () => {
             {images.length >= 2 ? null : uploadButton}
           </Upload>
           <Button
-            disabled
             style={{ marginTop: '10px' }}
             type="primary"
             onClick={submit}
@@ -651,7 +658,7 @@ const Draw: React.FC = () => {
           </Button>
         </Flex>
       );
-    } else if (action == 'show') {
+    } else if (action === 'show') {
       return (
         <Space.Compact style={{ width: '100%' }}>
           <Input
@@ -665,7 +672,7 @@ const Draw: React.FC = () => {
           </Button>
         </Space.Compact>
       );
-    } else if (action == 'imagine') {
+    } else if (action === 'imagine') {
       return (
         <Flex vertical>
           <Upload {...props} listType="picture-card">
@@ -684,7 +691,7 @@ const Draw: React.FC = () => {
           </Space.Compact>
         </Flex>
       );
-    } else if (action == 'blend') {
+    } else if (action === 'blend') {
       return (
         <Flex vertical>
           <Upload {...props} listType="picture-card">
@@ -707,7 +714,7 @@ const Draw: React.FC = () => {
           </Space>
         </Flex>
       );
-    } else if (action == 'describe') {
+    } else if (action === 'describe') {
       return (
         <Flex vertical>
           <Upload {...props} listType="picture-card">
@@ -723,7 +730,7 @@ const Draw: React.FC = () => {
           </Button>
         </Flex>
       );
-    } else if (action == 'shorten') {
+    } else if (action === 'shorten') {
       return (
         <Space.Compact style={{ width: '100%', marginTop: '10px' }}>
           <Input
@@ -806,8 +813,8 @@ const Draw: React.FC = () => {
   };
 
   const props: UploadProps = {
-    customRequest: customRequest,
-    beforeUpload: beforeUpload,
+    customRequest,
+    beforeUpload,
     fileList: images,
     onChange(info) {
       setImages(info.fileList);
