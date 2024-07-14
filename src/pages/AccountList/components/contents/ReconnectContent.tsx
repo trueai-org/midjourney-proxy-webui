@@ -34,10 +34,10 @@ const ReconnectContent = ({
               <Input />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.guildId' })} name="guildId" rules={[{ required: true}]}>
-              <Input />
+              <Input disabled />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.channelId' })} name="channelId" rules={[{ required: true }]}>
-              <Input />
+              <Input disabled />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.userToken' })} name="userToken" rules={[{ required: true }]}>
               <Input />
