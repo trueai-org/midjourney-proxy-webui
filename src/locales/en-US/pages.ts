@@ -104,6 +104,11 @@ export default {
   'pages.account.delete':'Delete Account',
   'pages.account.deleteTitle':'Confirm delete this account?',
   'pages.account.deleteSuccess':'Delete account successful',
+
+  'pages.task.delete':'Delete Task',
+  'pages.task.deleteTitle':'Confirm delete this task?',
+  'pages.task.deleteSuccess':'Delete task successful',
+
   'pages.account.info':'Account Info',
   'pages.account.mjVersionSuccess':'MJ version switch successful',
   'pages.account.remixAutoSubmit':'Remix Auto Submit',

@@ -1,10 +1,11 @@
 import MyModal from '@/pages/components/Modal';
 import TaskContent from '@/pages/Task/components/TaskContent';
-import { queryTask } from '@/services/mj/api';
+import { deleteTask, queryTask } from '@/services/mj/api';
+import { DeleteOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Card, Form, Progress, Tag } from 'antd';
-import React, { useState } from 'react';
+import { Button, Card, Form, notification, Popconfirm, Progress, Tag } from 'antd';
+import React, { useRef, useState } from 'react';
 
 const List: React.FC = () => {
   // 初始化 dataSource 状态为空数组
@@ -15,6 +16,10 @@ const List: React.FC = () => {
   const [modalWidth, setModalWidth] = useState(1000);
   const [form] = Form.useForm();
   const intl = useIntl();
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const actionRef = useRef();
 
   const hideModal = () => {
     setModalContent({});
@@ -29,6 +34,27 @@ const List: React.FC = () => {
     setFooter(footer);
     setModalWidth(modalWidth);
     setModalVisible(true);
+  };
+
+  const onDelete = async (id: string) => {
+    try {
+      const res = await deleteTask(id);
+      if (res.success) {
+        api.success({
+          message: 'success',
+          description: intl.formatMessage({ id: 'pages.task.deleteSuccess' }),
+        });
+        actionRef.current?.reload();
+      } else {
+        api.error({
+          message: 'error',
+          description: res.message,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+    }
   };
 
   const columns = [
@@ -200,10 +226,31 @@ const List: React.FC = () => {
       width: 220,
       ellipsis: true,
     },
+    {
+      title: intl.formatMessage({ id: 'pages.operation' }),
+      dataIndex: 'operation',
+      width: 100,
+      key: 'operation',
+      fixed: 'right',
+      align: 'center',
+      hideInSearch: true,
+      render: (_, record) => {
+        return (
+          <Popconfirm
+            title={intl.formatMessage({ id: 'pages.task.delete' })}
+            description={intl.formatMessage({ id: 'pages.task.deleteTitle' })}
+            onConfirm={() => onDelete(record.id)}
+          >
+            <Button danger icon={<DeleteOutlined />}></Button>
+          </Popconfirm>
+        );
+      },
+    },
   ];
 
   return (
     <PageContainer>
+      {contextHolder}
       <Card>
         <ProTable
           columns={columns}
@@ -215,6 +262,7 @@ const List: React.FC = () => {
             showSizeChanger: false,
           }}
           rowKey="id"
+          actionRef={actionRef}
           request={async (params) => {
             const res = await queryTask({ ...params, pageNumber: params.current - 1 });
             return {

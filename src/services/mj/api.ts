@@ -70,7 +70,7 @@ export async function refreshAccount(id: string, options?: { [key: string]: any 
   });
 }
 
-/**  PUT /mj/account/{id}/update-reconnect */
+/**  PUT */
 export async function updateAndReconnect(
   id: string,
   data: object,
@@ -91,9 +91,17 @@ export async function update(id: string, data: object, options?: { [key: string]
   });
 }
 
-/**  DELETE /mj/account/{id}/delete */
+/**  DELETE */
 export async function deleteAccount(id: string, options?: { [key: string]: any }) {
   return request<API.Result>(`/mj/admin/account/${id}`, {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+
+/**  DELETE */
+export async function deleteTask(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/task/${id}`, {
     method: 'DELETE',
     ...(options || {}),
   });

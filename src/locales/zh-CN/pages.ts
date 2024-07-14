@@ -102,6 +102,12 @@ export default {
   'pages.account.delete':'删除账号',
   'pages.account.deleteTitle':'确认删除该账号？',
   'pages.account.deleteSuccess':'账号删除成功',
+
+  
+  'pages.task.delete':'删除任务',
+  'pages.task.deleteTitle':'确认删除此任务吗?',
+  'pages.task.deleteSuccess':'删除任务成功',
+
   'pages.account.info':'账号信息',
   'pages.account.mjVersionSuccess':'mj版本切换成功',
   'pages.account.remixAutoSubmit':'Remix 自动提交',
