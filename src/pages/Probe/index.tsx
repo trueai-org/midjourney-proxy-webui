@@ -15,14 +15,14 @@ const fetchLogContent = async () => {
 const Probe: React.FC = () => {
   const [logContent, setLogContent] = useState<string>('');
   const [refreshInterval, setRefreshInterval] = useState<number>(5);
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
   const logCardRef = useRef<HTMLDivElement>(null);
+  const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
   const intl = useIntl();
 
   useEffect(() => {
     const tailLog = async () => {
       const res = await fetchLogContent();
-      var logCardElement = logCardRef.current || document.body;
+      const logCardElement = logCardRef.current || document.body;
       const scrollN = logCardElement.scrollHeight - logCardElement.scrollTop - logCardElement.clientHeight;
       setLogContent(res);
       if (scrollN < 50) {
@@ -32,22 +32,25 @@ const Probe: React.FC = () => {
 
     tailLog().then(() => {
       setTimeout(() => {
-        var logCardElement = logCardRef.current || document.body;
+        const logCardElement = logCardRef.current || document.body;
         logCardElement.scrollTop = logCardElement.scrollHeight - logCardElement.clientHeight;
       }, 100);
     });
 
-    if (intervalId) {
-      clearInterval(intervalId);
+    if (intervalIdRef.current) {
+      clearInterval(intervalIdRef.current);
     }
 
     if (refreshInterval > 0) {
       const newIntervalId = setInterval(tailLog, refreshInterval * 1000);
-      setIntervalId(newIntervalId);
+      intervalIdRef.current = newIntervalId;
     }
 
     return () => {
-      if (intervalId) clearInterval(intervalId);
+      if (intervalIdRef.current) {
+        clearInterval(intervalIdRef.current);
+        intervalIdRef.current = null;
+      }
     };
   }, [refreshInterval]);
 
