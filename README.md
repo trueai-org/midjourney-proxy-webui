@@ -36,7 +36,7 @@ yarn
 
 ```shell
 # MJ-SERVER
-MJ_SERVER=http://127.0.0.1:5229
+MJ_SERVER=http://127.0.0.1:8080
 ```
 
 ## 3.运行
