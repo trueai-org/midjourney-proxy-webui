@@ -80,6 +80,9 @@ export default {
   'pages.cancel':'取消',
   'pages.submit':'确定',
 
+  'pages.account.notRunning':'服务未启动',
+  'pages.account.runningCount': '执行中任务数',
+  'pages.account.queueCount': '队列中任务数',
   'pages.account.guildId':'服务器ID',
   'pages.account.channelId':'频道ID',
   'pages.account.username':'账号名',

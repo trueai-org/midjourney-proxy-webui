@@ -5,7 +5,13 @@ import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
 import { createAccount, queryAccount, update, updateAndReconnect } from '@/services/mj/api';
-import { EditOutlined, SyncOutlined, ToolOutlined, UserAddOutlined } from '@ant-design/icons';
+import {
+  ClockCircleOutlined,
+  EditOutlined,
+  SyncOutlined,
+  ToolOutlined,
+  UserAddOutlined,
+} from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button, Card, Form, Modal, notification, Space, Table, Tag, Tooltip } from 'antd';
@@ -165,8 +171,8 @@ const AccountList: React.FC = () => {
     {
       title: `${intl.formatMessage({ id: 'pages.account.status' })}`,
       dataIndex: 'enable',
-      width: 120,
-      align: 'center',
+      width: 200,
+      align: 'left',
       request: async () => [
         {
           label: intl.formatMessage({ id: 'pages.enable' }),
@@ -185,11 +191,38 @@ const AccountList: React.FC = () => {
         return (
           <>
             <Tag color={color}>{text}</Tag>
-            <span>
-              <Tooltip title={`running: ${record?.runningCount}, queue: ${record?.queueCount}`}>
-                {record?.runningCount}/{record?.queueCount}
-              </Tooltip>
-            </span>
+
+            {enable && !record.running && (
+              <Tag icon={<SyncOutlined />} color="error">
+                {intl.formatMessage({ id: 'pages.account.notRunning' })}
+              </Tag>
+            )}
+
+            {record?.runningCount > 0 && (
+              <Tag icon={<SyncOutlined spin />} color="cyan">
+                <Tooltip
+                  title={
+                    intl.formatMessage({ id: 'pages.account.runningCount' }) +
+                    ' ' +
+                    record.runningCount
+                  }
+                >
+                  {record?.runningCount || 0}
+                </Tooltip>
+              </Tag>
+            )}
+
+            {record?.queueCount > 0 && (
+              <Tag icon={<ClockCircleOutlined />} color="processing">
+                <Tooltip
+                  title={
+                    intl.formatMessage({ id: 'pages.account.queueCount' }) + ' ' + record.queueCount
+                  }
+                >
+                  {record.queueCount || 0}
+                </Tooltip>
+              </Tag>
+            )}
           </>
         );
       },

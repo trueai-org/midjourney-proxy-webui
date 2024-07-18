@@ -72,6 +72,7 @@ export default {
   'pages.searchTable.batchApproval': 'batch approval',
 
   'pages.enable':'Enable',
+  
   'pages.disable':'Disable',
   'pages.operation':'Operation',
   'pages.add':'Add',
@@ -82,6 +83,9 @@ export default {
   'pages.cancel':'Cancel',
   'pages.submit':'OK',
 
+  'pages.account.notRunning':'Service Not Running',
+  'pages.account.runningCount': 'Running Task Count',
+  'pages.account.queueCount': 'Queue Task Count',
   'pages.account.guildId':'Guild ID',
   'pages.account.channelId':'Channel ID',
   'pages.account.username':'Username',
