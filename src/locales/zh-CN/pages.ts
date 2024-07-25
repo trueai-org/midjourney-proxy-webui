@@ -27,7 +27,7 @@ export default {
   'pages.welcome.learn': '了解',
   'pages.welcome.midjourney-proxy': 'midjourney-proxy 是一个代理 MidJourney 的 discord 频道的开源项目，实现 api 形式调用 AI 绘图。',
   'pages.welcome.go-amz-ai': 'GoAmzAI 🤖️ 基于 Golang + Vue3 + NaiveUI 的全新的个人、团队、企业私有化AIGC平台',
-  'pages.welcome.midjourney-proxy-webui': 'Midjourney Proxy 管理后台前端项目',
+  'pages.welcome.midjourney-proxy-webui': 'Midjourney Proxy 后台管理界面。',
   'pages.welcome.alertMessage': '更快更强的重型组件，已经发布。',
   'pages.welcome.learnMore': '了解更多',
 
@@ -190,7 +190,7 @@ export default {
   'pages.activate.actived':'服务已激活',
   'pages.activate.activedTip':'可以正常维护账号、查看任务列表，提供midjourney api接口供外部调用；本系统的绘图测试页，提供了常用的绘图功能',
   'pages.activate.drawTest':'绘画测试',
-  'pages.activate.apiDoc':'API文档',
+  'pages.activate.apiDoc':'Swagger 接口文档，支持在线调试。',
   'pages.activate.unactiveTip':'尚未激活！请按照下述步骤，激活服务',
   'pages.activate.copyCode':'复制机器码',
   'pages.activate.getActivationCode':'获取激活码',
