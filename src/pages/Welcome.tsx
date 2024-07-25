@@ -151,9 +151,9 @@ const Welcome: React.FC = () => {
             />
             <InfoCard
               index={2}
-              title={intl.formatMessage({ id: 'pages.welcome.learn' }) + ' GoAmzAI'}
-              href="https://github.com/Licoy/GoAmzAI"
-              desc={intl.formatMessage({ id: 'pages.welcome.go-amz-ai' })}
+              title={intl.formatMessage({ id: 'pages.welcome.learn' }) + ' Midjourney Proxy Web UI'}
+              href="https://github.com/trueai-org/midjourney-proxy-webui"
+              desc={intl.formatMessage({ id: 'pages.welcome.midjourney-proxy-webui' })}
             />
           </div>
         </div>

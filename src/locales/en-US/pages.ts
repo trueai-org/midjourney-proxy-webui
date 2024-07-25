@@ -29,6 +29,7 @@ export default {
   'pages.welcome.midjourney-proxy': 'midjourney-proxy is an open-source project that proxies the MidJourney discord channel, implementing AI drawing calls in API form.',
   'pages.welcome.wechat-ai': 'wechat-ai is a WeChat robot project implemented based on chatgpt-on-wechat and midjourney-proxy-plus.',
   'pages.welcome.go-amz-ai': 'GoAmzAI 🤖️ A brand new private AIGC platform for individuals, teams, and enterprises, built with Golang, Vue3, and NaiveUI.',
+  'pages.welcome.midjourney-proxy-webui': 'Midjourney Proxy Backend Management Front-end Project',
   'pages.welcome.alertMessage': 'Faster and stronger heavy-duty components have been released.',
   'pages.admin.subPage.title': 'This page can only be viewed by Admin',
   'pages.admin.subPage.alertMessage':

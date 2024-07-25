@@ -27,6 +27,7 @@ export default {
   'pages.welcome.learn': '了解',
   'pages.welcome.midjourney-proxy': 'midjourney-proxy 是一个代理 MidJourney 的 discord 频道的开源项目，实现 api 形式调用 AI 绘图。',
   'pages.welcome.go-amz-ai': 'GoAmzAI 🤖️ 基于 Golang + Vue3 + NaiveUI 的全新的个人、团队、企业私有化AIGC平台',
+  'pages.welcome.midjourney-proxy-webui': 'Midjourney Proxy 管理后台前端项目',
   'pages.welcome.alertMessage': '更快更强的重型组件，已经发布。',
   'pages.welcome.learnMore': '了解更多',
 
