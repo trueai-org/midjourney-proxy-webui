@@ -159,6 +159,9 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.notifyHook' })}>
             {getTooltip(record['properties']['notifyHook'] || '-')}
           </Descriptions.Item>
+          <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.ip' })}>
+            {record.clientIp || '-'}
+          </Descriptions.Item>
         </Descriptions>
       </Card>
     </>

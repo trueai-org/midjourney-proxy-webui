@@ -159,6 +159,7 @@ export default {
   'pages.task.modalConfirm':'Modal确认',
   'pages.task.imageSeed':'图片seed',
   'pages.task.notifyHook':'通知地址',
+  'pages.task.ip':'客户IP',
 
   'pages.task.NOT_START':'未启动',
   'pages.task.SUBMITTED':'已提交',
