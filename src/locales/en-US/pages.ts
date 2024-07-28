@@ -190,6 +190,7 @@ export default {
   'pages.draw.clear':'Clear Selection',
   'pages.draw.onlyJpgPng':'You can only upload JPG or PNG files!',
   'pages.draw.limit10M':'The image cannot be larger than 10MB!',
+  'pages.draw.selectAccount': 'Assigned account drawing',
 
   'pages.activate.actived':'Service has been activated',
   'pages.activate.activedTip':'You can normally maintain accounts, view task lists, provide midjourney API interfaces for external calls; The drawing test page of this system provides commonly used drawing functions',

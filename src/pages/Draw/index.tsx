@@ -1,4 +1,11 @@
-import { cancelTask, queryTask, queryTaskByIds, submitTask, swapFace } from '@/services/mj/api';
+import {
+  cancelTask,
+  queryAccount,
+  queryTask,
+  queryTaskByIds,
+  submitTask,
+  swapFace,
+} from '@/services/mj/api';
 import { ClearOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -52,6 +59,10 @@ const Draw: React.FC = () => {
   const [modalImageHeight, setModalImageHeight] = useState<number>(0);
   const [modalRemix, setModalRemix] = useState(false);
   const [loadingModal, setLoadingModal] = useState(false);
+
+  const [accounts, setAccounts] = useState([]);
+  const [curAccount, setCurAccount] = useState<string>();
+
   const intl = useIntl();
 
   const cbSaver = useRef<any[]>([]);
@@ -132,6 +143,10 @@ const Draw: React.FC = () => {
 
   const fetchData = async (params: any) => {
     setDataLoading(true);
+
+    const accs = await queryAccount();
+    setAccounts(accs);
+
     const res = await queryTask(params);
     const array = res.list.reverse();
     for (const item of array) {
@@ -149,6 +164,10 @@ const Draw: React.FC = () => {
     setAction(value);
     setPrompt('');
     setImages([]);
+  };
+
+  const handleAccountChange = (value: string) => {
+    setCurAccount(value);
   };
 
   const handleBotTypeChange = ({ target: { value } }: RadioChangeEvent) => {
@@ -224,6 +243,9 @@ const Draw: React.FC = () => {
         prompt,
         base64Array,
         state: customState,
+        accountFilter: {
+          instanceId: curAccount,
+        },
       }).then((res) => {
         setSubmitLoading(false);
         const success = submitResultCheck(res);
@@ -249,6 +271,9 @@ const Draw: React.FC = () => {
         base64Array,
         dimensions,
         state: customState,
+        accountFilter: {
+          instanceId: curAccount,
+        },
       }).then((res) => {
         setSubmitLoading(false);
         const success = submitResultCheck(res);
@@ -264,7 +289,14 @@ const Draw: React.FC = () => {
       }
       setSubmitLoading(true);
       const base64 = await readFileAsBase64(images[0].originFileObj);
-      submitTask(action, { botType, base64, state: customState }).then((res) => {
+      submitTask(action, {
+        botType,
+        base64,
+        state: customState,
+        accountFilter: {
+          instanceId: curAccount,
+        },
+      }).then((res) => {
         setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
@@ -278,7 +310,14 @@ const Draw: React.FC = () => {
         return;
       }
       setSubmitLoading(true);
-      submitTask(action, { botType, prompt, state: customState }).then((res) => {
+      submitTask(action, {
+        botType,
+        prompt,
+        state: customState,
+        accountFilter: {
+          instanceId: curAccount,
+        },
+      }).then((res) => {
         setSubmitLoading(false);
         const success = submitResultCheck(res);
         if (success) {
@@ -849,6 +888,13 @@ const Draw: React.FC = () => {
         { value: 'show', label: '/show' },
       ];
     }
+
+    const accountOpts = accounts.map((account: any) => {
+      return {
+        value: account.channelId,
+        label: account.channelId + ' - ' + (account.remark || ''),
+      };
+    });
     return (
       <Space style={{ marginBottom: '10px' }}>
         <Select
@@ -857,6 +903,16 @@ const Draw: React.FC = () => {
           onChange={handleActionChange}
           options={options}
         />
+
+        <Select
+          value={curAccount}
+          style={{ width: 320 }}
+          onChange={handleAccountChange}
+          options={accountOpts}
+          allowClear
+          placeholder={intl.formatMessage({ id: 'pages.draw.selectAccount' })}
+        />
+
         <Radio.Group
           value={botType}
           onChange={handleBotTypeChange}

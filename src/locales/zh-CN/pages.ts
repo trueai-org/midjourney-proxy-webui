@@ -188,6 +188,7 @@ export default {
   'pages.draw.clear':'清除选中',
   'pages.draw.onlyJpgPng':'只能上传JPG或PNG文件!',
   'pages.draw.limit10M':'图片不能大于10MB!',
+  'pages.draw.selectAccount': '选择指定账号绘图',
 
   'pages.activate.actived':'服务已激活',
   'pages.activate.activedTip':'可以正常维护账号、查看任务列表，提供midjourney api接口供外部调用；本系统的绘图测试页，提供了常用的绘图功能',
