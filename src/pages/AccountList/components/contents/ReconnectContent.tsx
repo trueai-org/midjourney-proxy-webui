@@ -89,6 +89,9 @@ const ReconnectContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
               <Input />
             </Form.Item>
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.sponsor' })} name="sponsor">
+              <Input />
+            </Form.Item>
           </Card>
         </Col>
       </Row>

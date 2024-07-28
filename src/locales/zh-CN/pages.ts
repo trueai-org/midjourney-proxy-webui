@@ -92,6 +92,7 @@ export default {
   'pages.account.status':'状态',
   'pages.account.fastTimeRemaining':'快速时间剩余',
   'pages.account.subscribePlan':'订阅计划',
+  'pages.account.sponsor':'赞助商',
   'pages.account.renewDate':'到期时间',
   'pages.account.mjMode':'mj模式',
   'pages.account.nijiMode':'niji模式',

@@ -235,31 +235,31 @@ const AccountList: React.FC = () => {
       hideInSearch: true,
       align: 'center',
     } as ColumnType<Record<string, any>>,
-    {
-      title: intl.formatMessage({ id: 'pages.account.subscribePlan' }),
-      dataIndex: 'subscribePlan',
-      width: 120,
-      align: 'center',
-      request: async () => [
-        {
-          label: 'Basic',
-          value: 'BASIC',
-        },
-        {
-          label: 'Standard',
-          value: 'STANDARD',
-        },
-        {
-          label: 'Pro',
-          value: 'PRO',
-        },
-        {
-          label: 'Mega',
-          value: 'MEGA',
-        },
-      ],
-      render: (text: string, record: Record<string, any>) => record['displays']['subscribePlan'],
-    } as ColumnType<Record<string, any>>,
+    // {
+    //   title: intl.formatMessage({ id: 'pages.account.subscribePlan' }),
+    //   dataIndex: 'subscribePlan',
+    //   width: 120,
+    //   align: 'center',
+    //   request: async () => [
+    //     {
+    //       label: 'Basic',
+    //       value: 'BASIC',
+    //     },
+    //     {
+    //       label: 'Standard',
+    //       value: 'STANDARD',
+    //     },
+    //     {
+    //       label: 'Pro',
+    //       value: 'PRO',
+    //     },
+    //     {
+    //       label: 'Mega',
+    //       value: 'MEGA',
+    //     },
+    //   ],
+    //   render: (text: string, record: Record<string, any>) => record['displays']['subscribePlan'],
+    // } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.account.renewDate' }),
       dataIndex: 'renewDate',
@@ -284,6 +284,16 @@ const AccountList: React.FC = () => {
     //   hideInSearch: true,
     //   render: (text: string, record: Record<string, any>) => record['displays']['nijiMode'],
     // } as ColumnType<Record<string, any>>,
+    {
+      title: intl.formatMessage({ id: 'pages.account.sponsor' }),
+      dataIndex: 'sponsor',
+      ellipsis: true,
+      width: 100,
+      // 赞助商 - 富文本
+      render: (text: string, record: Record<string, any>) => (
+        <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
+      ),
+    } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.account.remark' }),
       dataIndex: 'remark',

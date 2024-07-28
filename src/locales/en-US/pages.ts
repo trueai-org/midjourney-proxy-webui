@@ -95,6 +95,7 @@ export default {
   'pages.account.status':'Status',
   'pages.account.fastTimeRemaining':'FastTime Remaining',
   'pages.account.subscribePlan':'Subscribe',
+  'pages.account.sponsor':'Sponsor',
   'pages.account.renewDate':'Expiration Time',
   'pages.account.mjMode':'MJ Mode',
   'pages.account.nijiMode':'Niji Mode',
