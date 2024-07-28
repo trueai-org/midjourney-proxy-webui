@@ -3,6 +3,7 @@ import {
   queryAccount,
   queryTask,
   queryTaskByIds,
+  submitShow,
   submitTask,
   swapFace,
 } from '@/services/mj/api';
@@ -227,7 +228,31 @@ const Draw: React.FC = () => {
       }
       waitTaskIds.add(prompt);
       setPrompt('');
-    } else if (action === 'imagine') {
+    }
+    else if (action === 'showjobid') {
+      if (!prompt) {
+        message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
+        return;
+      }
+      setSubmitLoading(true);
+      submitShow('show', {
+        botType,
+        jobId: prompt,
+        state: customState,
+        accountFilter: {
+          instanceId: curAccount,
+        },
+      }).then((res) => {
+        setSubmitLoading(false);
+        const success = submitResultCheck(res);
+        if (success) {
+          waitTaskIds.add(res.result);
+          setPrompt('');
+          setImages([]);
+        }
+      });
+    }
+     else if (action === 'imagine') {
       if (!prompt) {
         message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
         return;
@@ -720,7 +745,23 @@ const Draw: React.FC = () => {
           </Button>
         </Space.Compact>
       );
-    } else if (action === 'imagine') {
+    }
+    else if (action === 'showjobid') {
+      return (
+        <Space.Compact style={{ width: '100%' }}>
+          <Input
+            placeholder={intl.formatMessage({ id: 'pages.draw.inputJobIdShow' })}
+            value={prompt}
+            onChange={handlePromptChange}
+            onPressEnter={submit}
+          />
+          <Button type="primary" onClick={submit} loading={submitLoading}>
+            {intl.formatMessage({ id: 'pages.draw.submitTask' })}
+          </Button>
+        </Space.Compact>
+      );
+    } 
+     else if (action === 'imagine') {
       return (
         <Flex vertical>
           <Upload {...props} listType="picture-card">
@@ -885,7 +926,8 @@ const Draw: React.FC = () => {
         { value: 'blend', label: '/blend' },
         { value: 'describe', label: '/describe' },
         { value: 'shorten', label: '/shorten' },
-        { value: 'show', label: '/show' },
+        { value: 'showjobid', label: '/show job_id' },
+        { value: 'show', label: '/show task_id' },
       ];
     }
 

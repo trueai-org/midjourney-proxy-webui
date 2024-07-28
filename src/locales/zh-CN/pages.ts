@@ -181,6 +181,7 @@ export default {
   'pages.draw.subSuccess':'提交成功，请稍等...',
   'pages.draw.swapDesc':'人脸替换（第一张图作为人脸源）',
   'pages.draw.inputIdShow':'输入任务ID, 调出未展示的任务',
+  'pages.draw.inputJobIdShow':'输入 job id 或 url, 将 midjourney 任务转为本系统任务',
   'pages.draw.submitTask':'提交任务',
   'pages.draw.PORTRAIT':'肖像(2:3)',
   'pages.draw.SQUARE':'正方形(1:1)',

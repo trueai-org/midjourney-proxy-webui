@@ -183,6 +183,7 @@ export default {
   'pages.draw.subSuccess':'Submit successful, please wait...',
   'pages.draw.swapDesc':'Face replacement (the first image is used as the face source)',
   'pages.draw.inputIdShow':'Enter the task ID to bring up tasks that are not displayed',
+  'pages.draw.inputJobIdShow':'Enter the job id or url to convert the midjourney task to the local system task',
   'pages.draw.submitTask':'Submit Task',
   'pages.draw.PORTRAIT':'Portrait(2:3)',
   'pages.draw.SQUARE':'Square(1:1)',
