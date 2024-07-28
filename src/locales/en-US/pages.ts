@@ -178,7 +178,7 @@ export default {
   'pages.draw.taskIdNotBlank':'Task ID cannot be empty!',
   'pages.draw.promptNotBlank':'Prompt cannot be empty!',
   'pages.draw.unsupportedAction':'This page does not currently support that command!',
-  'pages.draw.actionSuccess':'Action executed successfully, please wait...',
+  'pages.draw.actionSuccess':'Action executed successfully',
   'pages.draw.subSuccess':'Submit successful, please wait...',
   'pages.draw.swapDesc':'Face replacement (the first image is used as the face source)',
   'pages.draw.inputIdShow':'Enter the task ID to bring up tasks that are not displayed',

@@ -355,7 +355,16 @@ const Draw: React.FC = () => {
         setModalVisible(true);
       } else if (res.code === 1) {
         button.style = 3;
-        waitTaskIds.add(res.result);
+
+        if (res.result) {
+          // 如果是多个任务，以 ',' 分割
+          const taskIds = res.result.split(',');
+          taskIds.forEach((taskId: string) => {
+            waitTaskIds.add(taskId);
+          });
+
+          // waitTaskIds.add(res.result);
+        }
         message.success(intl.formatMessage({ id: 'pages.draw.actionSuccess' }));
       } else {
         api.error({

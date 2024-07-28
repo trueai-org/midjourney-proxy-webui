@@ -176,7 +176,7 @@ export default {
   'pages.draw.taskIdNotBlank':'任务ID不能为空！',
   'pages.draw.promptNotBlank':'prompt不能为空！',
   'pages.draw.unsupportedAction':'当前页暂不支持该指令!',
-  'pages.draw.actionSuccess':'动作执行成功，请稍等...',
+  'pages.draw.actionSuccess':'动作执行成功',
   'pages.draw.subSuccess':'提交成功，请稍等...',
   'pages.draw.swapDesc':'人脸替换（第一张图作为人脸源）',
   'pages.draw.inputIdShow':'输入任务ID, 调出未展示的任务',
