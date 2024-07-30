@@ -8,6 +8,7 @@ import { createAccount, queryAccount, update, updateAndReconnect } from '@/servi
 import {
   ClockCircleOutlined,
   EditOutlined,
+  LockOutlined,
   SyncOutlined,
   ToolOutlined,
   UserAddOutlined,
@@ -191,6 +192,14 @@ const AccountList: React.FC = () => {
         return (
           <>
             <Tag color={color}>{text}</Tag>
+
+            {record.lock && (
+              <Tag icon={<LockOutlined />} color="warning">
+                <Tooltip title={intl.formatMessage({ id: 'pages.account.lockmsg' })}>
+                  {intl.formatMessage({ id: 'pages.account.lock' })}
+                </Tooltip>
+              </Tag>
+            )}
 
             {enable && !record.running && (
               <Tag icon={<SyncOutlined />} color="error">

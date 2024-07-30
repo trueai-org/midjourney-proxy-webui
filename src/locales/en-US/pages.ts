@@ -85,6 +85,8 @@ export default {
   'pages.submit':'OK',
 
   'pages.account.notRunning':'Service Not Running',
+  'pages.account.lock':'Account locked',
+  'pages.account.lockmsg':'When the account is locked, CF authentication may be triggered. If the authentication succeeds, connect the account again',
   'pages.account.runningCount': 'Running Task Count',
   'pages.account.queueCount': 'Queue Task Count',
   'pages.account.guildId':'Guild ID',

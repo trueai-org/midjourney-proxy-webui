@@ -82,6 +82,8 @@ export default {
   'pages.submit':'确定',
 
   'pages.account.notRunning':'服务未启动',
+  'pages.account.lock':'锁定',
+  'pages.account.lockmsg':'账号锁定中，可能触发 CF 验证，如果验证通过，请重连',
   'pages.account.runningCount': '执行中任务数',
   'pages.account.queueCount': '队列中任务数',
   'pages.account.guildId':'服务器ID',
