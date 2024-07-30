@@ -44,15 +44,12 @@ const CfContent = ({
   const updateOk = async () => {
     setLoading(true);
     const res = await accountCfOk(record.id);
-    if (res.success) {
-      api.success({
-        message: 'success',
-        description: res.message,
-      });
+    if (res) {
+      setData(res);
     } else {
       api.error({
         message: 'error',
-        description: res.message,
+        description: 'error',
       });
     }
     setLoading(false);
