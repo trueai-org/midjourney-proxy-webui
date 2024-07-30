@@ -95,6 +95,8 @@ export default {
   'pages.account.fastTimeRemaining':'快速时间剩余',
   'pages.account.subscribePlan':'订阅计划',
   'pages.account.sponsor':'赞助商',
+  'pages.account.sort':'序号',
+  'pages.account.cfmodal': 'CF 真人验证',
   'pages.account.renewDate':'到期时间',
   'pages.account.mjMode':'mj模式',
   'pages.account.nijiMode':'niji模式',
@@ -116,6 +118,8 @@ export default {
   'pages.task.deleteSuccess':'删除任务成功',
 
   'pages.account.info':'账号信息',
+  'pages.account.cfRefresh':'重新生成 CF 验证链接',
+  'pages.account.cfok':'标记验证通过',
   'pages.account.mjVersionSuccess':'mj版本切换成功',
   'pages.account.remixAutoSubmit':'Remix 自动提交',
   'pages.account.mjChannelId':'MJ私信ID',

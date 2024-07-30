@@ -1,6 +1,7 @@
 import DelButton from '@/pages/AccountList/components/button/DelButton';
 import SyncButton from '@/pages/AccountList/components/button/SyncButton';
 import AddContent from '@/pages/AccountList/components/contents/AddContent';
+import CfContent from '@/pages/AccountList/components/contents/CfContent';
 import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
@@ -11,6 +12,7 @@ import {
   LockOutlined,
   SyncOutlined,
   ToolOutlined,
+  UnlockOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
@@ -131,6 +133,13 @@ const AccountList: React.FC = () => {
         description: res.message,
       });
     }
+    hideModal();
+    triggerRefreshAccount();
+    setModalSubmitLoading(false);
+  };
+
+  const handleCfOk = async () => {
+    setModalSubmitLoading(true);
     hideModal();
     triggerRefreshAccount();
     setModalSubmitLoading(false);
@@ -321,13 +330,29 @@ const AccountList: React.FC = () => {
     {
       title: intl.formatMessage({ id: 'pages.operation' }),
       dataIndex: 'operation',
-      width: 200,
+      width: 220,
       key: 'operation',
       fixed: 'right',
+      align: 'center',
       hideInSearch: true,
       render: (value: any, record: Record<string, string>) => {
         return (
           <Space>
+            {record.lock && (
+              <Button
+                key="Lock"
+                icon={<UnlockOutlined />}
+                type={'dashed'}
+                onClick={() =>
+                  openModal(
+                    intl.formatMessage({ id: 'pages.account.cfmodal' }),
+                    <CfContent form={form} record={record} onSubmit={handleCfOk} />,
+                    1000,
+                  )
+                }
+              />
+            )}
+
             <SyncButton record={record} onSuccess={triggerRefreshAccount} />
             <Tooltip title={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}>
               <Button

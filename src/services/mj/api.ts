@@ -91,6 +91,23 @@ export async function update(id: string, data: object, options?: { [key: string]
   });
 }
 
+// CF 标记验证通过
+export async function accountCfOk(id: string, data?: object, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/account-cf/${id}`, {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
+// CF 刷新链接
+export async function accountCfUrl(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/account-cf/${id}?refresh=true`, {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /**  DELETE */
 export async function deleteAccount(id: string, options?: { [key: string]: any }) {
   return request<API.Result>(`/mj/admin/account/${id}`, {
@@ -124,10 +141,13 @@ export async function accountAction(
   customId: string,
   options?: { [key: string]: any },
 ) {
-  return request<API.Result>(`/mj/admin/account-action/${id}?customId=${customId}&botType=${botType}`, {
-    method: 'POST',
-    ...(options || {}),
-  });
+  return request<API.Result>(
+    `/mj/admin/account-action/${id}?customId=${customId}&botType=${botType}`,
+    {
+      method: 'POST',
+      ...(options || {}),
+    },
+  );
 }
 
 export async function queryTask(data: any, options?: { [key: string]: any }) {
@@ -143,7 +163,7 @@ export async function queryTask(data: any, options?: { [key: string]: any }) {
         reverse: true,
       },
       search: {
-        ...data
+        ...data,
       },
     },
     ...(options || {}),

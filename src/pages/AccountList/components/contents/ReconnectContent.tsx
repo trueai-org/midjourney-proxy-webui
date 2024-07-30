@@ -92,6 +92,9 @@ const ReconnectContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.sponsor' })} name="sponsor">
               <Input />
             </Form.Item>
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
+              <InputNumber />
+            </Form.Item>
           </Card>
         </Col>
       </Row>

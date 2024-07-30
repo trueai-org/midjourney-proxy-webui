@@ -98,6 +98,8 @@ export default {
   'pages.account.fastTimeRemaining':'FastTime Remaining',
   'pages.account.subscribePlan':'Subscribe',
   'pages.account.sponsor':'Sponsor',
+  'pages.account.sort':'Sort',
+  'pages.account.cfmodal': 'CF Real person verification',
   'pages.account.renewDate':'Expiration Time',
   'pages.account.mjMode':'MJ Mode',
   'pages.account.nijiMode':'Niji Mode',
@@ -118,6 +120,8 @@ export default {
   'pages.task.deleteSuccess':'Delete task successful',
 
   'pages.account.info':'Account Info',
+  'pages.account.cfRefresh':'Regenerates the CF validation link',
+  'pages.account.cfok':'Mark verification passed',
   'pages.account.mjVersionSuccess':'MJ version switch successful',
   'pages.account.remixAutoSubmit':'Remix Auto Submit',
   'pages.account.mjChannelId':'MJBot Private ChannelID',
