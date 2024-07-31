@@ -110,6 +110,12 @@ const AddContent = ({
             >
               <InputNumber min={1} />
             </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.interval' })}
+              name="interval"
+            >
+              <InputNumber min={1.2} />
+            </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
               <Select allowClear>
                 <Select.Option value="RELAX">RELAX</Select.Option>
@@ -131,6 +137,9 @@ const AddContent = ({
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.sponsor' })} name="sponsor">
               <Input />
+            </Form.Item>
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
+              <InputNumber />
             </Form.Item>
           </Card>
         </Col>

@@ -73,6 +73,12 @@ const ReconnectContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })} name="maxQueueSize">
               <InputNumber min={1} />
             </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.interval' })}
+              name="interval"
+            >
+              <InputNumber min={1.2} />
+            </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
               <Select allowClear>
                 <Select.Option value="RELAX">RELAX</Select.Option>
