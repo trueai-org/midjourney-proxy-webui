@@ -60,7 +60,7 @@ const CfContent = ({
         <Col span={24} style={{ padding: 12 }}>
           {data && (
             <a target="_blank" rel={'noreferrer'} href={data?.cfUrl}>
-              {data?.cfUrl}
+              {data?.cfUrl || '-'}
             </a>
           )}
 
