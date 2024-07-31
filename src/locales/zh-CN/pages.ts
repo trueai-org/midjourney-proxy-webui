@@ -118,7 +118,7 @@ export default {
   'pages.task.deleteSuccess':'删除任务成功',
 
   'pages.account.info':'账号信息',
-  'pages.account.interval':'任务执行间隔（秒）',
+  'pages.account.interval':'执行间隔（秒）',
   'pages.account.cfRefresh':'重新生成 CF 验证链接',
   'pages.account.cfok':'标记验证通过',
   'pages.account.mjVersionSuccess':'mj版本切换成功',

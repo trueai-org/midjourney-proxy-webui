@@ -27,31 +27,19 @@ const CfContent = ({
   const updateUrl = async () => {
     setLoading(true);
     const res = await accountCfUrl(record.id);
-    if (res.success) {
-      api.success({
-        message: 'success',
-        description: res.message,
-      });
-    } else {
-      api.error({
-        message: 'error',
-        description: res.message,
-      });
+    if (res) {
+      setData(res);
     }
     setLoading(false);
   };
 
   const updateOk = async () => {
     setLoading(true);
-    const res = await accountCfOk(record.id);
-    if (res) {
-      setData(res);
-    } else {
-      api.error({
-        message: 'error',
-        description: 'error',
-      });
-    }
+    await accountCfOk(record.id);
+    api.success({
+      message: 'success',
+      description: 'Success',
+    });
     setLoading(false);
   };
 
@@ -71,7 +59,7 @@ const CfContent = ({
             {data?.cfUrl}
           </a>
           <br />
-          <Space style={{marginTop:12}}>
+          <Space style={{ marginTop: 12 }}>
             <Button onClick={updateUrl} loading={loading} type="default">
               {intl.formatMessage({ id: 'pages.account.cfRefresh' })}
             </Button>

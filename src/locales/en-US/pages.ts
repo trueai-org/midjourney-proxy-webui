@@ -120,7 +120,7 @@ export default {
   'pages.task.deleteSuccess':'Delete task successful',
 
   'pages.account.info':'Account Info',
-  'pages.account.interval':'Task execution interval (seconds)',
+  'pages.account.interval':'Task interval (seconds)',
   'pages.account.cfRefresh':'Regenerates the CF validation link',
   'pages.account.cfok':'Mark verification passed',
   'pages.account.mjVersionSuccess':'MJ version switch successful',
