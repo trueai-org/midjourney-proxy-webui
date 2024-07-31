@@ -27,22 +27,23 @@ const CfContent = ({
   const updateUrl = async () => {
     setLoading(true);
     const res = await accountCfUrl(record.id);
-    if (res) {
-      setData(res);
-    }
     setLoading(false);
+    if (res.success) {
+      setData(res.data);
+    }
   };
 
   const updateOk = async () => {
     setLoading(true);
-    await accountCfOk(record.id);
-    api.success({
-      message: 'success',
-      description: 'Success',
-    });
+    const res = await accountCfOk(record.id);
     setLoading(false);
-
-    onSubmit(data);
+    if (res.success) {
+      api.success({
+        message: 'success',
+        description: 'Success',
+      });
+      onSubmit(data);
+    }
   };
 
   return (
