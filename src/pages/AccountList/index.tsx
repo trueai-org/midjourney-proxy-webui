@@ -210,7 +210,7 @@ const AccountList: React.FC = () => {
               </Tag>
             )}
 
-            {enable && !record.running && (
+            {enable && !record.running && !record.lock && (
               <Tag icon={<SyncOutlined />} color="error">
                 {intl.formatMessage({ id: 'pages.account.notRunning' })}
               </Tag>
