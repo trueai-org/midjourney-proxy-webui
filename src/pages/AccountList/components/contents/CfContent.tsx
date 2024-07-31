@@ -22,7 +22,7 @@ const CfContent = ({
   // 当组件挂载或者record更新时，设置表单的初始值
   useEffect(() => {
     setData(record);
-  });
+  }, []);
 
   const updateUrl = async () => {
     setLoading(true);
@@ -41,6 +41,8 @@ const CfContent = ({
       description: 'Success',
     });
     setLoading(false);
+
+    onSubmit(data);
   };
 
   return (
@@ -55,9 +57,12 @@ const CfContent = ({
       {contextHolder}
       <Row gutter={16}>
         <Col span={24} style={{ padding: 12 }}>
-          <a target="_blank" rel={'noreferrer'} href={data?.cfUrl}>
-            {data?.cfUrl}
-          </a>
+          {data && (
+            <a target="_blank" rel={'noreferrer'} href={data?.cfUrl}>
+              {data?.cfUrl}
+            </a>
+          )}
+
           <br />
           <Space style={{ marginTop: 12 }}>
             <Button onClick={updateUrl} loading={loading} type="default">

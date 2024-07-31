@@ -102,7 +102,7 @@ export async function accountCfOk(id: string, data?: object, options?: { [key: s
 
 // CF 刷新链接
 export async function accountCfUrl(id: string, options?: { [key: string]: any }) {
-  return request<API.Result>(`/mj/admin/account-cf/${id}?refresh=true`, {
+  return request<Record<string, any>>(`/mj/admin/account-cf/${id}?refresh=true`, {
     method: 'GET',
     ...(options || {}),
   });
