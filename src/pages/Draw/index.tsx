@@ -935,6 +935,7 @@ const Draw: React.FC = () => {
       return {
         value: account.channelId,
         label: account.channelId + ' - ' + (account.remark || ''),
+        disabled: !account.enable || !account.running,
       };
     });
     return (

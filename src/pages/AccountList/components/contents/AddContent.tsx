@@ -91,6 +91,24 @@ const AddContent = ({
             >
               <Switch />
             </Form.Item>
+
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
+              <Select allowClear>
+                <Select.Option value="RELAX">RELAX</Select.Option>
+                <Select.Option value="FAST">FAST</Select.Option>
+                <Select.Option value="TURBO">TURBO</Select.Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.allowModes' })}
+              name="allowModes"
+            >
+              <Select allowClear mode="multiple">
+                <Select.Option value="RELAX">RELAX</Select.Option>
+                <Select.Option value="FAST">FAST</Select.Option>
+                <Select.Option value="TURBO">TURBO</Select.Option>
+              </Select>
+            </Form.Item>
           </Card>
         </Col>
         <Col span={12}>
@@ -110,19 +128,10 @@ const AddContent = ({
             >
               <InputNumber min={1} />
             </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.interval' })}
-              name="interval"
-            >
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.interval' })} name="interval">
               <InputNumber min={1.2} />
             </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
-              <Select allowClear>
-                <Select.Option value="RELAX">RELAX</Select.Option>
-                <Select.Option value="FAST">FAST</Select.Option>
-                <Select.Option value="TURBO">TURBO</Select.Option>
-              </Select>
-            </Form.Item>
+
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.timeoutMinutes' })}
               name="timeoutMinutes"
@@ -142,7 +151,7 @@ const AddContent = ({
               <InputNumber />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.workTime' })} name="workTime">
-              <Input placeholder='09:00-17:00, 18:00-22:00' />
+              <Input placeholder="09:00-17:00, 18:00-22:00" />
             </Form.Item>
           </Card>
         </Col>
