@@ -95,6 +95,7 @@ export default {
   'pages.account.fastTimeRemaining':'快速时间剩余',
   'pages.account.subscribePlan':'订阅计划',
   'pages.account.sponsor':'赞助商',
+  'pages.account.workTime':'工作时间段',
   'pages.account.sort':'序号',
   'pages.account.cfmodal': 'CF 真人验证',
   'pages.account.renewDate':'到期时间',

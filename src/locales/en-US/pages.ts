@@ -98,6 +98,7 @@ export default {
   'pages.account.fastTimeRemaining':'FastTime Remaining',
   'pages.account.subscribePlan':'Subscribe',
   'pages.account.sponsor':'Sponsor',
+  'pages.account.workTime':'Working Time',
   'pages.account.sort':'Sort',
   'pages.account.cfmodal': 'CF Real person verification',
   'pages.account.renewDate':'Expiration Time',
