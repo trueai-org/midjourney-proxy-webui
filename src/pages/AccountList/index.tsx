@@ -80,9 +80,21 @@ const AccountList: React.FC = () => {
     fetchData();
   };
 
-  const handleAdd = async (values: Record<string, string>) => {
+  const handleAdd = async (values: Record<any, any>) => {
+    // 判断如果 subChannels 为空，则设置为空数组
+    if (!values.subChannels) {
+      values.subChannels = [];
+    }
+
+    // 如果是字符串，则转换为数组
+    if (typeof values.subChannels === 'string') {
+      values.subChannels = values.subChannels.split('\n');
+    }
+
     setModalSubmitLoading(true);
     const res = await createAccount(values);
+    setModalSubmitLoading(false);
+    console.log('res', res);
     if (res.success) {
       api.success({
         message: 'success',
@@ -95,12 +107,20 @@ const AccountList: React.FC = () => {
         message: 'error',
         description: res.message,
       });
-      triggerRefreshAccount();
     }
-    setModalSubmitLoading(false);
   };
 
-  const handleReconnect = async (values: Record<string, string>) => {
+  const handleReconnect = async (values: Record<any, any>) => {
+    // 判断如果 subChannels 为空，则设置为空数组
+    if (!values.subChannels) {
+      values.subChannels = [];
+    }
+
+    // 如果是字符串，则转换为数组
+    if (typeof values.subChannels === 'string') {
+      values.subChannels = values.subChannels.split('\n');
+    }
+
     setModalSubmitLoading(true);
     const res = await updateAndReconnect(values.id, values);
     if (res.success) {
@@ -108,18 +128,28 @@ const AccountList: React.FC = () => {
         message: 'success',
         description: res.message,
       });
+      hideModal();
+      triggerRefreshAccount();
+      setModalSubmitLoading(false);
     } else {
       api.error({
         message: 'error',
         description: res.message,
       });
     }
-    hideModal();
-    triggerRefreshAccount();
-    setModalSubmitLoading(false);
   };
 
-  const handleUpdate = async (values: Record<string, string>) => {
+  const handleUpdate = async (values: Record<any, any>) => {
+    // 判断如果 subChannels 为空，则设置为空数组
+    if (!values.subChannels) {
+      values.subChannels = [];
+    }
+
+    // 如果是字符串，则转换为数组
+    if (typeof values.subChannels === 'string') {
+      values.subChannels = values.subChannels.split('\n');
+    }
+
     setModalSubmitLoading(true);
     const res = await update(values.id, values);
     if (res.success) {
@@ -363,7 +393,7 @@ const AccountList: React.FC = () => {
                   openModal(
                     intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
                     <ReconnectContent form={form} record={record} onSubmit={handleReconnect} />,
-                    1000,
+                    1600,
                   )
                 }
               />
@@ -409,7 +439,7 @@ const AccountList: React.FC = () => {
               openModal(
                 intl.formatMessage({ id: 'pages.account.add' }),
                 <AddContent form={form} onSubmit={handleAdd} />,
-                1000,
+                1600,
               );
             }}
           >

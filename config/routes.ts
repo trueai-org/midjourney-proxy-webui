@@ -39,6 +39,18 @@ export default [
     component: './AccountList',
   },
   {
+    name: 'list.domain-list',
+    icon: 'tag',
+    path: '/domain',
+    component: './DomainList/List',
+  },
+  {
+    name: 'list.user-list',
+    icon: 'user',
+    path: '/user-list',
+    component: './UserList/List',
+  },
+  {
     name: 'task-list',
     icon: 'bars',
     path: '/task',
@@ -49,6 +61,12 @@ export default [
     icon: 'experiment',
     path: '/draw-test',
     component: './Draw',
+  },
+  {
+    name: 'setting',
+    icon: 'setting',
+    path: '/setting',
+    component: './Setting',
   },
   {
     name: 'probe',

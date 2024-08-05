@@ -124,6 +124,8 @@ export async function deleteTask(id: string, options?: { [key: string]: any }) {
   });
 }
 
+
+
 export async function accountChangeVersion(
   id: string,
   version: string,
@@ -169,6 +171,90 @@ export async function queryTask(data: any, options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+
+/** 用户列表 */
+export async function queryUser(data: any, options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/mj/admin/users', {
+    method: 'POST',
+    data: {
+      pagination: {
+        current: data?.current || 1,
+        pageSize: data?.pageSize || 10,
+      },
+      sort: {
+        predicate: '',
+        reverse: true,
+      },
+      search: {
+        ...data,
+      },
+    },
+    ...(options || {}),
+  });
+}
+
+/** 删除用户 */
+export async function deleteUser(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/user/${id}`, {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+
+/** 创建/编辑用户 */
+export async function createUser(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/user', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
+/** 领域列表 */
+export async function queryDomain(data: any, options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/mj/admin/domain-tags', {
+    method: 'POST',
+    data: {
+      pagination: {
+        current: data?.current || 1,
+        pageSize: data?.pageSize || 10,
+      },
+      sort: {
+        predicate: '',
+        reverse: true,
+      },
+      search: {
+        ...data,
+      },
+    },
+    ...(options || {}),
+  });
+}
+
+/** 删除领域 */
+export async function deleteDomain(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/domain-tag/${id}`, {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+/** 所有领域 */
+export async function allDomain(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/domain-tags', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 创建/编辑领域 */
+export async function createDomain(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/domain-tag', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
 
 export async function queryTaskByIds(ids: string[], options?: { [key: string]: any }) {
   return request<any>('/mj/task/list-by-ids', {
@@ -219,6 +305,23 @@ export async function swapFace(data: object, options?: { [key: string]: any }) {
 export async function probe(tail: number, options?: { [key: string]: any }) {
   return request<any>('/mj/admin/probe?tail=' + tail, {
     method: 'GET',
+    ...(options || {}),
+  });
+}
+
+// 获取配置
+export async function getConfig(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/setting', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+// 修改配置
+export async function updateConfig(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/setting', {
+    method: 'POST',
+    data: data,
     ...(options || {}),
   });
 }
