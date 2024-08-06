@@ -188,7 +188,10 @@ const ReconnectContent = ({
             >
               <InputNumber min={-1} />
             </Form.Item>
-
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
               name="isVerticalDomain"
@@ -201,10 +204,6 @@ const ReconnectContent = ({
             >
               <Select options={opts} allowClear mode="multiple"></Select>
             </Form.Item>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
               <InputNumber />
             </Form.Item>

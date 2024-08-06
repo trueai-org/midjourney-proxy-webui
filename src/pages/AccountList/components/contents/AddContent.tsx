@@ -1,8 +1,8 @@
 import { Card, Col, Form, FormInstance, Input, InputNumber, Row, Select, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 
-import { useIntl } from '@umijs/max';
 import { allDomain } from '@/services/mj/api';
+import { useIntl } from '@umijs/max';
 
 const AddContent = ({
   form,
@@ -22,7 +22,7 @@ const AddContent = ({
       timeoutMinutes: 5,
     });
   });
-  
+
   const [opts, setOpts] = useState([]);
   useEffect(() => {
     allDomain().then((res) => {
@@ -148,7 +148,10 @@ const AddContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.enableMj' })} name="enableMj">
               <Switch />
             </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.enableNiji' })} name="enableNiji">
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.enableNiji' })}
+              name="enableNiji"
+            >
               <Switch />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.isBlend' })} name="isBlend">
@@ -166,7 +169,10 @@ const AddContent = ({
             >
               <InputNumber min={-1} />
             </Form.Item>
-
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
               name="isVerticalDomain"
@@ -179,10 +185,7 @@ const AddContent = ({
             >
               <Select options={opts} allowClear mode="multiple"></Select>
             </Form.Item>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+
             <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
               <InputNumber />
             </Form.Item>
