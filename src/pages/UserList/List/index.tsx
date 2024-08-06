@@ -171,7 +171,7 @@ const UserList: React.FC = () => {
       align: 'center',
       hideInSearch: true,
       render: (text, record) => {
-        if (text == 0) {
+        if (text < 0) {
           return intl.formatMessage({ id: 'pages.user.unlimited' });
         } else {
           return text;
