@@ -50,7 +50,7 @@ const Setting: React.FC = () => {
           setLoading(false);
           if (c.success) {
             // 提示成功
-            message.success(intl.formatMessage({ id: 'pages.setting.success' }));
+            message.success(intl.formatMessage({ id: 'pages.setting.saveSuccess' }));
             loadData();
           } else {
             // 提示错误
