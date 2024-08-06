@@ -23,6 +23,14 @@ export default {
   'pages.login.submit': 'Login',
   'pages.login.loginWith': 'Login with :',
   'pages.login.registerAccount': 'Register Account',
+  'pages.login.email.placeholder': 'Email',
+  'pages.login.email.required': 'Please input your email!',
+  'pages.login.register': 'Register',
+  'pages.login.returnLogin': 'Return to login',
+  'pages.login.registerSuccess': 'Register successful!',
+  
+
+
   'pages.welcome.link': 'Welcome to',
   'pages.welcome.description':
     'Midjourney Proxy Admin is a backend management interface for Midjourney Proxy, dedicated to providing various administrative functions.',

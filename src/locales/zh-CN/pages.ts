@@ -22,6 +22,13 @@ export default {
   'pages.login.submit': '登录',
   'pages.login.loginWith': '其他登录方式 :',
   'pages.login.registerAccount': '注册账户',
+  'pages.login.email.placeholder': '邮箱',
+  'pages.login.email.required': '邮箱是必填项！',
+  'pages.login.register': '注册',
+  'pages.login.returnLogin': '返回登录',
+  'pages.login.registerSuccess': '注册成功！',
+
+  
   'pages.welcome.link': '欢迎使用',
   'pages.welcome.description': 'Midjourney Proxy Admin 是一个 Midjourney Proxy 后台管理界面。致力于提供各种管理功能。',
   'pages.welcome.learn': '了解',

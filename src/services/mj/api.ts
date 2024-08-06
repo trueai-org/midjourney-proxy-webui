@@ -43,6 +43,27 @@ export async function login(body: any, options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+
+// 通过邮件注册接口
+export async function register(body: any, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+// 首页信息
+export async function getIndex(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/home', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /**  MJ 接口 */
 
 /**  POST /mj/account/create */
