@@ -169,6 +169,8 @@ export default {
   'pages.account.updateNotice':
     'Note: After updating the account and reconnecting, any tasks in progress on this account will be lost!',
 
+  'pages.account.enableMj': 'Enable Midjourney Drawing',
+  'pages.account.enableNiji': 'Enable Nijiourney Drawing',
   'pages.account.poolsize': 'Account pool configuration',
   'pages.account.isBlend': 'Enable Blend',
   'pages.account.isDescribe': 'Enable Describe',
@@ -294,6 +296,8 @@ export default {
   'pages.probe.fullscreenExit': 'Exit Fullscreen',
   'pages.probe.stopRefresh': 'Stop Refresh',
 
+  'pages.setting.swaggerLink': 'Swagger Link',
+  'pages.setting.enableSwagger': 'Enable Swagger',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
   'pages.setting.ngDiscord': 'Discord Config',
   'pages.setting.proxy': 'Proxy Config',

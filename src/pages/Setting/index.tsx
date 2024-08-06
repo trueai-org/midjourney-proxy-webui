@@ -91,6 +91,23 @@ const Setting: React.FC = () => {
                 bordered={false}
               >
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSwagger' })}
+                  name="enableSwagger"
+                  extra={
+                    // 如果开启了 swgger 则显示链接
+                    form.getFieldValue('enableSwagger') ? (
+                      <a href="/swagger" target="_blank" rel="noreferrer">
+                        {intl.formatMessage({ id: 'pages.setting.swaggerLink' })}
+                      </a>
+                    ) : (
+                      ''
+                    )
+                  }
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
                   name="accountChooseRule"
                 >

@@ -145,7 +145,12 @@ const AddContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
               <InputNumber min={1} />
             </Form.Item>
-
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.enableMj' })} name="enableMj">
+              <Switch />
+            </Form.Item>
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.enableNiji' })} name="enableNiji">
+              <Switch />
+            </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.isBlend' })} name="isBlend">
               <Switch />
             </Form.Item>

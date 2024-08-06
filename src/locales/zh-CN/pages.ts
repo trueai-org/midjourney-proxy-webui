@@ -160,6 +160,8 @@ export default {
 
   'pages.account.poolsize': '账号池配置',
   'pages.account.isBlend': '开启 Blend',
+  'pages.account.enableMj': '开启 Midiourny 绘图',
+  'pages.account.enableNiji': '开启 Nijiourney 绘图',
   'pages.account.isDescribe': '开启 Describe',
   'pages.account.dayDrawLimit': '日绘图限制',
   'pages.account.dayDrawCount': '今日已绘图',
@@ -282,6 +284,8 @@ export default {
   'pages.probe.stopRefresh':'停止刷新',
 
   'pages.setting':'设置',
+  'pages.setting.swaggerLink':'打开 Swagger 文档',
+  'pages.setting.enableSwagger': '开启 Swagger',
   'pages.setting.accountChooseRule':'账号匹配算法',
   'pages.setting.discordConfig':'Discord 配置',
   'pages.setting.proxyConfig':'Proxy 配置',
