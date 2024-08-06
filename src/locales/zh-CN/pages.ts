@@ -31,7 +31,7 @@ export default {
   'pages.welcome.todayDraw': '今日绘图',
   'pages.welcome.yesterdayDraw': '昨日绘图',
   'pages.welcome.totalDraw': '总绘图',
-  'pages.welcome.top5': '今日绘图 TOP 5',
+  'pages.welcome.top5': '今日绘图 10',
   'pages.welcome.unit': '次绘图',
 
 
