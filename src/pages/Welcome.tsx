@@ -203,7 +203,7 @@ const Welcome: React.FC = () => {
               <Statistic title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })} value={data.yesterdayDraw} />
             </Col>
             <Col span={8}>
-              <Statistic title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })} value={data.yesterdayDraw} />
+              <Statistic title={intl.formatMessage({ id: 'pages.welcome.totalDraw' })} value={data.totalDraw} />
             </Col>
           </Row>
 
