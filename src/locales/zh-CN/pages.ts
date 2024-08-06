@@ -28,7 +28,13 @@ export default {
   'pages.login.returnLogin': '返回登录',
   'pages.login.registerSuccess': '注册成功！',
 
-  
+  'pages.welcome.todayDraw': '今日绘图',
+  'pages.welcome.yesterdayDraw': '昨日绘图',
+  'pages.welcome.totalDraw': '总绘图',
+  'pages.welcome.top5': '今日绘图 TOP 5',
+  'pages.welcome.unit': '次绘图',
+
+
   'pages.welcome.link': '欢迎使用',
   'pages.welcome.description': 'Midjourney Proxy Admin 是一个 Midjourney Proxy 后台管理界面。致力于提供各种管理功能。',
   'pages.welcome.learn': '了解',

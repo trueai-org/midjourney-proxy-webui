@@ -1,7 +1,8 @@
+import { getIndex } from '@/services/mj/api';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl, useModel } from '@umijs/max';
-import { Card, theme } from 'antd';
-import React from 'react';
+import { Card, Col, Divider, List, Row, Statistic, Tag, theme, Typography } from 'antd';
+import React, { useEffect, useState } from 'react';
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -88,6 +89,28 @@ const Welcome: React.FC = () => {
   const { token } = theme.useToken();
   const { initialState } = useModel('@@initialState');
   const intl = useIntl();
+
+  // 是否显示注册
+  const [data, setData] = useState<any>();
+  const [tops,setTops] = useState<any[]>();
+
+  useEffect(() => {
+    getIndex().then((res) => {
+      if (res.success) {
+        if (res.data) {
+          setData(res.data);
+          const vs = Object.keys(res.data.tops).map((x) => {
+            return {
+              ip: x,
+              count: res.data.tops[x],
+            };
+          });
+          setTops(vs);
+        }
+      }
+    });
+  }, []);
+
   return (
     <PageContainer>
       <Card
@@ -158,6 +181,43 @@ const Welcome: React.FC = () => {
           </div>
         </div>
       </Card>
+
+      {data && (
+        <Card
+          style={{
+            borderRadius: 8,
+            marginTop: 16,
+          }}
+          bodyStyle={{
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          }}
+        >
+          <Row gutter={16}>
+            <Col span={8}>
+              <Statistic title={intl.formatMessage({ id: 'pages.welcome.todayDraw' })} value={data.todayDraw} />
+            </Col>
+            <Col span={8}>
+              <Statistic title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })} value={data.yesterdayDraw} />
+            </Col>
+            <Col span={8}>
+              <Statistic title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })} value={data.yesterdayDraw} />
+            </Col>
+          </Row>
+
+          <Divider orientation="left">{intl.formatMessage({ id: 'pages.welcome.top5' })}</Divider>
+          <List
+            dataSource={tops}
+            renderItem={(item) => (
+              <List.Item>
+                <Tag>{item.ip}</Tag> {item.count} {intl.formatMessage({ id: 'pages.welcome.unit' })}
+              </List.Item>
+            )}
+          />
+        </Card>
+      )}
     </PageContainer>
   );
 };

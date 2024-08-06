@@ -30,6 +30,11 @@ export default {
   'pages.login.registerSuccess': 'Register successful!',
   
 
+  'pages.welcome.todayDraw': 'Today Draw',
+  'pages.welcome.yesterdayDraw': 'Yesterday Draw',
+  'pages.welcome.totalDraw': 'Total Draw',
+  'pages.welcome.top5': 'Today Draw TOP 5',
+  'pages.welcome.unit': 'drawing',
 
   'pages.welcome.link': 'Welcome to',
   'pages.welcome.description':
