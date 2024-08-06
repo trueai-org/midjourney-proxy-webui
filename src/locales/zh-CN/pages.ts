@@ -290,6 +290,6 @@ export default {
   'pages.setting.ipBlackRateLimiting':'黑名单限流配置',
   'pages.setting.otherSetting':'其他设置',
   'pages.setting.accountSetting':'账号设置',
-  'pages.setting.tips':'提示：修改 Discord 配置和代理配置需重启服务，其他配置修改无需重启。',
+  'pages.setting.tips':'提示：修改 Discord 配置和 Proxy 代理配置需重启服务，其他配置修改无需重启。',
   
 };
