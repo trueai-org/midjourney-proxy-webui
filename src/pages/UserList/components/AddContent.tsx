@@ -102,7 +102,7 @@ const UpdateContent = ({
               label={intl.formatMessage({ id: 'pages.user.dayDrawLimit' })}
               name="dayDrawLimit"
             >
-              <InputNumber min={0} />
+              <InputNumber min={-1} />
             </Form.Item>
 
             <Form.Item
