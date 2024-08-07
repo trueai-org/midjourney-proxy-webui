@@ -68,7 +68,6 @@ const AddContent = ({
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.botToken' })}
               name="botToken"
-              rules={[{ required: true }]}
             >
               <Input />
             </Form.Item>
