@@ -118,6 +118,8 @@ export default {
   'pages.account.subscribePlan': 'Subscribe',
   'pages.account.sponsor': 'Sponsor',
   'pages.account.workTime': 'Working Time',
+  'pages.account.fishingTime': 'Fishing Time',
+  'pages.account.fishingTimeTips': 'When touching fish, only change tasks are accepted, and new drawing tasks are not accepted',
   'pages.account.sort': 'Sort',
   'pages.account.cfmodal': 'CF Real person verification',
   'pages.account.renewDate': 'Expiration Time',

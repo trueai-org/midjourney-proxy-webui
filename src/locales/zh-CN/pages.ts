@@ -109,6 +109,8 @@ export default {
   'pages.account.subscribePlan':'订阅计划',
   'pages.account.sponsor':'赞助商',
   'pages.account.workTime':'工作时间段',
+  'pages.account.fishingTime': '摸鱼时间段',
+  'pages.account.fishingTimeTips': '摸鱼时，只接收变化任务，不接新绘图任务',
   'pages.account.sort':'序号',
   'pages.account.cfmodal': 'CF 真人验证',
   'pages.account.renewDate':'到期时间',

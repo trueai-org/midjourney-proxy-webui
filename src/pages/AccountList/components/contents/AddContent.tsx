@@ -65,10 +65,7 @@ const AddContent = ({
             >
               <Input />
             </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.botToken' })}
-              name="botToken"
-            >
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.botToken' })} name="botToken">
               <Input />
             </Form.Item>
             <Form.Item
@@ -202,6 +199,13 @@ const AddContent = ({
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.workTime' })} name="workTime">
               <Input placeholder="09:00-17:00, 18:00-22:00" />
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.fishingTime' })}
+              help={intl.formatMessage({ id: 'pages.account.fishingTimeTips' })}
+              name="fishingTime"
+            >
+              <Input placeholder="23:30-09:00, 00:00-10:00" />
             </Form.Item>
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.subChannels' })}
