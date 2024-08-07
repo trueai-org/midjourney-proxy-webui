@@ -302,6 +302,8 @@ export default {
   'pages.setting.saveSuccess':'保存成功',
   'pages.setting.saveFailed':'保存失败',
   'pages.setting.enableRegister':'开启注册',
+  'pages.setting.isVerticalDomain': '开启垂直领域',
+  'pages.setting.isVerticalDomainTips': '开启垂直领域绘画，会计算 promat 词条，然后根据词条分配给对应的账号绘画，如果没有匹配到账号，则分配到未开启垂直领域的账号绘画',
   'pages.setting.registerUserDefaultDayLimit':'用户日绘图限制',
   'pages.setting.enableGuest':'开启访客',
   'pages.setting.guestDefaultDayLimit':'访客日绘图限制',

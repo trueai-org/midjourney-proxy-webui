@@ -311,6 +311,8 @@ export default {
   'pages.setting.captchaServer': 'Captcha Server',
   'pages.setting.captchaNotifyHook': 'Captcha Notify Hook',
   'pages.setting.enableRegister': 'Enable Register',
+  'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
+  'pages.setting.isVerticalDomainTips': 'When vertical domain painting is enabled, the promat entry will be calculated and then assigned to the corresponding account according to the entry. If no account is matched, the account painting that is not opened in vertical domain will be assigned',
   'pages.setting.registerUserDefaultDayLimit': 'Register User Default Day Limit',
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
