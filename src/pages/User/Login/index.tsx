@@ -203,6 +203,7 @@ const Login: React.FC = () => {
                   onClick={() => {
                     setIsRegister(true);
                   }}
+                  style={{ paddingLeft: 0 }}
                 >
                   {intl.formatMessage({ id: 'pages.login.registerAccount' })}
                 </Button>
