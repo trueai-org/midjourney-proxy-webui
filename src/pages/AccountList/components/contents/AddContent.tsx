@@ -1,4 +1,15 @@
-import { Card, Col, Form, FormInstance, Input, InputNumber, Row, Select, Switch } from 'antd';
+import {
+  Card,
+  Col,
+  Form,
+  FormInstance,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  Space,
+  Switch,
+} from 'antd';
 import { useEffect, useState } from 'react';
 
 import { allDomain } from '@/services/mj/api';
@@ -134,8 +145,23 @@ const AddContent = ({
             >
               <InputNumber min={1} />
             </Form.Item>
+
             <Form.Item label={intl.formatMessage({ id: 'pages.account.interval' })} name="interval">
               <InputNumber min={1.2} />
+            </Form.Item>
+
+            <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
+              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                <Space>
+                  <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
+                    <InputNumber min={1.2} placeholder="Min" />
+                  </Form.Item>
+                  ~
+                  <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
+                    <InputNumber min={1.2} placeholder="Max" />
+                  </Form.Item>
+                </Space>
+              </div>
             </Form.Item>
 
             <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
