@@ -164,7 +164,7 @@ const ReconnectContent = ({
                 </Space>
               </div>
             </Form.Item>
-            
+
             <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
               <InputNumber min={1} />
             </Form.Item>
@@ -203,6 +203,12 @@ const ReconnectContent = ({
         </Col>
         <Col span={8}>
           <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.permanentInvitationLink' })}
+              name="permanentInvitationLink"
+            >
+              <Input />
+            </Form.Item>
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
               name="isVerticalDomain"

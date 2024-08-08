@@ -196,6 +196,12 @@ const AddContent = ({
         <Col span={8}>
           <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
             <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.permanentInvitationLink' })}
+              name="permanentInvitationLink"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
               name="isVerticalDomain"
             >

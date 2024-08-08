@@ -1,4 +1,4 @@
-import { Card, Col, Form, FormInstance, Input, InputNumber, Row, Select } from 'antd';
+import { Card, Col, Form, FormInstance, Input, InputNumber, Row, Select, Switch } from 'antd';
 import { useEffect, useState } from 'react';
 
 import { useIntl } from '@umijs/max';
@@ -53,7 +53,11 @@ const UpdateContent = ({
               <Input />
             </Form.Item>
 
-            <Form.Item required label={intl.formatMessage({ id: 'pages.user.status' })} name="status">
+            <Form.Item
+              required
+              label={intl.formatMessage({ id: 'pages.user.status' })}
+              name="status"
+            >
               <Select>
                 <Select.Option value="NORMAL">
                   {intl.formatMessage({ id: 'pages.user.normal' })}
@@ -64,7 +68,7 @@ const UpdateContent = ({
               </Select>
             </Form.Item>
 
-            <Form.Item required  label={intl.formatMessage({ id: 'pages.user.role' })} name="role">
+            <Form.Item required label={intl.formatMessage({ id: 'pages.user.role' })} name="role">
               <Select disabled={disabledRole}>
                 <Select.Option value="ADMIN">
                   {intl.formatMessage({ id: 'pages.user.admin' })}
@@ -98,6 +102,14 @@ const UpdateContent = ({
         </Col>
         <Col span={12}>
           <Card type="inner">
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.isWhite' })}
+              name="isWhite"
+              help={intl.formatMessage({ id: 'pages.user.isWhite.help' })}
+            >
+              <Switch />
+            </Form.Item>
+
             <Form.Item
               label={intl.formatMessage({ id: 'pages.user.dayDrawLimit' })}
               name="dayDrawLimit"

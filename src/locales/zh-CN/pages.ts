@@ -94,6 +94,9 @@ export default {
   'pages.cancel':'取消',
   'pages.submit':'确定',
 
+  'pages.user.isWhite': '白名单',
+  'pages.user.isWhite.help': '白名单用户不受限流和 ip 绘图限制',
+  'pages.account.permanentInvitationLink': '永久邀请链接',
   'pages.account.notRunning':'服务未启动',
   'pages.account.lock':'锁定',
   'pages.account.lockmsg':'账号锁定中，可能触发 CF 验证，如果验证通过，请重连',

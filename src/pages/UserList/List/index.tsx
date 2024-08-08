@@ -4,7 +4,7 @@ import { createUser, deleteUser, queryUser } from '@/services/mj/api';
 import { DeleteOutlined, EditOutlined, UserAddOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Button, Card, Form, notification, Popconfirm, Space, Tag } from 'antd';
+import { Button, Card, Checkbox, Form, notification, Popconfirm, Space, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const UserList: React.FC = () => {
@@ -108,10 +108,13 @@ const UserList: React.FC = () => {
       align: 'center',
     },
     {
-      title: intl.formatMessage({ id: 'pages.user.phone' }),
-      dataIndex: 'phone',
-      width: 140,
+      title: intl.formatMessage({ id: 'pages.user.isWhite' }),
+      dataIndex: 'isWhite',
+      width: 90,
       align: 'center',
+      render: (text) => {
+        return <Checkbox checked={text} disabled />;
+      },
     },
     {
       title: intl.formatMessage({ id: 'pages.user.status' }),

@@ -102,6 +102,9 @@ export default {
   'pages.cancel': 'Cancel',
   'pages.submit': 'OK',
 
+  'pages.user.isWhite': 'Is White',
+  'pages.user.isWhite.help': 'Whitelisted users are not restricted by stream and ip drawing restrictions',
+  'pages.account.permanentInvitationLink': 'Permanent Invitation Link',
   'pages.account.notRunning': 'Service Not Running',
   'pages.account.lock': 'Account locked',
   'pages.account.lockmsg':
