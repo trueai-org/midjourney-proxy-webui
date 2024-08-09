@@ -174,7 +174,7 @@ export default {
   'pages.account.isVerticalDomain': '开启垂直领域',
   'pages.account.verticalDomainIds': '垂直领域配置',
   'pages.account.subChannels': '子频道配置',
-  'pages.account.subChannelsHelp': '请输入子频道链接，每行一个链接，或用逗号分隔',
+  'pages.account.subChannelsHelp': '请输入子频道，每行一个，格式：[邀请链接],[频道地址]，示例：https://discord.gg/xxx,https://discord.com/channels/xxx/xxx',
   'pages.account.allowModesTooltip': '如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数',
 
   'pages.task.info':'任务信息',
