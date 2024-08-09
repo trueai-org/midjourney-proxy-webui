@@ -309,6 +309,7 @@ export default {
   'pages.setting.proxy': 'Proxy Config',
   'pages.setting.translateWay': 'Translate Way',
   'pages.setting.baiduTranslate': 'Baidu Translate',
+  'pages.setting.openai': 'GPT Translate',
   'pages.setting.smtp': 'SMTP',
   'pages.setting.notifyHook': 'Notify Hook',
   'pages.setting.notifyPoolSize': 'Notify Pool Size',

@@ -137,11 +137,18 @@ const Setting: React.FC = () => {
                   <Select allowClear>
                     <Select.Option value="NULL">NULL</Select.Option>
                     <Select.Option value="BAIDU">BAIDU</Select.Option>
+                    <Select.Option value="GPT">GPT</Select.Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.baiduTranslate' })}
                   name="baiduTranslate"
+                >
+                  <JsonEditor />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.openai' })}
+                  name="openai"
                 >
                   <JsonEditor />
                 </Form.Item>

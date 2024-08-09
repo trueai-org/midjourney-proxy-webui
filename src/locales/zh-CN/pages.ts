@@ -297,6 +297,7 @@ export default {
   'pages.setting.proxyConfig':'Proxy 配置',
   'pages.setting.translate':'开启翻译',
   'pages.setting.baiduTranslate':'百度翻译',
+  'pages.setting.openai': 'GPT 翻译',
   'pages.setting.smtp':'邮件服务',
   'pages.setting.notifyHook':'全局通知回调',
   'pages.setting.notifyPoolSize':'通知线程池大小',
