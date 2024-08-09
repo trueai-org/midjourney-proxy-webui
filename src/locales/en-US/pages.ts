@@ -184,7 +184,7 @@ export default {
   'pages.account.isVerticalDomain': 'Enable Vertical Domain',
   'pages.account.verticalDomainIds': 'Vertical Domain configuration',
   'pages.account.subChannels': 'Sub Channels',
-  'pages.account.subChannelsHelp': 'Please enter subchannel links, one link per line, or , split',
+  'pages.account.subChannelsHelp': 'Please input channels, each row of a, format: [invite link], [channel address], example: https://discord.gg/xxx, https://discord.com/channels/xxx/xxx',
   'pages.account.allowModesTooltip':
     'If the user specifies the mode or adds a user-defined parameter, such as --fast, but the account does not allow FAST, this parameter is automatically removed',
 

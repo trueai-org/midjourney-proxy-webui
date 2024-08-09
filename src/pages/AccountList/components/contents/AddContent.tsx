@@ -1,10 +1,13 @@
 import {
+  Alert,
+  Button,
   Card,
   Col,
   Form,
   FormInstance,
   Input,
   InputNumber,
+  Modal,
   Row,
   Select,
   Space,
@@ -13,6 +16,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import { allDomain } from '@/services/mj/api';
+import { FullscreenOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 
 const AddContent = ({
@@ -42,6 +46,22 @@ const AddContent = ({
       }
     });
   }, []);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [subChannels, setSubChannels] = useState('');
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    form.setFieldsValue({ subChannels: subChannels.split('\n') });
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   return (
     <Form
@@ -242,16 +262,48 @@ const AddContent = ({
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.subChannels' })}
               name="subChannels"
-              help={intl.formatMessage({ id: 'pages.account.subChannelsHelp' })}
+              extra={
+                <Button
+                  type="primary"
+                  style={{ marginTop: '10px' }}
+                  onClick={() => {
+                    showModal();
+                  }}
+                  icon={<FullscreenOutlined />}
+                ></Button>
+              }
             >
-              <Input.TextArea
-                placeholder="https://discord.com/channels/xxx/xxx"
-                autoSize={{ minRows: 1, maxRows: 10 }}
-              />
+              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 5 }} />
             </Form.Item>
           </Card>
         </Col>
       </Row>
+
+      <Modal
+        title={intl.formatMessage({ id: 'pages.account.subChannels' })}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={960}
+      >
+        <div>
+          <Alert
+            message={intl.formatMessage({ id: 'pages.account.subChannelsHelp' })}
+            type="info"
+            style={{ marginBottom: '10px' }}
+          />
+        </div>
+        <Input.TextArea
+          placeholder="https://discord.com/channels/xxx/xxx"
+          autoSize={{ minRows: 10, maxRows: 24 }}
+          style={{ width: '100%' }}
+          value={subChannels}
+          onChange={(e) => {
+            // 设置 form 的值
+            setSubChannels(e.target.value);
+          }}
+        />
+      </Modal>
     </Form>
   );
 };
