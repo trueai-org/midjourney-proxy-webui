@@ -44,18 +44,18 @@ const AccountList: React.FC = () => {
     setLoading(false);
   };
 
+  const hideModal = () => {
+    setModalContent(<></>);
+    setModalVisible(false);
+    setModalReadonly(false);
+  };
+
   const openModal = (title: string, content: any, modalWidth: number) => {
     form.resetFields();
     setTitle(title);
     setModalContent(content);
     setModalWidth(modalWidth);
     setModalVisible(true);
-  };
-
-  const hideModal = () => {
-    setModalContent(<></>);
-    setModalVisible(false);
-    setModalReadonly(false);
   };
 
   const modalFooter = (
@@ -365,7 +365,7 @@ const AccountList: React.FC = () => {
       fixed: 'right',
       align: 'center',
       hideInSearch: true,
-      render: (value: any, record: Record<string, string>) => {
+      render: (value: any, record: Record<string, any>) => {
         return (
           <Space>
             {record.lock && (
@@ -389,13 +389,20 @@ const AccountList: React.FC = () => {
                 key="EditAndReconnect"
                 type={'primary'}
                 icon={<ToolOutlined />}
-                onClick={() =>
+                onClick={() => {
+                  // 传一个随机数，保证每次都渲染
+
                   openModal(
                     intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
-                    <ReconnectContent form={form} record={record} onSubmit={handleReconnect} />,
+                    <ReconnectContent
+                      r={Math.random()}
+                      form={form}
+                      record={record}
+                      onSubmit={handleReconnect}
+                    />,
                     1600,
-                  )
-                }
+                  );
+                }}
               />
             </Tooltip>
             <Button

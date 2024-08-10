@@ -23,17 +23,22 @@ const ReconnectContent = ({
   form,
   onSubmit,
   record,
+  r
 }: {
   form: FormInstance;
   onSubmit: (values: any) => void;
   record: Record<string, any>;
+  r: any;
 }) => {
   const intl = useIntl();
 
-  // 当组件挂载或者record更新时，设置表单的初始值
   useEffect(() => {
     form.setFieldsValue(record);
-  }, [record]);
+  }, []);
+
+  useEffect(() => {
+    form.setFieldsValue(record);
+  }, [r]);
 
   const [opts, setOpts] = useState([]);
   useEffect(() => {
