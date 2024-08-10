@@ -33,7 +33,7 @@ const ReconnectContent = ({
   // 当组件挂载或者record更新时，设置表单的初始值
   useEffect(() => {
     form.setFieldsValue(record);
-  });
+  }, [record]);
 
   const [opts, setOpts] = useState([]);
   useEffect(() => {
