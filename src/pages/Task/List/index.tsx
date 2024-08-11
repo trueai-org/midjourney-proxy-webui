@@ -129,6 +129,7 @@ const List: React.FC = () => {
       dataIndex: 'imageUrl',
       width: 80,
       align: 'center',
+      hideInSearch: true,
       render: (text, record, index) => {
         return (
           <Image.PreviewGroup items={record.images || []}>
