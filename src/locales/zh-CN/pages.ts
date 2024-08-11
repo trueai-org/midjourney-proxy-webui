@@ -292,6 +292,8 @@ export default {
   'pages.setting':'设置',
   'pages.setting.swaggerLink':'打开 Swagger 文档',
   'pages.setting.enableSwagger': '开启 Swagger',
+  'pages.setting.mongoDefaultConnectionString':'MongoDB 连接字符串',
+  'pages.setting.mongoDefaultDatabase':'MongoDB 数据库',
   'pages.setting.accountChooseRule':'账号匹配算法',
   'pages.setting.discordConfig':'Discord 配置',
   'pages.setting.proxyConfig':'Proxy 配置',

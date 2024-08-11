@@ -304,6 +304,8 @@ export default {
 
   'pages.setting.swaggerLink': 'Swagger Link',
   'pages.setting.enableSwagger': 'Enable Swagger',
+  'pages.setting.mongoDefaultConnectionString': 'Mongo Default Connection String',
+  'pages.setting.mongoDefaultDatabase': 'Mongo Default Database',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
   'pages.setting.ngDiscord': 'Discord Config',
   'pages.setting.proxy': 'Proxy Config',

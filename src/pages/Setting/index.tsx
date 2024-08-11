@@ -108,6 +108,20 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultConnectionString' })}
+                  name="mongoDefaultConnectionString"
+                >
+                  <Input placeholder="mongodb://mongoadmin:***admin@192.168.x.x" />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultDatabase' })}
+                  name="mongoDefaultDatabase"
+                >
+                  <Input placeholder="mj" />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
                   name="accountChooseRule"
                 >
@@ -146,10 +160,7 @@ const Setting: React.FC = () => {
                 >
                   <JsonEditor />
                 </Form.Item>
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.openai' })}
-                  name="openai"
-                >
+                <Form.Item label={intl.formatMessage({ id: 'pages.setting.openai' })} name="openai">
                   <JsonEditor />
                 </Form.Item>
                 <Form.Item label={intl.formatMessage({ id: 'pages.setting.smtp' })} name="smtp">
@@ -186,7 +197,7 @@ const Setting: React.FC = () => {
                 title={intl.formatMessage({ id: 'pages.setting.otherSetting' })}
                 bordered={false}
               >
-                  <Form.Item
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}
                   name="isVerticalDomain"
                   help={intl.formatMessage({ id: 'pages.setting.isVerticalDomainTips' })}
