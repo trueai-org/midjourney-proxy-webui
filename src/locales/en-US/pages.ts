@@ -191,6 +191,7 @@ export default {
   'pages.task.info': 'Task Info',
   'pages.task.type': 'Type',
   'pages.task.submitTime': 'Submit Time',
+  'pages.task.preview':'Preview',
   'pages.task.status': 'Status',
   'pages.task.progress': 'Progress',
   'pages.task.description': 'Description',

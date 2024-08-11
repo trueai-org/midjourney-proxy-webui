@@ -180,6 +180,7 @@ export default {
   'pages.task.info':'任务信息',
   'pages.task.type':'类型',
   'pages.task.submitTime':'提交时间',
+  'pages.task.preview':'预览',
   'pages.task.status':'状态',
   'pages.task.progress':'进度',
   'pages.task.description':'描述',

@@ -4,7 +4,7 @@ import { deleteTask, queryTask } from '@/services/mj/api';
 import { DeleteOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Button, Card, Form, notification, Popconfirm, Progress, Tag } from 'antd';
+import { Button, Card, Form, Image, notification, Popconfirm, Progress, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const List: React.FC = () => {
@@ -125,6 +125,19 @@ const List: React.FC = () => {
       render: (text, record) => record['displays']['action'],
     },
     {
+      title: intl.formatMessage({ id: 'pages.task.preview' }),
+      dataIndex: 'imageUrl',
+      width: 80,
+      align: 'center',
+      render: (text, record, index) => {
+        return (
+          <Image.PreviewGroup items={record.images || []}>
+            <Image style={{ borderRadius: 0 }} key={index} width={60} src={record.imageUrl} />
+          </Image.PreviewGroup>
+        );
+      },
+    },
+    {
       title: intl.formatMessage({ id: 'pages.task.instanceId' }),
       dataIndex: 'instanceId',
       width: 180,
@@ -139,6 +152,7 @@ const List: React.FC = () => {
       align: 'center',
       render: (text, record) => record['displays']['submitTime'],
     },
+
     {
       title: intl.formatMessage({ id: 'pages.task.status' }),
       dataIndex: 'status',
@@ -265,8 +279,13 @@ const List: React.FC = () => {
           actionRef={actionRef}
           request={async (params) => {
             const res = await queryTask({ ...params, pageNumber: params.current - 1 });
+            const images = res.list.map((item) => item.imageUrl || '').filter((item) => item != '');
+            const list = res.list;
+            list.forEach((item, index) => {
+              item.images = images;
+            });
             return {
-              data: res.list,
+              data: list,
               total: res.pagination.total,
               success: true,
             };
