@@ -28,7 +28,6 @@ export default {
   'pages.login.register': 'Register',
   'pages.login.returnLogin': 'Return to login',
   'pages.login.registerSuccess': 'Register successful!',
-  
 
   'pages.welcome.todayDraw': 'Today Draw',
   'pages.welcome.yesterdayDraw': 'Yesterday Draw',
@@ -103,7 +102,8 @@ export default {
   'pages.submit': 'OK',
 
   'pages.user.isWhite': 'Is White',
-  'pages.user.isWhite.help': 'Whitelisted users are not restricted by stream and ip drawing restrictions',
+  'pages.user.isWhite.help':
+    'Whitelisted users are not restricted by stream and ip drawing restrictions',
   'pages.account.permanentInvitationLink': 'Permanent Invitation Link',
   'pages.account.notRunning': 'Service Not Running',
   'pages.account.lock': 'Account locked',
@@ -122,7 +122,8 @@ export default {
   'pages.account.sponsor': 'Sponsor',
   'pages.account.workTime': 'Working Time',
   'pages.account.fishingTime': 'Fishing Time',
-  'pages.account.fishingTimeTips': 'When touching fish, only change tasks are accepted, and new drawing tasks are not accepted',
+  'pages.account.fishingTimeTips':
+    'When touching fish, only change tasks are accepted, and new drawing tasks are not accepted',
   'pages.account.sort': 'Sort',
   'pages.account.cfmodal': 'CF Real person verification',
   'pages.account.renewDate': 'Expiration Time',
@@ -147,7 +148,7 @@ export default {
 
   'pages.account.info': 'Account Info',
   'pages.account.interval': 'Interval before execution (seconds)',
-  'pages.account.intervalAfter':'Wait after execution (seconds)',
+  'pages.account.intervalAfter': 'Wait after execution (seconds)',
   'pages.account.cfRefresh': 'Regenerates the CF validation link',
   'pages.account.cfok': 'Mark verification passed',
   'pages.account.mjVersionSuccess': 'MJ version switch successful',
@@ -184,14 +185,15 @@ export default {
   'pages.account.isVerticalDomain': 'Enable Vertical Domain',
   'pages.account.verticalDomainIds': 'Vertical Domain configuration',
   'pages.account.subChannels': 'Sub Channels',
-  'pages.account.subChannelsHelp': 'Please input channels, each row of a, format: [invite link], [channel address], example: https://discord.gg/xxx, https://discord.com/channels/xxx/xxx',
+  'pages.account.subChannelsHelp':
+    'Please input channels, each row of a, format: [invite link], [channel address], example: https://discord.gg/xxx, https://discord.com/channels/xxx/xxx',
   'pages.account.allowModesTooltip':
     'If the user specifies the mode or adds a user-defined parameter, such as --fast, but the account does not allow FAST, this parameter is automatically removed',
 
   'pages.task.info': 'Task Info',
   'pages.task.type': 'Type',
   'pages.task.submitTime': 'Submit Time',
-  'pages.task.preview':'Preview',
+  'pages.task.preview': 'Preview',
   'pages.task.status': 'Status',
   'pages.task.progress': 'Progress',
   'pages.task.description': 'Description',
@@ -320,7 +322,8 @@ export default {
   'pages.setting.captchaNotifyHook': 'Captcha Notify Hook',
   'pages.setting.enableRegister': 'Enable Register',
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
-  'pages.setting.isVerticalDomainTips': 'When vertical domain painting is enabled, the promat entry will be calculated and then assigned to the corresponding account according to the entry. If no account is matched, the account painting that is not opened in vertical domain will be assigned',
+  'pages.setting.isVerticalDomainTips':
+    'When vertical domain painting is enabled, the promat entry will be calculated and then assigned to the corresponding account according to the entry. If no account is matched, the account painting that is not opened in vertical domain will be assigned',
   'pages.setting.registerUserDefaultDayLimit': 'Register User Default Day Limit',
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
@@ -332,5 +335,8 @@ export default {
   'pages.setting.otherSetting': 'Other Setting',
   'pages.setting.accountSetting': 'Account Setting',
   'pages.setting.tips':
-    'Tip: You need to restart the Discord and Proxy configurations to modify them. You do not need to restart other configurations.',
+    'Note: Modifying the account configuration requires restarting the service. Other configuration modifications take effect in real time without restarting the service.',
+  'pages.setting.migrate': 'Migrate',
+  'pages.setting.migrateSuccess':'The migration job is running in the background, please check later',
+  'pages.setting.migrateTips':'Enter Host',
 };

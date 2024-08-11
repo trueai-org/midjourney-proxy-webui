@@ -319,6 +319,9 @@ export default {
   'pages.setting.ipBlackRateLimiting':'黑名单限流配置',
   'pages.setting.otherSetting':'其他设置',
   'pages.setting.accountSetting':'账号设置',
-  'pages.setting.tips':'提示：修改 Discord 配置和 Proxy 代理配置需重启服务，其他配置修改实时生效，无需重启服务。',
+  'pages.setting.tips':'提示：修改账号配置需重启服务，其他配置修改实时生效，无需重启服务。',
+  'pages.setting.migrate':'一键迁移',
+  'pages.setting.migrateSuccess':'迁移作业正在后台执行，请稍后查看',
+  'pages.setting.migrateTips':'请填写 Host',
   
 };

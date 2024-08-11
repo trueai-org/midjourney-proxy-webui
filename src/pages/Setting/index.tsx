@@ -1,5 +1,5 @@
 import JsonEditor from '@/components/JsonEditor';
-import { getConfig, updateConfig } from '@/services/mj/api';
+import { getConfig, migrateAccountAndTasks, updateConfig } from '@/services/mj/api';
 import { SaveOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -17,6 +17,7 @@ import {
   Space,
   Spin,
   Switch,
+  Tooltip,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
 
@@ -63,6 +64,38 @@ const Setting: React.FC = () => {
       });
   };
 
+  const [host, setHost] = useState('');
+  const [token, setToken] = useState('');
+
+  const onMigrate = async (host: string, token: string) => {
+    try {
+      setLoading(true);
+      const migrationData = {
+        Host: host,
+        ApiSecret: token,
+      };
+
+      const res = await migrateAccountAndTasks(migrationData);
+      if (res.success) {
+        message.success(intl.formatMessage({ id: 'pages.setting.migrateSuccess' }));
+      } else {
+        message.error(res.message);
+      }
+    } catch (error) {
+      message.error(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onMigrateClick = () => {
+    if (host) {
+      onMigrate(host, token);
+    } else {
+      message.warning(intl.formatMessage({ id: 'pages.setting.migrateTips' }));
+    }
+  };
+
   return (
     <PageContainer>
       <Form
@@ -79,9 +112,42 @@ const Setting: React.FC = () => {
               style={{ paddingTop: '4px', paddingBottom: '4px' }}
               description={intl.formatMessage({ id: 'pages.setting.tips' })}
             />
-            <Button loading={loading} icon={<SaveOutlined />} type={'primary'} onClick={onFinish}>
-              {intl.formatMessage({ id: 'pages.setting.save' })}
-            </Button>
+            <Space>
+              <Tooltip
+                placement="bottom"
+                title={
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 8,
+
+                      padding: 8,
+                    }}
+                  >
+                    <Input
+                      style={{ marginBottom: 8 }}
+                      placeholder="Host"
+                      value={host}
+                      onChange={(e) => setHost(e.target.value)}
+                    />
+                    <Input
+                      placeholder="Token"
+                      value={token}
+                      onChange={(e) => setToken(e.target.value)}
+                    />
+                  </div>
+                }
+              >
+                <Button loading={loading} type="primary" ghost onClick={onMigrateClick}>
+                  {intl.formatMessage({ id: 'pages.setting.migrate' })}
+                </Button>
+              </Tooltip>
+
+              <Button loading={loading} icon={<SaveOutlined />} type={'primary'} onClick={onFinish}>
+                {intl.formatMessage({ id: 'pages.setting.save' })}
+              </Button>
+            </Space>
           </Space>
 
           <Row gutter={16}>

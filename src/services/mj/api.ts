@@ -366,3 +366,12 @@ export async function updateConfig(data: object, options?: { [key: string]: any 
     ...(options || {}),
   });
 }
+
+// 一键迁移
+export async function migrateAccountAndTasks(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/mjplus-migration', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
