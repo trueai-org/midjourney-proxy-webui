@@ -83,6 +83,26 @@ export async function queryAccount(options?: { [key: string]: any }) {
   });
 }
 
+export async function queryAccounts(data: any, options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/mj/admin/accounts', {
+    method: 'POST',
+    data: {
+      pagination: {
+        current: data?.current || 1,
+        pageSize: data?.pageSize || 10,
+      },
+      sort: {
+        predicate: '',
+        reverse: true,
+      },
+      search: {
+        ...data,
+      },
+    },
+    ...(options || {}),
+  });
+}
+
 /**  POST /mj/account/{id}/sync-info */
 export async function refreshAccount(id: string, options?: { [key: string]: any }) {
   return request<API.Result>(`/mj/admin/account-sync/${id}`, {

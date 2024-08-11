@@ -5,7 +5,7 @@ import CfContent from '@/pages/AccountList/components/contents/CfContent';
 import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
-import { createAccount, queryAccount, update, updateAndReconnect } from '@/services/mj/api';
+import { createAccount, queryAccounts, update, updateAndReconnect } from '@/services/mj/api';
 import {
   ClockCircleOutlined,
   EditOutlined,
@@ -15,11 +15,11 @@ import {
   UnlockOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Button, Card, Form, Modal, notification, Space, Table, Tag, Tooltip } from 'antd';
+import { Button, Card, Form, Modal, notification, Space, Tag, Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const AccountList: React.FC = () => {
   // 初始化 dataSource 状态为空数组
@@ -34,15 +34,18 @@ const AccountList: React.FC = () => {
 
   const intl = useIntl();
 
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const actionRef = useRef();
 
-  const fetchData = async () => {
-    setLoading(true);
-    const res = await queryAccount();
-    setData(res);
-    setLoading(false);
-  };
+  // const [data, setData] = useState([]);
+  // const [loading, setLoading] = useState(false);
+
+  // const fetchData = async () => {
+  //   // setLoading(true);
+  //   // actionRef.current?.reload();
+  //   // const res = await queryAccount();
+  //   // setData(res);
+  //   // setLoading(false);
+  // };
 
   const hideModal = () => {
     setModalContent(<></>);
@@ -77,7 +80,8 @@ const AccountList: React.FC = () => {
   // 定义一个 triggerRefresh 函数，使其增加 refresh 的值，从而触发重新渲染
   const triggerRefreshAccount = () => {
     hideModal();
-    fetchData();
+    // fetchData();
+    actionRef.current?.reload();
   };
 
   const handleAdd = async (values: Record<any, any>) => {
@@ -216,11 +220,11 @@ const AccountList: React.FC = () => {
       request: async () => [
         {
           label: intl.formatMessage({ id: 'pages.enable' }),
-          value: 'true',
+          value: true,
         },
         {
           label: intl.formatMessage({ id: 'pages.disable' }),
-          value: 'false',
+          value: false,
         },
       ],
       render: (enable: boolean, record) => {
@@ -424,14 +428,14 @@ const AccountList: React.FC = () => {
   ];
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
   }, []);
 
   return (
     <PageContainer>
       {contextHolder}
       <Card>
-        <div
+        {/* <div
           style={{
             display: 'flex',
             justifyContent: 'flex-end',
@@ -461,15 +465,52 @@ const AccountList: React.FC = () => {
               triggerRefreshAccount();
             }}
           ></Button>
-        </div>
+        </div> */}
 
-        <Table
+        {/* <Table
           scroll={{ x: 1000 }}
           rowKey="id"
           columns={columns}
           dataSource={data}
           loading={loading}
           pagination={false}
+        /> */}
+
+        <ProTable
+          columns={columns}
+          scroll={{ x: 1000 }}
+          search={{ defaultCollapsed: true }}
+          pagination={{
+            pageSize: 10,
+            showQuickJumper: false,
+            showSizeChanger: false,
+          }}
+          rowKey="id"
+          actionRef={actionRef}
+          toolBarRender={() => [
+            <Button
+              key="primary"
+              type={'primary'}
+              icon={<UserAddOutlined />}
+              onClick={() => {
+                openModal(
+                  intl.formatMessage({ id: 'pages.account.add' }),
+                  <AddContent form={form} onSubmit={handleAdd} />,
+                  1600,
+                );
+              }}
+            >
+              {intl.formatMessage({ id: 'pages.add' })}
+            </Button>,
+          ]}
+          request={async (params) => {
+            const res = await queryAccounts({ ...params, pageNumber: params.current! - 1 });
+            return {
+              data: res.list,
+              total: res.pagination.total,
+              success: true,
+            };
+          }}
         />
       </Card>
       <Modal
