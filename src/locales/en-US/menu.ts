@@ -25,6 +25,7 @@ export default {
   'menu.list.table-list': 'Search Table',
   'menu.list.account-list': 'Account Manage',
   'menu.list.domain-list': 'Domain Manage',
+  'menu.list.banned-word-list': 'Banned Word Manage',
   'menu.list.user-list': 'User Manage',
   'menu.api-doc': 'API DOC',
   'menu.task-list': 'Task Search',

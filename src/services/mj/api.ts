@@ -297,6 +297,59 @@ export async function createDomain(data: object, options?: { [key: string]: any 
 }
 
 
+/**
+ * 违规词
+ * @param data 
+ * @param options 
+ * @returns 
+ */
+export async function queryIllegalWord(data: any, options?: { [key: string]: any }) {
+  return request<Record<string, any>>('/mj/admin/banned-words', {
+    method: 'POST',
+    data: {
+      pagination: {
+        current: data?.current || 1,
+        pageSize: data?.pageSize || 10,
+      },
+      sort: {
+        predicate: '',
+        reverse: true,
+      },
+      search: {
+        ...data,
+      },
+    },
+    ...(options || {}),
+  });
+}
+
+/**
+ * 删除违规词
+ * @param id 
+ * @param options 
+ * @returns 
+ */
+export async function deleteIllegalWord(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/banned-word/${id}`, {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+
+/**
+ * 创建违规词
+ * @param data 
+ * @param options 
+ * @returns 
+ */
+export async function createIllegalWord(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/banned-word', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
 export async function queryTaskByIds(ids: string[], options?: { [key: string]: any }) {
   return request<any>('/mj/task/list-by-ids', {
     method: 'POST',

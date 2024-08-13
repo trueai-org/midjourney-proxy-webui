@@ -127,12 +127,12 @@ const Setting: React.FC = () => {
                   >
                     <Input
                       style={{ marginBottom: 8 }}
-                      placeholder="Host"
+                      placeholder="mjplus host"
                       value={host}
                       onChange={(e) => setHost(e.target.value)}
                     />
                     <Input
-                      placeholder="Token"
+                      placeholder="mj-api-secret"
                       value={token}
                       onChange={(e) => setToken(e.target.value)}
                     />
@@ -185,6 +185,14 @@ const Setting: React.FC = () => {
                   name="mongoDefaultDatabase"
                 >
                   <Input placeholder="mj" />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.isMongoAutoMigrate' })}
+                  name="isMongoAutoMigrate"
+                  tooltip={intl.formatMessage({ id: 'pages.setting.isMongoAutoMigrateTips' })}
+                >
+                  <Switch />
                 </Form.Item>
 
                 <Form.Item

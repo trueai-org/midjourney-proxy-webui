@@ -25,6 +25,7 @@ export default {
   'menu.list.table-list': '查询表格',
   'menu.list.account-list': '账号管理',
   'menu.list.domain-list': '领域管理',
+  'menu.list.banned-word-list': '违规词条',
   'menu.list.user-list': '用户管理',
   'menu.task-list': '任务查询',
   'menu.draw-test': '绘画测试',

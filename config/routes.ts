@@ -63,6 +63,12 @@ export default [
     component: './Draw',
   },
   {
+    name: 'list.banned-word-list',
+    icon: 'stop',
+    path: '/banned-word',
+    component: './BannedWordList/List',
+  },
+  {
     name: 'setting',
     icon: 'setting',
     path: '/setting',

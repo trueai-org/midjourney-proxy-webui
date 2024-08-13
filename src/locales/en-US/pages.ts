@@ -261,6 +261,22 @@ export default {
   'pages.domain.deleteTitle': 'Confirm delete this domain tag?',
   'pages.domain.keywords.tooltip': 'Multiple keyword words are separated by ","',
 
+
+  'pages.word.add': 'Add Banned Word',
+  'pages.word.update': 'Update Banned Word',
+  'pages.word.name': 'Name',
+  'pages.word.keywords': 'Banned Words',
+  'pages.word.enable': 'Enable',
+  'pages.word.weight': 'Weight',
+  'pages.word.sort': 'Sort',
+  'pages.word.description': 'Description',
+  'pages.word.createTime': 'Create Time',
+  'pages.word.updateTime': 'Update Time',
+  'pages.word.delete': 'Delete Banned Word',
+  'pages.word.deleteTitle': 'Confirm delete this banned word?',
+  'pages.word.keywords.tooltip': 'Multiple keyword words are separated by ","',
+
+
   'pages.draw.swapTip': 'swap requires at least two images!',
   'pages.draw.blendTip': 'blend requires at least two images!',
   'pages.draw.imageEmptyTip': 'The image cannot be empty!',
@@ -309,6 +325,8 @@ export default {
   'pages.setting.enableSwagger': 'Enable Swagger',
   'pages.setting.mongoDefaultConnectionString': 'Mongo Default Connection String',
   'pages.setting.mongoDefaultDatabase': 'Mongo Default Database',
+  'pages.setting.isMongoAutoMigrate': 'MongoDB data migration',
+  'pages.setting.isMongoAutoMigrateTips': 'After this function is enabled, local tasks are automatically migrated to MongoDB when the system starts',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
   'pages.setting.ngDiscord': 'Discord Config',
   'pages.setting.proxy': 'Proxy Config',
