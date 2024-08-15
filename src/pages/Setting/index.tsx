@@ -196,6 +196,13 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
+                  name="maxCount"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
                   name="accountChooseRule"
                 >

@@ -2,6 +2,10 @@
 import type { RequestConfig } from '@umijs/max';
 import { getLocale } from '@umijs/max';
 import { message, notification } from 'antd';
+import { history } from '@umijs/max';
+
+const loginPath = '/user/login';
+
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -77,7 +81,13 @@ export const errorConfig: RequestConfig = {
         // 请求成功发出且服务器也响应了状态码，但状态代码超出了 2xx 的范围
         if (error.response.status === 403) {
           message.error('Forbidden, please login again.');
-        } else if (error.response.status === 429) {
+        } 
+        else if (error.response.status === 401) {
+          message.error('Unauthorized, please login again.');
+          // 去登录
+          history.push(loginPath);
+        } 
+        else if (error.response.status === 429) {
           message.error('Too many requests, please retry later.');
         } else {
           message.error(`Response status:${error.response.status}`);
