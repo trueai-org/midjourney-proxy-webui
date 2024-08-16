@@ -132,14 +132,16 @@ const List: React.FC = () => {
       hideInSearch: true,
       render: (text, record, index) => {
         return (
-          <Image.PreviewGroup items={record.images || []}>
-            <Image
-              style={{ borderRadius: 0, maxWidth: 120, objectFit: 'cover' }}
-              key={index}
-              height={60}
-              src={record.thumbnailUrl || record.imageUrl}
-            />
-          </Image.PreviewGroup>
+          (record.thumbnailUrl || record.imageUrl) && (
+            <Image.PreviewGroup items={record.images || []}>
+              <Image
+                style={{ borderRadius: 0, maxWidth: 120, objectFit: 'cover' }}
+                key={index}
+                height={60}
+                src={record.thumbnailUrl || record.imageUrl}
+              />
+            </Image.PreviewGroup>
+          )
         );
       },
     },
