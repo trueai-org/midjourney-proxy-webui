@@ -139,6 +139,7 @@ const List: React.FC = () => {
                 key={index}
                 height={60}
                 src={record.thumbnailUrl || record.imageUrl}
+                preview={{ src: record.imageUrl }}
               />
             </Image.PreviewGroup>
           )
