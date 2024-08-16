@@ -317,6 +317,7 @@ export default {
   'pages.setting.accountChooseRule':'账号匹配算法',
   'pages.setting.discordConfig':'Discord 配置',
   'pages.setting.proxyConfig':'Proxy 配置',
+  'pages.setting.aliyunOss':'阿里云 OSS',
   'pages.setting.translate':'开启翻译',
   'pages.setting.baiduTranslate':'百度翻译',
   'pages.setting.openai': 'GPT 翻译',

@@ -331,6 +331,11 @@ export default {
   'pages.setting.isMongoAutoMigrateTips': 'After this function is enabled, local tasks are automatically migrated to MongoDB when the system starts',
   'pages.setting.maxCount': 'Save the maximum number of drawings',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
+
+  'pages.setting.discordConfig':'Discord Config',
+  'pages.setting.proxyConfig':'Proxy Config',
+  'pages.setting.aliyunOss':'Aliyun OSS',
+
   'pages.setting.ngDiscord': 'Discord Config',
   'pages.setting.proxy': 'Proxy Config',
   'pages.setting.translateWay': 'Translate Way',

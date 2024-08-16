@@ -226,6 +226,12 @@ const Setting: React.FC = () => {
                   <JsonEditor />
                 </Form.Item>
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.aliyunOss' })}
+                  name="aliyunOss"
+                >
+                  <JsonEditor />
+                </Form.Item>
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.translate' })}
                   name="translateWay"
                 >

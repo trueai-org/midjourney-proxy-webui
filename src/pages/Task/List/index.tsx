@@ -134,10 +134,10 @@ const List: React.FC = () => {
         return (
           <Image.PreviewGroup items={record.images || []}>
             <Image
-              style={{ borderRadius: 0, maxHeight: 120 }}
+              style={{ borderRadius: 0, maxWidth: 120, objectFit: 'cover' }}
               key={index}
-              width={60}
-              src={record.imageUrl}
+              height={60}
+              src={record.thumbnailUrl || record.imageUrl}
             />
           </Image.PreviewGroup>
         );
