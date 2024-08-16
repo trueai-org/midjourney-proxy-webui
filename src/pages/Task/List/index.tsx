@@ -4,7 +4,7 @@ import { deleteTask, queryTask } from '@/services/mj/api';
 import { DeleteOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Button, Card, Form, Image, notification, Popconfirm, Progress, Tag } from 'antd';
+import { Button, Card, Form, Image, notification, Popconfirm, Progress, Spin, Tag } from 'antd';
 import React, { useRef, useState } from 'react';
 
 const List: React.FC = () => {
@@ -55,6 +55,12 @@ const List: React.FC = () => {
       console.error(error);
     } finally {
     }
+  };
+
+  const [loading, setLoading] = useState(true);
+
+  const handleImageLoad = () => {
+    setLoading(false);
   };
 
   const columns = [
@@ -139,7 +145,25 @@ const List: React.FC = () => {
                 key={index}
                 height={60}
                 src={record.thumbnailUrl || record.imageUrl}
-                preview={{ src: record.imageUrl }}
+                preview={{
+                  src: record.imageUrl,
+                  mask: <Spin spinning={loading} />,
+                }}
+                loading="lazy"
+                onLoad={handleImageLoad}
+                placeholder={
+                  <div
+                    style={{
+                      width: 120,
+                      height: 60,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Spin spinning={loading} />
+                  </div>
+                }
               />
             </Image.PreviewGroup>
           )
