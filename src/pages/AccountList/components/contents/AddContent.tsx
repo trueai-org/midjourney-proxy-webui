@@ -214,6 +214,12 @@ const AddContent = ({
               <Switch />
             </Form.Item>
             <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.isShorten' })}
+              name="isShorten"
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
               name="dayDrawLimit"
             >

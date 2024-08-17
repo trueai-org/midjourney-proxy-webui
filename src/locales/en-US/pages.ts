@@ -183,6 +183,7 @@ export default {
   'pages.account.poolsize': 'Account pool configuration',
   'pages.account.isBlend': 'Enable Blend',
   'pages.account.isDescribe': 'Enable Describe',
+  'pages.account.isShorten': 'Enable Shorten',
   'pages.account.dayDrawLimit': 'Daily drawing limits',
   'pages.account.isVerticalDomain': 'Enable Vertical Domain',
   'pages.account.verticalDomainIds': 'Vertical Domain configuration',

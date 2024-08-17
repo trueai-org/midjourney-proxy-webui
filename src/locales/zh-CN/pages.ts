@@ -171,6 +171,7 @@ export default {
   'pages.account.enableMj': '开启 Midiourny 绘图',
   'pages.account.enableNiji': '开启 Nijiourney 绘图',
   'pages.account.isDescribe': '开启 Describe',
+  'pages.account.isShorten': '开启 Shorten',
   'pages.account.dayDrawLimit': '日绘图限制',
   'pages.account.dayDrawCount': '今日已绘图',
   'pages.account.isVerticalDomain': '开启垂直领域',
