@@ -277,6 +277,13 @@ const Setting: React.FC = () => {
                 >
                   <Input />
                 </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.captchaNotifySecret' })}
+                  name="captchaNotifySecret"
+                  tooltip={intl.formatMessage({ id: 'pages.setting.captchaNotifySecretTip' })}
+                >
+                  <Input />
+                </Form.Item>
               </Card>
             </Col>
             <Col span={12}>

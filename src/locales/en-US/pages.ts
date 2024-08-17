@@ -347,6 +347,8 @@ export default {
   'pages.setting.notifyPoolSize': 'Notify Pool Size',
   'pages.setting.captchaServer': 'Captcha Server',
   'pages.setting.captchaNotifyHook': 'Captcha Notify Hook',
+  'pages.setting.captchaNotifySecret':'CloudFlare Notify Secret',
+  'pages.setting.captchaNotifySecretTip':'To verify the validity of CloudFlare verification notification callback, enter a random string',
   'pages.setting.enableRegister': 'Enable Register',
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
   'pages.setting.isVerticalDomainTips':

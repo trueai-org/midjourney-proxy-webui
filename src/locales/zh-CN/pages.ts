@@ -327,6 +327,8 @@ export default {
   'pages.setting.notifyPoolSize':'通知线程池大小',
   'pages.setting.captchaServer':'CloudFlare 验证器地址',
   'pages.setting.captchaNotifyHook':'CloudFlare 验证通知回调',
+  'pages.setting.captchaNotifySecret':'CloudFlare 验证通知密钥',
+  'pages.setting.captchaNotifySecretTip':'用于验证 CloudFlare 验证通知回调的合法性，请输入随机字符串',
   'pages.setting.save':'保存',
   'pages.setting.saveSuccess':'保存成功',
   'pages.setting.saveFailed':'保存失败',
