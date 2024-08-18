@@ -694,8 +694,6 @@ const Draw: React.FC = () => {
     });
   };
 
-
-
   const getTaskMarkdownInfo = (task: any) => {
     if (!task.properties['finalPrompt']) {
       return <></>;
@@ -815,7 +813,7 @@ const Draw: React.FC = () => {
       );
     }
   };
-  
+
   const actionArea = () => {
     if (botType === 'INSIGHT_FACE' || botType === 'FACE_SWAP') {
       return (
@@ -1050,7 +1048,10 @@ const Draw: React.FC = () => {
 
   const beforeUpload = (file: RcFile) => {
     const isJpgOrPng =
-      file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'video/mp4';
+      file.type === 'image/jpeg' ||
+      file.type === 'image/png' ||
+      file.type === 'video/mp4' ||
+      file.type === 'image/webp';
     if (!isJpgOrPng) {
       message.error(intl.formatMessage({ id: 'pages.draw.onlyJpgPng' }));
     }
