@@ -232,6 +232,13 @@ const Setting: React.FC = () => {
                   <JsonEditor />
                 </Form.Item>
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.replicate' })}
+                  name="replicate"
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.translate' })}
                   name="translateWay"
                 >

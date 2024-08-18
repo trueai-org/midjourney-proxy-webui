@@ -396,6 +396,14 @@ export async function swapFace(data: object, options?: { [key: string]: any }) {
   });
 }
 
+export async function swapVideoFace(data: object, options?: { [key: string]: any }) {
+  return request<any>('/mj/insight-face/video-swap', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
 export async function probe(tail: number, options?: { [key: string]: any }) {
   return request<any>('/mj/admin/probe?tail=' + tail, {
     method: 'GET',

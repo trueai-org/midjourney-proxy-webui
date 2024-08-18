@@ -6,6 +6,7 @@ import {
   submitShow,
   submitTask,
   swapFace,
+  swapVideoFace,
 } from '@/services/mj/api';
 import { ClearOutlined, CloseCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
@@ -47,6 +48,9 @@ const Draw: React.FC = () => {
   const [prompt, setPrompt] = useState('');
   const [dimensions, setDimensions] = useState('SQUARE');
   const [images, setImages] = useState<UploadFile[]>([]);
+
+  const [swapImages1, setSwapImages1] = useState<UploadFile[]>([]);
+  const [swapImages2, setSwapImages2] = useState<UploadFile[]>([]);
 
   const [loadingButton, setLoadingButton] = useState('');
   const [submitLoading, setSubmitLoading] = useState(false);
@@ -200,20 +204,98 @@ const Draw: React.FC = () => {
   };
 
   const submit = async () => {
-    if (botType === 'INSIGHT_FACE') {
-      if (images.length < 2) {
+    if (botType === 'INSIGHT_FACE' || botType === 'FACE_SWAP') {
+      if (swapImages1.length < 1) {
         message.error(intl.formatMessage({ id: 'pages.draw.swapTip' }));
         return;
       }
+      if (swapImages2.length < 1) {
+        message.error(intl.formatMessage({ id: 'pages.draw.swapTip' }));
+        return;
+      }
+
       setSubmitLoading(true);
-      const sourceBase64 = await readFileAsBase64(images[0].originFileObj);
-      const targetBase64 = await readFileAsBase64(images[1].originFileObj);
-      swapFace({ sourceBase64, targetBase64, state: customState }).then((res) => {
+      const obj = {
+        sourceUrl: '',
+        targetUrl: '',
+        sourceBase64: '' as any,
+        targetBase64: '' as any,
+        state: customState,
+      };
+      if (swapImages1[0].originFileObj) {
+        obj.sourceBase64 = await readFileAsBase64(swapImages1[0].originFileObj);
+      } else {
+        obj.sourceUrl = swapImages1[0].name;
+      }
+
+      if (swapImages2[0].originFileObj) {
+        obj.targetBase64 = await readFileAsBase64(swapImages2[0].originFileObj);
+      } else {
+        obj.targetUrl = swapImages2[0].name;
+      }
+
+      swapFace(obj).then((res) => {
         setSubmitLoading(false);
         if (res.code === 1) {
           message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
           waitTaskIds.add(res.result);
-          setImages([]);
+          setSwapImages1([]);
+          setSwapImages2([]);
+        } else {
+          api.error({
+            message: 'error',
+            description: res.description,
+          });
+        }
+      });
+    } else if (botType === 'VIDEO_FACE_SWAP') {
+      if (swapImages1.length < 1) {
+        message.error(intl.formatMessage({ id: 'pages.draw.swapTip' }));
+        return;
+      }
+      if (swapImages2.length < 1) {
+        message.error(intl.formatMessage({ id: 'pages.draw.swapTip' }));
+        return;
+      }
+
+      setSubmitLoading(true);
+      const obj = {
+        sourceUrl: '',
+        targetUrl: '',
+        sourceBase64: '' as any,
+        targetBase64: '' as any,
+        state: customState,
+      };
+      if (swapImages1[0].originFileObj) {
+        obj.sourceBase64 = await readFileAsBase64(swapImages1[0].originFileObj);
+      } else {
+        obj.sourceUrl = swapImages1[0].name;
+      }
+
+      const formData = new FormData();
+
+      if (swapImages2[0].originFileObj) {
+        formData.append('TargetFile', swapImages2[0].originFileObj);
+      } else {
+        obj.targetUrl = swapImages2[0].name;
+      }
+
+      formData.append('SourceBase64', obj.sourceBase64 || '');
+      formData.append('SourceUrl', obj.sourceUrl || '');
+      formData.append('TargetUrl', obj.targetUrl || '');
+      formData.append('Satate', obj.state);
+
+      swapVideoFace(formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then((res) => {
+        setSubmitLoading(false);
+        if (res.code === 1) {
+          message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+          waitTaskIds.add(res.result);
+          setSwapImages1([]);
+          setSwapImages2([]);
         } else {
           api.error({
             message: 'error',
@@ -228,8 +310,7 @@ const Draw: React.FC = () => {
       }
       waitTaskIds.add(prompt);
       setPrompt('');
-    }
-    else if (action === 'showjobid') {
+    } else if (action === 'showjobid') {
       if (!prompt) {
         message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
         return;
@@ -251,8 +332,7 @@ const Draw: React.FC = () => {
           setImages([]);
         }
       });
-    }
-     else if (action === 'imagine') {
+    } else if (action === 'imagine') {
       if (!prompt) {
         message.error(intl.formatMessage({ id: 'pages.draw.promptNotBlank' }));
         return;
@@ -540,7 +620,7 @@ const Draw: React.FC = () => {
     let botName = `Midjourney - ${task['displays']['discordInstanceId']}`;
     if (task.botType === 'NIJI_JOURNEY') {
       botName = `niji・journey - ${task['displays']['discordInstanceId']}`;
-    } else if (task.botType === 'INSIGHT_FACE') {
+    } else if (task.botType === 'INSIGHT_FACE' || task.botType === 'FACE_SWAP') {
       botName = `InsightFaceSwap - ${task['displays']['discordInstanceId']}`;
     }
     if (
@@ -585,7 +665,11 @@ const Draw: React.FC = () => {
       let avatar = './midjourney.webp';
       if (task.botType === 'NIJI_JOURNEY') {
         avatar = './niji.webp';
-      } else if (task.botType === 'INSIGHT_FACE') {
+      } else if (
+        task.botType === 'INSIGHT_FACE' ||
+        task.botType === 'FACE_SWAP' ||
+        task.botType === 'VIDEO_FACE_SWAP'
+      ) {
         avatar = './insightface.webp';
       }
       return (
@@ -610,28 +694,7 @@ const Draw: React.FC = () => {
     });
   };
 
-  const getTaskCard = (task: any) => {
-    if (task.action === 'DESCRIBE') {
-      return (
-        <>
-          {getTaskStatus(task)} {getTaskMarkdownInfo(task)} {getTaskImage(task.imageUrl, 120)}
-        </>
-      );
-    } else if (task.action === 'SHORTEN') {
-      return (
-        <>
-          {getTaskStatus(task)} {getTaskMarkdownInfo(task)}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {getTaskStatus(task)}
-          {getTaskImage(task.imageUrl, 250)}
-        </>
-      );
-    }
-  };
+
 
   const getTaskMarkdownInfo = (task: any) => {
     if (!task.properties['finalPrompt']) {
@@ -676,6 +739,18 @@ const Draw: React.FC = () => {
     );
   };
 
+  const getTaskVideo = (imageUrl: string, width: number) => {
+    if (!imageUrl) return <></>;
+    return (
+      <video
+        width={width}
+        controls
+        src={imagePrefix + imageUrl}
+        placeholder={<Spin tip="Loading" size="large"></Spin>}
+      ></video>
+    );
+  };
+
   const getProgress = (task: any) => {
     const text = task.progress;
     let percent = 0;
@@ -714,13 +789,61 @@ const Draw: React.FC = () => {
     </div>
   );
 
-  const actionArea = () => {
-    if (botType === 'INSIGHT_FACE') {
+  const getTaskCard = (task: any) => {
+    if (task.action === 'DESCRIBE') {
       return (
-        <Flex vertical>
-          <Upload {...props} listType="picture-card">
-            {images.length >= 2 ? null : uploadButton}
+        <>
+          {getTaskStatus(task)} {getTaskMarkdownInfo(task)} {getTaskImage(task.imageUrl, 120)}
+        </>
+      );
+    } else if (task.action === 'SHORTEN') {
+      return (
+        <>
+          {getTaskStatus(task)} {getTaskMarkdownInfo(task)}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {getTaskStatus(task)}
+
+          {/* 图片 */}
+          {task.action === 'SWAP_VIDEO_FACE'
+            ? getTaskVideo(task.imageUrl, 250)
+            : getTaskImage(task.imageUrl, 250)}
+        </>
+      );
+    }
+  };
+  
+  const actionArea = () => {
+    if (botType === 'INSIGHT_FACE' || botType === 'FACE_SWAP') {
+      return (
+        <Flex vertical gap={8}>
+          <Upload {...swap1Props} listType="picture-card">
+            {swapImages1.length >= 1 ? null : uploadButton}
           </Upload>
+          <Input
+            onChange={(e) => {
+              // 赋值到 swapImages1[0]
+              if (e.target.value) {
+                setSwapImages1([{ uid: '1', name: e.target.value, url: e.target.value }]);
+              }
+            }}
+            placeholder={intl.formatMessage({ id: 'pages.draw.swap1Desc' })}
+          />
+          <Upload {...swap2Props} listType="picture-card">
+            {swapImages2.length >= 1 ? null : uploadButton}
+          </Upload>
+          <Input
+            onChange={(e) => {
+              // 赋值到 swapImages1[0]
+              if (e.target.value) {
+                setSwapImages2([{ uid: '2', name: e.target.value, url: e.target.value }]);
+              }
+            }}
+            placeholder={intl.formatMessage({ id: 'pages.draw.swap2Desc' })}
+          />
           <Button
             style={{ marginTop: '10px' }}
             type="primary"
@@ -728,6 +851,44 @@ const Draw: React.FC = () => {
             loading={submitLoading}
           >
             {intl.formatMessage({ id: 'pages.draw.swapDesc' })}
+          </Button>
+        </Flex>
+      );
+    }
+    if (botType === 'VIDEO_FACE_SWAP') {
+      return (
+        <Flex vertical gap={8}>
+          <Upload {...swap1Props} listType="picture-card">
+            {swapImages1.length >= 1 ? null : uploadButton}
+          </Upload>
+          <Input
+            onChange={(e) => {
+              // 赋值到 swapImages1[0]
+              if (e.target.value) {
+                setSwapImages1([{ uid: '1', name: e.target.value, url: e.target.value }]);
+              }
+            }}
+            placeholder={intl.formatMessage({ id: 'pages.draw.swap1Desc' })}
+          />
+          <Upload {...swap2Props} listType="picture-card">
+            {swapImages2.length >= 1 ? null : uploadButton}
+          </Upload>
+          <Input
+            onChange={(e) => {
+              // 赋值到 swapImages1[0]
+              if (e.target.value) {
+                setSwapImages2([{ uid: '2', name: e.target.value, url: e.target.value }]);
+              }
+            }}
+            placeholder={intl.formatMessage({ id: 'pages.draw.swap2VidelDesc' })}
+          />
+          <Button
+            style={{ marginTop: '10px' }}
+            type="primary"
+            onClick={submit}
+            loading={submitLoading}
+          >
+            {intl.formatMessage({ id: 'pages.draw.swapVideoDesc' })}
           </Button>
         </Flex>
       );
@@ -745,8 +906,7 @@ const Draw: React.FC = () => {
           </Button>
         </Space.Compact>
       );
-    }
-    else if (action === 'showjobid') {
+    } else if (action === 'showjobid') {
       return (
         <Space.Compact style={{ width: '100%' }}>
           <Input
@@ -760,8 +920,7 @@ const Draw: React.FC = () => {
           </Button>
         </Space.Compact>
       );
-    } 
-     else if (action === 'imagine') {
+    } else if (action === 'imagine') {
       return (
         <Flex vertical>
           <Upload {...props} listType="picture-card">
@@ -890,7 +1049,8 @@ const Draw: React.FC = () => {
   }
 
   const beforeUpload = (file: RcFile) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    const isJpgOrPng =
+      file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'video/mp4';
     if (!isJpgOrPng) {
       message.error(intl.formatMessage({ id: 'pages.draw.onlyJpgPng' }));
     }
@@ -914,10 +1074,38 @@ const Draw: React.FC = () => {
     },
   };
 
+  const swap1Props: UploadProps = {
+    customRequest,
+    beforeUpload,
+    maxCount: 1,
+    fileList: swapImages1,
+    onChange(info) {
+      setSwapImages1(info.fileList);
+    },
+    showUploadList: {
+      showRemoveIcon: true,
+      showPreviewIcon: false,
+    },
+  };
+
+  const swap2Props: UploadProps = {
+    customRequest,
+    beforeUpload,
+    maxCount: 1,
+    fileList: swapImages2,
+    onChange(info) {
+      setSwapImages2(info.fileList);
+    },
+    showUploadList: {
+      showRemoveIcon: true,
+      showPreviewIcon: false,
+    },
+  };
+
   const switchArea = () => {
     let options;
     let isFace = false;
-    if (botType === 'INSIGHT_FACE') {
+    if (botType === 'INSIGHT_FACE' || botType === 'FACE_SWAP' || botType === 'VIDEO_FACE_SWAP') {
       isFace = true;
       options = [{ value: 'swap', label: '/swap' }];
     } else {
@@ -962,7 +1150,9 @@ const Draw: React.FC = () => {
           options={[
             { value: 'MID_JOURNEY', label: 'Midjourney' },
             { value: 'NIJI_JOURNEY', label: 'niji・journey' },
-            { value: 'INSIGHT_FACE', label: 'InsightFace' },
+            // { value: 'INSIGHT_FACE', label: 'InsightFace' },
+            { value: 'FACE_SWAP', label: 'FaceSwap' },
+            { value: 'VIDEO_FACE_SWAP', label: 'Video・FaceSwap' },
           ]}
           optionType="button"
         />

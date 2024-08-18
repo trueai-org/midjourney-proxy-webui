@@ -17,6 +17,8 @@ const List: React.FC = () => {
   const [form] = Form.useForm();
   const intl = useIntl();
 
+  const imagePrefix = sessionStorage.getItem('mj-image-prefix') || '';
+
   const [api, contextHolder] = notification.useNotification();
 
   const actionRef = useRef();
@@ -63,6 +65,19 @@ const List: React.FC = () => {
     setLoading(false);
   };
 
+  // get Video
+  const getVideo = (url: string) => {
+    if (!url) return url;
+    return (
+      <video
+        width="200"
+        controls
+        src={imagePrefix + url}
+        placeholder={<Spin tip="Loading" size="large"></Spin>}
+      ></video>
+    );
+  };
+
   const columns = [
     {
       title: 'ID',
@@ -88,7 +103,7 @@ const List: React.FC = () => {
     {
       title: intl.formatMessage({ id: 'pages.task.type' }),
       dataIndex: 'action',
-      width: 100,
+      width: 140,
       align: 'center',
       request: async () => [
         {
@@ -127,6 +142,10 @@ const List: React.FC = () => {
           label: 'SwapFace',
           value: 'SWAP_FACE',
         },
+        {
+          label: 'SwapVideoFace',
+          value: 'SWAP_VIDEO_FACE',
+        },
       ],
       render: (text, record) => record['displays']['action'],
     },
@@ -137,6 +156,39 @@ const List: React.FC = () => {
       align: 'center',
       hideInSearch: true,
       render: (text, record, index) => {
+        if (record.action === 'SWAP_VIDEO_FACE') {
+          // 点击图片显示视频
+          return (
+            record.thumbnailUrl && (
+              <Image
+                style={{ borderRadius: 0, maxWidth: 120, objectFit: 'cover', cursor: 'pointer' }}
+                key={index}
+                height={60}
+                src={record.thumbnailUrl}
+                preview={false}
+                onClick={() => {
+                  window.open(record.imageUrl);
+                }}
+                loading="lazy"
+                onLoad={handleImageLoad}
+                placeholder={
+                  <div
+                    style={{
+                      width: 120,
+                      height: 60,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Spin spinning={loading} />
+                  </div>
+                }
+              />
+            )
+          );
+        }
+
         return (
           (record.thumbnailUrl || record.imageUrl) && (
             <Image.PreviewGroup items={record.images || []}>

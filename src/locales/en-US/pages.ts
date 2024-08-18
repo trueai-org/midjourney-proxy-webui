@@ -153,8 +153,9 @@ export default {
   'pages.account.cfok': 'Mark verification passed',
   'pages.account.mjVersionSuccess': 'MJ version switch successful',
   'pages.account.remixAutoSubmit': 'Remix Auto Submit',
-  'pages.account.enableFastToRelax':'Automatically switches to slow speed',
-  'pages.account.enableFastToRelaxTips':'When the fast mode is used up, it automatically switches to the slow mode',
+  'pages.account.enableFastToRelax': 'Automatically switches to slow speed',
+  'pages.account.enableFastToRelaxTips':
+    'When the fast mode is used up, it automatically switches to the slow mode',
   'pages.account.mjChannelId': 'MJBot Private ChannelID',
   'pages.account.nijiChannelId': 'NijiBot Private ChannelID',
   'pages.account.basicInfo': 'Basic Info',
@@ -207,6 +208,7 @@ export default {
   'pages.task.failReason': 'Failed Reason',
   'pages.task.state': 'Custom Params',
   'pages.task.image': 'Image',
+  'pages.task.video': 'Video',
   'pages.task.extendedInfo': 'Extended Info',
   'pages.task.botType': 'Bot Type',
   'pages.task.instanceId': 'Instance ID',
@@ -264,7 +266,6 @@ export default {
   'pages.domain.deleteTitle': 'Confirm delete this domain tag?',
   'pages.domain.keywords.tooltip': 'Multiple keyword words are separated by ","',
 
-
   'pages.word.add': 'Add Banned Word',
   'pages.word.update': 'Update Banned Word',
   'pages.word.name': 'Name',
@@ -279,7 +280,6 @@ export default {
   'pages.word.deleteTitle': 'Confirm delete this banned word?',
   'pages.word.keywords.tooltip': 'Multiple keyword words are separated by ","',
 
-
   'pages.draw.swapTip': 'swap requires at least two images!',
   'pages.draw.blendTip': 'blend requires at least two images!',
   'pages.draw.imageEmptyTip': 'The image cannot be empty!',
@@ -289,7 +289,13 @@ export default {
   'pages.draw.unsupportedAction': 'This page does not currently support that command!',
   'pages.draw.actionSuccess': 'Action executed successfully',
   'pages.draw.subSuccess': 'Submit successful, please wait...',
-  'pages.draw.swapDesc': 'Face replacement (the first image is used as the face source)',
+  'pages.draw.swapDesc': 'Face replacement (first image as face source, or input image link)',
+  'pages.draw.swapVideoDesc': 'Video Face replacement (first image as face source, or input image link)',
+  'pages.draw.swap1Desc':
+    'The first image is used as the face source, and if it is not uploaded, enter the image link',
+  'pages.draw.swap2Desc':
+    'The second image is the target image, and if it is not uploaded, enter the image link',
+  'pages.draw.swap2VidelDesc': 'Second, please upload the target video, if not uploaded, enter the video link',
   'pages.draw.inputIdShow': 'Enter the task ID to bring up tasks that are not displayed',
   'pages.draw.inputJobIdShow':
     'Enter the job id or url to convert the midjourney task to the local system task',
@@ -298,7 +304,7 @@ export default {
   'pages.draw.SQUARE': 'Square(1:1)',
   'pages.draw.LANDSCAPE': 'Landscape(3:2)',
   'pages.draw.clear': 'Clear Selection',
-  'pages.draw.onlyJpgPng': 'You can only upload JPG or PNG files!',
+  'pages.draw.onlyJpgPng': 'You can only upload JPG or PNG or MP4 files!',
   'pages.draw.limit10M': 'The image cannot be larger than 10MB!',
   'pages.draw.selectAccount': 'Assigned account drawing',
 
@@ -329,13 +335,15 @@ export default {
   'pages.setting.mongoDefaultConnectionString': 'Mongo Default Connection String',
   'pages.setting.mongoDefaultDatabase': 'Mongo Default Database',
   'pages.setting.isMongoAutoMigrate': 'MongoDB data migration',
-  'pages.setting.isMongoAutoMigrateTips': 'After this function is enabled, local tasks are automatically migrated to MongoDB when the system starts',
+  'pages.setting.isMongoAutoMigrateTips':
+    'After this function is enabled, local tasks are automatically migrated to MongoDB when the system starts',
   'pages.setting.maxCount': 'Save the maximum number of drawings',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
 
-  'pages.setting.discordConfig':'Discord Config',
-  'pages.setting.proxyConfig':'Proxy Config',
-  'pages.setting.aliyunOss':'Aliyun OSS',
+  'pages.setting.discordConfig': 'Discord Config',
+  'pages.setting.proxyConfig': 'Proxy Config',
+  'pages.setting.aliyunOss': 'Aliyun OSS',
+  'pages.setting.replicate': 'Replicate Config',
 
   'pages.setting.ngDiscord': 'Discord Config',
   'pages.setting.proxy': 'Proxy Config',
@@ -347,8 +355,9 @@ export default {
   'pages.setting.notifyPoolSize': 'Notify Pool Size',
   'pages.setting.captchaServer': 'Captcha Server',
   'pages.setting.captchaNotifyHook': 'Captcha Notify Hook',
-  'pages.setting.captchaNotifySecret':'CloudFlare Notify Secret',
-  'pages.setting.captchaNotifySecretTip':'To verify the validity of CloudFlare verification notification callback, enter a random string',
+  'pages.setting.captchaNotifySecret': 'CloudFlare Notify Secret',
+  'pages.setting.captchaNotifySecretTip':
+    'To verify the validity of CloudFlare verification notification callback, enter a random string',
   'pages.setting.enableRegister': 'Enable Register',
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
   'pages.setting.isVerticalDomainTips':
@@ -366,6 +375,7 @@ export default {
   'pages.setting.tips':
     'Note: Modifying the account configuration requires restarting the service. Other configuration modifications take effect in real time without restarting the service.',
   'pages.setting.migrate': 'Migrate',
-  'pages.setting.migrateSuccess':'The migration job is running in the background, please check later',
-  'pages.setting.migrateTips':'Enter Host',
+  'pages.setting.migrateSuccess':
+    'The migration job is running in the background, please check later',
+  'pages.setting.migrateTips': 'Enter Host',
 };

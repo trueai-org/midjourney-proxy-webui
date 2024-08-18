@@ -59,13 +59,32 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
     );
   };
 
+  // get Video
+  const getVideo = (url: string) => {
+    if (!url) return url;
+    return (
+      <video
+        width="200"
+        controls
+        src={imagePrefix + url}
+        placeholder={<Spin tip="Loading" size="large"></Spin>}
+      ></video>
+    );
+  };
+
   const getBotTypeTag = (botType: string) => {
     if (botType == 'NIJI_JOURNEY') {
       return <Tag color="green">niji・journey</Tag>;
-    } else if (botType == 'INSIGHT_FACE') {
+    } else if (
+      botType == 'INSIGHT_FACE' ||
+      botType == 'FACE_SWAP' ||
+      botType == 'FACE_SWAP_VIDEO'
+    ) {
       return <Tag color="volcano">InsightFace</Tag>;
-    } else {
+    } else if (botType == 'MID_JOURNEY') {
       return <Tag color="blue">Midjourney</Tag>;
+    } else {
+      return '-';
     }
   };
 
@@ -116,9 +135,16 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.state' })}>
             {getTooltip(record.state)}
           </Descriptions.Item>
-          <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>
-            {getImage(record.imageUrl)}
-          </Descriptions.Item>
+
+          {record.action === 'SWAP_VIDEO_FACE' ? (
+            <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
+              {getVideo(record.imageUrl)}
+            </Descriptions.Item>
+          ) : (
+            <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>
+              {getImage(record.imageUrl)}
+            </Descriptions.Item>
+          )}
         </Descriptions>
       </Card>
       <Card
