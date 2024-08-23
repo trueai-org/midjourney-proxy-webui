@@ -156,6 +156,9 @@ export default {
   'pages.account.enableFastToRelax': 'Automatically switches to slow speed',
   'pages.account.enableFastToRelaxTips':
     'When the fast mode is used up, it automatically switches to the slow mode',
+  'pages.account.enableRelaxToFast': 'Automatically switches to fast speed',
+  'pages.account.enableRelaxToFastTips':
+    'When enabled, automatically switches to fast mode when renewing a subscription or having a fast duration',
   'pages.account.mjChannelId': 'MJBot Private ChannelID',
   'pages.account.nijiChannelId': 'NijiBot Private ChannelID',
   'pages.account.basicInfo': 'Basic Info',
@@ -290,12 +293,14 @@ export default {
   'pages.draw.actionSuccess': 'Action executed successfully',
   'pages.draw.subSuccess': 'Submit successful, please wait...',
   'pages.draw.swapDesc': 'Face replacement (first image as face source, or input image link)',
-  'pages.draw.swapVideoDesc': 'Video Face replacement (first image as face source, or input image link)',
+  'pages.draw.swapVideoDesc':
+    'Video Face replacement (first image as face source, or input image link)',
   'pages.draw.swap1Desc':
     'The first image is used as the face source, and if it is not uploaded, enter the image link',
   'pages.draw.swap2Desc':
     'The second image is the target image, and if it is not uploaded, enter the image link',
-  'pages.draw.swap2VidelDesc': 'Second, please upload the target video, if not uploaded, enter the video link',
+  'pages.draw.swap2VidelDesc':
+    'Second, please upload the target video, if not uploaded, enter the video link',
   'pages.draw.inputIdShow': 'Enter the task ID to bring up tasks that are not displayed',
   'pages.draw.inputJobIdShow':
     'Enter the job id or url to convert the midjourney task to the local system task',
@@ -366,6 +371,7 @@ export default {
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
   'pages.setting.ipRateLimiting': 'IP Rate Limiting',
+  'pages.setting.bannedLimiting': 'Banned Limiting',
   'pages.setting.ipBlackRateLimiting': 'IP Black Rate Limiting',
   'pages.setting.save': 'Save',
   'pages.setting.saveSuccess': 'Save Success',

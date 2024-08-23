@@ -1,5 +1,5 @@
 import { useIntl } from '@umijs/max';
-import { Card, Descriptions, Image, Progress, Spin, Tag, Tooltip } from 'antd';
+import { Card, Descriptions, Flex, Image, Progress, Spin, Tag, Tooltip } from 'antd';
 
 const TaskContent = ({ record }: { record: Record<string, any> }) => {
   const intl = useIntl();
@@ -138,7 +138,13 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
 
           {record.action === 'SWAP_VIDEO_FACE' ? (
             <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
-              {getVideo(record.imageUrl)}
+              <Flex vertical>
+                {/* <Flex>
+                  <div>{getImage(record.replicateSource)}</div>
+                  <div>{getVideo(record.replicateTarget)}</div>
+                </Flex> */}
+                {getVideo(record.imageUrl)}
+              </Flex>
             </Descriptions.Item>
           ) : (
             <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>

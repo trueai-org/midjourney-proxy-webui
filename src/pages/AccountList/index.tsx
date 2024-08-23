@@ -415,7 +415,7 @@ const AccountList: React.FC = () => {
               onClick={() =>
                 openModal(
                   intl.formatMessage({ id: 'pages.account.update' }),
-                  <UpdateContent form={form} record={record} onSubmit={handleUpdate} />,
+                  <UpdateContent  r={Math.random()} form={form} record={record} onSubmit={handleUpdate} />,
                   1000,
                 )
               }

@@ -331,6 +331,15 @@ const Setting: React.FC = () => {
                   <InputNumber min={-1} />
                 </Form.Item>
 
+      
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.bannedLimiting' })}
+                  name="bannedLimiting"
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.ipRateLimiting' })}
                   name="ipRateLimiting"

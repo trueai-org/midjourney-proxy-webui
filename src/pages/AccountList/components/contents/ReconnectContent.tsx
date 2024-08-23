@@ -136,6 +136,14 @@ const ReconnectContent = ({
               <Switch />
             </Form.Item>
             <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.enableRelaxToFast' })}
+              name="enableRelaxToFast"
+              valuePropName="checked"
+              tooltip={intl.formatMessage({ id: 'pages.account.enableRelaxToFastTips' })}
+            >
+              <Switch />
+            </Form.Item>
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}
               name="remixAutoSubmit"
               valuePropName="checked"

@@ -806,9 +806,17 @@ const Draw: React.FC = () => {
           {getTaskStatus(task)}
 
           {/* 图片 */}
-          {task.action === 'SWAP_VIDEO_FACE'
-            ? getTaskVideo(task.imageUrl, 250)
-            : getTaskImage(task.imageUrl, 250)}
+          {task.action === 'SWAP_VIDEO_FACE' ? (
+            <>
+              {/* <Flex style={{ maxHeight: 60 }}>
+                <div>{getTaskImage(task.replicateSource, 125)}</div>
+                <div>{getTaskVideo(task.replicateTarget, 125)}</div>
+              </Flex> */}
+              {getTaskVideo(task.imageUrl, 250)}
+            </>
+          ) : (
+            getTaskImage(task.imageUrl, 250)
+          )}
         </>
       );
     }
