@@ -236,8 +236,16 @@ const Draw: React.FC = () => {
 
       swapFace(obj).then((res) => {
         setSubmitLoading(false);
-        if (res.code === 1) {
-          message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+        if (res.code === 22 || res.code === 1) {
+          if (res.code === 22) {
+            api.warning({
+              message: 'warn',
+              description: res.description,
+            });
+          } else {
+            message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+          }
+
           waitTaskIds.add(res.result);
           setSwapImages1([]);
           setSwapImages2([]);
@@ -291,8 +299,16 @@ const Draw: React.FC = () => {
         },
       }).then((res) => {
         setSubmitLoading(false);
-        if (res.code === 1) {
-          message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+        if (res.code === 22 || res.code === 1) {
+          if (res.code === 22) {
+            api.warning({
+              message: 'warn',
+              description: res.description,
+            });
+          } else {
+            message.success(intl.formatMessage({ id: 'pages.draw.submitSuccess' }));
+          }
+
           waitTaskIds.add(res.result);
           setSwapImages1([]);
           setSwapImages2([]);
