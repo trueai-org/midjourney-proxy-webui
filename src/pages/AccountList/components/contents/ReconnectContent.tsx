@@ -23,7 +23,7 @@ const ReconnectContent = ({
   form,
   onSubmit,
   record,
-  r
+  r,
 }: {
   form: FormInstance;
   onSubmit: (values: any) => void;
@@ -168,6 +168,14 @@ const ReconnectContent = ({
                 <Select.Option value="FAST">FAST</Select.Option>
                 <Select.Option value="TURBO">TURBO</Select.Option>
               </Select>
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
+              name="enableAutoSetRelax"
+              valuePropName="checked"
+              tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+            >
+              <Switch />
             </Form.Item>
           </Card>
         </Col>

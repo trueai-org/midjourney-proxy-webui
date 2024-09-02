@@ -162,6 +162,14 @@ const AddContent = ({
                 <Select.Option value="TURBO">TURBO</Select.Option>
               </Select>
             </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
+              name="enableAutoSetRelax"
+              valuePropName="checked"
+              tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+            >
+              <Switch />
+            </Form.Item>
           </Card>
         </Col>
         <Col span={8}>
