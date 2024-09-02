@@ -159,6 +159,8 @@ export default {
   'pages.account.enableRelaxToFast': 'Automatically switches to fast speed',
   'pages.account.enableRelaxToFastTips':
     'When enabled, automatically switches to fast mode when renewing a subscription or having a fast duration',
+  'pages.account.enableAutoSetRelax': 'Set the relax mode automatically',
+  'pages.account.enableAutoSetRelaxTips': 'When enabled, automatically set [allow build speed mode] to RELAX mode when fast runs out.',
   'pages.account.mjChannelId': 'MJBot Private ChannelID',
   'pages.account.nijiChannelId': 'NijiBot Private ChannelID',
   'pages.account.basicInfo': 'Basic Info',
