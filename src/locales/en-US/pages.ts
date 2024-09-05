@@ -375,6 +375,7 @@ export default {
   'pages.setting.ipRateLimiting': 'IP Rate Limiting',
   'pages.setting.bannedLimiting': 'Banned Limiting',
   'pages.setting.ipBlackRateLimiting': 'IP Black Rate Limiting',
+  'pages.setting.notify': 'Notify',
   'pages.setting.save': 'Save',
   'pages.setting.saveSuccess': 'Save Success',
   'pages.setting.saveFailed': 'Save Failed',

@@ -105,18 +105,7 @@ const ReconnectContent = ({
             <Form.Item label={intl.formatMessage({ id: 'pages.account.botToken' })} name="botToken">
               <Input />
             </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}
-              name="privateChannelId"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}
-              name="nijiBotChannelId"
-            >
-              <Input />
-            </Form.Item>
+
             <Form.Item label="User Agent" name="userAgent">
               <Input />
             </Form.Item>
@@ -259,6 +248,18 @@ const ReconnectContent = ({
         <Col span={8}>
           <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
             <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}
+              name="privateChannelId"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}
+              name="nijiBotChannelId"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.account.permanentInvitationLink' })}
               name="permanentInvitationLink"
             >
@@ -307,7 +308,6 @@ const ReconnectContent = ({
               extra={
                 <Button
                   type="primary"
-                  style={{ marginTop: '10px' }}
                   onClick={() => {
                     setSubChannels(form.getFieldValue('subChannels').join('\n'));
                     showModal();
@@ -316,7 +316,7 @@ const ReconnectContent = ({
                 ></Button>
               }
             >
-              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 5 }} />
+              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 1 }} />
             </Form.Item>
           </Card>
         </Col>

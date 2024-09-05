@@ -351,6 +351,7 @@ export default {
   'pages.setting.ipRateLimiting': 'IP 限流配置',
   'pages.setting.bannedLimiting': 'Banned prompt 限流配置',
   'pages.setting.ipBlackRateLimiting': 'IP 黑名单限流配置',
+  'pages.setting.notify': '公告',
   'pages.setting.otherSetting': '其他设置',
   'pages.setting.accountSetting': '账号设置',
   'pages.setting.tips': '提示：修改账号配置需重启服务，其他配置修改实时生效，无需重启服务。',

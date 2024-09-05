@@ -188,7 +188,6 @@ const UpdateContent = ({
               extra={
                 <Button
                   type="primary"
-                  style={{ marginTop: '10px' }}
                   onClick={() => {
                     setSubChannels(form.getFieldValue('subChannels').join('\n'));
                     showModal();
@@ -197,7 +196,7 @@ const UpdateContent = ({
                 ></Button>
               }
             >
-              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 5 }} />
+              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 1 }} />
             </Form.Item>
           </Card>
         </Col>

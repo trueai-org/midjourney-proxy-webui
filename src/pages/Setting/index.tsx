@@ -331,14 +331,12 @@ const Setting: React.FC = () => {
                   <InputNumber min={-1} />
                 </Form.Item>
 
-      
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.bannedLimiting' })}
                   name="bannedLimiting"
                 >
                   <JsonEditor />
                 </Form.Item>
-
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.ipRateLimiting' })}
@@ -352,6 +350,10 @@ const Setting: React.FC = () => {
                   name="ipBlackRateLimiting"
                 >
                   <JsonEditor />
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.setting.notify' })} name="notify">
+                  <Input.TextArea autoSize={{ minRows: 1, maxRows: 10 }} />
                 </Form.Item>
               </Card>
             </Col>

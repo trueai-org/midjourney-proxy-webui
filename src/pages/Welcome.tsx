@@ -1,7 +1,7 @@
 import { getIndex } from '@/services/mj/api';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl, useModel } from '@umijs/max';
-import { Card, Col, Divider, List, Row, Statistic, Tag, theme, Typography } from 'antd';
+import { Alert, Card, Col, Divider, List, Row, Statistic, Tag, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 /**
@@ -92,7 +92,7 @@ const Welcome: React.FC = () => {
 
   // 是否显示注册
   const [data, setData] = useState<any>();
-  const [tops,setTops] = useState<any[]>();
+  const [tops, setTops] = useState<any[]>();
 
   useEffect(() => {
     getIndex().then((res) => {
@@ -113,6 +113,17 @@ const Welcome: React.FC = () => {
 
   return (
     <PageContainer>
+      {data && data.notify && (
+        <Alert
+          message={data.notify}
+          banner
+          closable
+          style={{
+            marginBottom: 16,
+          }}
+        />
+      )}
+
       <Card
         style={{
           borderRadius: 8,
@@ -197,13 +208,22 @@ const Welcome: React.FC = () => {
         >
           <Row gutter={16}>
             <Col span={8}>
-              <Statistic title={intl.formatMessage({ id: 'pages.welcome.todayDraw' })} value={data.todayDraw} />
+              <Statistic
+                title={intl.formatMessage({ id: 'pages.welcome.todayDraw' })}
+                value={data.todayDraw}
+              />
             </Col>
             <Col span={8}>
-              <Statistic title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })} value={data.yesterdayDraw} />
+              <Statistic
+                title={intl.formatMessage({ id: 'pages.welcome.yesterdayDraw' })}
+                value={data.yesterdayDraw}
+              />
             </Col>
             <Col span={8}>
-              <Statistic title={intl.formatMessage({ id: 'pages.welcome.totalDraw' })} value={data.totalDraw} />
+              <Statistic
+                title={intl.formatMessage({ id: 'pages.welcome.totalDraw' })}
+                value={data.totalDraw}
+              />
             </Col>
           </Row>
 
