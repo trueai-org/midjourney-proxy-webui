@@ -93,7 +93,7 @@ export async function queryAccounts(data: any, predicate?: string, descend?: boo
       },
       sort: {
         predicate: predicate || '',
-        reverse: descend || true,
+        reverse: descend,
       },
       search: {
         ...data,
