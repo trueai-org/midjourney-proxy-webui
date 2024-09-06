@@ -121,6 +121,7 @@ export default {
   'pages.account.nijiMode': 'niji模式',
   'pages.account.remark': '备注',
   'pages.account.disabledReason': '禁用原因',
+
   'pages.account.sync': '同步',
   'pages.account.add': '新增账号',
   'pages.account.updateAndReconnect': '更新账号并重连',
@@ -165,7 +166,7 @@ export default {
   'pages.account.allowModes': '允许生成速度模式',
   'pages.account.timeoutMinutes': '任务超时时间',
   'pages.account.weight': '权重',
-  'pages.account.dateCreated': '创建时间',
+  'pages.account.dateCreated': '添加时间',
   'pages.account.mjSettings': 'MJ设置',
   'pages.account.nijiSettings': 'Niji设置',
   'pages.account.updateNotice': '注意：更新账号并重连后，该账号执行中的任务将会丢失！',

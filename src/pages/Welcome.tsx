@@ -115,7 +115,7 @@ const Welcome: React.FC = () => {
     <PageContainer>
       {data && data.notify && (
         <Alert
-          message={data.notify}
+          description={data.notify}
           banner
           closable
           style={{

@@ -83,7 +83,7 @@ export async function queryAccount(options?: { [key: string]: any }) {
   });
 }
 
-export async function queryAccounts(data: any, options?: { [key: string]: any }) {
+export async function queryAccounts(data: any, predicate?: string, descend?: boolean, options?: { [key: string]: any }) {
   return request<Record<string, any>>('/mj/admin/accounts', {
     method: 'POST',
     data: {
@@ -92,8 +92,8 @@ export async function queryAccounts(data: any, options?: { [key: string]: any })
         pageSize: data?.pageSize || 10,
       },
       sort: {
-        predicate: '',
-        reverse: true,
+        predicate: predicate || '',
+        reverse: descend || true,
       },
       search: {
         ...data,

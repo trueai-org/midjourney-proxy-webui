@@ -19,6 +19,7 @@ import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button, Card, Form, Modal, notification, Space, Tag, Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
+import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 
 const AccountList: React.FC = () => {
@@ -185,6 +186,7 @@ const AccountList: React.FC = () => {
       dataIndex: 'guildId',
       width: 200,
       align: 'center',
+      sorter: true,
       render: (text: string, record: Record<string, any>) => (
         <a
           onClick={() => {
@@ -205,6 +207,7 @@ const AccountList: React.FC = () => {
       dataIndex: 'channelId',
       align: 'center',
       width: 200,
+      sorter: true,
     } as ColumnType<Record<string, any>>,
     // {
     //   title: intl.formatMessage({ id: 'pages.account.username' }),
@@ -217,6 +220,7 @@ const AccountList: React.FC = () => {
       dataIndex: 'enable',
       width: 200,
       align: 'center',
+      sorter: true,
       request: async () => [
         {
           label: intl.formatMessage({ id: 'pages.enable' }),
@@ -341,6 +345,7 @@ const AccountList: React.FC = () => {
       dataIndex: 'sponsor',
       ellipsis: true,
       width: 100,
+      sorter: true,
       // 赞助商 - 富文本
       render: (text: string, record: Record<string, any>) => (
         <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
@@ -350,6 +355,7 @@ const AccountList: React.FC = () => {
       title: intl.formatMessage({ id: 'pages.account.remark' }),
       dataIndex: 'remark',
       ellipsis: true,
+      sorter: true,
       width: 150,
     } as ColumnType<Record<string, any>>,
     {
@@ -360,6 +366,16 @@ const AccountList: React.FC = () => {
       hideInSearch: true,
       // renderText: (text: string, record: Record<string, any>) =>
       // record['properties']['disabledReason'],
+    } as ColumnType<Record<string, any>>,
+    {
+      title: intl.formatMessage({ id: 'pages.account.dateCreated' }),
+      dataIndex: 'dateCreated',
+      ellipsis: true,
+      width: 140,
+      sorter: true,
+      hideInSearch: true,
+      renderText: (text: string, record: Record<string, any>) =>
+        moment(text).format('YYYY-MM-DD HH:mm'),
     } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.operation' }),
@@ -415,7 +431,12 @@ const AccountList: React.FC = () => {
               onClick={() =>
                 openModal(
                   intl.formatMessage({ id: 'pages.account.update' }),
-                  <UpdateContent  r={Math.random()} form={form} record={record} onSubmit={handleUpdate} />,
+                  <UpdateContent
+                    r={Math.random()}
+                    form={form}
+                    record={record}
+                    onSubmit={handleUpdate}
+                  />,
                   1000,
                 )
               }
@@ -503,8 +524,14 @@ const AccountList: React.FC = () => {
               {intl.formatMessage({ id: 'pages.add' })}
             </Button>,
           ]}
-          request={async (params) => {
-            const res = await queryAccounts({ ...params, pageNumber: params.current! - 1 });
+          request={async (params, sort) => {
+            const kys = Object.keys(sort);
+            // console.log('params', params, sort, kys.length > 0 ? sort[kys[0]] : '');
+            const res = await queryAccounts(
+              { ...params, pageNumber: params.current! - 1 },
+              kys.length > 0 ? kys[0] : '',
+              (kys.length > 0 ? sort[kys[0]] : '') == 'descend',
+            );
             return {
               data: res.list,
               total: res.pagination.total,
