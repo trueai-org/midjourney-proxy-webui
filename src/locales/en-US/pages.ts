@@ -131,7 +131,7 @@ export default {
   'pages.account.nijiMode': 'Niji Mode',
   'pages.account.remark': 'Remark',
   'pages.account.disabledReason': 'Disabled Reason',
-  'pages.account.add': 'Create Account',
+  'pages.account.add': 'Create Account (Automatically fill in the account information entered last time)',
   'pages.account.sync': 'Sync',
   'pages.account.updateAndReconnect': 'Update And Reconnect',
   'pages.account.update': 'Update',

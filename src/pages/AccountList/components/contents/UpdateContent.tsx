@@ -177,7 +177,7 @@ const UpdateContent = ({
               <Input />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
-              <Input />
+              <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
               <InputNumber />

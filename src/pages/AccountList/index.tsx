@@ -99,8 +99,25 @@ const AccountList: React.FC = () => {
     setModalSubmitLoading(true);
     const res = await createAccount(values);
     setModalSubmitLoading(false);
-    console.log('res', res);
+    // console.log('res', res);
     if (res.success) {
+      // 添加成功后，将值保存到缓存中，方便下次自动填充
+      // 清空 values 的 id、subChannels、remark、channelId、privateChannelId、nijiBotChannelId、guildId
+      // 采用合并的方式，清楚上述字段，其他字段保留
+      const prev = {
+        ...values,
+        id: '',
+        userToken: '',
+        botToken: '',
+        subChannels: [],
+        remark: '',
+        channelId: '',
+        privateChannelId: '',
+        nijiBotChannelId: '',
+        guildId: '',
+      };
+      localStorage.setItem('account_cache', JSON.stringify(prev));
+
       api.success({
         message: 'success',
         description: res.message,
@@ -516,7 +533,7 @@ const AccountList: React.FC = () => {
               onClick={() => {
                 openModal(
                   intl.formatMessage({ id: 'pages.account.add' }),
-                  <AddContent form={form} onSubmit={handleAdd} />,
+                  <AddContent r={Math.random()} form={form} onSubmit={handleAdd} />,
                   1600,
                 );
               }}

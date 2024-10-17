@@ -123,7 +123,7 @@ export default {
   'pages.account.disabledReason': '禁用原因',
 
   'pages.account.sync': '同步',
-  'pages.account.add': '新增账号',
+  'pages.account.add': '新增账号（自动填充上次录入的的账号基本信息）',
   'pages.account.updateAndReconnect': '更新账号并重连',
   'pages.account.update': '修改账号',
   'pages.account.syncTitle': '将主动执行/info、/settings获取并更新账号信息？',

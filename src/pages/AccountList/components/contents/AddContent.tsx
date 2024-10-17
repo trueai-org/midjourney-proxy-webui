@@ -22,21 +22,39 @@ import { useIntl } from '@umijs/max';
 const AddContent = ({
   form,
   onSubmit,
+  r,
 }: {
   form: FormInstance;
   onSubmit: (values: any) => void;
+  r: any;
 }) => {
   const intl = useIntl();
   // 使用 useEffect 来在组件挂载时设置表单的初始值
   useEffect(() => {
-    form.setFieldsValue({
-      userAgent:
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
-      coreSize: 3,
-      queueSize: 10,
-      timeoutMinutes: 5,
-    });
-  });
+    // 如果缓存中有值，就自动填充
+    const cache = localStorage.getItem('account_cache');
+    if (cache) {
+      try {
+        form.setFieldsValue(JSON.parse(cache));
+      } catch {
+        form.setFieldsValue({
+          userAgent:
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+          coreSize: 3,
+          queueSize: 10,
+          timeoutMinutes: 5,
+        });
+      }
+    } else {
+      form.setFieldsValue({
+        userAgent:
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+        coreSize: 3,
+        queueSize: 10,
+        timeoutMinutes: 5,
+      });
+    }
+  }, [r]);
 
   const [opts, setOpts] = useState([]);
   useEffect(() => {
@@ -278,7 +296,7 @@ const AddContent = ({
               <Input />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
-              <Input />
+              <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.workTime' })} name="workTime">
               <Input placeholder="09:00-17:00, 18:00-22:00" />
@@ -297,6 +315,7 @@ const AddContent = ({
                 <Button
                   type="primary"
                   onClick={() => {
+                    setSubChannels(form.getFieldValue('subChannels').join('\n'));
                     showModal();
                   }}
                   icon={<FullscreenOutlined />}

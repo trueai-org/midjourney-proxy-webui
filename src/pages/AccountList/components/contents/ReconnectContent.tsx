@@ -290,7 +290,7 @@ const ReconnectContent = ({
               <Input />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
-              <Input />
+              <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
             </Form.Item>
             <Form.Item label={intl.formatMessage({ id: 'pages.account.workTime' })} name="workTime">
               <Input placeholder="09:00-17:00, 18:00-22:00" />
