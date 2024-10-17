@@ -948,17 +948,18 @@ const Draw: React.FC = () => {
           <Upload {...props} listType="picture-card">
             {images.length >= 5 ? null : uploadButton}
           </Upload>
-          <Space.Compact style={{ width: '100%', marginTop: '10px' }}>
-            <Input
+          <Flex style={{ width: '100%', marginTop: '10px' }} gap={6}>
+            <TextArea
               placeholder="Prompt"
               value={prompt}
               onChange={handlePromptChange}
               onPressEnter={submit}
+              autoSize={{ minRows: 1, maxRows: 12 }}
             />
             <Button type="primary" onClick={submit} loading={submitLoading}>
               {intl.formatMessage({ id: 'pages.draw.submitTask' })}
             </Button>
-          </Space.Compact>
+          </Flex>
         </Flex>
       );
     } else if (action === 'blend') {
@@ -1002,17 +1003,18 @@ const Draw: React.FC = () => {
       );
     } else if (action === 'shorten') {
       return (
-        <Space.Compact style={{ width: '100%', marginTop: '10px' }}>
-          <Input
+        <Flex style={{ width: '100%', marginTop: '10px' }} gap={6}>
+          <TextArea
             placeholder="Prompt"
             value={prompt}
             onChange={handlePromptChange}
             onPressEnter={submit}
+            autoSize={{ minRows: 1, maxRows: 12 }}
           />
           <Button type="primary" onClick={submit} loading={submitLoading}>
             {intl.formatMessage({ id: 'pages.draw.submitTask' })}
           </Button>
-        </Space.Compact>
+        </Flex>
       );
     }
     return <></>;
