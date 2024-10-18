@@ -86,49 +86,53 @@ const AccountList: React.FC = () => {
   };
 
   const handleAdd = async (values: Record<any, any>) => {
-    // 判断如果 subChannels 为空，则设置为空数组
-    if (!values.subChannels) {
-      values.subChannels = [];
-    }
+    try {
+      // 判断如果 subChannels 为空，则设置为空数组
+      if (!values.subChannels) {
+        values.subChannels = [];
+      }
 
-    // 如果是字符串，则转换为数组
-    if (typeof values.subChannels === 'string') {
-      values.subChannels = values.subChannels.split('\n');
-    }
+      // 如果是字符串，则转换为数组
+      if (typeof values.subChannels === 'string') {
+        values.subChannels = values.subChannels.split('\n');
+      }
 
-    setModalSubmitLoading(true);
-    const res = await createAccount(values);
-    setModalSubmitLoading(false);
-    // console.log('res', res);
-    if (res.success) {
-      // 添加成功后，将值保存到缓存中，方便下次自动填充
-      // 清空 values 的 id、subChannels、remark、channelId、privateChannelId、nijiBotChannelId、guildId
-      // 采用合并的方式，清楚上述字段，其他字段保留
-      const prev = {
-        ...values,
-        id: '',
-        userToken: '',
-        botToken: '',
-        subChannels: [],
-        remark: '',
-        channelId: '',
-        privateChannelId: '',
-        nijiBotChannelId: '',
-        guildId: '',
-      };
-      localStorage.setItem('account_cache', JSON.stringify(prev));
+      setModalSubmitLoading(true);
+      const res = await createAccount(values);
 
-      api.success({
-        message: 'success',
-        description: res.message,
-      });
-      hideModal();
-      triggerRefreshAccount();
-    } else {
-      api.error({
-        message: 'error',
-        description: res.message,
-      });
+      // console.log('res', res);
+      if (res.success) {
+        // 添加成功后，将值保存到缓存中，方便下次自动填充
+        // 清空 values 的 id、subChannels、remark、channelId、privateChannelId、nijiBotChannelId、guildId
+        // 采用合并的方式，清楚上述字段，其他字段保留
+        const prev = {
+          ...values,
+          id: '',
+          userToken: '',
+          botToken: '',
+          subChannels: [],
+          remark: '',
+          channelId: '',
+          privateChannelId: '',
+          nijiBotChannelId: '',
+          guildId: '',
+        };
+        localStorage.setItem('account_cache', JSON.stringify(prev));
+
+        api.success({
+          message: 'success',
+          description: res.message,
+        });
+        hideModal();
+        triggerRefreshAccount();
+      } else {
+        api.error({
+          message: 'error',
+          description: res.message,
+        });
+      }
+    } finally {
+      setModalSubmitLoading(false);
     }
   };
 
@@ -138,63 +142,72 @@ const AccountList: React.FC = () => {
       values.subChannels = [];
     }
 
-    // 如果是字符串，则转换为数组
-    if (typeof values.subChannels === 'string') {
-      values.subChannels = values.subChannels.split('\n');
-    }
+    try {
+      // 如果是字符串，则转换为数组
+      if (typeof values.subChannels === 'string') {
+        values.subChannels = values.subChannels.split('\n');
+      }
 
-    setModalSubmitLoading(true);
-    const res = await updateAndReconnect(values.id, values);
-    if (res.success) {
-      api.success({
-        message: 'success',
-        description: res.message,
-      });
-      hideModal();
-      triggerRefreshAccount();
+      setModalSubmitLoading(true);
+      const res = await updateAndReconnect(values.id, values);
+      if (res.success) {
+        api.success({
+          message: 'success',
+          description: res.message,
+        });
+        hideModal();
+        triggerRefreshAccount();
+      } else {
+        api.error({
+          message: 'error',
+          description: res.message,
+        });
+      }
+    } finally {
       setModalSubmitLoading(false);
-    } else {
-      api.error({
-        message: 'error',
-        description: res.message,
-      });
     }
   };
 
   const handleUpdate = async (values: Record<any, any>) => {
-    // 判断如果 subChannels 为空，则设置为空数组
-    if (!values.subChannels) {
-      values.subChannels = [];
-    }
+    try {
+      // 判断如果 subChannels 为空，则设置为空数组
+      if (!values.subChannels) {
+        values.subChannels = [];
+      }
 
-    // 如果是字符串，则转换为数组
-    if (typeof values.subChannels === 'string') {
-      values.subChannels = values.subChannels.split('\n');
-    }
+      // 如果是字符串，则转换为数组
+      if (typeof values.subChannels === 'string') {
+        values.subChannels = values.subChannels.split('\n');
+      }
 
-    setModalSubmitLoading(true);
-    const res = await update(values.id, values);
-    if (res.success) {
-      api.success({
-        message: 'success',
-        description: res.message,
-      });
-    } else {
-      api.error({
-        message: 'error',
-        description: res.message,
-      });
+      setModalSubmitLoading(true);
+      const res = await update(values.id, values);
+      if (res.success) {
+        api.success({
+          message: 'success',
+          description: res.message,
+        });
+      } else {
+        api.error({
+          message: 'error',
+          description: res.message,
+        });
+      }
+      hideModal();
+      triggerRefreshAccount();
+    } finally {
+      setModalSubmitLoading(false);
     }
-    hideModal();
-    triggerRefreshAccount();
-    setModalSubmitLoading(false);
   };
 
   const handleCfOk = async () => {
-    setModalSubmitLoading(true);
-    hideModal();
-    triggerRefreshAccount();
-    setModalSubmitLoading(false);
+    try {
+      setModalSubmitLoading(true);
+      hideModal();
+      triggerRefreshAccount();
+    } finally {
+      setModalSubmitLoading(false);
+    }
   };
 
   const columns = [
