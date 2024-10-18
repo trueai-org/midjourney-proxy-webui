@@ -149,7 +149,7 @@ export default {
   'pages.account.enableRelaxToFast': '自动切换快速',
   'pages.account.enableRelaxToFastTips': '启用后，当续订或拥有快速时长时，自动切换到快速模式',
   'pages.account.enableAutoSetRelax': '自动设置慢速模式',
-  'pages.account.enableAutoSetRelaxTips': '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式。',
+  'pages.account.enableAutoSetRelaxTips': '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式，并设置并行数为 3',
   'pages.account.mjChannelId': 'MJ私信ID',
   'pages.account.nijiChannelId': 'Niji私信ID',
   'pages.account.basicInfo': '基本信息',
