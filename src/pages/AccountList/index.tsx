@@ -334,6 +334,16 @@ const AccountList: React.FC = () => {
     //   render: (text: string, record: Record<string, any>) => record['displays']['subscribePlan'],
     // } as ColumnType<Record<string, any>>,
     {
+      title: intl.formatMessage({ id: 'pages.account.allowModes' }),
+      dataIndex: 'allowModes',
+      align: 'center',
+      width: 160,
+      hideInSearch: true,
+      render: (text, record) => {
+        return record.allowModes?.join('、') || 'ALL';
+      },
+    } as ColumnType<Record<string, any>>,
+    {
       title: intl.formatMessage({ id: 'pages.account.renewDate' }),
       dataIndex: 'renewDate',
       align: 'center',
