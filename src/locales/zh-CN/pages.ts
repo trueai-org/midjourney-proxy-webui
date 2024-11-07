@@ -362,9 +362,9 @@ export default {
 
   'pages.setting.discordSetting': 'Discord 配置',
   'pages.setting.enableAutoGetPrivateId': '自动获取私信',
-  'pages.setting.enableAutoGetPrivateIdTips': '程序启动时自动获取 Midjourney 私信 ID 和 Niji 私信 ID',
+  'pages.setting.enableAutoGetPrivateIdTips': '账号连接时自动获取 Midjourney 私信 ID 和 Niji 私信 ID',
   'pages.setting.enableAutoVerifyAccount': '自动验证账号',
-  'pages.setting.enableAutoVerifyAccountTips': '程序启动时自动验证账号是否正常/是否可用（可能触发手机验证，近期谨慎开启！）',
+  'pages.setting.enableAutoVerifyAccountTips': '账号连接时自动验证账号是否正常/是否可用（可能触发手机验证，近期谨慎开启！）',
   'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
   'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和设置',
 };
