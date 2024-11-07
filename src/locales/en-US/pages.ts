@@ -387,4 +387,12 @@ export default {
   'pages.setting.migrateSuccess':
     'The migration job is running in the background, please check later',
   'pages.setting.migrateTips': 'Enter Host',
+
+  'pages.setting.discordSetting': 'Discord Setting',
+  'pages.setting.enableAutoGetPrivateId': 'Enable automatic obtaining of private id',
+  'pages.setting.enableAutoGetPrivateIdTips': 'When the program starts, it automatically obtains the MJ private message ID and Niji private message ID',
+  'pages.setting.enableAutoVerifyAccount': 'Enable automatic account verification',
+  'pages.setting.enableAutoVerifyAccountTips': 'Automatically verify whether the account is normal when the program starts (may trigger mobile phone verification)',
+  'pages.setting.enableAutoSyncInfoSetting': 'Enable automatic information synchronization',
+  'pages.setting.enableAutoSyncInfoSettingTips': 'After this function is enabled, the account information and account Settings are automatically synchronized every 6 to 12 hours',
 };

@@ -360,4 +360,11 @@ export default {
   'pages.setting.migrateSuccess': '迁移作业正在后台执行，请稍后查看',
   'pages.setting.migrateTips': '请填写 Host',
 
+  'pages.setting.discordSetting': 'Discord 配置',
+  'pages.setting.enableAutoGetPrivateId': '自动获取私信',
+  'pages.setting.enableAutoGetPrivateIdTips': '程序启动时自动获取 Midjourney 私信 ID 和 Niji 私信 ID',
+  'pages.setting.enableAutoVerifyAccount': '自动验证账号',
+  'pages.setting.enableAutoVerifyAccountTips': '程序启动时自动验证账号是否正常（可能触发手机验证）',
+  'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
+  'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机 6~12 小时自动同步一次账号信息和账号设置',
 };

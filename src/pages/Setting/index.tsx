@@ -358,6 +358,39 @@ const Setting: React.FC = () => {
               </Card>
             </Col>
           </Row>
+
+          <Row gutter={16} style={{ marginTop: '16px' }}>
+            <Col span={12}>
+              <Card
+                title={intl.formatMessage({ id: 'pages.setting.discordSetting' })}
+                bordered={false}
+              >
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAutoGetPrivateId' })}
+                  name="enableAutoGetPrivateId"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAutoGetPrivateIdTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAutoVerifyAccount' })}
+                  name="enableAutoVerifyAccount"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAutoVerifyAccountTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
+                  name="enableAutoSyncInfoSetting"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+              </Card>
+            </Col>
+          </Row>
         </Spin>
       </Form>
     </PageContainer>
