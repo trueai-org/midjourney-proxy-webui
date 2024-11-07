@@ -366,5 +366,5 @@ export default {
   'pages.setting.enableAutoVerifyAccount': '自动验证账号',
   'pages.setting.enableAutoVerifyAccountTips': '程序启动时自动验证账号是否正常（可能触发手机验证）',
   'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
-  'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和账号设置',
+  'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和设置',
 };
