@@ -368,10 +368,10 @@ export default {
   'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
   'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和设置',
 
-  'pages.setting.enableAutoExtendToken': '自动续期 Token',
+  'pages.setting.enableAutoExtendToken': '自动续期令牌',
   'pages.setting.enableAutoExtendTokenTips': '启用后随机每 1~10 分钟自动续期一次 Token',
 
-  'pages.setting.enableUserCustomUploadBase64': '用户上传',
+  'pages.setting.enableUserCustomUploadBase64': '用户上传文件',
   'pages.setting.enableUserCustomUploadBase64Tips': '启用后用户可以上传 base64 图片',
 
   'pages.setting.enableConvertOfficialLink': '转换官方链接',
