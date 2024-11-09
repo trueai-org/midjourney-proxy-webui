@@ -406,6 +406,16 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableConvertOfficialLink' })}
+                  name="enableConvertOfficialLink"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableConvertOfficialLinkTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
               </Card>
             </Col>
           </Row>

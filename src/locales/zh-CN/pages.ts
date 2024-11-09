@@ -373,4 +373,7 @@ export default {
 
   'pages.setting.enableUserCustomUploadBase64': '用户上传',
   'pages.setting.enableUserCustomUploadBase64Tips': '启用后用户可以上传 base64 图片',
+
+  'pages.setting.enableConvertOfficialLink': '转换官方链接',
+  'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 discord 官方链接',
 };

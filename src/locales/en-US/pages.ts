@@ -402,4 +402,7 @@ export default {
 
   'pages.setting.enableUserCustomUploadBase64': 'User upload',
   'pages.setting.enableUserCustomUploadBase64Tips': 'After this function is enabled, users can upload base64 images',
+
+  'pages.setting.enableConvertOfficialLink': 'Convert official links',
+  'pages.setting.enableConvertOfficialLinkTips': 'When enabled, prompt automatically converts non-official links to official discord links',
 };
