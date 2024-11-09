@@ -395,4 +395,11 @@ export default {
   'pages.setting.enableAutoVerifyAccountTips': 'Automatically verify whether the account is normal when the program starts (may trigger mobile phone verification)',
   'pages.setting.enableAutoSyncInfoSetting': 'Enable automatic information synchronization',
   'pages.setting.enableAutoSyncInfoSettingTips': 'After this function is enabled, the account information and account Settings are automatically synchronized every 6 to 12 hours',
+
+
+  'pages.setting.enableAutoExtendToken': 'Automatically renew the Token',
+  'pages.setting.enableAutoExtendTokenTips': 'After this function is enabled, the Token is automatically renewed every 1 to 10 minutes',
+
+  'pages.setting.enableUserCustomUploadBase64': 'User upload',
+  'pages.setting.enableUserCustomUploadBase64Tips': 'After this function is enabled, users can upload base64 images',
 };
