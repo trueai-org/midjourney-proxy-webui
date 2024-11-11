@@ -405,4 +405,9 @@ export default {
 
   'pages.setting.enableConvertOfficialLink': 'Convert official links',
   'pages.setting.enableConvertOfficialLinkTips': 'When enabled, prompt automatically converts non-official links to official discord links',
+
+
+  'pages.setting.enableConvertAliyunLink': 'Convert Aliyun Link',
+  'pages.setting.enableConvertAliyunLinkTips': 'When enabled, the base64 uploaded by the user is automatically converted to the Ali Cloud OSS link',
+
 };

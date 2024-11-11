@@ -416,6 +416,16 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableConvertAliyunLink' })}
+                  name="enableConvertAliyunLink"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableConvertAliyunLinkTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
               </Card>
             </Col>
           </Row>

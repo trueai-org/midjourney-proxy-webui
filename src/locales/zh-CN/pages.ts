@@ -376,4 +376,7 @@ export default {
 
   'pages.setting.enableConvertOfficialLink': '转换官方链接',
   'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 discord 官方链接',
+
+  'pages.setting.enableConvertAliyunLink': '转换阿里云链接',
+  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 base64 自动转为阿里云 OSS 链接',
 };
