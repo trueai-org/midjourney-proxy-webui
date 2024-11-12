@@ -213,6 +213,7 @@ const Setting: React.FC = () => {
                     <Select.Option value="Polling">Polling</Select.Option>
                   </Select>
                 </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.discordConfig' })}
                   name="ngDiscord"
@@ -225,12 +226,40 @@ const Setting: React.FC = () => {
                 >
                   <JsonEditor />
                 </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.imageStorageType' })}
+                  name="imageStorageType"
+                >
+                  <Select allowClear>
+                    <Select.Option value="NONE">NULL</Select.Option>
+                    <Select.Option value="LOCAL">LOCAL</Select.Option>
+                    <Select.Option value="OSS">Aliyun OSS</Select.Option>
+                    <Select.Option value="COS">Tencent COS</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.localStorage' })}
+                  name="localStorage"
+                >
+                  <JsonEditor />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.aliyunOss' })}
                   name="aliyunOss"
                 >
                   <JsonEditor />
                 </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.tencentCos' })}
+                  name="tencentCos"
+                >
+                  <JsonEditor />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.replicate' })}
                   name="replicate"
@@ -298,6 +327,14 @@ const Setting: React.FC = () => {
                 title={intl.formatMessage({ id: 'pages.setting.otherSetting' })}
                 bordered={false}
               >
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAccountSponsor' })}
+                  name="enableAccountSponsor"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAccountSponsorTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}
                   name="isVerticalDomain"
@@ -422,6 +459,46 @@ const Setting: React.FC = () => {
                   name="enableConvertAliyunLink"
                   help={intl.formatMessage({
                     id: 'pages.setting.enableConvertAliyunLinkTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableMjTranslate' })}
+                  name="enableMjTranslate"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableMjTranslateTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableNijiTranslate' })}
+                  name="enableNijiTranslate"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableNijiTranslateTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableConvertNijiToMj' })}
+                  name="enableConvertNijiToMj"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableConvertNijiToMjTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAutoLogin' })}
+                  name="enableAutoLogin"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableAutoLoginTips',
                   })}
                 >
                   <Switch />

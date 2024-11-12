@@ -377,6 +377,30 @@ export default {
   'pages.setting.enableConvertOfficialLink': '转换官方链接',
   'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 discord 官方链接',
 
-  'pages.setting.enableConvertAliyunLink': '转换阿里云链接',
-  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 base64 自动转为阿里云 OSS 链接',
+  'pages.setting.enableConvertAliyunLink': '转换加速链接',
+  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 base64 自动转为加速链接（阿里云/腾讯云/本地）',
+
+  'pages.setting.enableAutoLogin': '自动登录',
+  'pages.setting.enableAutoLoginTips': '启用后如果 token 过期则，使用账号密码自动登录',
+
+  'pages.setting.enableConvertNijiToMj': '转换 Niji 为 MJ',
+  'pages.setting.enableConvertNijiToMjTips': '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 -- niji 后缀（转换后出图效果是一致的）',
+
+  'pages.setting.enableMjTranslate': 'MJ 翻译',
+  'pages.setting.enableMjTranslateTips': '启用后将 Midjourney 任务的 prompt 自动翻译为中文',
+
+  'pages.setting.enableNijiTranslate': 'NIJI 翻译',
+  'pages.setting.enableNijiTranslateTips': '启用后将 Niji · journey 任务的 prompt 自动翻译为中文',
+
+  'pages.setting.enableAccountSponsor': '赞助账号',
+  'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
+
+  'pages.setting.imageStorageType': '文件存储',
+  'pages.setting.imageStorageTypeTips': '设置图片存储到指定的存储方式',
+
+  'pages.setting.localStorage': '本地存储',
+  'pages.setting.localStorageTips': '启用后将图片存储到本地',
+
+  'pages.setting.tencentCos': '腾讯云 COS',
+  'pages.setting.tencentCosTips': '启用后将图片存储到腾讯云 COS',
 };

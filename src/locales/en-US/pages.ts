@@ -407,7 +407,31 @@ export default {
   'pages.setting.enableConvertOfficialLinkTips': 'When enabled, prompt automatically converts non-official links to official discord links',
 
 
-  'pages.setting.enableConvertAliyunLink': 'Convert Aliyun Link',
-  'pages.setting.enableConvertAliyunLinkTips': 'When enabled, the base64 uploaded by the user is automatically converted to the Ali Cloud OSS link',
+  'pages.setting.enableConvertAliyunLink': 'Convert speed Link',
+  'pages.setting.enableConvertAliyunLinkTips': 'When enabled, the base64 uploaded by users will be automatically converted to accelerated links (Alibaba Cloud/Tencent Cloud/local)',
 
+
+  'pages.setting.enableAutoLogin': 'Enable automatic login',
+  'pages.setting.enableAutoLoginTips': 'After this function is enabled, if the token expires, the user automatically logs in using the account password',
+
+  'pages.setting.enableConvertNijiToMj': 'Convert Niji to MJ',
+  'pages.setting.enableConvertNijiToMjTips': 'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix -- niji is added to the task (the effect is consistent after conversion).',
+
+  'pages.setting.enableMjTranslate': 'MJ translation',
+  'pages.setting.enableMjTranslateTips': 'Automatically translate the prompt of Midjourney tasks to Chinese when enabled',
+
+  'pages.setting.enableNijiTranslate': 'NIJI Translation',
+  'pages.setting.enableNijiTranslateTips': 'Automatically translate prompt for Niji · journey tasks to Chinese when enabled',
+
+  'pages.setting.enableAccountSponsor': 'Sponsor account',
+  'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',
+
+  'pages.setting.imageStorageType': 'storage mode',
+  'pages.setting.imageStorageTypeTips': 'If enabled, the image will be saved to the specified storage mode. Otherwise, the image will not be downloaded',
+
+  'pages.setting.localStorage': 'local storage',
+  'pages.setting.localStorageTips': 'Store pictures locally when enabled',
+
+  'pages.setting.tencentCos': 'Tencent Cloud COS',
+  'pages.setting.tencentCosTips': 'After enabling, store pictures to Tencent Cloud COS',
 };
