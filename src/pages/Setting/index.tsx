@@ -495,13 +495,23 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableConvertNijiToNijiBot' })}
+                  name="enableConvertNijiToNijiBot"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableConvertNijiToNijiBotTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoLogin' })}
                   name="enableAutoLogin"
                   help={intl.formatMessage({
                     id: 'pages.setting.enableAutoLoginTips',
                   })}
                 >
-                  <Switch />
+                  <Switch disabled />
                 </Form.Item>
               </Card>
             </Col>

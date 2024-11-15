@@ -420,6 +420,9 @@ export default {
   'pages.setting.enableConvertNijiToMj': 'Convert Niji to MJ',
   'pages.setting.enableConvertNijiToMjTips': 'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix --niji is added to the task (the effect is consistent after conversion).',
 
+  'pages.setting.enableConvertNijiToNijiBot': 'Convert --niji to Niji Bot',
+  'pages.setting.enableConvertNijiToNijiBotTips': 'When enabled, prompt will automatically convert to Niji·journey Bot task when it includes -- Niji',
+
   'pages.setting.enableMjTranslate': 'MJ translation',
   'pages.setting.enableMjTranslateTips': 'Automatically translate the prompt of Midjourney tasks to Chinese when enabled',
 

@@ -388,6 +388,9 @@ export default {
   'pages.setting.enableConvertNijiToMj': '转换 Niji 为 MJ',
   'pages.setting.enableConvertNijiToMjTips': '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 --niji 后缀（转换后出图效果是一致的），即：不添加 niji 机器人也可以通过 niji 机器人绘图',
 
+  'pages.setting.enableConvertNijiToNijiBot': '转换 --niji 为 Niji Bot',
+  'pages.setting.enableConvertNijiToNijiBotTips': '启用后当 prompt 中包含 --niji 时，将会自动转换为 Niji·journey Bot 任务',
+
   'pages.setting.enableMjTranslate': 'MJ 翻译',
   'pages.setting.enableMjTranslateTips': '启用后将 Midjourney 任务的 prompt 中文自动翻译为英文',
 
