@@ -389,10 +389,10 @@ export default {
   'pages.setting.enableConvertNijiToMjTips': '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 --niji 后缀（转换后出图效果是一致的），即：不添加 niji 机器人也可以通过 niji 机器人绘图',
 
   'pages.setting.enableMjTranslate': 'MJ 翻译',
-  'pages.setting.enableMjTranslateTips': '启用后将 Midjourney 任务的 prompt 自动翻译为中文',
+  'pages.setting.enableMjTranslateTips': '启用后将 Midjourney 任务的 prompt 中文自动翻译为英文',
 
   'pages.setting.enableNijiTranslate': 'NIJI 翻译',
-  'pages.setting.enableNijiTranslateTips': '启用后将 Niji · journey 任务的 prompt 自动翻译为中文',
+  'pages.setting.enableNijiTranslateTips': '启用后将 Niji · journey 任务的 prompt 中文自动翻译为英文',
 
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
