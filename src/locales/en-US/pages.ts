@@ -132,7 +132,10 @@ export default {
   'pages.account.remark': 'Remark',
   'pages.account.disabledReason': 'Disabled Reason',
   'pages.account.add': 'Create Account (Automatically fill in the account information entered last time)',
+
   'pages.account.sync': 'Sync',
+  'pages.account.sponsorAccount': 'Sponsor',
+  'pages.account.sponsorAccountTitle': 'Sponsor Account (Thank you for your generosity and sponsorship)',
   'pages.account.updateAndReconnect': 'Update And Reconnect',
   'pages.account.update': 'Update',
   'pages.account.syncTitle':
@@ -415,7 +418,7 @@ export default {
   'pages.setting.enableAutoLoginTips': 'After this function is enabled, if the token expires, the user automatically logs in using the account password',
 
   'pages.setting.enableConvertNijiToMj': 'Convert Niji to MJ',
-  'pages.setting.enableConvertNijiToMjTips': 'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix -- niji is added to the task (the effect is consistent after conversion).',
+  'pages.setting.enableConvertNijiToMjTips': 'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix --niji is added to the task (the effect is consistent after conversion).',
 
   'pages.setting.enableMjTranslate': 'MJ translation',
   'pages.setting.enableMjTranslateTips': 'Automatically translate the prompt of Midjourney tasks to Chinese when enabled',

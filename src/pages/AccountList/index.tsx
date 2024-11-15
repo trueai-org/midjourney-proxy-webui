@@ -9,6 +9,7 @@ import { createAccount, queryAccounts, update, updateAndReconnect } from '@/serv
 import {
   ClockCircleOutlined,
   EditOutlined,
+  HeartTwoTone,
   LockOutlined,
   SyncOutlined,
   ToolOutlined,
@@ -388,7 +389,19 @@ const AccountList: React.FC = () => {
       sorter: true,
       // 赞助商 - 富文本
       render: (text: string, record: Record<string, any>) => (
-        <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          {record.sponsorUserId && (
+            <HeartTwoTone twoToneColor="#eb2f96" style={{ marginRight: 2 }} />
+          )}
+
+          <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
+        </div>
       ),
     } as ColumnType<Record<string, any>>,
     {
@@ -549,6 +562,25 @@ const AccountList: React.FC = () => {
           rowKey="id"
           actionRef={actionRef}
           toolBarRender={() => [
+            <Button
+              key="sponsor"
+              type={'dashed'}
+              icon={<HeartTwoTone twoToneColor="#eb2f96" />}
+              onClick={() => {
+                openModal(
+                  intl.formatMessage({ id: 'pages.account.sponsorAccountTitle' }),
+                  <AddContent
+                    r={Math.random()}
+                    form={form}
+                    onSubmit={(values) => handleAdd({ ...values, isSponsor: true })}
+                  />,
+                  1600,
+                );
+              }}
+            >
+              {intl.formatMessage({ id: 'pages.account.sponsorAccount' })}
+            </Button>,
+
             <Button
               key="primary"
               type={'primary'}
