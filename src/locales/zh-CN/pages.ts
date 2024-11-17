@@ -383,7 +383,7 @@ export default {
   'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 base64 自动转为加速链接（上传文件到阿里云/腾讯云/本地）',
 
   'pages.setting.enableAutoLogin': '自动登录',
-  'pages.setting.enableAutoLoginTips': '启用后如果 token 过期则，使用账号密码自动登录',
+  'pages.setting.enableAutoLoginTips': '启用后如果 token 过期，则使用账号密码自动登录',
 
   'pages.setting.enableConvertNijiToMj': '转换 Niji 为 MJ',
   'pages.setting.enableConvertNijiToMjTips': '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 --niji 后缀（转换后出图效果是一致的），即：不添加 niji 机器人也可以通过 niji 机器人绘图',
