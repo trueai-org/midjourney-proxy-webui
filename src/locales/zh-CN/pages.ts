@@ -408,4 +408,7 @@ export default {
 
   'pages.setting.tencentCos': '腾讯云 COS',
   'pages.setting.tencentCosTips': '启用后将图片存储到腾讯云 COS',
+
+  'pages.setting.cloudflareR2': 'Cloudflare R2',
+  'pages.setting.cloudflareR2Tips': 'Cloudflare R2',
 };

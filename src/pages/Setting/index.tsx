@@ -262,6 +262,13 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.cloudflareR2' })}
+                  name="cloudflareR2"
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.replicate' })}
                   name="replicate"
                 >
