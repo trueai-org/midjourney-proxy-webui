@@ -236,6 +236,7 @@ const Setting: React.FC = () => {
                     <Select.Option value="LOCAL">LOCAL</Select.Option>
                     <Select.Option value="OSS">Aliyun OSS</Select.Option>
                     <Select.Option value="COS">Tencent COS</Select.Option>
+                    <Select.Option value="R2">Cloudflare R2</Select.Option>
                   </Select>
                 </Form.Item>
 
