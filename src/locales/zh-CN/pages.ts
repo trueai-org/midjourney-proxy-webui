@@ -322,7 +322,7 @@ export default {
   'pages.setting': '设置',
   'pages.setting.swaggerLink': '打开 Swagger 文档',
   'pages.setting.enableSwagger': '开启 Swagger',
-  'pages.setting.mongoDefaultConnectionString': 'Mongo DB 字符串',
+  'pages.setting.mongoDefaultConnectionString': 'MongoDB 字符串',
   'pages.setting.connectSuccess': 'MongoDB 连接成功',
   'pages.setting.connectError': 'MongoDB 连接失败',
   'pages.setting.mongoDefaultConnectionStringTips': 'MongoDB 连接字符串，如：mongodb://localhost:27017',
