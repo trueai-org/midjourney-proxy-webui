@@ -428,6 +428,13 @@ export async function updateConfig(data: object, options?: { [key: string]: any 
   });
 }
 
+// mongo db 连接
+export async function mongoConnect() {
+  return request<API.Result>('/mj/admin/verify-mongo', {
+    method: 'POST',
+  });
+}
+
 // 一键迁移
 export async function migrateAccountAndTasks(data: object, options?: { [key: string]: any }) {
   return request<API.Result>('/mj/admin/mjplus-migration', {

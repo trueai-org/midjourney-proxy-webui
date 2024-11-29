@@ -1,5 +1,5 @@
 import JsonEditor from '@/components/JsonEditor';
-import { getConfig, migrateAccountAndTasks, updateConfig } from '@/services/mj/api';
+import { getConfig, migrateAccountAndTasks, mongoConnect, updateConfig } from '@/services/mj/api';
 import { SaveOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -176,6 +176,52 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.mongoDefaultConnectionString' })}
                   name="mongoDefaultConnectionString"
+                  extra={
+                    // 测试连接按钮，用于测试能否链接到 mongodb
+                    <>
+                      <Button
+                        style={{ marginTop: 8 }}
+                        type="primary"
+                        onClick={() => {
+                          const mongoDefaultConnectionString = form.getFieldValue(
+                            'mongoDefaultConnectionString',
+                          );
+                          if (mongoDefaultConnectionString) {
+                            setLoading(true);
+                            mongoConnect().then((c) => {
+                              setLoading(false);
+                              if (c.success) {
+                                message.success(
+                                  intl.formatMessage({ id: 'pages.setting.connectSuccess' }),
+                                );
+                              } else {
+                                message.error(
+                                  c.message ||
+                                    intl.formatMessage({ id: 'pages.setting.connectError' }),
+                                );
+                              }
+                            });
+                          } else {
+                            message.warning(
+                              intl.formatMessage({
+                                id: 'pages.setting.mongoDefaultConnectionStringTips',
+                              }),
+                            );
+                          }
+                        }}
+                      >
+                        {intl.formatMessage({ id: 'pages.setting.testConnect' })}
+                      </Button>
+
+                      {form && !form.getFieldValue('isMongo') && (
+                        <Alert
+                          style={{ marginTop: 8 }}
+                          message={intl.formatMessage({ id: 'pages.setting.mongoNotUsed' })}
+                          type="warning"
+                        />
+                      )}
+                    </>
+                  }
                 >
                   <Input placeholder="mongodb://mongoadmin:***admin@192.168.x.x" />
                 </Form.Item>

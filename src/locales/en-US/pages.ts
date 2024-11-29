@@ -342,7 +342,13 @@ export default {
 
   'pages.setting.swaggerLink': 'Swagger Link',
   'pages.setting.enableSwagger': 'Enable Swagger',
-  'pages.setting.mongoDefaultConnectionString': 'Mongo Default Connection String',
+  'pages.setting.mongoDefaultConnectionString': 'Mongo DB',
+  'pages.setting.connectSuccess': 'MongoDB Success',
+  'pages.setting.connectError': 'MongoDB Error',
+  'pages.setting.mongoDefaultConnectionStringTips': 'MongoDB Connection String, eg: mongodb://localhost:27017',
+  'pages.setting.testConnect': 'Test Connect',
+  'pages.setting.mongoNotUsed': 'MongoDB not used, Please Restart Service',
+
   'pages.setting.mongoDefaultDatabase': 'Mongo Default Database',
   'pages.setting.isMongoAutoMigrate': 'MongoDB data migration',
   'pages.setting.isMongoAutoMigrateTips':
