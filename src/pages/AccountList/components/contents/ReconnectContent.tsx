@@ -318,6 +318,26 @@ const ReconnectContent = ({
             >
               <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 1 }} />
             </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.loginAccount' })}
+              name="loginAccount"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.loginPassword' })}
+              name="loginPassword"
+            >
+              <Input />
+            </Form.Item>
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.account.logiln2fa' })}
+              name="logiln2fa"
+            >
+              <Input />
+            </Form.Item>
+            
           </Card>
         </Col>
       </Row>

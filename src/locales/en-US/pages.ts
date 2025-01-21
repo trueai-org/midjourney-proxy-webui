@@ -131,11 +131,13 @@ export default {
   'pages.account.nijiMode': 'Niji Mode',
   'pages.account.remark': 'Remark',
   'pages.account.disabledReason': 'Disabled Reason',
-  'pages.account.add': 'Create Account (Automatically fill in the account information entered last time)',
+  'pages.account.add':
+    'Create Account (Automatically fill in the account information entered last time)',
 
   'pages.account.sync': 'Sync',
   'pages.account.sponsorAccount': 'Sponsor',
-  'pages.account.sponsorAccountTitle': 'Sponsor Account (Thank you for your generosity and sponsorship)',
+  'pages.account.sponsorAccountTitle':
+    'Sponsor Account (Thank you for your generosity and sponsorship)',
   'pages.account.updateAndReconnect': 'Update And Reconnect',
   'pages.account.update': 'Update',
   'pages.account.syncTitle':
@@ -163,7 +165,8 @@ export default {
   'pages.account.enableRelaxToFastTips':
     'When enabled, automatically switches to fast mode when renewing a subscription or having a fast duration',
   'pages.account.enableAutoSetRelax': 'Set the relax mode automatically',
-  'pages.account.enableAutoSetRelaxTips': 'When enabled, automatically set [allow build speed mode] to RELAX mode when fast runs out. And set the parallel number to 3',
+  'pages.account.enableAutoSetRelaxTips':
+    'When enabled, automatically set [allow build speed mode] to RELAX mode when fast runs out. And set the parallel number to 3',
   'pages.account.mjChannelId': 'MJBot Private ChannelID',
   'pages.account.nijiChannelId': 'NijiBot Private ChannelID',
   'pages.account.basicInfo': 'Basic Info',
@@ -201,6 +204,11 @@ export default {
     'Please input channels, each row of a, format: [invite link], [channel address], example: https://discord.gg/xxx, https://discord.com/channels/xxx/xxx',
   'pages.account.allowModesTooltip':
     'If the user specifies the mode or adds a user-defined parameter, such as --fast, but the account does not allow FAST, this parameter is automatically removed',
+
+  'pages.account.loginAccount': 'Login Account',
+  'pages.account.loginPassword': 'Login Password',
+  'pages.account.logiln2fa': '2FA Code',
+  'pages.account.isAutoLogining': 'Auto Login in...',
 
   'pages.task.info': 'Task Info',
   'pages.task.type': 'Type',
@@ -345,7 +353,8 @@ export default {
   'pages.setting.mongoDefaultConnectionString': 'Mongo DB',
   'pages.setting.connectSuccess': 'MongoDB Success',
   'pages.setting.connectError': 'MongoDB Error',
-  'pages.setting.mongoDefaultConnectionStringTips': 'MongoDB Connection String, eg: mongodb://localhost:27017',
+  'pages.setting.mongoDefaultConnectionStringTips':
+    'MongoDB Connection String, eg: mongodb://localhost:27017',
   'pages.setting.testConnect': 'Test Connect',
   'pages.setting.mongoNotUsed': 'MongoDB not used, Please Restart Service',
 
@@ -367,13 +376,16 @@ export default {
   'pages.setting.baiduTranslate': 'Baidu Translate',
   'pages.setting.openai': 'GPT Translate',
   'pages.setting.smtp': 'SMTP',
-  'pages.setting.notifyHook': 'Notify Hook',
-  'pages.setting.notifyPoolSize': 'Notify Pool Size',
-  'pages.setting.captchaServer': 'Captcha Server',
-  'pages.setting.captchaNotifyHook': 'Captcha Notify Hook',
-  'pages.setting.captchaNotifySecret': 'CloudFlare Notify Secret',
-  'pages.setting.captchaNotifySecretTip':
-    'To verify the validity of CloudFlare verification notification callback, enter a random string',
+  'pages.setting.notifyHook': 'Draw Notify Hook',
+  'pages.setting.notifyPoolSize': 'Draw Notify Pool',
+
+  'pages.setting.captchaServer': 'Authentication/login service address',
+  'pages.setting.captchaServerTip': 'IP address of the automatic verification code server or IP address of the automatic login server',
+  'pages.setting.captchaNotifyHook': 'Authentication/login callback address',
+  'pages.setting.captchaNotifyHookTip': 'Verify the address notified after you pass or login is complete, usually for your site',
+  'pages.setting.captchaNotifySecret': 'Authentication/login callback key',
+  'pages.setting.captchaNotifySecretTip': 'Encryption key to verify the validity of the notification callback, enter a random string',
+
   'pages.setting.enableRegister': 'Enable Register',
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
   'pages.setting.isVerticalDomainTips':
@@ -399,47 +411,57 @@ export default {
 
   'pages.setting.discordSetting': 'Discord Setting',
   'pages.setting.enableAutoGetPrivateId': 'Enable automatic obtaining of private id',
-  'pages.setting.enableAutoGetPrivateIdTips': 'When the program starts, it automatically obtains the MJ private message ID and Niji private message ID',
+  'pages.setting.enableAutoGetPrivateIdTips':
+    'When the program starts, it automatically obtains the MJ private message ID and Niji private message ID',
   'pages.setting.enableAutoVerifyAccount': 'Enable automatic account verification',
-  'pages.setting.enableAutoVerifyAccountTips': 'Automatically verify whether the account is normal when the program starts (may trigger mobile phone verification)',
+  'pages.setting.enableAutoVerifyAccountTips':
+    'Automatically verify whether the account is normal when the program starts (may trigger mobile phone verification)',
   'pages.setting.enableAutoSyncInfoSetting': 'Enable automatic information synchronization',
-  'pages.setting.enableAutoSyncInfoSettingTips': 'After this function is enabled, the account information and account Settings are automatically synchronized every 6 to 12 hours',
-
+  'pages.setting.enableAutoSyncInfoSettingTips':
+    'After this function is enabled, the account information and account Settings are automatically synchronized every 6 to 12 hours',
 
   'pages.setting.enableAutoExtendToken': 'Automatically renew the Token',
-  'pages.setting.enableAutoExtendTokenTips': 'After this function is enabled, the Token is automatically renewed every 1 to 10 minutes',
+  'pages.setting.enableAutoExtendTokenTips':
+    'After this function is enabled, the Token is automatically renewed every 1 to 10 minutes',
 
   'pages.setting.enableUserCustomUploadBase64': 'User upload',
-  'pages.setting.enableUserCustomUploadBase64Tips': 'After this function is enabled, users can upload base64 images',
+  'pages.setting.enableUserCustomUploadBase64Tips':
+    'After this function is enabled, users can upload base64 images',
 
   'pages.setting.enableConvertOfficialLink': 'Convert official links',
-  'pages.setting.enableConvertOfficialLinkTips': 'When enabled, prompt automatically converts non-official links to official discord links',
-
+  'pages.setting.enableConvertOfficialLinkTips':
+    'When enabled, prompt automatically converts non-official links to official discord links',
 
   'pages.setting.enableConvertAliyunLink': 'Convert speed Link',
-  'pages.setting.enableConvertAliyunLinkTips': 'When enabled, the base64 uploaded by users will be automatically converted to accelerated links (Alibaba Cloud/Tencent Cloud/local)',
-
+  'pages.setting.enableConvertAliyunLinkTips':
+    'When enabled, the base64 uploaded by users will be automatically converted to accelerated links (Alibaba Cloud/Tencent Cloud/local)',
 
   'pages.setting.enableAutoLogin': 'Enable automatic login',
-  'pages.setting.enableAutoLoginTips': 'After this function is enabled, if the token expires, the user automatically logs in using the account password',
+  'pages.setting.enableAutoLoginTips':
+    'After this function is enabled, if the token expires, the user automatically logs in using the account password',
 
   'pages.setting.enableConvertNijiToMj': 'Convert Niji to MJ',
-  'pages.setting.enableConvertNijiToMjTips': 'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix --niji is added to the task (the effect is consistent after conversion).',
+  'pages.setting.enableConvertNijiToMjTips':
+    'When enabled, the Niji · journey task is automatically converted to Midjourney task, and the suffix --niji is added to the task (the effect is consistent after conversion).',
 
   'pages.setting.enableConvertNijiToNijiBot': 'Convert --niji to Niji Bot',
-  'pages.setting.enableConvertNijiToNijiBotTips': 'When enabled, prompt will automatically convert to Niji·journey Bot task when it includes -- Niji',
+  'pages.setting.enableConvertNijiToNijiBotTips':
+    'When enabled, prompt will automatically convert to Niji·journey Bot task when it includes -- Niji',
 
   'pages.setting.enableMjTranslate': 'MJ translation',
-  'pages.setting.enableMjTranslateTips': 'Automatically translate the prompt of Midjourney tasks to Chinese when enabled',
+  'pages.setting.enableMjTranslateTips':
+    'Automatically translate the prompt of Midjourney tasks to Chinese when enabled',
 
   'pages.setting.enableNijiTranslate': 'NIJI Translation',
-  'pages.setting.enableNijiTranslateTips': 'Automatically translate prompt for Niji · journey tasks to Chinese when enabled',
+  'pages.setting.enableNijiTranslateTips':
+    'Automatically translate prompt for Niji · journey tasks to Chinese when enabled',
 
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',
 
   'pages.setting.imageStorageType': 'storage mode',
-  'pages.setting.imageStorageTypeTips': 'If enabled, the image will be saved to the specified storage mode. Otherwise, the image will not be downloaded',
+  'pages.setting.imageStorageTypeTips':
+    'If enabled, the image will be saved to the specified storage mode. Otherwise, the image will not be downloaded',
 
   'pages.setting.localStorage': 'local storage',
   'pages.setting.localStorageTips': 'Store pictures locally when enabled',

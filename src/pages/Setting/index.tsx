@@ -358,19 +358,21 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.captchaServer' })}
                   name="captchaServer"
+                  help={intl.formatMessage({ id: 'pages.setting.captchaServerTip' })}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.captchaNotifyHook' })}
                   name="captchaNotifyHook"
+                  help={intl.formatMessage({ id: 'pages.setting.captchaNotifyHookTip' })}
                 >
                   <Input />
                 </Form.Item>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.captchaNotifySecret' })}
                   name="captchaNotifySecret"
-                  tooltip={intl.formatMessage({ id: 'pages.setting.captchaNotifySecretTip' })}
+                  help={intl.formatMessage({ id: 'pages.setting.captchaNotifySecretTip' })}
                 >
                   <Input />
                 </Form.Item>

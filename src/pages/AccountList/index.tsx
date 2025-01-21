@@ -117,6 +117,9 @@ const AccountList: React.FC = () => {
           privateChannelId: '',
           nijiBotChannelId: '',
           guildId: '',
+          loginAccount: '',
+          loginPassword: '',
+          logiln2fa: '',
         };
         localStorage.setItem('account_cache', JSON.stringify(prev));
 
@@ -270,6 +273,12 @@ const AccountList: React.FC = () => {
         return (
           <>
             <Tag color={color}>{text}</Tag>
+
+            {record.isAutoLogining && (
+              <Tag color="orange">
+                {intl.formatMessage({ id: 'pages.account.isAutoLogining' })}
+              </Tag>
+            )}
 
             {record.lock && (
               <Tag icon={<LockOutlined />} color="warning">
