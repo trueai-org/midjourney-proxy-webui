@@ -332,8 +332,8 @@ const ReconnectContent = ({
               <Input />
             </Form.Item>
             <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.logiln2fa' })}
-              name="logiln2fa"
+              label={intl.formatMessage({ id: 'pages.account.login2fa' })}
+              name="login2fa"
             >
               <Input />
             </Form.Item>
