@@ -567,7 +567,7 @@ const Setting: React.FC = () => {
                     id: 'pages.setting.enableAutoLoginTips',
                   })}
                 >
-                  <Switch disabled />
+                  <Switch />
                 </Form.Item>
               </Card>
             </Col>
