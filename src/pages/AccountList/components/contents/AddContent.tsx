@@ -110,7 +110,6 @@ const AddContent = ({
             <Form.Item
               label={intl.formatMessage({ id: 'pages.account.userToken' })}
               name="userToken"
-              rules={[{ required: true }]}
             >
               <Input />
             </Form.Item>

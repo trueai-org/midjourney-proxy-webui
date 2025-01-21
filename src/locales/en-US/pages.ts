@@ -139,6 +139,7 @@ export default {
   'pages.account.sponsorAccountTitle':
     'Sponsor Account (Thank you for your generosity and sponsorship)',
   'pages.account.updateAndReconnect': 'Update And Reconnect',
+
   'pages.account.update': 'Update',
   'pages.account.syncTitle':
     'Will it actively execute /info, /settings to retrieve and update account information?',
@@ -205,9 +206,11 @@ export default {
   'pages.account.allowModesTooltip':
     'If the user specifies the mode or adds a user-defined parameter, such as --fast, but the account does not allow FAST, this parameter is automatically removed',
 
+  'pages.account.loginAccountGetToken': 'Login Account Get Token',
+  'pages.account.loginAccountGetTokenError': 'The account, password, and 2FA key must be entered',
   'pages.account.loginAccount': 'Login Account',
   'pages.account.loginPassword': 'Login Password',
-  'pages.account.logiln2fa': '2FA Code',
+  'pages.account.login2fa': '2FA Code',
   'pages.account.isAutoLogining': 'Auto Login in...',
 
   'pages.task.info': 'Task Info',

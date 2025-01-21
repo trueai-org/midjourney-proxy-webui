@@ -5,12 +5,19 @@ import CfContent from '@/pages/AccountList/components/contents/CfContent';
 import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
-import { createAccount, queryAccounts, update, updateAndReconnect } from '@/services/mj/api';
+import {
+  createAccount,
+  loginAccountGetToken,
+  queryAccounts,
+  update,
+  updateAndReconnect,
+} from '@/services/mj/api';
 import {
   ClockCircleOutlined,
   EditOutlined,
   HeartTwoTone,
   LockOutlined,
+  LoginOutlined,
   SyncOutlined,
   ToolOutlined,
   UnlockOutlined,
@@ -119,7 +126,7 @@ const AccountList: React.FC = () => {
           guildId: '',
           loginAccount: '',
           loginPassword: '',
-          logiln2fa: '',
+          login2fa: '',
         };
         localStorage.setItem('account_cache', JSON.stringify(prev));
 
@@ -137,6 +144,36 @@ const AccountList: React.FC = () => {
       }
     } finally {
       setModalSubmitLoading(false);
+    }
+  };
+
+  // 登录并获取 token
+  const handleLogin = async (values: Record<any, any>) => {
+    try {
+      // 验证账号、密码、2fa
+      if (!values.loginAccount || !values.loginPassword || !values.login2fa) {
+        api.error({
+          message: 'error',
+          description: intl.formatMessage({ id: 'pages.account.loginAccountGetTokenError' }),
+        });
+        return;
+      }
+
+      const res = await loginAccountGetToken(values.id);
+      if (res.success) {
+        api.success({
+          message: 'success',
+          description: res.message,
+        });
+        hideModal();
+        triggerRefreshAccount();
+      } else {
+        api.error({
+          message: 'error',
+          description: res.message,
+        });
+      }
+    } finally {
     }
   };
 
@@ -275,9 +312,7 @@ const AccountList: React.FC = () => {
             <Tag color={color}>{text}</Tag>
 
             {record.isAutoLogining && (
-              <Tag color="orange">
-                {intl.formatMessage({ id: 'pages.account.isAutoLogining' })}
-              </Tag>
+              <Tag color="orange">{intl.formatMessage({ id: 'pages.account.isAutoLogining' })}</Tag>
             )}
 
             {record.lock && (
@@ -450,6 +485,15 @@ const AccountList: React.FC = () => {
       render: (value: any, record: Record<string, any>) => {
         return (
           <Space>
+            <Tooltip title={intl.formatMessage({ id: 'pages.account.loginAccountGetToken' })}>
+              <Button
+                key="login"
+                icon={<LoginOutlined />}
+                type={'dashed'}
+                onClick={() => handleLogin(record)}
+              />
+            </Tooltip>
+
             {record.lock && (
               <Button
                 key="Lock"

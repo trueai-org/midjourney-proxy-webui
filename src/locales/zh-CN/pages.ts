@@ -187,9 +187,11 @@ export default {
   'pages.account.subChannelsHelp': '请输入子频道，每行一个，格式：[邀请链接],[频道地址]，示例：https://discord.gg/xxx,https://discord.com/channels/xxx/xxx',
   'pages.account.allowModesTooltip': '如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数',
 
+  'pages.account.loginAccountGetToken': '登录并获取 Token',
+  'pages.account.loginAccountGetTokenError': '必须填写账号和密码、2FA密钥',
   'pages.account.loginAccount': '登录账号',
   'pages.account.loginPassword': '登录密码',
-  'pages.account.logiln2fa': '2FA 密钥',
+  'pages.account.login2fa': '2FA 密钥',
   'pages.account.isAutoLogining': '登录中...',
 
 

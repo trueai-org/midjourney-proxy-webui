@@ -111,6 +111,14 @@ export async function refreshAccount(id: string, options?: { [key: string]: any 
   });
 }
 
+// loginAccountGetToken
+export async function loginAccountGetToken(id: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/account-login/${id}`, {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
 /**  PUT */
 export async function updateAndReconnect(
   id: string,
