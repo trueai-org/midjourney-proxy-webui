@@ -249,6 +249,34 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.databaseType' })}
+                  name="databaseType"
+                >
+                  <Select allowClear>
+                    <Select.Option value="LiteDB">LiteDB</Select.Option>
+                    <Select.Option value="MongoDB">MongoDB</Select.Option>
+                    <Select.Option value="SQLite">SQLite</Select.Option>
+                    <Select.Option value="MySQL">MySQL</Select.Option>
+                    <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
+                    <Select.Option value="SQLServer">SQLServer</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.databaseConnectionString' })}
+                  name="databaseConnectionString"
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.databaseName' })}
+                  name="databaseName"
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
                   name="accountChooseRule"
                 >
@@ -405,12 +433,32 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.registerUserDefaultDayLimit' })}
                   name="registerUserDefaultDayLimit"
                 >
                   <InputNumber min={-1} />
                 </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.registerUserDefaultTotalLimit' })}
+                  name="registerUserDefaultTotalLimit"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.registerUserDefaultCoreSize' })}
+                  name="registerUserDefaultCoreSize"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.registerUserDefaultQueueSize' })}
+                  name="registerUserDefaultQueueSize"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableGuest' })}
                   name="enableGuest"

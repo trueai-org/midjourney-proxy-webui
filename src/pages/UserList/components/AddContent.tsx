@@ -1,4 +1,15 @@
-import { Card, Col, Form, FormInstance, Input, InputNumber, Row, Select, Switch } from 'antd';
+import {
+  Card,
+  Col,
+  DatePicker,
+  Form,
+  FormInstance,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  Switch,
+} from 'antd';
 import { useEffect, useState } from 'react';
 
 import { useIntl } from '@umijs/max';
@@ -98,24 +109,6 @@ const UpdateContent = ({
             >
               <Input />
             </Form.Item>
-          </Card>
-        </Col>
-        <Col span={12}>
-          <Card type="inner">
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.user.isWhite' })}
-              name="isWhite"
-              help={intl.formatMessage({ id: 'pages.user.isWhite.help' })}
-            >
-              <Switch />
-            </Form.Item>
-
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.user.dayDrawLimit' })}
-              name="dayDrawLimit"
-            >
-              <InputNumber min={-1} />
-            </Form.Item>
 
             <Form.Item
               label={intl.formatMessage({ id: 'pages.user.registerTime' })}
@@ -140,6 +133,59 @@ const UpdateContent = ({
               name="lastLoginIp"
             >
               <Input disabled />
+            </Form.Item>
+          </Card>
+        </Col>
+        <Col span={12}>
+          <Card type="inner">
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.isWhite' })}
+              name="isWhite"
+              help={intl.formatMessage({ id: 'pages.user.isWhite.help' })}
+            >
+              <Switch />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.dayDrawLimit' })}
+              name="dayDrawLimit"
+            >
+              <InputNumber min={-1} />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.totalDrawLimit' })}
+              name="totalDrawLimit"
+            >
+              <InputNumber min={-1} />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.validStartTime' })}
+              name="validStartTime"
+            >
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.validEndTime' })}
+              name="validEndTime"
+            >
+              <DatePicker />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.dayDrawCount' })}
+              name="dayDrawCount"
+            >
+              <InputNumber min={0} disabled />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.totalDrawCount' })}
+              name="totalDrawCount"
+            >
+              <InputNumber min={0} disabled />
             </Form.Item>
           </Card>
         </Col>

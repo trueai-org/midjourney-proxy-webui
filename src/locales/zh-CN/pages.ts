@@ -234,6 +234,13 @@ export default {
 
   'pages.user.name': '用户名',
   'pages.user.dayDrawLimit': '日绘图限制',
+  'pages.user.totalDrawLimit': '总绘图限制',
+  'pages.user.dayDrawCount': '今日绘图',
+  'pages.user.totalDrawCount': '累计绘图',
+  'pages.user.coreSize': '并发数量',
+  'pages.user.queueSize': '队列数量',
+  'pages.user.validStartTime': '有效开始时间',
+  'pages.user.validEndTime': '有效结束时间',  
   'pages.user.unlimited': '无限制',
   'pages.user.email': '邮箱',
   'pages.user.phone': '电话',
@@ -330,6 +337,11 @@ export default {
   'pages.setting': '设置',
   'pages.setting.swaggerLink': '打开 Swagger 文档',
   'pages.setting.enableSwagger': '开启 Swagger',
+
+  'pages.setting.databaseType': '数据库类型',
+  'pages.setting.databaseConnectionString': '数据库连接字符串',
+  'pages.setting.databaseName': '数据库名称',
+
   'pages.setting.mongoDefaultConnectionString': 'MongoDB 字符串',
   'pages.setting.connectSuccess': 'MongoDB 连接成功',
   'pages.setting.connectError': 'MongoDB 连接失败',
@@ -365,7 +377,12 @@ export default {
   'pages.setting.enableRegister': '开启注册',
   'pages.setting.isVerticalDomain': '开启垂直领域',
   'pages.setting.isVerticalDomainTips': '开启垂直领域绘画，会计算 promat 词条，然后根据词条分配给对应的账号绘画，如果没有匹配到账号，则分配到未开启垂直领域的账号绘画',
-  'pages.setting.registerUserDefaultDayLimit': '用户日绘图限制',
+
+  'pages.setting.registerUserDefaultDayLimit': '新用户日绘图限制',
+  'pages.setting.registerUserDefaultTotalLimit': '新用户总绘图限制',
+  'pages.setting.registerUserDefaultCoreSize': '新用户并发数',
+  'pages.setting.registerUserDefaultQueueSize': '新用户队列数',
+
   'pages.setting.enableGuest': '开启访客',
   'pages.setting.guestDefaultDayLimit': '访客日绘图限制',
   'pages.setting.ipRateLimiting': 'IP 限流配置',

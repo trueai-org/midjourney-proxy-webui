@@ -251,6 +251,13 @@ export default {
 
   'pages.user.name': 'Name',
   'pages.user.dayDrawLimit': 'Day Draw Limit',
+  'pages.user.totalDrawLimit': 'Total Draw Limit',
+  'pages.user.dayDrawCount': 'Today Draw Count',
+  'pages.user.totalDrawCount': 'Total Draw Count',
+  'pages.user.coreSize': 'Concurrency Size',
+  'pages.user.queueSize': 'Queue Size',
+  'pages.user.validStartTime': 'Valid Start Time',
+  'pages.user.validEndTime': 'Valid End Time',    
   'pages.user.unlimited': 'Unlimited',
   'pages.user.email': 'Email',
   'pages.user.phone': 'Phone',
@@ -353,6 +360,11 @@ export default {
 
   'pages.setting.swaggerLink': 'Swagger Link',
   'pages.setting.enableSwagger': 'Enable Swagger',
+
+  'pages.setting.databaseType': 'Database Type',
+  'pages.setting.databaseConnectionString': 'Database Connection String',
+  'pages.setting.databaseName': 'Database Name',
+
   'pages.setting.mongoDefaultConnectionString': 'Mongo DB',
   'pages.setting.connectSuccess': 'MongoDB Success',
   'pages.setting.connectError': 'MongoDB Error',
@@ -393,7 +405,12 @@ export default {
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
   'pages.setting.isVerticalDomainTips':
     'When vertical domain painting is enabled, the promat entry will be calculated and then assigned to the corresponding account according to the entry. If no account is matched, the account painting that is not opened in vertical domain will be assigned',
-  'pages.setting.registerUserDefaultDayLimit': 'Register User Default Day Limit',
+  
+  'pages.setting.registerUserDefaultDayLimit': 'New User Default Day Limit',
+  'pages.setting.registerUserDefaultTotalLimit': 'New User Default Total Limit',
+  'pages.setting.registerUserDefaultCoreSize': 'New User Default Concurrency',
+  'pages.setting.registerUserDefaultQueueSize': 'New User Default Queue Size',
+
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
   'pages.setting.ipRateLimiting': 'IP Rate Limiting',

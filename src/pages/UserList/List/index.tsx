@@ -5,6 +5,7 @@ import { DeleteOutlined, EditOutlined, UserAddOutlined } from '@ant-design/icons
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button, Card, Checkbox, Form, notification, Popconfirm, Space, Tag } from 'antd';
+import moment from 'moment';
 import React, { useRef, useState } from 'react';
 
 const UserList: React.FC = () => {
@@ -100,7 +101,6 @@ const UserList: React.FC = () => {
       align: 'center',
       fixed: 'left',
     },
-
     {
       title: intl.formatMessage({ id: 'pages.user.email' }),
       dataIndex: 'email',
@@ -174,7 +174,7 @@ const UserList: React.FC = () => {
       align: 'center',
       hideInSearch: true,
       render: (text, record) => {
-        if (text < 0) {
+        if (text <= 0) {
           return intl.formatMessage({ id: 'pages.user.unlimited' });
         } else {
           return text;
@@ -182,33 +182,61 @@ const UserList: React.FC = () => {
       },
     },
     {
-      title: intl.formatMessage({ id: 'pages.user.lastLoginIp' }),
-      dataIndex: 'lastLoginIp',
+      title: intl.formatMessage({ id: 'pages.user.totalDrawLimit' }),
+      dataIndex: 'totalDrawLimit',
+      width: 140,
+      align: 'center',
+      hideInSearch: true,
+      render: (text, record) => {
+        if (text <= 0) {
+          return intl.formatMessage({ id: 'pages.user.unlimited' });
+        } else {
+          return text;
+        }
+      },
+    },
+    {
+      title: intl.formatMessage({ id: 'pages.user.dayDrawCount' }),
+      dataIndex: 'dayDrawCount',
       width: 140,
       ellipsis: true,
       hideInSearch: true,
     },
     {
-      title: intl.formatMessage({ id: 'pages.user.lastLoginTime' }),
-      dataIndex: 'lastLoginTimeFormat',
+      title: intl.formatMessage({ id: 'pages.user.totalDrawCount' }),
+      dataIndex: 'totalDrawCount',
       width: 140,
       ellipsis: true,
       hideInSearch: true,
     },
-    {
-      title: intl.formatMessage({ id: 'pages.user.registerIp' }),
-      dataIndex: 'registerIp',
-      width: 140,
-      ellipsis: true,
-      hideInSearch: true,
-    },
-    {
-      title: intl.formatMessage({ id: 'pages.user.registerTime' }),
-      dataIndex: 'registerTimeFormat',
-      width: 140,
-      ellipsis: true,
-      hideInSearch: true,
-    },
+    // {
+    //   title: intl.formatMessage({ id: 'pages.user.lastLoginIp' }),
+    //   dataIndex: 'lastLoginIp',
+    //   width: 140,
+    //   ellipsis: true,
+    //   hideInSearch: true,
+    // },
+    // {
+    //   title: intl.formatMessage({ id: 'pages.user.lastLoginTime' }),
+    //   dataIndex: 'lastLoginTimeFormat',
+    //   width: 140,
+    //   ellipsis: true,
+    //   hideInSearch: true,
+    // },
+    // {
+    //   title: intl.formatMessage({ id: 'pages.user.registerIp' }),
+    //   dataIndex: 'registerIp',
+    //   width: 140,
+    //   ellipsis: true,
+    //   hideInSearch: true,
+    // },
+    // {
+    //   title: intl.formatMessage({ id: 'pages.user.registerTime' }),
+    //   dataIndex: 'registerTimeFormat',
+    //   width: 140,
+    //   ellipsis: true,
+    //   hideInSearch: true,
+    // },
     {
       title: intl.formatMessage({ id: 'pages.operation' }),
       dataIndex: 'operation',
@@ -217,7 +245,14 @@ const UserList: React.FC = () => {
       fixed: 'right',
       align: 'center',
       hideInSearch: true,
-      render: (_, record) => {
+      render: (_, record: any) => {
+        if (record.validStartTime) {
+          record.validStartTime = moment(record.validStartTimeFormat, 'YYYY-MM-DD');
+        }
+        if (record.validEndTime) {
+          record.validEndTime = moment(record.validEndTimeFormat, 'YYYY-MM-DD');
+        }
+
         return (
           <Space>
             <Button
