@@ -343,17 +343,17 @@ export default {
   'pages.setting.databaseName': '数据库名称',
 
   'pages.setting.mongoDefaultConnectionString': 'MongoDB 字符串',
-  'pages.setting.connectSuccess': 'MongoDB 连接成功',
-  'pages.setting.connectError': 'MongoDB 连接失败',
+  'pages.setting.connectSuccess': '数据库连接成功',
+  'pages.setting.connectError': '数据库连接失败',
   'pages.setting.mongoDefaultConnectionStringTips': 'MongoDB 连接字符串，如：mongodb://localhost:27017',
   'pages.setting.testConnect': '测试连接',
   'pages.setting.mongoNotUsed': '未使用 MongoDB，请重启服务',
 
 
   'pages.setting.mongoDefaultDatabase': 'MongoDB 数据库',
-  'pages.setting.isMongoAutoMigrate': 'MongoDB 数据迁移',
-  'pages.setting.maxCount': '保留最大任务数',
-  'pages.setting.isMongoAutoMigrateTips': '开启后，系统启动时会自动将本地任务迁移到 MongoDB',
+  'pages.setting.isAutoMigrate': '数据迁移',
+  'pages.setting.maxCount': '保留任务',
+  'pages.setting.isAutoMigrateTips': '开启后，系统启动时会自动将本地任务迁移到当前数据库',
   'pages.setting.accountChooseRule': '账号匹配算法',
   'pages.setting.discordConfig': 'Discord 配置',
   'pages.setting.proxyConfig': 'Proxy 配置',

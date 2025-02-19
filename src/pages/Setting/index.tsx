@@ -173,11 +173,10 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.mongoDefaultConnectionString' })}
                   name="mongoDefaultConnectionString"
                   extra={
-                    // 测试连接按钮，用于测试能否链接到 mongodb
                     <>
                       <Button
                         style={{ marginTop: 8 }}
@@ -224,29 +223,14 @@ const Setting: React.FC = () => {
                   }
                 >
                   <Input placeholder="mongodb://mongoadmin:***admin@192.168.x.x" />
-                </Form.Item>
+                </Form.Item> */}
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.mongoDefaultDatabase' })}
                   name="mongoDefaultDatabase"
                 >
                   <Input placeholder="mj" />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.isMongoAutoMigrate' })}
-                  name="isMongoAutoMigrate"
-                  tooltip={intl.formatMessage({ id: 'pages.setting.isMongoAutoMigrateTips' })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
-                  name="maxCount"
-                >
-                  <InputNumber min={-1} />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.databaseType' })}
@@ -265,6 +249,40 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.databaseConnectionString' })}
                   name="databaseConnectionString"
+                  extra={
+                    <>
+                      <Button
+                        style={{ marginTop: 8 }}
+                        type="primary"
+                        onClick={() => {
+                          setLoading(true);
+                          mongoConnect().then((c) => {
+                            setLoading(false);
+                            if (c.success) {
+                              message.success(
+                                intl.formatMessage({ id: 'pages.setting.connectSuccess' }),
+                              );
+                            } else {
+                              message.error(
+                                c.message ||
+                                  intl.formatMessage({ id: 'pages.setting.connectError' }),
+                              );
+                            }
+                          });
+                        }}
+                      >
+                        {intl.formatMessage({ id: 'pages.setting.testConnect' })}
+                      </Button>
+
+                      {/* {form && !form.getFieldValue('isMongo') && (
+                        <Alert
+                          style={{ marginTop: 8 }}
+                          message={intl.formatMessage({ id: 'pages.setting.mongoNotUsed' })}
+                          type="warning"
+                        />
+                      )} */}
+                    </>
+                  }
                 >
                   <Input />
                 </Form.Item>
@@ -274,6 +292,21 @@ const Setting: React.FC = () => {
                   name="databaseName"
                 >
                   <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.isAutoMigrate' })}
+                  name="isAutoMigrate"
+                  tooltip={intl.formatMessage({ id: 'pages.setting.isAutoMigrateTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
+                  name="maxCount"
+                >
+                  <InputNumber min={-1} />
                 </Form.Item>
 
                 <Form.Item

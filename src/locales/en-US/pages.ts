@@ -366,17 +366,17 @@ export default {
   'pages.setting.databaseName': 'Database Name',
 
   'pages.setting.mongoDefaultConnectionString': 'Mongo DB',
-  'pages.setting.connectSuccess': 'MongoDB Success',
-  'pages.setting.connectError': 'MongoDB Error',
+  'pages.setting.connectSuccess': 'Database Connect Success',
+  'pages.setting.connectError': 'Database Connect Error',
   'pages.setting.mongoDefaultConnectionStringTips':
     'MongoDB Connection String, eg: mongodb://localhost:27017',
   'pages.setting.testConnect': 'Test Connect',
   'pages.setting.mongoNotUsed': 'MongoDB not used, Please Restart Service',
 
   'pages.setting.mongoDefaultDatabase': 'Mongo Default Database',
-  'pages.setting.isMongoAutoMigrate': 'MongoDB data migration',
-  'pages.setting.isMongoAutoMigrateTips':
-    'After this function is enabled, local tasks are automatically migrated to MongoDB when the system starts',
+  'pages.setting.isAutoMigrate': 'Local data migration',
+  'pages.setting.isAutoMigrateTips':
+    'After this function is enabled, local tasks are automatically migrated to Currrent Database when the system starts',
   'pages.setting.maxCount': 'Save the maximum number of drawings',
   'pages.setting.accountChooseRule': 'Account Choose Rule',
 
