@@ -411,6 +411,9 @@ export default {
   'pages.setting.registerUserDefaultCoreSize': 'New User Default Concurrency',
   'pages.setting.registerUserDefaultQueueSize': 'New User Default Queue Size',
 
+  'pages.setting.guestDefaultCoreSize': 'Guest Default Concurrency',  
+  'pages.setting.guestDefaultQueueSize': 'Guest Default Queue Size',  
+
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
   'pages.setting.ipRateLimiting': 'IP Rate Limiting',

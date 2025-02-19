@@ -473,6 +473,19 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.guestDefaultCoreSize' })}
+                  name="guestDefaultCoreSize"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.guestDefaultQueueSize' })}
+                  name="guestDefaultQueueSize"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.bannedLimiting' })}
                   name="bannedLimiting"
                 >

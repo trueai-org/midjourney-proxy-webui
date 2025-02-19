@@ -383,6 +383,9 @@ export default {
   'pages.setting.registerUserDefaultCoreSize': '新用户并发数',
   'pages.setting.registerUserDefaultQueueSize': '新用户队列数',
 
+  'pages.setting.guestDefaultCoreSize': '访客并发数',  
+  'pages.setting.guestDefaultQueueSize': '访客队列数',  
+
   'pages.setting.enableGuest': '开启访客',
   'pages.setting.guestDefaultDayLimit': '访客日绘图限制',
   'pages.setting.ipRateLimiting': 'IP 限流配置',
