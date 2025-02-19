@@ -161,6 +161,21 @@ const UpdateContent = ({
             </Form.Item>
 
             <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.coreSize' })}
+              name="coreSize"
+            >
+              <InputNumber min={-1} />
+            </Form.Item>
+
+            <Form.Item
+              label={intl.formatMessage({ id: 'pages.user.queueSize' })}
+              name="queueSize"
+            >
+              <InputNumber min={-1} />
+            </Form.Item>
+
+
+            <Form.Item
               label={intl.formatMessage({ id: 'pages.user.validStartTime' })}
               name="validStartTime"
             >
