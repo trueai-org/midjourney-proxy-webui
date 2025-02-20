@@ -179,14 +179,14 @@ const UpdateContent = ({
               label={intl.formatMessage({ id: 'pages.user.validStartTime' })}
               name="validStartTime"
             >
-              <DatePicker />
+              <DatePicker format="YYYY-MM-DD"/>
             </Form.Item>
 
             <Form.Item
               label={intl.formatMessage({ id: 'pages.user.validEndTime' })}
               name="validEndTime"
             >
-              <DatePicker />
+              <DatePicker format="YYYY-MM-DD"/>
             </Form.Item>
 
             <Form.Item

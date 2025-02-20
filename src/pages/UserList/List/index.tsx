@@ -46,6 +46,15 @@ const UserList: React.FC = () => {
 
   const handleAdd = async (values: Record<string, string>) => {
     setModalSubmitLoading(true);
+
+    // datepicker 传递的是 moment 对象，需要转换为字符串
+    if (values.validStartTime) {
+      values.validStartTime =  moment(values.validStartTime).format('YYYY-MM-DD');
+    }
+    if (values.validEndTime) {
+      values.validEndTime =  moment(values.validEndTime).format('YYYY-MM-DD');
+    }
+
     const res = await createUser(values);
     if (res.success) {
       api.success({
