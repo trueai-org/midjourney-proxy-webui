@@ -8,9 +8,6 @@ import { useIntl } from '@umijs/max';
 
 const { Option } = Select;
 
-const fetchLogContent = async () => {
-  return await probe(1000);
-};
 
 const Probe: React.FC = () => {
   const [logContent, setLogContent] = useState<string>('');
@@ -18,10 +15,15 @@ const Probe: React.FC = () => {
   const logCardRef = useRef<HTMLDivElement>(null);
   const intervalIdRef = useRef<NodeJS.Timeout | null>(null);
   const intl = useIntl();
+  const [level, setLevel] = useState(0);
+
+  const fetchLogContent = async (l = 0) => {
+    return await probe(1000, l);
+  };
 
   useEffect(() => {
     const tailLog = async () => {
-      const res = await fetchLogContent();
+      const res = await fetchLogContent(level);
       const logCardElement = logCardRef.current || document.body;
       const scrollN = logCardElement.scrollHeight - logCardElement.scrollTop - logCardElement.clientHeight;
       setLogContent(res);
@@ -52,10 +54,14 @@ const Probe: React.FC = () => {
         intervalIdRef.current = null;
       }
     };
-  }, [refreshInterval]);
+  }, [refreshInterval, level]);
 
   const handleRefreshChange = (value: number) => {
     setRefreshInterval(value);
+  };
+
+  const handleLevelChange = (value: number) => {
+    setLevel(value)
   };
 
   const toggleFullscreen = () => {
@@ -80,6 +86,10 @@ const Probe: React.FC = () => {
           <Option value={10}>10 {intl.formatMessage({ id: 'pages.seconds' })}</Option>
           <Option value={30}>30 {intl.formatMessage({ id: 'pages.seconds' })}</Option>
           <Option value={0}>{intl.formatMessage({ id: 'pages.probe.stopRefresh' })}</Option>
+        </Select>
+        <Select defaultValue={level} onChange={handleLevelChange} style={{ width: 150 }}>
+          <Option value={0}> Info </Option>
+          <Option value={1}> Error </Option>
         </Select>
       </Space>
       <Card className={styles.logCard} ref={logCardRef}>

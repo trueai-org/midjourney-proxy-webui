@@ -83,7 +83,12 @@ export async function queryAccount(options?: { [key: string]: any }) {
   });
 }
 
-export async function queryAccounts(data: any, predicate?: string, descend?: boolean, options?: { [key: string]: any }) {
+export async function queryAccounts(
+  data: any,
+  predicate?: string,
+  descend?: boolean,
+  options?: { [key: string]: any },
+) {
   return request<Record<string, any>>('/mj/admin/accounts', {
     method: 'POST',
     data: {
@@ -172,8 +177,6 @@ export async function deleteTask(id: string, options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
-
-
 
 export async function accountChangeVersion(
   id: string,
@@ -304,12 +307,11 @@ export async function createDomain(data: object, options?: { [key: string]: any 
   });
 }
 
-
 /**
  * 违规词
- * @param data 
- * @param options 
- * @returns 
+ * @param data
+ * @param options
+ * @returns
  */
 export async function queryIllegalWord(data: any, options?: { [key: string]: any }) {
   return request<Record<string, any>>('/mj/admin/banned-words', {
@@ -333,9 +335,9 @@ export async function queryIllegalWord(data: any, options?: { [key: string]: any
 
 /**
  * 删除违规词
- * @param id 
- * @param options 
- * @returns 
+ * @param id
+ * @param options
+ * @returns
  */
 export async function deleteIllegalWord(id: string, options?: { [key: string]: any }) {
   return request<API.Result>(`/mj/admin/banned-word/${id}`, {
@@ -346,9 +348,9 @@ export async function deleteIllegalWord(id: string, options?: { [key: string]: a
 
 /**
  * 创建违规词
- * @param data 
- * @param options 
- * @returns 
+ * @param data
+ * @param options
+ * @returns
  */
 export async function createIllegalWord(data: object, options?: { [key: string]: any }) {
   return request<API.Result>('/mj/admin/banned-word', {
@@ -412,8 +414,8 @@ export async function swapVideoFace(data: object, options?: { [key: string]: any
   });
 }
 
-export async function probe(tail: number, options?: { [key: string]: any }) {
-  return request<any>('/mj/admin/probe?tail=' + tail, {
+export async function probe(tail: number, level = 0, options?: { [key: string]: any }) {
+  return request<any>('/mj/admin/probe?tail=' + tail + '&level=' + level, {
     method: 'GET',
     ...(options || {}),
   });
