@@ -595,6 +595,46 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSaveUserUploadBase64' })}
+                  name="enableSaveUserUploadBase64"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableSaveUserUploadBase64Tips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSaveUserUploadLink' })}
+                  name="enableSaveUserUploadLink"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableSaveUserUploadLinkTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSaveGeneratedImage' })}
+                  name="enableSaveGeneratedImage"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableSaveGeneratedImageTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSaveIntermediateImage' })}
+                  name="enableSaveIntermediateImage"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableSaveIntermediateImageTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableConvertOfficialLink' })}
                   name="enableConvertOfficialLink"
                   help={intl.formatMessage({
@@ -604,7 +644,7 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableConvertAliyunLink' })}
                   name="enableConvertAliyunLink"
                   help={intl.formatMessage({
@@ -612,7 +652,7 @@ const Setting: React.FC = () => {
                   })}
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableMjTranslate' })}

@@ -257,7 +257,7 @@ export default {
   'pages.user.coreSize': 'Concurrency Size',
   'pages.user.queueSize': 'Queue Size',
   'pages.user.validStartTime': 'Valid Start Time',
-  'pages.user.validEndTime': 'Valid End Time',    
+  'pages.user.validEndTime': 'Valid End Time',
   'pages.user.unlimited': 'Unlimited',
   'pages.user.email': 'Email',
   'pages.user.phone': 'Phone',
@@ -405,14 +405,14 @@ export default {
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
   'pages.setting.isVerticalDomainTips':
     'When vertical domain painting is enabled, the promat entry will be calculated and then assigned to the corresponding account according to the entry. If no account is matched, the account painting that is not opened in vertical domain will be assigned',
-  
+
   'pages.setting.registerUserDefaultDayLimit': 'New User Default Day Limit',
   'pages.setting.registerUserDefaultTotalLimit': 'New User Default Total Limit',
   'pages.setting.registerUserDefaultCoreSize': 'New User Default Concurrency',
   'pages.setting.registerUserDefaultQueueSize': 'New User Default Queue Size',
 
-  'pages.setting.guestDefaultCoreSize': 'Guest Default Concurrency',  
-  'pages.setting.guestDefaultQueueSize': 'Guest Default Queue Size',  
+  'pages.setting.guestDefaultCoreSize': 'Guest Default Concurrency',
+  'pages.setting.guestDefaultQueueSize': 'Guest Default Queue Size',
 
   'pages.setting.enableGuest': 'Enable Guest',
   'pages.setting.guestDefaultDayLimit': 'Guest Default Day Limit',
@@ -447,9 +447,21 @@ export default {
   'pages.setting.enableAutoExtendTokenTips':
     'After this function is enabled, the Token is automatically renewed every 1 to 10 minutes',
 
-  'pages.setting.enableUserCustomUploadBase64': 'User upload',
+  'pages.setting.enableUserCustomUploadBase64': 'User upload base64 image',
   'pages.setting.enableUserCustomUploadBase64Tips':
     'After this function is enabled, users can upload base64 images',
+
+  'pages.setting.enableSaveUserUploadBase64': 'Convert the user base64 image',
+  'pages.setting.enableSaveUserUploadBase64Tips': 'After enabling, save the base64 uploaded by the user to file storage (such as pad maps, mixed images, etc.)',
+
+  'pages.setting.enableSaveUserUploadLink': 'Convert the user link image',
+  'pages.setting.enableSaveUserUploadLinkTips': 'After enabling, save the links submitted by the user to the file store (for example: describe)',
+
+  'pages.setting.enableSaveGeneratedImage': 'Save the final picture',
+  'pages.setting.enableSaveGeneratedImageTips': 'After enabling, save the final discord image to the file store',
+
+  'pages.setting.enableSaveIntermediateImage': 'Save the progress picture',
+  'pages.setting.enableSaveIntermediateImageTips': 'After enabling, save the discord progress image to the file store',
 
   'pages.setting.enableConvertOfficialLink': 'Convert official links',
   'pages.setting.enableConvertOfficialLinkTips':

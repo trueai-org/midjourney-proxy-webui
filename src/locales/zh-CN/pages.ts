@@ -410,14 +410,26 @@ export default {
   'pages.setting.enableAutoExtendToken': '自动续期令牌',
   'pages.setting.enableAutoExtendTokenTips': '启用后随机每 1~10 分钟自动续期一次 Token',
 
-  'pages.setting.enableUserCustomUploadBase64': '用户上传文件',
-  'pages.setting.enableUserCustomUploadBase64Tips': '启用后用户可以上传 base64 图片',
+  'pages.setting.enableUserCustomUploadBase64': '用户上传 Base64 图片',
+  'pages.setting.enableUserCustomUploadBase64Tips': '启用后允许用户上传 Base64 图片',
+
+  'pages.setting.enableSaveUserUploadBase64': '转换用户 Base64 图片',
+  'pages.setting.enableSaveUserUploadBase64Tips': '启用后保存用户上传的 Base64 到文件存储（例如：垫图、混图等）',
+
+  'pages.setting.enableSaveUserUploadLink': '转换用户 Link 图片',
+  'pages.setting.enableSaveUserUploadLinkTips': '启用后保存用户提交的 Link 到文件存储（例如：Describe）',
+
+  'pages.setting.enableSaveGeneratedImage': '保存最终图片',
+  'pages.setting.enableSaveGeneratedImageTips': '启用后保存 Discord 最终图片到文件存储',
+
+  'pages.setting.enableSaveIntermediateImage': '保存进度图片',
+  'pages.setting.enableSaveIntermediateImageTips': '启用后保存 Discord  进度图片到文件存储',
 
   'pages.setting.enableConvertOfficialLink': '转换官方链接',
-  'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 discord 官方链接（近期谨慎开启！防止账号受到上传限制！）',
+  'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 Discord 官方链接（近期谨慎开启！防止账号受到上传限制！）',
 
   'pages.setting.enableConvertAliyunLink': '转换加速链接',
-  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 base64 自动转为加速链接（上传文件到阿里云/腾讯云/本地）',
+  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 Base64 自动转为加速链接（上传文件到阿里云/腾讯云/本地）',
 
   'pages.setting.enableAutoLogin': '自动登录',
   'pages.setting.enableAutoLoginTips': '启用后如果 token 过期，则使用账号密码自动登录',
