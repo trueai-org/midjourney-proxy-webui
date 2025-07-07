@@ -23,10 +23,14 @@ const AddContent = ({
   form,
   onSubmit,
   r,
+  isYouChuan = false,
+  isOfficial = false,
 }: {
   form: FormInstance;
   onSubmit: (values: any) => void;
   r: any;
+  isYouChuan?: boolean;
+  isOfficial?: boolean;
 }) => {
   const intl = useIntl();
   // 使用 useEffect 来在组件挂载时设置表单的初始值
@@ -90,261 +94,429 @@ const AddContent = ({
       wrapperCol={{ span: 16 }}
       onFinish={onSubmit}
     >
-      <Row gutter={16}>
-        <Col span={8}>
-          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.info' })}>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.guildId' })}
-              name="guildId"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.channelId' })}
-              name="channelId"
-              rules={[{ required: true }]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.userToken' })}
-              name="userToken"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.botToken' })} name="botToken">
-              <Input />
-            </Form.Item>
+      {isYouChuan === true || isOfficial === true ? (
+        <>
+          <Row gutter={16}>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.info' })}>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.loginAccount' })}
+                  name="loginAccount"
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.loginPassword' })}
+                  name="loginPassword"
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
 
-            <Form.Item label="User Agent" name="userAgent">
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.enable' })}
-              name="enable"
-              valuePropName="checked"
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.enableFastToRelax' })}
-              name="enableFastToRelax"
-              valuePropName="checked"
-              tooltip={intl.formatMessage({ id: 'pages.account.enableFastToRelaxTips' })}
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.enableRelaxToFast' })}
-              name="enableRelaxToFast"
-              valuePropName="checked"
-              tooltip={intl.formatMessage({ id: 'pages.account.enableRelaxToFastTips' })}
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}
-              name="remixAutoSubmit"
-              valuePropName="checked"
-            >
-              <Switch />
-            </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.userToken' })}
+                  name="userToken"
+                >
+                  <Input />
+                </Form.Item>
 
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
-              <Select allowClear>
-                <Select.Option value="RELAX">RELAX</Select.Option>
-                <Select.Option value="FAST">FAST</Select.Option>
-                <Select.Option value="TURBO">TURBO</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.allowModes' })}
-              name="allowModes"
-            >
-              <Select allowClear mode="multiple">
-                <Select.Option value="RELAX">RELAX</Select.Option>
-                <Select.Option value="FAST">FAST</Select.Option>
-                <Select.Option value="TURBO">TURBO</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
-              name="enableAutoSetRelax"
-              valuePropName="checked"
-              tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
-            >
-              <Switch />
-            </Form.Item>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.poolsize' })}>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.coreSize' })} name="coreSize">
-              <InputNumber min={1} />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.queueSize' })}
-              name="queueSize"
-            >
-              <InputNumber min={1} />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })}
-              name="maxQueueSize"
-            >
-              <InputNumber min={1} />
-            </Form.Item>
+                <Form.Item label="User Agent" name="userAgent">
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.enable' })}
+                  name="enable"
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
 
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.interval' })} name="interval">
-              <InputNumber min={1.2} />
-            </Form.Item>
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
+                  <Select allowClear>
+                    <Select.Option value="RELAX">RELAX</Select.Option>
+                    <Select.Option value="FAST">FAST</Select.Option>
+                    <Select.Option value="TURBO">TURBO</Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.allowModes' })}
+                  name="allowModes"
+                >
+                  <Select allowClear mode="multiple">
+                    <Select.Option value="RELAX">RELAX</Select.Option>
+                    <Select.Option value="FAST">FAST</Select.Option>
+                    <Select.Option value="TURBO">TURBO</Select.Option>
+                  </Select>
+                </Form.Item>
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.poolsize' })}>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.coreSize' })}
+                  name="coreSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.queueSize' })}
+                  name="queueSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })}
+                  name="maxQueueSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
 
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
-              <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <Space>
-                  <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
-                    <InputNumber min={1.2} placeholder="Min" />
-                  </Form.Item>
-                  ~
-                  <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
-                    <InputNumber min={1.2} placeholder="Max" />
-                  </Form.Item>
-                </Space>
-              </div>
-            </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.interval' })}
+                  name="interval"
+                >
+                  <InputNumber min={1.2} />
+                </Form.Item>
 
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
-              <InputNumber min={1} />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.enableMj' })} name="enableMj">
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.enableNiji' })}
-              name="enableNiji"
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.isBlend' })} name="isBlend">
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.isDescribe' })}
-              name="isDescribe"
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.isShorten' })}
-              name="isShorten"
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
-              name="dayDrawLimit"
-            >
-              <InputNumber min={-1} />
-            </Form.Item>
-          </Card>
-        </Col>
-        <Col span={8}>
-          <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}
-              name="privateChannelId"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}
-              name="nijiBotChannelId"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.permanentInvitationLink' })}
-              name="permanentInvitationLink"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
-              name="isVerticalDomain"
-            >
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.verticalDomainIds' })}
-              name="verticalDomainIds"
-            >
-              <Select options={opts} allowClear mode="multiple"></Select>
-            </Form.Item>
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
+                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Space>
+                      <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
+                        <InputNumber min={1.2} placeholder="Min" />
+                      </Form.Item>
+                      ~
+                      <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
+                        <InputNumber min={1.2} placeholder="Max" />
+                      </Form.Item>
+                    </Space>
+                  </div>
+                </Form.Item>
 
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
-              <InputNumber />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.timeoutMinutes' })}
-              name="timeoutMinutes"
-            >
-              <InputNumber min={1} suffix={intl.formatMessage({ id: 'pages.minutes' })} />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.sponsor' })} name="sponsor">
-              <Input />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
-              <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
-            </Form.Item>
-            <Form.Item label={intl.formatMessage({ id: 'pages.account.workTime' })} name="workTime">
-              <Input placeholder="09:00-17:00, 18:00-22:00" />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.fishingTime' })}
-              help={intl.formatMessage({ id: 'pages.account.fishingTimeTips' })}
-              name="fishingTime"
-            >
-              <Input placeholder="23:30-09:00, 00:00-10:00" />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.subChannels' })}
-              name="subChannels"
-              extra={
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setSubChannels(form.getFieldValue('subChannels').join('\n'));
-                    showModal();
-                  }}
-                  icon={<FullscreenOutlined />}
-                ></Button>
-              }
-            >
-              <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 1 }} />
-            </Form.Item>
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
+                  <InputNumber min={1} />
+                </Form.Item>
 
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.loginAccount' })}
-              name="loginAccount"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.loginPassword' })}
-              name="loginPassword"
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label={intl.formatMessage({ id: 'pages.account.login2fa' })}
-              name="login2fa"
-            >
-              <Input />
-            </Form.Item>
-          </Card>
-        </Col>
-      </Row>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
+                  name="dayDrawLimit"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
+                  <InputNumber />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.timeoutMinutes' })}
+                  name="timeoutMinutes"
+                >
+                  <InputNumber min={1} suffix={intl.formatMessage({ id: 'pages.minutes' })} />
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
+                  <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.workTime' })}
+                  name="workTime"
+                >
+                  <Input placeholder="09:00-17:00, 18:00-22:00" />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.fishingTime' })}
+                  help={intl.formatMessage({ id: 'pages.account.fishingTimeTips' })}
+                  name="fishingTime"
+                >
+                  <Input placeholder="23:30-09:00, 00:00-10:00" />
+                </Form.Item>
+              </Card>
+            </Col>
+          </Row>
+        </>
+      ) : (
+        <>
+          <Row gutter={16}>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.info' })}>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.guildId' })}
+                  name="guildId"
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.channelId' })}
+                  name="channelId"
+                  rules={[{ required: true }]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.userToken' })}
+                  name="userToken"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.botToken' })}
+                  name="botToken"
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item label="User Agent" name="userAgent">
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.enable' })}
+                  name="enable"
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableFastToRelax' })}
+                  name="enableFastToRelax"
+                  valuePropName="checked"
+                  tooltip={intl.formatMessage({ id: 'pages.account.enableFastToRelaxTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableRelaxToFast' })}
+                  name="enableRelaxToFast"
+                  valuePropName="checked"
+                  tooltip={intl.formatMessage({ id: 'pages.account.enableRelaxToFastTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}
+                  name="remixAutoSubmit"
+                  valuePropName="checked"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
+                  <Select allowClear>
+                    <Select.Option value="RELAX">RELAX</Select.Option>
+                    <Select.Option value="FAST">FAST</Select.Option>
+                    <Select.Option value="TURBO">TURBO</Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.allowModes' })}
+                  name="allowModes"
+                >
+                  <Select allowClear mode="multiple">
+                    <Select.Option value="RELAX">RELAX</Select.Option>
+                    <Select.Option value="FAST">FAST</Select.Option>
+                    <Select.Option value="TURBO">TURBO</Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
+                  name="enableAutoSetRelax"
+                  valuePropName="checked"
+                  tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.poolsize' })}>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.coreSize' })}
+                  name="coreSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.queueSize' })}
+                  name="queueSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })}
+                  name="maxQueueSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.interval' })}
+                  name="interval"
+                >
+                  <InputNumber min={1.2} />
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
+                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Space>
+                      <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
+                        <InputNumber min={1.2} placeholder="Min" />
+                      </Form.Item>
+                      ~
+                      <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
+                        <InputNumber min={1.2} placeholder="Max" />
+                      </Form.Item>
+                    </Space>
+                  </div>
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
+                  <InputNumber min={1} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableMj' })}
+                  name="enableMj"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableNiji' })}
+                  name="enableNiji"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isBlend' })}
+                  name="isBlend"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isDescribe' })}
+                  name="isDescribe"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isShorten' })}
+                  name="isShorten"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
+                  name="dayDrawLimit"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+              </Card>
+            </Col>
+            <Col span={8}>
+              <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}
+                  name="privateChannelId"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.nijiChannelId' })}
+                  name="nijiBotChannelId"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.permanentInvitationLink' })}
+                  name="permanentInvitationLink"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
+                  name="isVerticalDomain"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.verticalDomainIds' })}
+                  name="verticalDomainIds"
+                >
+                  <Select options={opts} allowClear mode="multiple"></Select>
+                </Form.Item>
+
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
+                  <InputNumber />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.timeoutMinutes' })}
+                  name="timeoutMinutes"
+                >
+                  <InputNumber min={1} suffix={intl.formatMessage({ id: 'pages.minutes' })} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.sponsor' })}
+                  name="sponsor"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item label={intl.formatMessage({ id: 'pages.account.remark' })} name="remark">
+                  <Input.TextArea autoSize={{ minRows: 1, maxRows: 6 }} />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.workTime' })}
+                  name="workTime"
+                >
+                  <Input placeholder="09:00-17:00, 18:00-22:00" />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.fishingTime' })}
+                  help={intl.formatMessage({ id: 'pages.account.fishingTimeTips' })}
+                  name="fishingTime"
+                >
+                  <Input placeholder="23:30-09:00, 00:00-10:00" />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.subChannels' })}
+                  name="subChannels"
+                  extra={
+                    <Button
+                      type="primary"
+                      onClick={() => {
+                        setSubChannels(form.getFieldValue('subChannels').join('\n'));
+                        showModal();
+                      }}
+                      icon={<FullscreenOutlined />}
+                    ></Button>
+                  }
+                >
+                  <Input.TextArea disabled autoSize={{ minRows: 1, maxRows: 1 }} />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.loginAccount' })}
+                  name="loginAccount"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.loginPassword' })}
+                  name="loginPassword"
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.login2fa' })}
+                  name="login2fa"
+                >
+                  <Input />
+                </Form.Item>
+              </Card>
+            </Col>
+          </Row>
+        </>
+      )}
 
       <Modal
         title={intl.formatMessage({ id: 'pages.account.subChannels' })}

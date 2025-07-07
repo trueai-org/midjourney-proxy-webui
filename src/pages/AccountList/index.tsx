@@ -14,10 +14,12 @@ import {
 } from '@/services/mj/api';
 import {
   ClockCircleOutlined,
+  CrownTwoTone,
   EditOutlined,
   HeartTwoTone,
   LockOutlined,
   LoginOutlined,
+  RocketTwoTone,
   SyncOutlined,
   ToolOutlined,
   UnlockOutlined,
@@ -258,20 +260,25 @@ const AccountList: React.FC = () => {
       width: 200,
       align: 'center',
       sorter: true,
-      render: (text: string, record: Record<string, any>) => (
-        <a
-          onClick={() => {
-            setModalReadonly(true);
-            openModal(
-              intl.formatMessage({ id: 'pages.account.info' }) + ' - ' + record.id,
-              <MoreContent record={record} onSuccess={triggerRefreshAccount} />,
-              1100,
-            );
-          }}
-        >
-          {text}
-        </a>
-      ),
+      render: (text: string, record: Record<string, any>) =>
+        record.isYouChuan || record.isOfficial ? (
+          <> {text}</>
+        ) : (
+          <>
+            <a
+              onClick={() => {
+                setModalReadonly(true);
+                openModal(
+                  intl.formatMessage({ id: 'pages.account.info' }) + ' - ' + record.id,
+                  <MoreContent record={record} onSuccess={triggerRefreshAccount} />,
+                  1100,
+                );
+              }}
+            >
+              {text}
+            </a>
+          </>
+        ),
     } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.account.channelId' }),
@@ -485,68 +492,96 @@ const AccountList: React.FC = () => {
       render: (value: any, record: Record<string, any>) => {
         return (
           <Space>
-            <Tooltip title={intl.formatMessage({ id: 'pages.account.loginAccountGetToken' })}>
-              <Button
-                key="login"
-                icon={<LoginOutlined />}
-                type={'dashed'}
-                onClick={() => handleLogin(record)}
-              />
-            </Tooltip>
+            {record.isYouChuan === true || record.isOfficial === true ? (
+              <>
+                <Tooltip title={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}>
+                  <Button
+                    key="EditAndReconnect"
+                    type={'primary'}
+                    icon={<ToolOutlined />}
+                    onClick={() => {
+                      // 传一个随机数，保证每次都渲染
 
-            {record.lock && (
-              <Button
-                key="Lock"
-                icon={<UnlockOutlined />}
-                type={'dashed'}
-                onClick={() =>
-                  openModal(
-                    intl.formatMessage({ id: 'pages.account.cfmodal' }),
-                    <CfContent form={form} record={record} onSubmit={handleCfOk} />,
-                    1000,
-                  )
-                }
-              />
+                      openModal(
+                        intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
+                        <ReconnectContent
+                          r={Math.random()}
+                          form={form}
+                          record={record}
+                          onSubmit={handleReconnect}
+                        />,
+                        1600,
+                      );
+                    }}
+                  />
+                </Tooltip>
+              </>
+            ) : (
+              <>
+                {' '}
+                <Tooltip title={intl.formatMessage({ id: 'pages.account.loginAccountGetToken' })}>
+                  <Button
+                    key="login"
+                    icon={<LoginOutlined />}
+                    type={'dashed'}
+                    onClick={() => handleLogin(record)}
+                  />
+                </Tooltip>
+                {record.lock && (
+                  <Button
+                    key="Lock"
+                    icon={<UnlockOutlined />}
+                    type={'dashed'}
+                    onClick={() =>
+                      openModal(
+                        intl.formatMessage({ id: 'pages.account.cfmodal' }),
+                        <CfContent form={form} record={record} onSubmit={handleCfOk} />,
+                        1000,
+                      )
+                    }
+                  />
+                )}
+                <SyncButton record={record} onSuccess={triggerRefreshAccount} />
+                <Tooltip title={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}>
+                  <Button
+                    key="EditAndReconnect"
+                    type={'primary'}
+                    icon={<ToolOutlined />}
+                    onClick={() => {
+                      // 传一个随机数，保证每次都渲染
+
+                      openModal(
+                        intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
+                        <ReconnectContent
+                          r={Math.random()}
+                          form={form}
+                          record={record}
+                          onSubmit={handleReconnect}
+                        />,
+                        1600,
+                      );
+                    }}
+                  />
+                </Tooltip>
+                <Button
+                  key="Update"
+                  icon={<EditOutlined />}
+                  onClick={() =>
+                    openModal(
+                      intl.formatMessage({ id: 'pages.account.update' }),
+                      <UpdateContent
+                        r={Math.random()}
+                        form={form}
+                        record={record}
+                        onSubmit={handleUpdate}
+                      />,
+                      1000,
+                    )
+                  }
+                />
+              </>
             )}
 
-            <SyncButton record={record} onSuccess={triggerRefreshAccount} />
-            <Tooltip title={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}>
-              <Button
-                key="EditAndReconnect"
-                type={'primary'}
-                icon={<ToolOutlined />}
-                onClick={() => {
-                  // 传一个随机数，保证每次都渲染
-
-                  openModal(
-                    intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
-                    <ReconnectContent
-                      r={Math.random()}
-                      form={form}
-                      record={record}
-                      onSubmit={handleReconnect}
-                    />,
-                    1600,
-                  );
-                }}
-              />
-            </Tooltip>
-            <Button
-              key="Update"
-              icon={<EditOutlined />}
-              onClick={() =>
-                openModal(
-                  intl.formatMessage({ id: 'pages.account.update' }),
-                  <UpdateContent
-                    r={Math.random()}
-                    form={form}
-                    record={record}
-                    onSubmit={handleUpdate}
-                  />,
-                  1000,
-                )
-              }
-            />
             <DelButton record={record} onSuccess={triggerRefreshAccount} />
           </Space>
         );
@@ -615,6 +650,46 @@ const AccountList: React.FC = () => {
           rowKey="id"
           actionRef={actionRef}
           toolBarRender={() => [
+            <Button
+              key="official"
+              type={'dashed'}
+              icon={<CrownTwoTone />}
+              onClick={() => {
+                openModal(
+                  intl.formatMessage({ id: 'pages.account.officialAccountTitle' }),
+                  <AddContent
+                    r={Math.random()}
+                    form={form}
+                    onSubmit={(values) => handleAdd({ ...values, isOfficial: true })}
+                    isOfficial
+                  />,
+                  1600,
+                );
+              }}
+            >
+              {intl.formatMessage({ id: 'pages.account.officialAccount' })}
+            </Button>,
+
+            <Button
+              key="youchuan"
+              type={'dashed'}
+              icon={<RocketTwoTone twoToneColor="#52c41a" />}
+              onClick={() => {
+                openModal(
+                  intl.formatMessage({ id: 'pages.account.youchuanAccountTitle' }),
+                  <AddContent
+                    r={Math.random()}
+                    form={form}
+                    onSubmit={(values) => handleAdd({ ...values, isYouChuan: true })}
+                    isYouChuan
+                  />,
+                  1600,
+                );
+              }}
+            >
+              {intl.formatMessage({ id: 'pages.account.youchuanAccount' })}
+            </Button>,
+
             <Button
               key="sponsor"
               type={'dashed'}

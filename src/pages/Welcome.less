@@ -1,0 +1,37 @@
+.system-info-item {
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+  }
+  
+  .ant-card {
+    .ant-card-head {
+      border-bottom: 1px solid #f0f0f0;
+    }
+  }
+
+
+  
+  @media (max-width: 768px) {
+    .system-info-item {
+      flex-direction: column;
+      align-items: flex-start !important;
+      gap: 8px;
+      
+      > div:first-child {
+        width: 100%;
+      }
+      
+      > span:last-child {
+        align-self: flex-end;
+      }
+    }
+  }
+
+  .system-info-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+  }

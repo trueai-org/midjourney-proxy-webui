@@ -1,6 +1,14 @@
 import JsonEditor from '@/components/JsonEditor';
-import { getConfig, migrateAccountAndTasks, mongoConnect, updateConfig } from '@/services/mj/api';
-import { SaveOutlined } from '@ant-design/icons';
+import {
+  cancelUpdate,
+  checkUpdate,
+  getConfig,
+  migrateAccountAndTasks,
+  mongoConnect,
+  restart,
+  updateConfig,
+} from '@/services/mj/api';
+import { CloudDownloadOutlined, SaveOutlined, SyncOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import {
@@ -12,57 +20,28 @@ import {
   Input,
   InputNumber,
   message,
+  Modal,
+  Progress,
   Row,
   Select,
   Space,
   Spin,
   Switch,
+  Tag,
   Tooltip,
+  Typography,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import './index.less';
+
+const { Text } = Typography;
 
 const Setting: React.FC = () => {
   const [form] = Form.useForm();
 
   const intl = useIntl();
   const [loading, setLoading] = useState(false);
-
-  const loadData = () => {
-    setLoading(true);
-    getConfig().then((c) => {
-      setLoading(false);
-      if (c.success) {
-        form.setFieldsValue(c.data);
-      }
-    });
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const onFinish = () => {
-    // 提交 form
-    form
-      .validateFields()
-      .then((values) => {
-        setLoading(true);
-        updateConfig(values).then((c) => {
-          setLoading(false);
-          if (c.success) {
-            // 提示成功
-            message.success(intl.formatMessage({ id: 'pages.setting.saveSuccess' }));
-            loadData();
-          } else {
-            // 提示错误
-            message.error(c.message || intl.formatMessage({ id: 'pages.setting.error' }));
-          }
-        });
-      })
-      .catch(() => {
-        message.error(intl.formatMessage({ id: 'pages.setting.error' }));
-      });
-  };
+  const [upgradeInfo, setUpgradeInfo] = useState<any>(null);
 
   const [host, setHost] = useState('');
   const [token, setToken] = useState('');
@@ -96,6 +75,173 @@ const Setting: React.FC = () => {
     }
   };
 
+  // ----- 检查更新业务 --------
+
+  const [isCheckingUpdate, setIsCheckingUpdate] = useState(false);
+  const [updateTimer, setUpdateTimer] = useState<NodeJS.Timeout | null>(null);
+
+  const startUpdateMonitoring = () => {
+    if (updateTimer) {
+      clearInterval(updateTimer);
+    }
+
+    const timer = setInterval(async () => {
+      try {
+        const cfg = await getConfig();
+        if (cfg.success) {
+          const result = cfg?.data.upgradeInfo || {};
+          setUpgradeInfo(result);
+
+          // 如果下载完成或出错，停止定时器
+          if (
+            result.status === 'ReadyToRestart' ||
+            result.status === 'Failed' ||
+            result.status === 'Idle' ||
+            result.status === 'Success'
+          ) {
+            clearInterval(timer);
+            setUpdateTimer(null);
+          }
+        }
+      } catch (error) {
+        console.error('监控更新状态失败:', error);
+      }
+    }, 2000); // 每2秒检查一次
+
+    setUpdateTimer(timer);
+  };
+
+  // 添加更新检查相关方法
+  const checkForUpdates = async () => {
+    try {
+      setIsCheckingUpdate(true);
+      const result = await checkUpdate();
+
+      if (result.success) {
+        setUpgradeInfo(result.data);
+
+        // 如果正在下载，启动定时器监控进度
+        if (result.data.status === 'Downloading') {
+          startUpdateMonitoring();
+        }
+      } else {
+        message.error(result.message || '检查更新失败');
+      }
+    } catch (error) {
+      message.error('检查更新失败');
+    } finally {
+      setIsCheckingUpdate(false);
+    }
+  };
+
+  const onCancelUpdate = async () => {
+    try {
+      const result = await cancelUpdate();
+
+      if (result.success) {
+        message.success('已取消更新');
+        if (updateTimer) {
+          clearInterval(updateTimer);
+          setUpdateTimer(null);
+        }
+        
+        // 重新检查状态
+        try {
+          const cfg = await getConfig();
+          if (cfg.success) {
+            const result = cfg?.data.upgradeInfo || {};
+            setUpgradeInfo(result);
+          }
+        } catch (error) {
+          console.error('监控更新状态失败:', error);
+        }
+        
+      } else {
+        message.error(result.message || '取消更新失败');
+      }
+    } catch (error) {
+      message.error('取消更新失败');
+    }
+  };
+
+  const restartApplication = async () => {
+    Modal.confirm({
+      title: '确认重启',
+      content: `新版本 ${upgradeInfo?.latestVersion} 已准备就绪，是否立即重启应用以完成更新？`,
+      okText: '立即重启',
+      cancelText: '稍后重启',
+      onOk: async () => {
+        try {
+          restart().then((c) => {
+            setLoading(false);
+            if (c.success) {
+              message.success(
+                c.message || intl.formatMessage({ id: 'pages.setting.restartSuccess' }),
+              );
+            } else {
+              message.error(c.message || intl.formatMessage({ id: 'pages.setting.error' }));
+            }
+          });
+        } catch (error) {
+          message.error('重启失败');
+        }
+      },
+    });
+  };
+
+  // 清理定时器
+  useEffect(() => {
+    return () => {
+      if (updateTimer) {
+        clearInterval(updateTimer);
+      }
+    };
+  }, [updateTimer]);
+
+  const loadData = () => {
+    setLoading(true);
+    getConfig().then((c) => {
+      setLoading(false);
+      if (c.success) {
+        form.setFieldsValue(c.data);
+
+        // 检查更新状态
+        setUpgradeInfo(c.data.upgradeInfo || {});
+
+        if (c.data.upgradeInfo.status === 'Downloading') {
+          startUpdateMonitoring();
+        }
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const onFinish = () => {
+    // 提交 form
+    form
+      .validateFields()
+      .then((values) => {
+        setLoading(true);
+        updateConfig(values).then((c) => {
+          setLoading(false);
+          if (c.success) {
+            // 提示成功
+            message.success(intl.formatMessage({ id: 'pages.setting.saveSuccess' }));
+            loadData();
+          } else {
+            // 提示错误
+            message.error(c.message || intl.formatMessage({ id: 'pages.setting.error' }));
+          }
+        });
+      })
+      .catch(() => {
+        message.error(intl.formatMessage({ id: 'pages.setting.error' }));
+      });
+  };
+
   return (
     <PageContainer>
       <Form
@@ -107,11 +253,52 @@ const Setting: React.FC = () => {
       >
         <Spin spinning={loading}>
           <Space style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between' }}>
-            <Alert
-              type="info"
-              style={{ paddingTop: '4px', paddingBottom: '4px' }}
-              description={intl.formatMessage({ id: 'pages.setting.tips' })}
-            />
+            <Space>
+              <Alert
+                type="info"
+                style={{ paddingTop: '4px', paddingBottom: '4px' }}
+                description={intl.formatMessage({ id: 'pages.setting.tips' })}
+              />
+              <Tooltip
+                title={intl.formatMessage({ id: 'pages.setting.restartServiceTips' })}
+                placement="bottom"
+              >
+                <Button
+                  loading={loading}
+                  type="primary"
+                  danger
+                  icon={<SyncOutlined spin={loading} />}
+                  onClick={() => {
+                    setLoading(true);
+                    restart().then((c) => {
+                      setLoading(false);
+                      if (c.success) {
+                        message.success(
+                          c.message || intl.formatMessage({ id: 'pages.setting.restartSuccess' }),
+                        );
+                      } else {
+                        message.error(
+                          c.message || intl.formatMessage({ id: 'pages.setting.error' }),
+                        );
+                      }
+                    });
+                  }}
+                >
+                  {intl.formatMessage({ id: 'pages.setting.restartService' })}
+                </Button>
+              </Tooltip>
+
+              <Button
+                danger
+                type="dashed"
+                icon={<CloudDownloadOutlined />}
+                onClick={checkForUpdates}
+                loading={loading}
+              >
+                {intl.formatMessage({ id: 'pages.setting.checkUpdate' })}
+              </Button>
+            </Space>
+
             <Space>
               <Tooltip
                 placement="bottom"
@@ -149,6 +336,89 @@ const Setting: React.FC = () => {
               </Button>
             </Space>
           </Space>
+
+          {/* 更新状态显示区域 */}
+          {upgradeInfo && (
+            <Card
+              style={{ marginTop: 16, marginBottom: 16 }}
+              size="small"
+              title={
+                <Space>
+                  <CloudDownloadOutlined />
+                  {intl.formatMessage({ id: 'pages.setting.updateStatus' })}
+                </Space>
+              }
+            >
+              <Space direction="vertical" style={{ width: '100%' }}>
+                {upgradeInfo.hasUpdate && <Tag color="green">{upgradeInfo.latestVersion}</Tag>}
+
+                {upgradeInfo.message && (
+                  <div>
+                    <Text type="secondary">{upgradeInfo.message}</Text>
+                  </div>
+                )}
+
+                {/* 下载进度条 */}
+                {upgradeInfo.status === 'Downloading' && (
+                  <div>
+                    <Progress
+                      percent={upgradeInfo.progress}
+                      status="active"
+                      format={(percent) => `${percent}%`}
+                    />
+                    <Button size="small" danger onClick={onCancelUpdate} style={{ marginTop: 8 }}>
+                      取消下载
+                    </Button>
+                  </div>
+                )}
+
+                {/* 下载完成提示 */}
+                {upgradeInfo.status === 'ReadyToRestart' && (
+                  <Alert
+                    message={`新版本 ${upgradeInfo.latestVersion} 已准备就绪`}
+                    description="点击下方按钮重启应用以完成更新"
+                    type="success"
+                    showIcon
+                    action={
+                      <Button type="primary" onClick={restartApplication}>
+                        重启应用
+                      </Button>
+                    }
+                  />
+                )}
+
+                {/* 错误提示 */}
+                {upgradeInfo.status === 'Failed' && upgradeInfo.errorMessage && (
+                  <Alert
+                    message="更新失败"
+                    description={upgradeInfo.errorMessage}
+                    type="error"
+                    showIcon
+                  />
+                )}
+
+                {/* 无更新提示 */}
+                {!upgradeInfo.hasUpdate && upgradeInfo.status === 'Success' && (
+                  <Alert
+                    message="已是最新版本"
+                    description="当前版本已是最新版本，无需更新"
+                    type="info"
+                    showIcon
+                  />
+                )}
+
+                {/* 平台不支持提示 */}
+                {!upgradeInfo.supportedPlatform && (
+                  <Alert
+                    message="当前平台不支持自动更新"
+                    description={`检测到平台: ${upgradeInfo.platform}`}
+                    type="warning"
+                    showIcon
+                  />
+                )}
+              </Space>
+            </Card>
+          )}
 
           <Row gutter={16}>
             <Col span={12}>
@@ -445,9 +715,46 @@ const Setting: React.FC = () => {
                 bordered={false}
               >
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableUpdateCheck' })}
+                  name="enableUpdateCheck"
+                  help={intl.formatMessage({ id: 'pages.setting.enableUpdateCheckTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.licenseKey' })}
+                  name="licenseKey"
+                >
+                  <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.isDemoMode' })}
+                  name="isDemoMode"
+                  help={intl.formatMessage({ id: 'pages.setting.isDemoModeTips' })}
+                >
+                  <Switch className="demo-mode" />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAccountSponsor' })}
                   name="enableAccountSponsor"
                   help={intl.formatMessage({ id: 'pages.setting.enableAccountSponsorTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableOfficial' })}
+                  name="enableOfficial"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableYouChuan' })}
+                  name="enableYouChuan"
                 >
                   <Switch />
                 </Form.Item>
@@ -516,6 +823,13 @@ const Setting: React.FC = () => {
                   name="guestDefaultQueueSize"
                 >
                   <InputNumber min={-1} />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.consulOptions' })}
+                  name="consulOptions"
+                >
+                  <JsonEditor />
                 </Form.Item>
 
                 <Form.Item

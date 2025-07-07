@@ -34,12 +34,14 @@ export default {
   'pages.welcome.top5': '今日绘图 TOP 10',
   'pages.welcome.unit': '次绘图',
 
-
   'pages.welcome.link': '欢迎使用',
-  'pages.welcome.description': 'Midjourney Proxy Admin 是一个 Midjourney Proxy 后台管理界面。致力于提供各种管理功能。',
+  'pages.welcome.description':
+    'Midjourney Proxy Admin 是一个 Midjourney Proxy 后台管理界面。致力于提供各种管理功能。',
   'pages.welcome.learn': '了解',
-  'pages.welcome.midjourney-proxy': 'midjourney-proxy 是一个代理 MidJourney 的 discord 频道的开源项目，实现 api 形式调用 AI 绘图。',
-  'pages.welcome.go-amz-ai': 'GoAmzAI 🤖️ 基于 Golang + Vue3 + NaiveUI 的全新的个人、团队、企业私有化AIGC平台',
+  'pages.welcome.midjourney-proxy':
+    'midjourney-proxy 是一个代理 MidJourney 的 discord 频道的开源项目，实现 api 形式调用 AI 绘图。',
+  'pages.welcome.go-amz-ai':
+    'GoAmzAI 🤖️ 基于 Golang + Vue3 + NaiveUI 的全新的个人、团队、企业私有化AIGC平台',
   'pages.welcome.midjourney-proxy-webui': 'Midjourney Proxy 后台管理界面。',
   'pages.welcome.alertMessage': '更快更强的重型组件，已经发布。',
   'pages.welcome.learnMore': '了解更多',
@@ -122,6 +124,12 @@ export default {
   'pages.account.remark': '备注',
   'pages.account.disabledReason': '禁用原因',
 
+  'pages.account.youchuanAccountTitle': '添加悠船账号',
+  'pages.account.youchuanAccount': '添加悠船账号',
+
+  'pages.account.officialAccountTitle': '添加官方账号',
+  'pages.account.officialAccount': '添加官方账号',
+
   'pages.account.sync': '同步',
   'pages.account.sponsorAccount': '赞助',
   'pages.account.sponsorAccountTitle': '赞助账号（感谢您的慷慨和赞助）',
@@ -133,7 +141,6 @@ export default {
   'pages.account.delete': '删除账号',
   'pages.account.deleteTitle': '确认删除该账号？',
   'pages.account.deleteSuccess': '账号删除成功',
-
 
   'pages.task.delete': '删除任务',
   'pages.task.deleteTitle': '确认删除此任务吗?',
@@ -151,7 +158,8 @@ export default {
   'pages.account.enableRelaxToFast': '自动切换快速',
   'pages.account.enableRelaxToFastTips': '启用后，当续订或拥有快速时长时，自动切换到快速模式',
   'pages.account.enableAutoSetRelax': '自动设置慢速模式',
-  'pages.account.enableAutoSetRelaxTips': '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式，并设置并行数为 3',
+  'pages.account.enableAutoSetRelaxTips':
+    '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式，并设置并行数为 3',
   'pages.account.mjChannelId': 'MJ私信ID',
   'pages.account.nijiChannelId': 'Niji私信ID',
   'pages.account.basicInfo': '基本信息',
@@ -184,8 +192,10 @@ export default {
   'pages.account.isVerticalDomain': '开启垂直领域',
   'pages.account.verticalDomainIds': '垂直领域配置',
   'pages.account.subChannels': '子频道配置',
-  'pages.account.subChannelsHelp': '请输入子频道，每行一个，格式：[邀请链接],[频道地址]，示例：https://discord.gg/xxx,https://discord.com/channels/xxx/xxx',
-  'pages.account.allowModesTooltip': '如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数',
+  'pages.account.subChannelsHelp':
+    '请输入子频道，每行一个，格式：[邀请链接],[频道地址]，示例：https://discord.gg/xxx,https://discord.com/channels/xxx/xxx',
+  'pages.account.allowModesTooltip':
+    '如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数',
 
   'pages.account.loginAccountGetToken': '登录并获取 Token',
   'pages.account.loginAccountGetTokenError': '必须填写账号和密码、2FA密钥',
@@ -193,7 +203,6 @@ export default {
   'pages.account.loginPassword': '登录密码',
   'pages.account.login2fa': '2FA 密钥',
   'pages.account.isAutoLogining': '登录中...',
-
 
   'pages.task.info': '任务信息',
   'pages.task.type': '类型',
@@ -231,7 +240,6 @@ export default {
   'pages.task.SUCCESS': '成功',
   'pages.task.CANCEL': '已取消',
 
-
   'pages.user.name': '用户名',
   'pages.user.dayDrawLimit': '日绘图限制',
   'pages.user.totalDrawLimit': '总绘图限制',
@@ -240,7 +248,7 @@ export default {
   'pages.user.coreSize': '并发数量',
   'pages.user.queueSize': '队列数量',
   'pages.user.validStartTime': '有效开始时间',
-  'pages.user.validEndTime': '有效结束时间',  
+  'pages.user.validEndTime': '有效结束时间',
   'pages.user.unlimited': '无限制',
   'pages.user.email': '邮箱',
   'pages.user.phone': '电话',
@@ -274,7 +282,6 @@ export default {
   'pages.domain.delete': '删除领域标签',
   'pages.domain.deleteTitle': '确认删除该领域标签？',
   'pages.domain.keywords.tooltip': '多个关键词用逗号 "," 分隔',
-
 
   'pages.word.add': '添加违规词条',
   'pages.word.update': '更新违规词条',
@@ -316,7 +323,8 @@ export default {
   'pages.draw.selectAccount': '选择指定账号绘图',
 
   'pages.activate.actived': '服务已激活',
-  'pages.activate.activedTip': '可以正常维护账号、查看任务列表，提供midjourney api接口供外部调用；本系统的绘图测试页，提供了常用的绘图功能',
+  'pages.activate.activedTip':
+    '可以正常维护账号、查看任务列表，提供midjourney api接口供外部调用；本系统的绘图测试页，提供了常用的绘图功能',
   'pages.activate.drawTest': '绘画测试',
   'pages.activate.apiDoc': 'Swagger 接口文档，支持在线调试。',
   'pages.activate.unactiveTip': '尚未激活！请按照下述步骤，激活服务',
@@ -345,10 +353,10 @@ export default {
   'pages.setting.mongoDefaultConnectionString': 'MongoDB 字符串',
   'pages.setting.connectSuccess': '数据库连接成功',
   'pages.setting.connectError': '数据库连接失败',
-  'pages.setting.mongoDefaultConnectionStringTips': 'MongoDB 连接字符串，如：mongodb://localhost:27017',
+  'pages.setting.mongoDefaultConnectionStringTips':
+    'MongoDB 连接字符串，如：mongodb://localhost:27017',
   'pages.setting.testConnect': '测试连接',
   'pages.setting.mongoNotUsed': '未使用 MongoDB，请重启服务',
-
 
   'pages.setting.mongoDefaultDatabase': 'MongoDB 数据库',
   'pages.setting.isAutoMigrate': '数据迁移',
@@ -371,26 +379,32 @@ export default {
   'pages.setting.captchaNotifyHookTip': '验证通过或登录完成后通知的地址，一般为您的站点',
   'pages.setting.captchaNotifySecret': '验证/登录回调密钥',
   'pages.setting.captchaNotifySecretTip': '加密密钥，验证通知回调的合法性，请输入随机字符串',
+
+  'pages.setting.restartServiceTips': '重启当前服务，请务必保存后重启，谨慎操作！',
+  'pages.setting.restartService': '重启服务',
+  'pages.setting.restartSuccess': '重启服务成功',
+
   'pages.setting.save': '保存',
   'pages.setting.saveSuccess': '保存成功',
   'pages.setting.saveFailed': '保存失败',
   'pages.setting.enableRegister': '开启注册',
   'pages.setting.isVerticalDomain': '开启垂直领域',
-  'pages.setting.isVerticalDomainTips': '开启垂直领域绘画，会计算 promat 词条，然后根据词条分配给对应的账号绘画，如果没有匹配到账号，则分配到未开启垂直领域的账号绘画',
+  'pages.setting.isVerticalDomainTips':
+    '开启垂直领域绘画，会计算 promat 词条，然后根据词条分配给对应的账号绘画，如果没有匹配到账号，则分配到未开启垂直领域的账号绘画',
 
   'pages.setting.registerUserDefaultDayLimit': '新用户日绘图限制',
   'pages.setting.registerUserDefaultTotalLimit': '新用户总绘图限制',
   'pages.setting.registerUserDefaultCoreSize': '新用户并发数',
   'pages.setting.registerUserDefaultQueueSize': '新用户队列数',
 
-  'pages.setting.guestDefaultCoreSize': '访客并发数',  
-  'pages.setting.guestDefaultQueueSize': '访客队列数',  
+  'pages.setting.guestDefaultCoreSize': '访客并发数',
+  'pages.setting.guestDefaultQueueSize': '访客队列数',
 
   'pages.setting.enableGuest': '开启访客',
   'pages.setting.guestDefaultDayLimit': '访客日绘图限制',
-  'pages.setting.ipRateLimiting': 'IP 限流配置',
-  'pages.setting.bannedLimiting': 'Banned prompt 限流配置',
-  'pages.setting.ipBlackRateLimiting': 'IP 黑名单限流配置',
+  'pages.setting.ipRateLimiting': 'IP 限流',
+  'pages.setting.bannedLimiting': 'Banned 限流',
+  'pages.setting.ipBlackRateLimiting': 'IP 黑名单限流',
   'pages.setting.notify': '公告',
   'pages.setting.otherSetting': '其他设置',
   'pages.setting.accountSetting': '账号设置',
@@ -401,9 +415,11 @@ export default {
 
   'pages.setting.discordSetting': 'Discord 配置',
   'pages.setting.enableAutoGetPrivateId': '自动获取私信',
-  'pages.setting.enableAutoGetPrivateIdTips': '账号启动连接时自动获取 Midjourney 私信 ID 和 Niji 私信 ID',
+  'pages.setting.enableAutoGetPrivateIdTips':
+    '账号启动连接时自动获取 Midjourney 私信 ID 和 Niji 私信 ID',
   'pages.setting.enableAutoVerifyAccount': '自动验证账号',
-  'pages.setting.enableAutoVerifyAccountTips': '账号启动连接时自动验证账号是否可用（可能触发手机验证，近期谨慎开启！）',
+  'pages.setting.enableAutoVerifyAccountTips':
+    '账号启动连接时自动验证账号是否可用（可能触发手机验证，近期谨慎开启！）',
   'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
   'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和设置',
 
@@ -414,10 +430,12 @@ export default {
   'pages.setting.enableUserCustomUploadBase64Tips': '启用后允许用户上传 Base64 图片',
 
   'pages.setting.enableSaveUserUploadBase64': '转换用户 Base64 图片',
-  'pages.setting.enableSaveUserUploadBase64Tips': '启用后保存用户上传的 Base64 到文件存储（例如：垫图、混图等）',
+  'pages.setting.enableSaveUserUploadBase64Tips':
+    '启用后保存用户上传的 Base64 到文件存储（例如：垫图、混图等）',
 
   'pages.setting.enableSaveUserUploadLink': '转换用户 Link 图片',
-  'pages.setting.enableSaveUserUploadLinkTips': '启用后保存用户提交的 Link 到文件存储（例如：Describe）',
+  'pages.setting.enableSaveUserUploadLinkTips':
+    '启用后保存用户提交的 Link 到文件存储（例如：Describe）',
 
   'pages.setting.enableSaveGeneratedImage': '保存最终图片',
   'pages.setting.enableSaveGeneratedImageTips': '启用后保存 Discord 最终图片到文件存储',
@@ -426,28 +444,42 @@ export default {
   'pages.setting.enableSaveIntermediateImageTips': '启用后保存 Discord  进度图片到文件存储',
 
   'pages.setting.enableConvertOfficialLink': '转换官方链接',
-  'pages.setting.enableConvertOfficialLinkTips': '启用后将 prompt 中非官方链接自动转为 Discord 官方链接（近期谨慎开启！防止账号受到上传限制！）',
+  'pages.setting.enableConvertOfficialLinkTips':
+    '启用后将 prompt 中非官方链接自动转为 Discord 官方链接（近期谨慎开启！防止账号受到上传限制！）',
 
   'pages.setting.enableConvertAliyunLink': '转换加速链接',
-  'pages.setting.enableConvertAliyunLinkTips': '启用后将用户上传的 Base64 自动转为加速链接（上传文件到阿里云/腾讯云/本地）',
+  'pages.setting.enableConvertAliyunLinkTips':
+    '启用后将用户上传的 Base64 自动转为加速链接（上传文件到阿里云/腾讯云/本地）',
 
   'pages.setting.enableAutoLogin': '自动登录',
   'pages.setting.enableAutoLoginTips': '启用后如果 token 过期，则使用账号密码自动登录',
 
   'pages.setting.enableConvertNijiToMj': '转换 Niji 为 MJ',
-  'pages.setting.enableConvertNijiToMjTips': '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 --niji 后缀（转换后出图效果是一致的），即：不添加 niji 机器人也可以通过 niji 机器人绘图',
+  'pages.setting.enableConvertNijiToMjTips':
+    '启用后将 Niji · journey 任务自动转为 Midjourney 任务，并对任务添加 --niji 后缀（转换后出图效果是一致的），即：不添加 niji 机器人也可以通过 niji 机器人绘图',
 
   'pages.setting.enableConvertNijiToNijiBot': '转换 --niji 为 Niji Bot',
-  'pages.setting.enableConvertNijiToNijiBotTips': '启用后当 prompt 中包含 --niji 时，将会自动转换为 Niji·journey Bot 任务',
+  'pages.setting.enableConvertNijiToNijiBotTips':
+    '启用后当 prompt 中包含 --niji 时，将会自动转换为 Niji·journey Bot 任务',
 
   'pages.setting.enableMjTranslate': 'MJ 翻译',
   'pages.setting.enableMjTranslateTips': '启用后将 Midjourney 任务的 prompt 中文自动翻译为英文',
 
   'pages.setting.enableNijiTranslate': 'NIJI 翻译',
-  'pages.setting.enableNijiTranslateTips': '启用后将 Niji · journey 任务的 prompt 中文自动翻译为英文',
+  'pages.setting.enableNijiTranslateTips':
+    '启用后将 Niji · journey 任务的 prompt 中文自动翻译为英文',
 
+  'pages.setting.enableOfficial': '启用官方绘图',
+  'pages.setting.enableYouChuan': '启用悠船绘图',
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
+
+  'pages.setting.consulOptions': 'Consul 配置',
+
+  'pages.setting.isDemoMode': '演示模式',
+  'pages.setting.isDemoModeTips': '启用演示模式，允许用户登录、绘图等操作。',
+
+  'pages.setting.licenseKey': '授权码',
 
   'pages.setting.imageStorageType': '文件存储',
   'pages.setting.imageStorageTypeTips': '设置图片存储到指定的存储方式',
@@ -460,4 +492,42 @@ export default {
 
   'pages.setting.cloudflareR2': 'Cloudflare R2',
   'pages.setting.cloudflareR2Tips': 'Cloudflare R2',
+
+  'pages.setting.enableUpdateCheck': '更新检查',
+  'pages.setting.enableUpdateCheckTips': '开启后将自动下载最新版',
+  'pages.setting.checkUpdate': '检查更新',
+  'pages.setting.updateStatus': '更新状态',
+
+  // 系统信息相关翻译
+  'pages.welcome.systemInfo': '系统信息',
+  'pages.welcome.programInfo': '程序信息',
+  'pages.welcome.systemDetails': '系统信息',
+  'pages.welcome.serverInfo': '服务器信息',
+
+  // 程序信息
+  'pages.welcome.programStartTime': '程序启动时间',
+  'pages.welcome.programUptime': '程序运行时长',
+  'pages.welcome.programVersion': '程序版本',
+  'pages.welcome.programDirectory': '程序目录',
+  'pages.welcome.availableMemory': '程序占用内存',
+
+  // 系统信息
+  'pages.welcome.operatingSystem': '操作系统',
+  'pages.welcome.architecture': '系统架构',
+  'pages.welcome.systemPlatform': '系统平台',
+  'pages.welcome.hostname': '主机名',
+  'pages.welcome.privateIp': '私有IP',
+  'pages.welcome.cpuCores': 'CPU核心数',
+  'pages.welcome.cpuCoresUnit': '个',
+
+  // 服务器信息
+  'pages.welcome.serverStartTime': '服务器启动时间',
+  'pages.welcome.serverUptime': '服务器运行时长',
+  'pages.welcome.totalMemory': '服务器总内存',
+  'pages.welcome.freeMemory': '服务器空闲内存',
+  'pages.welcome.processCount': '服务器进程数',
+  'pages.welcome.processCountUnit': '个',
+  'pages.welcome.runningEnvironment': '运行环境',
+  'pages.welcome.dockerContainer': 'Docker容器',
+  'pages.welcome.physicalMachine': '物理机/虚拟机',
 };

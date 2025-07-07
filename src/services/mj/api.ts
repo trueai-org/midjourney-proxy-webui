@@ -438,10 +438,35 @@ export async function updateConfig(data: object, options?: { [key: string]: any 
   });
 }
 
+// 重启
+export async function restart(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/restart', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
+// 检查更新
+export async function checkUpdate(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/check', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+// 取消更新
+export async function cancelUpdate(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/cancel-update', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
 // mongo db 连接
 export async function mongoConnect() {
   return request<API.Result>('/mj/admin/verify-mongo', {
     method: 'POST',
+    timeout: 1000 * 60 * 10, // 10 分钟
   });
 }
 
@@ -450,6 +475,6 @@ export async function migrateAccountAndTasks(data: object, options?: { [key: str
   return request<API.Result>('/mj/admin/mjplus-migration', {
     method: 'POST',
     data: data,
-    ...(options || {}),
+    ...(options || {})
   });
 }

@@ -134,6 +134,12 @@ export default {
   'pages.account.add':
     'Create Account (Automatically fill in the account information entered last time)',
 
+  'pages.account.youchuanAccountTitle': 'Add YouChuan Account',
+  'pages.account.youchuanAccount': 'Add YouChuan Account',
+
+  'pages.account.officialAccountTitle': 'Add Official Account',
+  'pages.account.officialAccount': 'Add Official Account',
+
   'pages.account.sync': 'Sync',
   'pages.account.sponsorAccount': 'Sponsor',
   'pages.account.sponsorAccountTitle':
@@ -395,11 +401,14 @@ export default {
   'pages.setting.notifyPoolSize': 'Draw Notify Pool',
 
   'pages.setting.captchaServer': 'Authentication/login service address',
-  'pages.setting.captchaServerTip': 'IP address of the automatic verification code server or IP address of the automatic login server',
+  'pages.setting.captchaServerTip':
+    'IP address of the automatic verification code server or IP address of the automatic login server',
   'pages.setting.captchaNotifyHook': 'Authentication/login callback address',
-  'pages.setting.captchaNotifyHookTip': 'Verify the address notified after you pass or login is complete, usually for your site',
+  'pages.setting.captchaNotifyHookTip':
+    'Verify the address notified after you pass or login is complete, usually for your site',
   'pages.setting.captchaNotifySecret': 'Authentication/login callback key',
-  'pages.setting.captchaNotifySecretTip': 'Encryption key to verify the validity of the notification callback, enter a random string',
+  'pages.setting.captchaNotifySecretTip':
+    'Encryption key to verify the validity of the notification callback, enter a random string',
 
   'pages.setting.enableRegister': 'Enable Register',
   'pages.setting.isVerticalDomain': 'Enable Vertical Domain',
@@ -420,6 +429,11 @@ export default {
   'pages.setting.bannedLimiting': 'Banned Limiting',
   'pages.setting.ipBlackRateLimiting': 'IP Black Rate Limiting',
   'pages.setting.notify': 'Notify',
+
+  'pages.setting.restartServiceTips': 'Restart the application',
+  'pages.setting.restartService': 'Restart Service',
+  'pages.setting.restartSuccess': 'Restart Service Success',
+
   'pages.setting.save': 'Save',
   'pages.setting.saveSuccess': 'Save Success',
   'pages.setting.saveFailed': 'Save Failed',
@@ -452,16 +466,20 @@ export default {
     'After this function is enabled, users can upload base64 images',
 
   'pages.setting.enableSaveUserUploadBase64': 'Convert the user base64 image',
-  'pages.setting.enableSaveUserUploadBase64Tips': 'After enabling, save the base64 uploaded by the user to file storage (such as pad maps, mixed images, etc.)',
+  'pages.setting.enableSaveUserUploadBase64Tips':
+    'After enabling, save the base64 uploaded by the user to file storage (such as pad maps, mixed images, etc.)',
 
   'pages.setting.enableSaveUserUploadLink': 'Convert the user link image',
-  'pages.setting.enableSaveUserUploadLinkTips': 'After enabling, save the links submitted by the user to the file store (for example: describe)',
+  'pages.setting.enableSaveUserUploadLinkTips':
+    'After enabling, save the links submitted by the user to the file store (for example: describe)',
 
   'pages.setting.enableSaveGeneratedImage': 'Save the final picture',
-  'pages.setting.enableSaveGeneratedImageTips': 'After enabling, save the final discord image to the file store',
+  'pages.setting.enableSaveGeneratedImageTips':
+    'After enabling, save the final discord image to the file store',
 
   'pages.setting.enableSaveIntermediateImage': 'Save the progress picture',
-  'pages.setting.enableSaveIntermediateImageTips': 'After enabling, save the discord progress image to the file store',
+  'pages.setting.enableSaveIntermediateImageTips':
+    'After enabling, save the discord progress image to the file store',
 
   'pages.setting.enableConvertOfficialLink': 'Convert official links',
   'pages.setting.enableConvertOfficialLinkTips':
@@ -491,8 +509,17 @@ export default {
   'pages.setting.enableNijiTranslateTips':
     'Automatically translate prompt for Niji · journey tasks to Chinese when enabled',
 
+  'pages.setting.enableOfficial': 'Enable Official Drawing',
+  'pages.setting.enableYouChuan': 'Enable YouChuan Drawing',
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',
+
+  'pages.setting.consulOptions': 'Consul Options',
+
+  'pages.setting.isDemoMode': 'Demo Mode',
+  'pages.setting.isDemoModeTips': 'Enable the demo mode to allow users to log in, draw and perform other operations.',
+
+  'pages.setting.licenseKey': 'License Key',
 
   'pages.setting.imageStorageType': 'storage mode',
   'pages.setting.imageStorageTypeTips':
@@ -506,4 +533,42 @@ export default {
 
   'pages.setting.cloudflareR2': 'Cloudflare R2',
   'pages.setting.cloudflareR2Tips': 'Cloudflare R2',
+
+  'pages.setting.enableUpdateCheck': 'Enable Update Check',
+  'pages.setting.enableUpdateCheckTips': 'When enabled, the system will check for updates at startup and notify the user if an update is available.',
+  'pages.setting.checkUpdate': 'Check for Updates',
+  'pages.setting.updateStatus': 'Update Status',
+
+   // System Info translations
+   'pages.welcome.systemInfo': 'System Information',
+   'pages.welcome.programInfo': 'Program Information',
+   'pages.welcome.systemDetails': 'System Details',
+   'pages.welcome.serverInfo': 'Server Information',
+   
+   // Program Info
+   'pages.welcome.programStartTime': 'Program Start Time',
+   'pages.welcome.programUptime': 'Program Uptime',
+   'pages.welcome.programVersion': 'Program Version',
+   'pages.welcome.programDirectory': 'Program Directory',
+   'pages.welcome.availableMemory': 'Used Memory',
+   
+   // System Info
+   'pages.welcome.operatingSystem': 'Operating System',
+   'pages.welcome.architecture': 'Architecture',
+   'pages.welcome.systemPlatform': 'System Platform',
+   'pages.welcome.hostname': 'Hostname',
+   'pages.welcome.privateIp': 'Private IP',
+   'pages.welcome.cpuCores': 'CPU Cores',
+   'pages.welcome.cpuCoresUnit': '',
+   
+   // Server Info
+   'pages.welcome.serverStartTime': 'Server Start Time',
+   'pages.welcome.serverUptime': 'Server Uptime',
+   'pages.welcome.totalMemory': 'Total Memory',
+   'pages.welcome.freeMemory': 'Free Memory',
+   'pages.welcome.processCount': 'Process Count',
+   'pages.welcome.processCountUnit': '',
+   'pages.welcome.runningEnvironment': 'Environment',
+   'pages.welcome.dockerContainer': 'Docker Container',
+   'pages.welcome.physicalMachine': 'Physical/Virtual Machine',
 };
