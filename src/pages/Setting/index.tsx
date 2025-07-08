@@ -144,7 +144,7 @@ const Setting: React.FC = () => {
           clearInterval(updateTimer);
           setUpdateTimer(null);
         }
-        
+
         // 重新检查状态
         try {
           const cfg = await getConfig();
@@ -155,7 +155,6 @@ const Setting: React.FC = () => {
         } catch (error) {
           console.error('监控更新状态失败:', error);
         }
-        
       } else {
         message.error(result.message || '取消更新失败');
       }
@@ -823,6 +822,49 @@ const Setting: React.FC = () => {
                   name="guestDefaultQueueSize"
                 >
                   <InputNumber min={-1} />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.homeDisplayRealIP' })}
+                  name="homeDisplayRealIP"
+                  valuePropName="checked"
+                  help={intl.formatMessage({ id: 'pages.setting.homeDisplayRealIP.tooltip' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.homeDisplayUserIPState' })}
+                  name="homeDisplayUserIPState"
+                  valuePropName="checked"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.homeDisplayUserIPState.tooltip',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.homeTopCount' })}
+                  name="homeTopCount"
+                  rules={[
+                    {
+                      type: 'number',
+                      min: 1,
+                      max: 100,
+                      message: intl.formatMessage({ id: 'pages.setting.homeTopCount.range' }),
+                    },
+                  ]}
+                  help={intl.formatMessage({ id: 'pages.setting.homeTopCount.tooltip' })}
+                >
+                  <InputNumber
+                    min={1}
+                    max={100}
+                    placeholder={intl.formatMessage({
+                      id: 'pages.setting.homeTopCount.placeholder',
+                    })}
+                    addonAfter="条"
+                  />
                 </Form.Item>
 
                 <Form.Item

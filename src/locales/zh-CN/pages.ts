@@ -530,4 +530,14 @@ export default {
   'pages.welcome.runningEnvironment': '运行环境',
   'pages.welcome.dockerContainer': 'Docker容器',
   'pages.welcome.physicalMachine': '物理机/虚拟机',
+
+  "pages.setting.homeDisplayRealIP": "首页显示完整 IP",
+  "pages.setting.homeDisplayRealIP.tooltip": "开启后，首页统计将显示访问者的真实IP地址",
+  "pages.setting.homeDisplayUserIPState": "首页显示 IP 身份",
+  "pages.setting.homeDisplayUserIPState.tooltip": "开启后，将显示IP地址对应用户的身份信息",
+  "pages.setting.homeTopCount": "首页显示数量",
+  "pages.setting.homeTopCount.tooltip": "设置首页统计显示的TOP数量，默认为10条",
+  "pages.setting.homeTopCount.required": "请输入首页统计默认数量",
+  "pages.setting.homeTopCount.range": "数量范围必须在1-100之间",
+  "pages.setting.homeTopCount.placeholder": "请输入TOP数量"
 };

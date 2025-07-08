@@ -571,4 +571,14 @@ export default {
    'pages.welcome.runningEnvironment': 'Environment',
    'pages.welcome.dockerContainer': 'Docker Container',
    'pages.welcome.physicalMachine': 'Physical/Virtual Machine',
+
+   "pages.setting.homeDisplayRealIP": "Home Display Real IP",
+   "pages.setting.homeDisplayRealIP.tooltip": "When enabled, the homepage statistics will display the real IP address of visitors",
+   "pages.setting.homeDisplayUserIPState": "Display IP User Identity",
+   "pages.setting.homeDisplayUserIPState.tooltip": "When enabled, it will display the identity information of users corresponding to IP addresses",
+   "pages.setting.homeTopCount": "Home Statistics Default Count",
+   "pages.setting.homeTopCount.tooltip": "Set the TOP count displayed in homepage statistics, default is 10",
+   "pages.setting.homeTopCount.required": "Please enter the default count for homepage statistics",
+   "pages.setting.homeTopCount.range": "Count range must be between 1-100",
+   "pages.setting.homeTopCount.placeholder": "Please enter TOP count"
 };
