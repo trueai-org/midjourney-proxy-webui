@@ -32,6 +32,7 @@ import {
   Typography,
 } from 'antd';
 import React, { useEffect, useState } from 'react';
+import Markdown from 'react-markdown';
 import './index.less';
 
 const { Text } = Typography;
@@ -414,6 +415,12 @@ const Setting: React.FC = () => {
                     type="warning"
                     showIcon
                   />
+                )}
+
+                {upgradeInfo.body && (
+                  <div className="markdown-content" style={{ overflowY: 'auto' }}>
+                    <Markdown>{upgradeInfo.body}</Markdown>
+                  </div>
                 )}
               </Space>
             </Card>
