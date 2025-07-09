@@ -401,7 +401,7 @@ const Setting: React.FC = () => {
                 {!upgradeInfo.hasUpdate && upgradeInfo.status === 'Success' && (
                   <Alert
                     message="已是最新版本"
-                    description="当前版本已是最新版本，无需更新"
+                    description="当前版本已是最新版本"
                     type="info"
                     showIcon
                   />
