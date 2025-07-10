@@ -109,7 +109,6 @@ const AddContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.loginPassword' })}
                   name="loginPassword"
-                  rules={[{ required: true }]}
                 >
                   <Input />
                 </Form.Item>
@@ -197,6 +196,19 @@ const AddContent = ({
                   <InputNumber min={1} />
                 </Form.Item>
 
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isBlend' })}
+                  name="isBlend"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isDescribe' })}
+                  name="isDescribe"
+                >
+                  <Switch />
+                </Form.Item>
+                
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
                   name="dayDrawLimit"

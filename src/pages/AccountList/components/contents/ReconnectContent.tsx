@@ -189,6 +189,19 @@ const ReconnectContent = ({
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isBlend' })}
+                  name="isBlend"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.isDescribe' })}
+                  name="isDescribe"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
                   name="dayDrawLimit"
                   extra={
