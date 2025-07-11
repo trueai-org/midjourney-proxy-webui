@@ -186,8 +186,10 @@ export default {
   'pages.account.coreSize': 'Concurrency',
   'pages.account.queueSize': 'Waiting Queue',
   'pages.account.maxQueueSize': 'Max Waiting Queue',
-  'pages.account.mode': 'Assign Generation speed model',
-  'pages.account.allowModes': 'Allows Generation speed models',
+
+  'pages.account.mode': 'Fixed account speed mode',
+  'pages.account.allowModes': 'Allow requests for speed mode',
+  
   'pages.account.timeoutMinutes': 'Task Timeout',
   'pages.account.weight': 'Weight',
   'pages.account.dateCreated': 'DateCreated',

@@ -172,8 +172,11 @@ export default {
   'pages.account.coreSize': '并发数',
   'pages.account.queueSize': '等待队列',
   'pages.account.maxQueueSize': '最大等待队列',
-  'pages.account.mode': '指定生成速度模式',
-  'pages.account.allowModes': '允许生成速度模式',
+
+  'pages.account.mode': '固定账号速度模式',
+  'pages.account.allowModes': '允许请求速度模式',
+  'pages.account.allowModesTip': '当前账号接受绘图任务的速度模式',
+
   'pages.account.timeoutMinutes': '任务超时时间',
   'pages.account.weight': '权重',
   'pages.account.dateCreated': '添加时间',

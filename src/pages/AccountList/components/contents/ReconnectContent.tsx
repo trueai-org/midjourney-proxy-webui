@@ -133,13 +133,21 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.allowModes' })}
                   name="allowModes"
-                  tooltip="如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数"
+                  help={intl.formatMessage({ id: 'pages.account.allowModesTip' })}
                 >
                   <Select allowClear mode="multiple">
                     <Select.Option value="RELAX">RELAX</Select.Option>
                     <Select.Option value="FAST">FAST</Select.Option>
                     <Select.Option value="TURBO">TURBO</Select.Option>
                   </Select>
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
+                  name="enableAutoSetRelax"
+                  valuePropName="checked"
+                  help={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+                >
+                  <Switch />
                 </Form.Item>
               </Card>
             </Col>
@@ -329,7 +337,7 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.allowModes' })}
                   name="allowModes"
-                  tooltip="如果用户指定模式或添加了自定义参数例如 --fast，但是账号不允许 FAST，则自动移除此参数"
+                  help={intl.formatMessage({ id: 'pages.account.allowModesTip' })}
                 >
                   <Select allowClear mode="multiple">
                     <Select.Option value="RELAX">RELAX</Select.Option>
@@ -341,7 +349,7 @@ const ReconnectContent = ({
                   label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
                   name="enableAutoSetRelax"
                   valuePropName="checked"
-                  tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+                  help={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
                 >
                   <Switch />
                 </Form.Item>

@@ -141,12 +141,21 @@ const AddContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.allowModes' })}
                   name="allowModes"
+                  help={intl.formatMessage({ id: 'pages.account.allowModesTip' })}
                 >
                   <Select allowClear mode="multiple">
                     <Select.Option value="RELAX">RELAX</Select.Option>
                     <Select.Option value="FAST">FAST</Select.Option>
                     <Select.Option value="TURBO">TURBO</Select.Option>
                   </Select>
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
+                  name="enableAutoSetRelax"
+                  valuePropName="checked"
+                  help={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+                >
+                  <Switch />
                 </Form.Item>
               </Card>
             </Col>
@@ -208,7 +217,7 @@ const AddContent = ({
                 >
                   <Switch />
                 </Form.Item>
-                
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
                   name="dayDrawLimit"
@@ -325,6 +334,7 @@ const AddContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.allowModes' })}
                   name="allowModes"
+                  help={intl.formatMessage({ id: 'pages.account.allowModesTip' })}
                 >
                   <Select allowClear mode="multiple">
                     <Select.Option value="RELAX">RELAX</Select.Option>
@@ -336,7 +346,7 @@ const AddContent = ({
                   label={intl.formatMessage({ id: 'pages.account.enableAutoSetRelax' })}
                   name="enableAutoSetRelax"
                   valuePropName="checked"
-                  tooltip={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
+                  help={intl.formatMessage({ id: 'pages.account.enableAutoSetRelaxTips' })}
                 >
                   <Switch />
                 </Form.Item>
