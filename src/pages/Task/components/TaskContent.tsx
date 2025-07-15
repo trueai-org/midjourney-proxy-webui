@@ -72,6 +72,71 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
     );
   };
 
+  const getVideoContent = () => {
+    if (!record.videoUrls || record.videoUrls.length === 0) return null;
+
+    return (
+      <div className="video-task-detail">
+        <div className="video-info" style={{ marginBottom: '16px' }}>
+          <Tag color="blue">时长: {record.videoDuration}s</Tag>
+          <Tag color="green">帧数: {record.frameCount}</Tag>
+        </div>
+
+        <div
+          className="videos-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+          }}
+        >
+          {record.videoUrls.map((videoItem: any, index: number) => (
+            <div key={index} className="video-detail-item">
+              <div style={{ position: 'relative', marginBottom: '8px' }}>
+                <video
+                  controls
+                  loop
+                  muted
+                  style={{
+                    width: '200px',
+                    height: '200px',
+                    objectFit: 'cover',
+                    borderRadius: '8px',
+                  }}
+                  poster={record.videoGenOriginImageUrl}
+                >
+                  <source src={videoItem.url} type="video/mp4" />
+                  您的浏览器不支持视频播放。
+                </video>
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '8px',
+                    background: 'rgba(0, 0, 0, 0.7)',
+                    color: 'white',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                  }}
+                >
+                  #{index + 1}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {record.videoGenOriginImageUrl && (
+          <div style={{ marginTop: '16px' }}>
+            <div style={{ marginBottom: '8px', fontWeight: 'bold' }}>原始图片:</div>
+            {getImage(record.videoGenOriginImageUrl)}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const getBotTypeTag = (botType: string) => {
     if (botType == 'NIJI_JOURNEY') {
       return <Tag color="green">niji・journey</Tag>;
@@ -91,6 +156,39 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
   const getModalTag = (enable: boolean) => {
     if (enable == null || !enable) return;
     return <Tag color="green">{intl.formatMessage({ id: 'pages.yes' })}</Tag>;
+  };
+
+  const renderMediaContent = () => {
+    // 视频任务
+    if (record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') {
+      return (
+        <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
+          {getVideoContent()}
+        </Descriptions.Item>
+      );
+    }
+    // 视频换脸任务
+    else if (record.action === 'SWAP_VIDEO_FACE') {
+      return (
+        <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
+          <Flex vertical>
+            {/* <Flex>
+                  <div>{getImage(record.replicateSource)}</div>
+                  <div>{getVideo(record.replicateTarget)}</div>
+                </Flex> */}
+            {getVideo(record.imageUrl)}
+          </Flex>
+        </Descriptions.Item>
+      );
+    }
+    // 普通图片任务
+    else {
+      return (
+        <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>
+          {getImage(record.imageUrl)}
+        </Descriptions.Item>
+      );
+    }
   };
 
   return (
@@ -136,13 +234,21 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
             {getTooltip(record.state)}
           </Descriptions.Item>
 
-          {record.action === 'SWAP_VIDEO_FACE' ? (
+          {renderMediaContent()}
+
+          {/* 视频任务的额外信息 */}
+          {(record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') &&
+            record.videoDuration && (
+              <>
+                <Descriptions.Item label="视频时长">{record.videoDuration}s</Descriptions.Item>
+                <Descriptions.Item label="帧数">{record.frameCount}</Descriptions.Item>
+              </>
+            )}
+
+          {/* {record.action === 'SWAP_VIDEO_FACE' ? (
             <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
               <Flex vertical>
-                {/* <Flex>
-                  <div>{getImage(record.replicateSource)}</div>
-                  <div>{getVideo(record.replicateTarget)}</div>
-                </Flex> */}
+ 
                 {getVideo(record.imageUrl)}
               </Flex>
             </Descriptions.Item>
@@ -150,7 +256,7 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
             <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>
               {getImage(record.imageUrl)}
             </Descriptions.Item>
-          )}
+          )} */}
         </Descriptions>
       </Card>
       <Card

@@ -189,7 +189,7 @@ export default {
 
   'pages.account.mode': 'Fixed account speed mode',
   'pages.account.allowModes': 'Allow requests for speed mode',
-  
+
   'pages.account.timeoutMinutes': 'Task Timeout',
   'pages.account.weight': 'Weight',
   'pages.account.dateCreated': 'DateCreated',
@@ -519,7 +519,8 @@ export default {
   'pages.setting.consulOptions': 'Consul Options',
 
   'pages.setting.isDemoMode': 'Demo Mode',
-  'pages.setting.isDemoModeTips': 'Enable the demo mode to allow users to log in, draw and perform other operations.',
+  'pages.setting.isDemoModeTips':
+    'Enable the demo mode to allow users to log in, draw and perform other operations.',
 
   'pages.setting.licenseKey': 'License Key',
 
@@ -536,51 +537,58 @@ export default {
   'pages.setting.cloudflareR2': 'Cloudflare R2',
   'pages.setting.cloudflareR2Tips': 'Cloudflare R2',
 
+  'pages.setting.s3Storage': 'S3 Storage',
+  'pages.setting.s3StorageTips': 'store pictures to S3 compatible storage, and MinIO',
+
   'pages.setting.enableUpdateCheck': 'Enable Update Check',
-  'pages.setting.enableUpdateCheckTips': 'When enabled, the system will check for updates at startup and notify the user if an update is available.',
+  'pages.setting.enableUpdateCheckTips':
+    'When enabled, the system will check for updates at startup and notify the user if an update is available.',
   'pages.setting.checkUpdate': 'Check for Updates',
   'pages.setting.updateStatus': 'Update Status',
 
-   // System Info translations
-   'pages.welcome.systemInfo': 'System Information',
-   'pages.welcome.programInfo': 'Program Information',
-   'pages.welcome.systemDetails': 'System Details',
-   'pages.welcome.serverInfo': 'Server Information',
-   
-   // Program Info
-   'pages.welcome.programStartTime': 'Program Start Time',
-   'pages.welcome.programUptime': 'Program Uptime',
-   'pages.welcome.programVersion': 'Program Version',
-   'pages.welcome.programDirectory': 'Program Directory',
-   'pages.welcome.availableMemory': 'Used Memory',
-   
-   // System Info
-   'pages.welcome.operatingSystem': 'Operating System',
-   'pages.welcome.architecture': 'Architecture',
-   'pages.welcome.systemPlatform': 'System Platform',
-   'pages.welcome.hostname': 'Hostname',
-   'pages.welcome.privateIp': 'Private IP',
-   'pages.welcome.cpuCores': 'CPU Cores',
-   'pages.welcome.cpuCoresUnit': '',
-   
-   // Server Info
-   'pages.welcome.serverStartTime': 'Server Start Time',
-   'pages.welcome.serverUptime': 'Server Uptime',
-   'pages.welcome.totalMemory': 'Total Memory',
-   'pages.welcome.freeMemory': 'Free Memory',
-   'pages.welcome.processCount': 'Process Count',
-   'pages.welcome.processCountUnit': '',
-   'pages.welcome.runningEnvironment': 'Environment',
-   'pages.welcome.dockerContainer': 'Docker Container',
-   'pages.welcome.physicalMachine': 'Physical/Virtual Machine',
+  // System Info translations
+  'pages.welcome.systemInfo': 'System Information',
+  'pages.welcome.programInfo': 'Program Information',
+  'pages.welcome.systemDetails': 'System Details',
+  'pages.welcome.serverInfo': 'Server Information',
 
-   "pages.setting.homeDisplayRealIP": "Home Display Real IP",
-   "pages.setting.homeDisplayRealIP.tooltip": "When enabled, the homepage statistics will display the real IP address of visitors",
-   "pages.setting.homeDisplayUserIPState": "Display IP User Identity",
-   "pages.setting.homeDisplayUserIPState.tooltip": "When enabled, it will display the identity information of users corresponding to IP addresses",
-   "pages.setting.homeTopCount": "Home Statistics Default Count",
-   "pages.setting.homeTopCount.tooltip": "Set the TOP count displayed in homepage statistics, default is 10",
-   "pages.setting.homeTopCount.required": "Please enter the default count for homepage statistics",
-   "pages.setting.homeTopCount.range": "Count range must be between 1-100",
-   "pages.setting.homeTopCount.placeholder": "Please enter TOP count"
+  // Program Info
+  'pages.welcome.programStartTime': 'Program Start Time',
+  'pages.welcome.programUptime': 'Program Uptime',
+  'pages.welcome.programVersion': 'Program Version',
+  'pages.welcome.programDirectory': 'Program Directory',
+  'pages.welcome.availableMemory': 'Used Memory',
+
+  // System Info
+  'pages.welcome.operatingSystem': 'Operating System',
+  'pages.welcome.architecture': 'Architecture',
+  'pages.welcome.systemPlatform': 'System Platform',
+  'pages.welcome.hostname': 'Hostname',
+  'pages.welcome.privateIp': 'Private IP',
+  'pages.welcome.cpuCores': 'CPU Cores',
+  'pages.welcome.cpuCoresUnit': '',
+
+  // Server Info
+  'pages.welcome.serverStartTime': 'Server Start Time',
+  'pages.welcome.serverUptime': 'Server Uptime',
+  'pages.welcome.totalMemory': 'Total Memory',
+  'pages.welcome.freeMemory': 'Free Memory',
+  'pages.welcome.processCount': 'Process Count',
+  'pages.welcome.processCountUnit': '',
+  'pages.welcome.runningEnvironment': 'Environment',
+  'pages.welcome.dockerContainer': 'Docker Container',
+  'pages.welcome.physicalMachine': 'Physical/Virtual Machine',
+
+  'pages.setting.homeDisplayRealIP': 'Home Display Real IP',
+  'pages.setting.homeDisplayRealIP.tooltip':
+    'When enabled, the homepage statistics will display the real IP address of visitors',
+  'pages.setting.homeDisplayUserIPState': 'Display IP User Identity',
+  'pages.setting.homeDisplayUserIPState.tooltip':
+    'When enabled, it will display the identity information of users corresponding to IP addresses',
+  'pages.setting.homeTopCount': 'Home Statistics Default Count',
+  'pages.setting.homeTopCount.tooltip':
+    'Set the TOP count displayed in homepage statistics, default is 10',
+  'pages.setting.homeTopCount.required': 'Please enter the default count for homepage statistics',
+  'pages.setting.homeTopCount.range': 'Count range must be between 1-100',
+  'pages.setting.homeTopCount.placeholder': 'Please enter TOP count',
 };

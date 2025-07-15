@@ -620,6 +620,7 @@ const Setting: React.FC = () => {
                     <Select.Option value="OSS">Aliyun OSS</Select.Option>
                     <Select.Option value="COS">Tencent COS</Select.Option>
                     <Select.Option value="R2">Cloudflare R2</Select.Option>
+                    <Select.Option value="S3">S3 (MinIO)</Select.Option>
                   </Select>
                 </Form.Item>
 
@@ -647,6 +648,15 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.cloudflareR2' })}
                   name="cloudflareR2"
+                  tooltip={intl.formatMessage({ id: 'pages.setting.cloudflareR2Tips' })}
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.s3Storage' })}
+                  name="s3Storage"
+                  tooltip={intl.formatMessage({ id: 'pages.setting.s3StorageTips' })}
                 >
                   <JsonEditor />
                 </Form.Item>

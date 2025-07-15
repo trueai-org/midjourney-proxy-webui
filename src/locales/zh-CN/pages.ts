@@ -496,6 +496,9 @@ export default {
   'pages.setting.cloudflareR2': 'Cloudflare R2',
   'pages.setting.cloudflareR2Tips': 'Cloudflare R2',
 
+  'pages.setting.s3Storage': 'S3 存储',
+  'pages.setting.s3StorageTips': 'S3 兼容存储（如：阿里云 OSS、AWS S3、MinIO 等）',
+
   'pages.setting.enableUpdateCheck': '更新检查',
   'pages.setting.enableUpdateCheckTips': '开启后将自动下载最新版',
   'pages.setting.checkUpdate': '检查更新',
