@@ -474,6 +474,7 @@ export default {
 
   'pages.setting.enableOfficial': '启用官方绘图',
   'pages.setting.enableYouChuan': '启用悠船绘图',
+  'pages.setting.enableVideo': '启用视频生成',
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
 

@@ -513,6 +513,7 @@ export default {
 
   'pages.setting.enableOfficial': 'Enable Official Drawing',
   'pages.setting.enableYouChuan': 'Enable YouChuan Drawing',
+  'pages.setting.enableVideo': 'Enable Video Drawing',
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',
 
