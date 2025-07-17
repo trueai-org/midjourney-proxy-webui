@@ -146,6 +146,14 @@ const List: React.FC = () => {
           label: 'SwapVideoFace',
           value: 'SWAP_VIDEO_FACE',
         },
+        {
+          label: 'Video',
+          value: 'VIDEO',
+        },
+        {
+          label: 'Video Extend',
+          value: 'VIDEO_EXTEND',
+        },
       ],
       render: (text, record) => record['displays']['action'],
     },
