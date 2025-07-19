@@ -1086,6 +1086,20 @@ const Setting: React.FC = () => {
               </Card>
             </Col>
           </Row>
+
+          <Row gutter={16} style={{ marginTop: '16px' }}>
+            <Col span={12}>
+              <Card title="悠船配置" bordered={false}>
+                <Form.Item
+                  label="转换悠船官网链接"
+                  name="enableYouChuanPromptLink"
+                  help="启用后悠船绘图时将 prompt 提示词中的链接转为悠船官网链接"
+                >
+                  <Switch />
+                </Form.Item>
+              </Card>
+            </Col>
+          </Row>
         </Spin>
       </Form>
     </PageContainer>
