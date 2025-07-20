@@ -40,6 +40,8 @@ const { Text } = Typography;
 const Setting: React.FC = () => {
   const [form] = Form.useForm();
 
+  const [setting, setSetting] = useState<any>(null);
+
   const intl = useIntl();
   const [loading, setLoading] = useState(false);
   const [upgradeInfo, setUpgradeInfo] = useState<any>(null);
@@ -204,6 +206,7 @@ const Setting: React.FC = () => {
       setLoading(false);
       if (c.success) {
         form.setFieldsValue(c.data);
+        setSetting(c.data);
 
         // 检查更新状态
         setUpgradeInfo(c.data.upgradeInfo || {});
@@ -1100,6 +1103,34 @@ const Setting: React.FC = () => {
               </Card>
             </Col>
           </Row>
+
+          {setting && setting.privateFeatures && setting.privateFeatures.length > 0 && (
+            <Row gutter={16} style={{ marginTop: '16px' }}>
+              <Col span={12}>
+                <Card title="私人定制" bordered={false}>
+                  {setting.privateFeatures.includes('privateEnableYouChuanAllowU') && (
+                    <Form.Item
+                      label="始终允许 U 放大"
+                      name="privateEnableYouChuanAllowU"
+                      help="悠船不判断账号是否有额度，始终允许 U 放大"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
+
+                  {setting.privateFeatures.includes('privateEnableYouChuanMergedCustomize') && (
+                    <Form.Item
+                      label="合成图片使用自定义路径"
+                      name="privateEnableYouChuanMergedCustomize"
+                      help="悠船自定义路径规则: 服务器id/频道id/提示词_uuid.png"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
+                </Card>
+              </Col>
+            </Row>
+          )}
         </Spin>
       </Form>
     </PageContainer>
