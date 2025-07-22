@@ -408,6 +408,49 @@ const AccountList: React.FC = () => {
         return record.allowModes?.join('、') || 'ALL';
       },
     } as ColumnType<Record<string, any>>,
+
+    {
+      title: `${intl.formatMessage({ id: 'pages.account.todayDraw' })}`,
+      dataIndex: 'todayDraw',
+      width: 200,
+      align: 'center',
+      render: (enable: boolean, record: any) => {
+        if (!record.todayDraw || record.todayDraw === '0 / 0 / 0') {
+          return '-';
+        }
+        return (
+          <>
+            <Tooltip
+              placement="top"
+              overlayInnerStyle={{ width: 'max-content' }}
+              title={Object.entries(record.todayCounter).map(([mode, actions]) => (
+                <div key={mode} style={{ marginBottom: 4 }}>
+                  <div style={{ fontWeight: 'bold' }}>{mode}</div>
+                  <div style={{ display: 'flex', gap: 4 }}>
+                    {Object.entries(actions as any).map(([action, count]) => (
+                      <div
+                        key={action}
+                        style={{
+                          border: '1px dashed #cfc7c7',
+                          borderRadius: 4,
+                          padding: '4px',
+                        }}
+                      >
+                        <div style={{ fontSize: 14 }}>{action}</div>
+                        <div style={{ fontSize: 14 }}>{count as any}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            >
+              {record.todayDraw}
+            </Tooltip>
+          </>
+        );
+      },
+    } as ColumnType<Record<string, any>>,
+
     {
       title: intl.formatMessage({ id: 'pages.account.renewDate' }),
       dataIndex: 'renewDate',

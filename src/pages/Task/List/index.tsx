@@ -245,7 +245,6 @@ const List: React.FC = () => {
       align: 'center',
       render: (text, record) => record['displays']['submitTime'],
     },
-
     {
       title: intl.formatMessage({ id: 'pages.task.status' }),
       dataIndex: 'status',
@@ -302,6 +301,29 @@ const List: React.FC = () => {
       },
     },
     {
+      title: intl.formatMessage({ id: 'pages.task.mode' }),
+      dataIndex: 'mode',
+      width: 90,
+      align: 'center',
+      request: async () => [
+        {
+          label: 'RELAX',
+          value: 'RELAX',
+        },
+        {
+          label: 'FAST',
+          value: 'FAST',
+        },
+        {
+          label: 'TURBO',
+          value: 'TURBO',
+        },
+      ],
+      render: (text: string, record: any) => {
+        return record.mode || 'FAST';
+      },
+    },
+    {
       title: intl.formatMessage({ id: 'pages.task.progress' }),
       dataIndex: 'progress',
       width: 130,
@@ -320,6 +342,12 @@ const List: React.FC = () => {
         }
         return <Progress percent={percent} status={status} size="small" />;
       },
+    },
+    {
+      title: intl.formatMessage({ id: 'pages.task.useTime' }),
+      dataIndex: 'useTime',
+      width: 80,
+      ellipsis: true,
     },
     {
       title: intl.formatMessage({ id: 'pages.task.description' }),

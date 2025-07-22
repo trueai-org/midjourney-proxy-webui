@@ -173,7 +173,7 @@ export default {
     'When enabled, automatically switches to fast mode when renewing a subscription or having a fast duration',
   'pages.account.enableAutoSetRelax': 'Set the relax mode automatically',
   'pages.account.enableAutoSetRelaxTips':
-    'When enabled, automatically set [allow build speed mode] to RELAX mode when fast runs out. And set the parallel number to 3',
+    'When enabled, automatically set [allow build speed mode] to RELAX mode when fast runs out',
   'pages.account.mjChannelId': 'MJBot Private ChannelID',
   'pages.account.nijiChannelId': 'NijiBot Private ChannelID',
   'pages.account.basicInfo': 'Basic Info',
@@ -189,6 +189,8 @@ export default {
 
   'pages.account.mode': 'Fixed account speed mode',
   'pages.account.allowModes': 'Allow requests for speed mode',
+
+  'pages.account.todayDraw': 'Today Draw',
 
   'pages.account.timeoutMinutes': 'Task Timeout',
   'pages.account.weight': 'Weight',
@@ -226,7 +228,9 @@ export default {
   'pages.task.submitTime': 'Submit Time',
   'pages.task.preview': 'Preview',
   'pages.task.status': 'Status',
+  'pages.task.mode': 'Speed',
   'pages.task.progress': 'Progress',
+  'pages.task.useTime': 'Use Time/s',
   'pages.task.description': 'Description',
   'pages.task.prompt': 'Prompt',
   'pages.task.promptEn': 'Prompt-En',
@@ -264,6 +268,9 @@ export default {
   'pages.user.totalDrawCount': 'Total Draw Count',
   'pages.user.coreSize': 'Concurrency Size',
   'pages.user.queueSize': 'Queue Size',
+  'pages.account.relaxCoreSize': 'Concurrency Size(Relax)',
+  'pages.account.relaxQueueSize': 'Queue Size(Relax)',
+
   'pages.user.validStartTime': 'Valid Start Time',
   'pages.user.validEndTime': 'Valid End Time',
   'pages.user.unlimited': 'Unlimited',
@@ -372,6 +379,8 @@ export default {
   'pages.setting.databaseType': 'Database Type',
   'pages.setting.databaseConnectionString': 'Database Connection String',
   'pages.setting.databaseName': 'Database Name',
+
+  'pages.setting.redisConnectionString': 'Redis Connection String',
 
   'pages.setting.mongoDefaultConnectionString': 'Mongo DB',
   'pages.setting.connectSuccess': 'Database Connect Success',

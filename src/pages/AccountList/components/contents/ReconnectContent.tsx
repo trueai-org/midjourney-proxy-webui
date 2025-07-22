@@ -166,27 +166,34 @@ const ReconnectContent = ({
                   <InputNumber min={1} />
                 </Form.Item>
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })}
-                  name="maxQueueSize"
+                  label={intl.formatMessage({ id: 'pages.account.relaxCoreSize' })}
+                  name="relaxCoreSize"
                 >
                   <InputNumber min={1} />
                 </Form.Item>
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.relaxQueueSize' })}
+                  name="relaxQueueSize"
+                >
+                  <InputNumber min={1} />
+                </Form.Item>
+             
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.interval' })}
                   name="interval"
                 >
-                  <InputNumber min={1.2} />
+                  <InputNumber min={0} />
                 </Form.Item>
 
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
                   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Space>
                       <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
-                        <InputNumber min={1.2} placeholder="Min" />
+                        <InputNumber min={0} placeholder="Min" />
                       </Form.Item>
                       ~
                       <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
-                        <InputNumber min={1.2} placeholder="Max" />
+                        <InputNumber min={0} placeholder="Max" />
                       </Form.Item>
                     </Space>
                   </div>
@@ -369,28 +376,23 @@ const ReconnectContent = ({
                 >
                   <InputNumber min={1} />
                 </Form.Item>
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.maxQueueSize' })}
-                  name="maxQueueSize"
-                >
-                  <InputNumber min={1} />
-                </Form.Item>
+            
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.interval' })}
                   name="interval"
                 >
-                  <InputNumber min={1.2} />
+                  <InputNumber min={0} />
                 </Form.Item>
 
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
                   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Space>
                       <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
-                        <InputNumber min={1.2} placeholder="Min" />
+                        <InputNumber min={0} placeholder="Min" />
                       </Form.Item>
                       ~
                       <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
-                        <InputNumber min={1.2} placeholder="Max" />
+                        <InputNumber min={0} placeholder="Max" />
                       </Form.Item>
                     </Space>
                   </div>

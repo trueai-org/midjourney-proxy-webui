@@ -159,7 +159,7 @@ export default {
   'pages.account.enableRelaxToFastTips': '启用后，当续订或拥有快速时长时，自动切换到快速模式',
   'pages.account.enableAutoSetRelax': '自动设置慢速模式',
   'pages.account.enableAutoSetRelaxTips':
-    '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式，并设置并行数为 3',
+    '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式',
   'pages.account.mjChannelId': 'MJ私信ID',
   'pages.account.nijiChannelId': 'Niji私信ID',
   'pages.account.basicInfo': '基本信息',
@@ -170,12 +170,16 @@ export default {
   'pages.account.lifetimeUsage': '总用量',
   'pages.account.otherInfo': '其他信息',
   'pages.account.coreSize': '并发数',
-  'pages.account.queueSize': '等待队列',
+  'pages.account.queueSize': '队列数',
   'pages.account.maxQueueSize': '最大等待队列',
+  'pages.account.relaxCoreSize': '并发数（慢速）',
+  'pages.account.relaxQueueSize': '队列数（慢速）',
 
   'pages.account.mode': '固定账号速度模式',
   'pages.account.allowModes': '允许请求速度模式',
   'pages.account.allowModesTip': '当前账号接受绘图任务的速度模式',
+
+  'pages.account.todayDraw': '今日绘图',
 
   'pages.account.timeoutMinutes': '任务超时时间',
   'pages.account.weight': '权重',
@@ -212,7 +216,9 @@ export default {
   'pages.task.submitTime': '提交时间',
   'pages.task.preview': '预览',
   'pages.task.status': '状态',
+  'pages.task.mode': '速度',
   'pages.task.progress': '进度',
+  'pages.task.useTime': '用时/s',
   'pages.task.description': '描述',
   'pages.task.prompt': '提示词',
   'pages.task.promptEn': '提示词-英文',
@@ -352,6 +358,8 @@ export default {
   'pages.setting.databaseType': '数据库类型',
   'pages.setting.databaseConnectionString': '数据库连接字符串',
   'pages.setting.databaseName': '数据库名称',
+
+  'pages.setting.redisConnectionString': 'Redis 连接字符串',
 
   'pages.setting.mongoDefaultConnectionString': 'MongoDB 字符串',
   'pages.setting.connectSuccess': '数据库连接成功',

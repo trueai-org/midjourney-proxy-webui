@@ -446,6 +446,51 @@ const Welcome: React.FC = () => {
         </div>
       </Card>
 
+      {/* 今日统计卡片 */}
+      {data && data.todayCounter && (
+        <Card
+          title="今日统计"
+          style={{
+            borderRadius: 8,
+            marginTop: 16,
+          }}
+          bodyStyle={{
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          }}
+        >
+          {Object.entries(data.todayCounter).map(([mode, actions]) => (
+            <div key={mode} style={{ marginBottom: 8 }}>
+              <div style={{ fontWeight: 'bold', color: token.colorTextSecondary, marginBottom: 8 }}>
+                {mode}
+              </div>
+              <div style={{ display: 'flex', gap: 16 }}>
+                {Object.entries(actions as any).map(([action, count]) => (
+                  <div
+                    key={action}
+                    style={{
+                      border: '1px dashed #cfc7c7',
+                      borderRadius: 6,
+                      padding: '8px 12px',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                      minWidth: 80,
+                      textAlign: 'center',
+                    }}
+                  >
+                    <div style={{ fontSize: 14, color: token.colorText }}>{action}</div>
+                    <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                      {count as any}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </Card>
+      )}
+
       {/* 系统信息卡片 */}
       {data && data.systemInfo && (
         <SystemInfoCard systemInfo={data.systemInfo} privateIp={data.privateIp} />
