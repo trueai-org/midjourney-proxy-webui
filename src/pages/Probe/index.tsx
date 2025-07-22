@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Card, Button, Select, Space } from 'antd';
-import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
+import { downloadLogs, probe } from '@/services/mj/api';
+import { FullscreenExitOutlined, FullscreenOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { probe } from "@/services/mj/api";
-import styles from './index.less';
 import { useIntl } from '@umijs/max';
+import { Button, Card, message, Select, Space } from 'antd';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './index.less';
 
 const { Option } = Select;
-
 
 const Probe: React.FC = () => {
   const [logContent, setLogContent] = useState<string>('');
@@ -25,7 +24,8 @@ const Probe: React.FC = () => {
     const tailLog = async () => {
       const res = await fetchLogContent(level);
       const logCardElement = logCardRef.current || document.body;
-      const scrollN = logCardElement.scrollHeight - logCardElement.scrollTop - logCardElement.clientHeight;
+      const scrollN =
+        logCardElement.scrollHeight - logCardElement.scrollTop - logCardElement.clientHeight;
       setLogContent(res);
       if (scrollN < 50) {
         logCardElement.scrollTop = logCardElement.scrollHeight - logCardElement.clientHeight;
@@ -61,7 +61,7 @@ const Probe: React.FC = () => {
   };
 
   const handleLevelChange = (value: number) => {
-    setLevel(value)
+    setLevel(value);
   };
 
   const toggleFullscreen = () => {
@@ -74,12 +74,45 @@ const Probe: React.FC = () => {
     }
   };
 
+  const [loading, setLoading] = useState(false);
+  const handleDownloadLogs = async () => {
+    try {
+      setLoading(true);
+      const response = await downloadLogs(10);
+      
+      // 判断是否为 Blob 对象
+      if (response instanceof Blob) {
+        if (response.type === 'text/plain') {
+          const text = await response.text();
+          message.error(text || '下载失败');
+          return;
+        }
+
+        const url = window.URL.createObjectURL(response);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `logs_${new Date().toISOString().replace(/[:.]/g, '-')}.zip`;
+        a.click();
+        window.URL.revokeObjectURL(url);
+      } else {
+        message.error('下载错误');
+      }
+    } catch (error) {
+      console.error('Error downloading logs:', error);
+      message.error('下载日志失败，请稍后再试。');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <PageContainer>
       <Space style={{ marginBottom: '10px' }}>
-        <Button type={"primary"} onClick={toggleFullscreen}>
+        <Button type={'primary'} onClick={toggleFullscreen}>
           {document.fullscreenElement ? <FullscreenExitOutlined /> : <FullscreenOutlined />}
-          {document.fullscreenElement ? intl.formatMessage({ id: 'pages.probe.fullscreenExit' }) : intl.formatMessage({ id: 'pages.probe.fullscreen' })}
+          {document.fullscreenElement
+            ? intl.formatMessage({ id: 'pages.probe.fullscreenExit' })
+            : intl.formatMessage({ id: 'pages.probe.fullscreen' })}
         </Button>
         <Select defaultValue={5} onChange={handleRefreshChange} style={{ width: 150 }}>
           <Option value={5}>5 {intl.formatMessage({ id: 'pages.seconds' })}</Option>
@@ -91,6 +124,21 @@ const Probe: React.FC = () => {
           <Option value={0}> Info </Option>
           <Option value={1}> Error </Option>
         </Select>
+        <Button loading={loading} type="default" onClick={handleDownloadLogs}>
+          {intl.formatMessage({ id: 'pages.probe.downloadLogs' })}
+        </Button>
+        {/* <Button
+          type="default"
+          onClick={() => {
+            const link = document.createElement('a');
+            link.href = '/mj/admin/download-logs';
+            link.download = `probe_log_${new Date().toISOString()}.txt`;
+            link.click();
+            URL.revokeObjectURL(link.href);
+          }}
+        >
+          下载日志
+        </Button> */}
       </Space>
       <Card className={styles.logCard} ref={logCardRef}>
         <div>

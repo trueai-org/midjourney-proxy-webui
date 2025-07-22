@@ -369,6 +369,8 @@ export default {
   'pages.activate.inputCode': 'Please enter the activation code',
   'pages.activate.activeService': 'Activate service',
 
+  'pages.probe.downloadLogs': 'Download Logs',
+
   'pages.probe.fullscreen': 'Fullscreen',
   'pages.probe.fullscreenExit': 'Exit Fullscreen',
   'pages.probe.stopRefresh': 'Stop Refresh',

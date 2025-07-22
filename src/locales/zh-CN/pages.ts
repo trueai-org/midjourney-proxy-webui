@@ -347,6 +347,8 @@ export default {
   'pages.activate.inputCode': '请输入激活码',
   'pages.activate.activeService': '激活服务',
 
+  'pages.probe.downloadLogs': '下载日志',
+
   'pages.probe.fullscreen': '全屏',
   'pages.probe.fullscreenExit': '退出全屏',
   'pages.probe.stopRefresh': '停止刷新',

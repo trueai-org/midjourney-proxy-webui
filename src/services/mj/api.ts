@@ -429,6 +429,15 @@ export async function getConfig(options?: { [key: string]: any }) {
   });
 }
 
+// 下载文件
+export async function downloadLogs(top: number, options?: { [key: string]: any }) {
+  return request(`/mj/admin/download-logs?top=${top}`, {
+    method: 'GET',
+    responseType: 'blob', // 以 blob 格式返回
+    ...(options || {}),
+  });
+}
+
 // 修改配置
 export async function updateConfig(data: object, options?: { [key: string]: any }) {
   return request<API.Result>('/mj/admin/setting', {
