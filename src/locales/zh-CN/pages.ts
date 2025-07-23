@@ -111,6 +111,7 @@ export default {
   'pages.account.botToken': '机器人Token',
   'pages.account.status': '状态',
   'pages.account.fastTimeRemaining': '快速时间剩余',
+  'pages.account.relaxTimeRemaining': '慢速时间剩余',
   'pages.account.subscribePlan': '订阅计划',
   'pages.account.sponsor': '赞助商',
   'pages.account.workTime': '工作时间段',

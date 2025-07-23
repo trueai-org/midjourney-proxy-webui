@@ -118,6 +118,7 @@ export default {
   'pages.account.botToken': 'Bot Token',
   'pages.account.status': 'Status',
   'pages.account.fastTimeRemaining': 'FastTime Remaining',
+  'pages.account.relaxTimeRemaining': 'RelaxTime Remaining',
   'pages.account.subscribePlan': 'Subscribe',
   'pages.account.sponsor': 'Sponsor',
   'pages.account.workTime': 'Working Time',
