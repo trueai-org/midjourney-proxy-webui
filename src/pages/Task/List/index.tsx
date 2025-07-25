@@ -154,6 +154,14 @@ const List: React.FC = () => {
           label: 'Video Extend',
           value: 'VIDEO_EXTEND',
         },
+        {
+          label: 'Edit',
+          value: 'EDIT',
+        },
+        {
+          label: 'Retexture',
+          value: 'RETEXTURE',
+        },
       ],
       render: (text, record) => record['displays']['action'],
     },
