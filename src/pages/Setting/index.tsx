@@ -1121,6 +1121,14 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
+
+                <Form.Item
+                  label="启用悠船内网下载"
+                  name="enableYouChuanInternalDownload"
+                  help="当程序部署在阿里云上海地域时，如果需要加速下载图片速度，可以开启内网下载功能"
+                >
+                  <Switch />
+                </Form.Item>
               </Card>
             </Col>
           </Row>

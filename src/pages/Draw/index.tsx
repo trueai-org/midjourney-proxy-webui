@@ -820,8 +820,10 @@ const Draw: React.FC = () => {
     } else if (task.action === 'VIDEO' || task.action === 'VIDEO_EXTEND') {
       return (
         <div className="video-task-card">
-          {getTaskStatus(task)} {getTaskMarkdownInfo(task)}
-          {task.videoUrls && task.videoUrls.length > 0 && (
+          {getTaskStatus(task)}
+          {getTaskImage(task.imageUrl, 250)}
+          {/* {getTaskStatus(task)} {getTaskMarkdownInfo(task)} */}
+          {/* {task.videoUrls && task.videoUrls.length > 0 && (
             <>
               <div className="task-header">
                 <div className="task-meta">
@@ -923,7 +925,7 @@ const Draw: React.FC = () => {
                 ))}
               </div>
             </>
-          )}
+          )} */}
         </div>
       );
     } else {
@@ -932,7 +934,7 @@ const Draw: React.FC = () => {
           {getTaskStatus(task)}
 
           {/* 图片 */}
-          {task.action === 'SWAP_VIDEO_FACE' ? (
+          {task.action === 'SWAP_VIDEO_FACE' || task.contentType === 'video/mp4' ? (
             <>
               {/* <Flex style={{ maxHeight: 60 }}>
                 <div>{getTaskImage(task.replicateSource, 125)}</div>

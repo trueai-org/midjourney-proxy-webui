@@ -159,16 +159,16 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
   };
 
   const renderMediaContent = () => {
-    // 视频任务
-    if (record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') {
-      return (
-        <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
-          {getVideoContent()}
-        </Descriptions.Item>
-      );
-    }
+    // // 视频任务
+    // if (record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') {
+    //   return (
+    //     <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
+    //       {getVideoContent()}
+    //     </Descriptions.Item>
+    //   );
+    // }
     // 视频换脸任务
-    else if (record.action === 'SWAP_VIDEO_FACE') {
+    if (record.action === 'SWAP_VIDEO_FACE' || record.contentType === 'video/mp4') {
       return (
         <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
           <Flex vertical>

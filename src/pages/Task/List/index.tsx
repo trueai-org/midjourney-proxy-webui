@@ -1,10 +1,21 @@
 import MyModal from '@/pages/components/Modal';
 import TaskContent from '@/pages/Task/components/TaskContent';
 import { deleteTask, queryTask } from '@/services/mj/api';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
-import { Button, Card, Form, Image, notification, Popconfirm, Progress, Spin, Tag } from 'antd';
+import {
+  Button,
+  Card,
+  Form,
+  Image,
+  Modal,
+  notification,
+  Popconfirm,
+  Progress,
+  Spin,
+  Tag,
+} from 'antd';
 import React, { useRef, useState } from 'react';
 
 const List: React.FC = () => {
@@ -78,6 +89,9 @@ const List: React.FC = () => {
     );
   };
 
+  const [videoModalVisible, setVideoModalVisible] = useState(false);
+  const [currentVideoUrl, setCurrentVideoUrl] = useState('');
+
   const columns = [
     {
       title: 'ID',
@@ -150,10 +164,10 @@ const List: React.FC = () => {
           label: 'Video',
           value: 'VIDEO',
         },
-        {
-          label: 'Video Extend',
-          value: 'VIDEO_EXTEND',
-        },
+        // {
+        //   label: 'Video Extend',
+        //   value: 'VIDEO_EXTEND',
+        // },
         {
           label: 'Edit',
           value: 'EDIT',
@@ -202,6 +216,57 @@ const List: React.FC = () => {
                 }
               />
             )
+          );
+        }
+
+        // 在视频处理部分修改onClick事件
+        // 如果是视频
+        if (record.contentType === 'video/mp4') {
+          // 点击查看播放视频，使用视频组件
+          // 点击才显示视频
+          return (
+            <div
+              style={{
+                position: 'relative',
+                cursor: 'pointer',
+                display: 'inline-block',
+              }}
+              onClick={() => {
+                setCurrentVideoUrl(record.imageUrl || record.url);
+                setVideoModalVisible(true);
+              }}
+            >
+              {record.thumbnailUrl && (
+                <Image
+                  style={{
+                    borderRadius: 0,
+                    maxWidth: 120,
+                    objectFit: 'cover',
+                  }}
+                  key={index}
+                  height={60}
+                  src={record.thumbnailUrl}
+                  preview={false}
+                  loading="lazy"
+                  onLoad={handleImageLoad}
+                  placeholder={
+                    <div
+                      style={{
+                        width: 120,
+                        height: 60,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Spin spinning={loading} />
+                    </div>
+                  }
+                />
+              )}
+
+              <Button icon={<PlayCircleOutlined />}></Button>
+            </div>
           );
         }
 
@@ -421,6 +486,7 @@ const List: React.FC = () => {
           }}
         />
       </Card>
+
       <MyModal
         title={title}
         modalVisible={modalVisible}
@@ -429,6 +495,21 @@ const List: React.FC = () => {
         footer={footer}
         modalWidth={modalWidth}
       ></MyModal>
+
+      <Modal
+        title="视频播放"
+        open={videoModalVisible}
+        onCancel={() => setVideoModalVisible(false)}
+        footer={null}
+        width={800}
+        centered
+        destroyOnClose
+      >
+        <video controls autoPlay width="100%" style={{ maxHeight: '400px' }}>
+          <source src={currentVideoUrl} type="video/mp4" />
+          您的浏览器不支持视频播放
+        </video>
+      </Modal>
     </PageContainer>
   );
 };
