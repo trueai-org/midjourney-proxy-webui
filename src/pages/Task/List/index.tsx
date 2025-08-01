@@ -219,7 +219,6 @@ const List: React.FC = () => {
           );
         }
 
-        // 在视频处理部分修改onClick事件
         // 如果是视频
         if (record.contentType === 'video/mp4') {
           // 点击查看播放视频，使用视频组件
@@ -236,35 +235,6 @@ const List: React.FC = () => {
                 setVideoModalVisible(true);
               }}
             >
-              {record.thumbnailUrl && (
-                <Image
-                  style={{
-                    borderRadius: 0,
-                    maxWidth: 120,
-                    objectFit: 'cover',
-                  }}
-                  key={index}
-                  height={60}
-                  src={record.thumbnailUrl}
-                  preview={false}
-                  loading="lazy"
-                  onLoad={handleImageLoad}
-                  placeholder={
-                    <div
-                      style={{
-                        width: 120,
-                        height: 60,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Spin spinning={loading} />
-                    </div>
-                  }
-                />
-              )}
-
               <Button icon={<PlayCircleOutlined />}></Button>
             </div>
           );
@@ -277,7 +247,11 @@ const List: React.FC = () => {
                 style={{ borderRadius: 0, maxWidth: 120, objectFit: 'cover' }}
                 key={index}
                 height={60}
-                src={record.thumbnailUrl || record.imageUrl}
+                src={
+                  record.action === 'VIDEO'
+                    ? record.imageUrl
+                    : record.thumbnailUrl || record.imageUrl
+                }
                 preview={{
                   src: record.imageUrl,
                   mask: <Spin spinning={loading} />,
