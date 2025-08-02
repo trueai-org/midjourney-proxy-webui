@@ -164,10 +164,7 @@ const List: React.FC = () => {
           label: 'Video',
           value: 'VIDEO',
         },
-        // {
-        //   label: 'Video Extend',
-        //   value: 'VIDEO_EXTEND',
-        // },
+  
         {
           label: 'Edit',
           value: 'EDIT',

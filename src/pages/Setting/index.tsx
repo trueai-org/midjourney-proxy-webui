@@ -793,6 +793,26 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label="启用视频合成"
+                  name="enableVideoMerge"
+                  help="启用后视频操作时，将最终视频生成为 webp 格式"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item label="视频合并质量" name="videoMergeQuality" help="视频合成 webp 的质量，0 - 100，默认：75，推荐 >= 50">
+                  <InputNumber min={0} max={100} defaultValue={75} />
+                </Form.Item>
+
+                <Form.Item
+                  label="启用用户统计"
+                  name="enableUserDrawStatistics"
+                  help="启用后自动统计用户每日绘图和总绘图数量，默认：不开启"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}
                   name="isVerticalDomain"
                   help={intl.formatMessage({ id: 'pages.setting.isVerticalDomainTips' })}
@@ -838,6 +858,7 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.guestDefaultDayLimit' })}
                   name="guestDefaultDayLimit"

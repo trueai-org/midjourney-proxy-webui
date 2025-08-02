@@ -817,125 +817,142 @@ const Draw: React.FC = () => {
           {getTaskStatus(task)} {getTaskMarkdownInfo(task)}
         </>
       );
-    } else if (task.action === 'VIDEO' || task.action === 'VIDEO_EXTEND') {
+    }
+    //  else if (task.action === 'VIDEO') {
+    //   return (
+    //     <div className="video-task-card">
+    //       {getTaskStatus(task)}
+    //       {getTaskImage(task.imageUrl, 250)}
+    //       {/* {getTaskStatus(task)} {getTaskMarkdownInfo(task)} */}
+    //       {/* {task.videoUrls && task.videoUrls.length > 0 && (
+    //         <>
+    //           <div className="task-header">
+    //             <div className="task-meta">
+    //               <span className="task-duration">{task.videoDuration}s</span>
+    //               <span className="task-frames">{task.frameCount} frames</span>
+    //             </div>
+    //           </div>
+
+    //           <div className="videos-container">
+    //             {task.videoUrls.map((videoItem: any, index: number) => (
+    //               <div key={index} className="video-item">
+    //                 <div className="video-wrapper">
+    //                   <video
+    //                     controls
+    //                     loop
+    //                     muted
+    //                     className="video-player"
+    //                     poster={task.videoGenOriginImageUrl}
+    //                   >
+    //                     <source src={videoItem.url} type="video/mp4" />
+    //                     您的浏览器不支持视频播放。
+    //                   </video>
+    //                   <div className="video-overlay">
+    //                     <span className="video-index">#{index + 1}</span>
+    //                   </div>
+    //                 </div>
+
+    //                 <div className="video-actions">
+    //                   {(() => {
+    //                     const manualButtons = videoItem.buttons.filter((button: any) =>
+    //                       button.customId.includes('::manual'),
+    //                     );
+    //                     const autoButtons = videoItem.buttons.filter((button: any) =>
+    //                       button.customId.includes('::auto'),
+    //                     );
+
+    //                     return (
+    //                       <>
+    //                         {autoButtons.length > 0 && (
+    //                           <div className="button-group">
+    //                             <div className="group-label">Auto Extend</div>
+    //                             <div className="group-buttons">
+    //                               {autoButtons.map((button: any, btnIndex: number) => (
+    //                                 <Button
+    //                                   key={btnIndex}
+    //                                   ghost
+    //                                   size="small"
+    //                                   style={{
+    //                                     backgroundColor:
+    //                                       button.style === 3 ? '#258146' : 'rgb(131 133 142)',
+    //                                     fontSize: '11px',
+    //                                     height: '28px',
+    //                                     padding: '0 8px',
+    //                                   }}
+    //                                   onClick={() => {
+    //                                     actionTask(task, button);
+    //                                   }}
+    //                                   loading={loadingButton === `${task.id}:${button.customId}`}
+    //                                 >
+    //                                   {button.label.replace('Extend ', '').replace('Auto ', '')}
+    //                                 </Button>
+    //                               ))}
+    //                             </div>
+    //                           </div>
+    //                         )}
+
+    //                         {manualButtons.length > 0 && (
+    //                           <div className="button-group">
+    //                             <div className="group-label">Manual Extend</div>
+    //                             <div className="group-buttons">
+    //                               {manualButtons.map((button: any, btnIndex: number) => (
+    //                                 <Button
+    //                                   key={btnIndex}
+    //                                   ghost
+    //                                   size="small"
+    //                                   style={{
+    //                                     backgroundColor:
+    //                                       button.style === 3 ? '#258146' : 'rgb(131 133 142)',
+    //                                     fontSize: '11px',
+    //                                     height: '28px',
+    //                                     padding: '0 8px',
+    //                                   }}
+    //                                   onClick={() => {
+    //                                     actionTask(task, button);
+    //                                   }}
+    //                                   loading={loadingButton === `${task.id}:${button.customId}`}
+    //                                 >
+    //                                   {button.label.replace('Extend ', '').replace('Manual ', '')}
+    //                                 </Button>
+    //                               ))}
+    //                             </div>
+    //                           </div>
+    //                         )}
+    //                       </>
+    //                     );
+    //                   })()}
+    //                 </div>
+    //               </div>
+    //             ))}
+    //           </div>
+    //         </>
+    //       )} */}
+    //     </div>
+    //   );
+    // }
+    else {
       return (
-        <div className="video-task-card">
+        <>
           {getTaskStatus(task)}
-          {getTaskImage(task.imageUrl, 250)}
-          {/* {getTaskStatus(task)} {getTaskMarkdownInfo(task)} */}
-          {/* {task.videoUrls && task.videoUrls.length > 0 && (
+
+          {task.action === 'VIDEO' && task.videoDuration && (
             <>
+              {getTaskMarkdownInfo(task)}
+              
               <div className="task-header">
                 <div className="task-meta">
                   <span className="task-duration">{task.videoDuration}s</span>
                   <span className="task-frames">{task.frameCount} frames</span>
                 </div>
               </div>
-
-              <div className="videos-container">
-                {task.videoUrls.map((videoItem: any, index: number) => (
-                  <div key={index} className="video-item">
-                    <div className="video-wrapper">
-                      <video
-                        controls
-                        loop
-                        muted
-                        className="video-player"
-                        poster={task.videoGenOriginImageUrl}
-                      >
-                        <source src={videoItem.url} type="video/mp4" />
-                        您的浏览器不支持视频播放。
-                      </video>
-                      <div className="video-overlay">
-                        <span className="video-index">#{index + 1}</span>
-                      </div>
-                    </div>
-
-                    <div className="video-actions">
-                      {(() => {
-                        const manualButtons = videoItem.buttons.filter((button: any) =>
-                          button.customId.includes('::manual'),
-                        );
-                        const autoButtons = videoItem.buttons.filter((button: any) =>
-                          button.customId.includes('::auto'),
-                        );
-
-                        return (
-                          <>
-                            {autoButtons.length > 0 && (
-                              <div className="button-group">
-                                <div className="group-label">Auto Extend</div>
-                                <div className="group-buttons">
-                                  {autoButtons.map((button: any, btnIndex: number) => (
-                                    <Button
-                                      key={btnIndex}
-                                      ghost
-                                      size="small"
-                                      style={{
-                                        backgroundColor:
-                                          button.style === 3 ? '#258146' : 'rgb(131 133 142)',
-                                        fontSize: '11px',
-                                        height: '28px',
-                                        padding: '0 8px',
-                                      }}
-                                      onClick={() => {
-                                        actionTask(task, button);
-                                      }}
-                                      loading={loadingButton === `${task.id}:${button.customId}`}
-                                    >
-                                      {button.label.replace('Extend ', '').replace('Auto ', '')}
-                                    </Button>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-
-                            {manualButtons.length > 0 && (
-                              <div className="button-group">
-                                <div className="group-label">Manual Extend</div>
-                                <div className="group-buttons">
-                                  {manualButtons.map((button: any, btnIndex: number) => (
-                                    <Button
-                                      key={btnIndex}
-                                      ghost
-                                      size="small"
-                                      style={{
-                                        backgroundColor:
-                                          button.style === 3 ? '#258146' : 'rgb(131 133 142)',
-                                        fontSize: '11px',
-                                        height: '28px',
-                                        padding: '0 8px',
-                                      }}
-                                      onClick={() => {
-                                        actionTask(task, button);
-                                      }}
-                                      loading={loadingButton === `${task.id}:${button.customId}`}
-                                    >
-                                      {button.label.replace('Extend ', '').replace('Manual ', '')}
-                                    </Button>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </>
-                        );
-                      })()}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </>
-          )} */}
-        </div>
-      );
-    } else {
-      return (
-        <>
-          {getTaskStatus(task)}
+          )}
 
           {/* 图片 */}
           {task.action === 'SWAP_VIDEO_FACE' || task.contentType === 'video/mp4' ? (
             <>
+              {getTaskMarkdownInfo(task)}
+
               {/* <Flex style={{ maxHeight: 60 }}>
                 <div>{getTaskImage(task.replicateSource, 125)}</div>
                 <div>{getTaskVideo(task.replicateTarget, 125)}</div>

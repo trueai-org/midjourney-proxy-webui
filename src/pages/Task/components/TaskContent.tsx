@@ -160,7 +160,7 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
 
   const renderMediaContent = () => {
     // // 视频任务
-    // if (record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') {
+    // if (record.action === 'VIDEO') {
     //   return (
     //     <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
     //       {getVideoContent()}
@@ -172,6 +172,13 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
       return (
         <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
           <Flex vertical>
+            {record.videoDuration && (
+              <div className="video-info" style={{ marginBottom: '16px' }}>
+                <Tag color="blue">时长: {record.videoDuration}s</Tag>
+                <Tag color="green">帧数: {record.frameCount}</Tag>
+              </div>
+            )}
+
             {/* <Flex>
                   <div>{getImage(record.replicateSource)}</div>
                   <div>{getVideo(record.replicateTarget)}</div>
@@ -185,7 +192,15 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
     else {
       return (
         <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.image' })}>
-          {getImage(record.imageUrl)}
+          <Flex vertical>
+            {record.videoDuration && (
+              <div className="video-info" style={{ marginBottom: '16px' }}>
+                <Tag color="blue">时长: {record.videoDuration}s</Tag>
+                <Tag color="green">帧数: {record.frameCount}</Tag>
+              </div>
+            )}
+            {getImage(record.imageUrl)}
+          </Flex>
         </Descriptions.Item>
       );
     }
@@ -237,13 +252,12 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
           {renderMediaContent()}
 
           {/* 视频任务的额外信息 */}
-          {(record.action === 'VIDEO' || record.action === 'VIDEO_EXTEND') &&
-            record.videoDuration && (
-              <>
-                <Descriptions.Item label="视频时长">{record.videoDuration}s</Descriptions.Item>
-                <Descriptions.Item label="帧数">{record.frameCount}</Descriptions.Item>
-              </>
-            )}
+          {/* {record.action === 'VIDEO' && record.videoDuration && (
+            <>
+              <Descriptions.Item label="视频时长">{record.videoDuration}s</Descriptions.Item>
+              <Descriptions.Item label="帧数">{record.frameCount}</Descriptions.Item>
+            </>
+          )} */}
 
           {/* {record.action === 'SWAP_VIDEO_FACE' ? (
             <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.video' })}>
