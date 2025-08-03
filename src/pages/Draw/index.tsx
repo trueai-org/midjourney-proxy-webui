@@ -69,7 +69,10 @@ const Draw: React.FC = () => {
 
   const [accounts, setAccounts] = useState([]);
   const [curAccount, setCurAccount] = useState<string>();
-  const [remixMode, setRemixMode] = useState(false);
+  const [remixMode, setRemixMode] = useState(()=>{
+    const mode = sessionStorage.getItem('mj-remix-mode');
+    return mode === 'true';
+  });
 
   const intl = useIntl();
 
