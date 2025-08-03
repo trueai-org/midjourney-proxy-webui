@@ -27,6 +27,7 @@ import {
   Select,
   Space,
   Spin,
+  Switch,
   Tag,
   Upload,
 } from 'antd';
@@ -68,6 +69,7 @@ const Draw: React.FC = () => {
 
   const [accounts, setAccounts] = useState([]);
   const [curAccount, setCurAccount] = useState<string>();
+  const [remixMode, setRemixMode] = useState(false);
 
   const intl = useIntl();
 
@@ -482,6 +484,7 @@ const Draw: React.FC = () => {
       customId,
       state: customState,
       chooseSameChannel: true,
+      enableRemix: remixMode,
     }).then((res) => {
       setLoadingButton('');
       if (res.code === 22) {
@@ -534,6 +537,11 @@ const Draw: React.FC = () => {
         });
       }
     });
+  };
+
+  const handleRemixModeChange = (checked: boolean) => {
+    setRemixMode(checked);
+    sessionStorage.setItem('mj-remix-mode', checked ? 'true' : 'false');
   };
 
   let draw = false;
@@ -938,7 +946,7 @@ const Draw: React.FC = () => {
           {task.action === 'VIDEO' && task.videoDuration && (
             <>
               {getTaskMarkdownInfo(task)}
-              
+
               <div className="task-header">
                 <div className="task-meta">
                   <span className="task-duration">{task.videoDuration}s</span>
@@ -1289,6 +1297,13 @@ const Draw: React.FC = () => {
           style={{ width: 150 }}
           onChange={handleActionChange}
           options={options}
+        />
+
+        <Switch
+          checked={remixMode}
+          onChange={handleRemixModeChange}
+          checkedChildren="Remix"
+          unCheckedChildren="Remix"
         />
 
         <Select

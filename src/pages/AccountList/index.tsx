@@ -418,7 +418,7 @@ const AccountList: React.FC = () => {
     } as ColumnType<Record<string, any>>,
 
     {
-      title: `${intl.formatMessage({ id: 'pages.account.todayDraw' })}`,
+      title: "今日成功绘图", //`${intl.formatMessage({ id: 'pages.account.todayDraw' })}` + "（成功）",
       dataIndex: 'todayDraw',
       width: 200,
       align: 'center',
@@ -483,29 +483,29 @@ const AccountList: React.FC = () => {
     //   hideInSearch: true,
     //   render: (text: string, record: Record<string, any>) => record['displays']['nijiMode'],
     // } as ColumnType<Record<string, any>>,
-    {
-      title: intl.formatMessage({ id: 'pages.account.sponsor' }),
-      dataIndex: 'sponsor',
-      ellipsis: true,
-      width: 100,
-      sorter: true,
-      // 赞助商 - 富文本
-      render: (text: string, record: Record<string, any>) => (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-          }}
-        >
-          {record.sponsorUserId && (
-            <HeartTwoTone twoToneColor="#eb2f96" style={{ marginRight: 2 }} />
-          )}
+    // {
+    //   title: intl.formatMessage({ id: 'pages.account.sponsor' }),
+    //   dataIndex: 'sponsor',
+    //   ellipsis: true,
+    //   width: 100,
+    //   sorter: true,
+    //   // 赞助商 - 富文本
+    //   render: (text: string, record: Record<string, any>) => (
+    //     <div
+    //       style={{
+    //         display: 'flex',
+    //         flexDirection: 'row',
+    //         alignItems: 'center',
+    //       }}
+    //     >
+    //       {record.sponsorUserId && (
+    //         <HeartTwoTone twoToneColor="#eb2f96" style={{ marginRight: 2 }} />
+    //       )}
 
-          <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
-        </div>
-      ),
-    } as ColumnType<Record<string, any>>,
+    //       <div dangerouslySetInnerHTML={{ __html: record.sponsor || '-' }} />
+    //     </div>
+    //   ),
+    // } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.account.remark' }),
       dataIndex: 'remark',
@@ -626,7 +626,7 @@ const AccountList: React.FC = () => {
                         record={record}
                         onSubmit={handleUpdate}
                       />,
-                      1000,
+                      1200,
                     )
                   }
                 />
