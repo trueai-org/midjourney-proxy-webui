@@ -748,6 +748,15 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
+                <Form.Item label="日志级别" name="logEventLevel">
+                  <Select>
+                    <Select.Option value="Debug">Debug</Select.Option>
+                    <Select.Option value="Information">Information</Select.Option>
+                    <Select.Option value="Warning">Warning</Select.Option>
+                    <Select.Option value="Error">Error</Select.Option>
+                  </Select>
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.licenseKey' })}
                   name="licenseKey"
@@ -800,7 +809,11 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                <Form.Item label="视频合并质量" name="videoMergeQuality" help="视频合成 webp 的质量，0 - 100，默认：75，推荐 >= 50">
+                <Form.Item
+                  label="视频合并质量"
+                  name="videoMergeQuality"
+                  help="视频合成 webp 的质量，0 - 100，默认：75，推荐 >= 50"
+                >
                   <InputNumber min={0} max={100} defaultValue={75} />
                 </Form.Item>
 
