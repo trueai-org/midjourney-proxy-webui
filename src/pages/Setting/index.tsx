@@ -1190,6 +1190,26 @@ const Setting: React.FC = () => {
                       <Switch />
                     </Form.Item>
                   )}
+
+                  {setting.privateFeatures.includes('privateEnableYouChuanCustomLinkConvert') && (
+                    <Form.Item
+                      label="悠船开启自定义链接转换"
+                      name="privateEnableYouChuanCustomLinkConvert"
+                      help="请求头 x-storage-options: 1 | 2, 1: 返回官方链接, 2: 返回合作商链接"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
+
+                  {setting.privateFeatures.includes('privateKeepFinalPromptRequestSpeedMode') && (
+                    <Form.Item
+                      label="保持用户请求速度模式"
+                      name="privateKeepFinalPromptRequestSpeedMode"
+                      help="当请求速度模式与最终速度模式不一致时，最终提示词中的速度使用用户请求的速度模式"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
                 </Card>
               </Col>
             </Row>
