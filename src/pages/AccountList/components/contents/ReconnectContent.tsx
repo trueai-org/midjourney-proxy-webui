@@ -217,7 +217,7 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
-                  help="不包含放大操作的所有快速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                   extra={
                     record.dayFastCount > 0 && (
                       <span>
@@ -232,7 +232,7 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
-                  help="不包含放大操作的所有慢速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                   extra={
                     record.dayRelaxCount > 0 && (
                       <span>
@@ -449,7 +449,7 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
-                  help="不包含放大操作的所有快速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                   extra={
                     record.dayFastCount > 0 && (
                       <span>
@@ -464,7 +464,7 @@ const ReconnectContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
-                  help="不包含放大操作的所有慢速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                   extra={
                     record.dayRelaxCount > 0 && (
                       <span>

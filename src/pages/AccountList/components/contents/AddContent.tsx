@@ -233,14 +233,14 @@ const AddContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
-                  help="不包含放大操作的所有快速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
-                  help="不包含放大操作的所有慢速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
@@ -444,14 +444,14 @@ const AddContent = ({
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
-                  help="不包含放大操作的所有快速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
-                  help="不包含放大操作的所有慢速任务数（含失败）"
+                  help="已提交的任务数（含取消）"
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
