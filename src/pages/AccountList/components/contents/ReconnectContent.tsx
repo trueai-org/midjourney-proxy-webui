@@ -219,12 +219,10 @@ const ReconnectContent = ({
                   name="dayDrawLimit"
                   help="已提交的任务数（含取消）"
                   extra={
-                    record.dayFastCount > 0 && (
-                      <span>
-                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayFastCount}
-                      </span>
-                    )
+                    <span>
+                      {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                      {record.dayFastCount}
+                    </span>
                   }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
@@ -234,12 +232,10 @@ const ReconnectContent = ({
                   name="dayRelaxDrawLimit"
                   help="已提交的任务数（含取消）"
                   extra={
-                    record.dayRelaxCount > 0 && (
-                      <span>
-                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayRelaxCount}
-                      </span>
-                    )
+                    <span>
+                      {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                      {record.dayRelaxCount}
+                    </span>
                   }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
@@ -445,18 +441,16 @@ const ReconnectContent = ({
                 >
                   <Switch />
                 </Form.Item>
-                
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
                   help="已提交的任务数（含取消）"
                   extra={
-                    record.dayFastCount > 0 && (
-                      <span>
-                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayFastCount}
-                      </span>
-                    )
+                    <span>
+                      {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                      {record.dayFastCount}
+                    </span>
                   }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
@@ -466,12 +460,10 @@ const ReconnectContent = ({
                   name="dayRelaxDrawLimit"
                   help="已提交的任务数（含取消）"
                   extra={
-                    record.dayRelaxCount > 0 && (
-                      <span>
-                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayRelaxCount}
-                      </span>
-                    )
+                    <span>
+                      {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                      {record.dayRelaxCount}
+                    </span>
                   }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
