@@ -218,6 +218,14 @@ const ReconnectContent = ({
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
                   help="不包含放大操作的所有快速任务数（含失败）"
+                  extra={
+                    record.dayFastCount > 0 && (
+                      <span>
+                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                        {record.dayFastCount}
+                      </span>
+                    )
+                  }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
@@ -225,24 +233,17 @@ const ReconnectContent = ({
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
                   help="不包含放大操作的所有慢速任务数（含失败）"
-                >
-                  <InputNumber min={-1} defaultValue={-1} />
-                </Form.Item>
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
-                  name="dayDrawLimit"
                   extra={
-                    record.dayDrawCount > 0 && (
+                    record.dayRelaxCount > 0 && (
                       <span>
                         {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayDrawCount}
+                        {record.dayRelaxCount}
                       </span>
                     )
                   }
                 >
-                  <InputNumber min={-1} />
-                </Form.Item> */}
+                  <InputNumber min={-1} defaultValue={-1} />
+                </Form.Item>
               </Card>
             </Col>
             <Col span={8}>
@@ -449,6 +450,14 @@ const ReconnectContent = ({
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（快速）'}
                   name="dayDrawLimit"
                   help="不包含放大操作的所有快速任务数（含失败）"
+                  extra={
+                    record.dayFastCount > 0 && (
+                      <span>
+                        {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
+                        {record.dayFastCount}
+                      </span>
+                    )
+                  }
                 >
                   <InputNumber min={-1} defaultValue={-1} />
                 </Form.Item>
@@ -456,24 +465,17 @@ const ReconnectContent = ({
                   label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' }) + '（慢速）'}
                   name="dayRelaxDrawLimit"
                   help="不包含放大操作的所有慢速任务数（含失败）"
-                >
-                  <InputNumber min={-1} defaultValue={-1} />
-                </Form.Item>
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.dayDrawLimit' })}
-                  name="dayDrawLimit"
                   extra={
-                    record.dayDrawCount > 0 && (
+                    record.dayRelaxCount > 0 && (
                       <span>
                         {intl.formatMessage({ id: 'pages.account.dayDrawCount' })}{' '}
-                        {record.dayDrawCount}
+                        {record.dayRelaxCount}
                       </span>
                     )
                   }
                 >
-                  <InputNumber min={-1} />
-                </Form.Item> */}
+                  <InputNumber min={-1} defaultValue={-1} />
+                </Form.Item>
               </Card>
             </Col>
             <Col span={8}>
