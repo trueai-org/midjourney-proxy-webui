@@ -418,7 +418,7 @@ const AccountList: React.FC = () => {
     } as ColumnType<Record<string, any>>,
 
     {
-      title: "今日成功绘图", //`${intl.formatMessage({ id: 'pages.account.todayDraw' })}` + "（成功）",
+      title: '今日成功绘图', //`${intl.formatMessage({ id: 'pages.account.todayDraw' })}` + "（成功）",
       dataIndex: 'todayDraw',
       width: 200,
       align: 'center',
@@ -545,6 +545,7 @@ const AccountList: React.FC = () => {
           <Space>
             {record.isYouChuan === true || record.isOfficial === true ? (
               <>
+                <SyncButton record={record} onSuccess={triggerRefreshAccount} />
                 <Tooltip title={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}>
                   <Button
                     key="EditAndReconnect"

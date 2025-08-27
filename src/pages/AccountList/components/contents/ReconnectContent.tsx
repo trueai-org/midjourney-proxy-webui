@@ -244,6 +244,21 @@ const ReconnectContent = ({
             </Col>
             <Col span={8}>
               <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+                <Form.Item
+                  label="启用高清视频"
+                  name="isHdVideo"
+                  help="Pro or Mega 以上套餐，可以开启此功能"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="启用慢速视频"
+                  name="isRelaxVideo"
+                  help="Pro or Mega 以上套餐，可以开启此功能"
+                >
+                  <Switch />
+                </Form.Item>
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
                   <InputNumber />
                 </Form.Item>
