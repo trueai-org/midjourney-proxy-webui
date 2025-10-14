@@ -245,6 +245,14 @@ const ReconnectContent = ({
             <Col span={8}>
               <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
                 <Form.Item
+                  label="个性化配置"
+                  name="officialEnablePersonalize"
+                  help="启用后可以通过 api 生成 -p 个性化配置"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label="启用高清视频"
                   name="isHdVideo"
                   help="Pro or Mega 以上套餐，可以开启此功能"
