@@ -1210,6 +1210,16 @@ const Setting: React.FC = () => {
                       <Switch />
                     </Form.Item>
                   )}
+
+                  {setting.privateFeatures.includes('privateEnableOfficialPersonalize') && (
+                    <Form.Item
+                      label="开启官方个性化配置"
+                      name="privateEnableOfficialPersonalize"
+                      help="开启后可使用个性化配置 API"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
                 </Card>
               </Col>
             </Row>
