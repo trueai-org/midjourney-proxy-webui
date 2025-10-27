@@ -811,11 +811,20 @@ const Setting: React.FC = () => {
                   {({ getFieldValue }) =>
                     getFieldValue('enableRiskControlAutoCaptcha') && (
                       <Form.Item
-                        label="2Captcha Api Key"
+                        label="Yes Captcha Api Key"
                         name="twoCaptchaKey"
-                        tooltip="2captcha.com"
+                        tooltip="https://yescaptcha.com/i/4pizLQ"
+                        extra={
+                          <a
+                            href="https://yescaptcha.com/i/4pizLQ"
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            获取 Api Key
+                          </a>
+                        }
                       >
-                        <Input />
+                        <Input placeholder="https://yescaptcha.com/i/4pizLQ" />
                       </Form.Item>
                     )
                   }
