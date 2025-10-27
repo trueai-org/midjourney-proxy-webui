@@ -479,11 +479,20 @@ export async function mongoConnect() {
   });
 }
 
+// 数据库连接验证
+export async function databaseConnect(data?: any) {
+  return request<API.Result>('/mj/admin/validate-database-connection', {
+    method: 'POST',
+    timeout: 1000 * 60 * 10, // 10 分钟
+    data: data,
+  });
+}
+
 // 一键迁移
 export async function migrateAccountAndTasks(data: object, options?: { [key: string]: any }) {
   return request<API.Result>('/mj/admin/mjplus-migration', {
     method: 'POST',
     data: data,
-    ...(options || {})
+    ...(options || {}),
   });
 }

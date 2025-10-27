@@ -322,6 +322,12 @@ const AccountList: React.FC = () => {
               <Tag color="orange">{intl.formatMessage({ id: 'pages.account.isAutoLogining' })}</Tag>
             )}
 
+            {record.riskControlUnlockTimeFormat && (
+              <Tag icon={<LockOutlined />} color="warning">
+                风控 {record.riskControlUnlockTimeFormat}
+              </Tag>
+            )}
+
             {record.lock && (
               <Tag icon={<LockOutlined />} color="warning">
                 <Tooltip title={intl.formatMessage({ id: 'pages.account.lockmsg' })}>

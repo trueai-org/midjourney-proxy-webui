@@ -2,9 +2,9 @@ import JsonEditor from '@/components/JsonEditor';
 import {
   cancelUpdate,
   checkUpdate,
+  databaseConnect,
   getConfig,
   migrateAccountAndTasks,
-  mongoConnect,
   restart,
   updateConfig,
 } from '@/services/mj/api';
@@ -48,6 +48,50 @@ const Setting: React.FC = () => {
 
   const [host, setHost] = useState('');
   const [token, setToken] = useState('');
+
+  const onMongo = async () => {
+    try {
+      setLoading(true);
+      const data = {
+        databaseConnectionString: form.getFieldValue('databaseConnectionString'),
+        databaseName: form.getFieldValue('databaseName'),
+        databaseType: form.getFieldValue('databaseType'),
+        isRedis: false,
+      };
+
+      const res = await databaseConnect(data);
+      if (res.success) {
+        message.success('连接成功');
+      } else {
+        message.error(res.message);
+      }
+    } catch (error) {
+      message.error(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const onRedis = async () => {
+    try {
+      setLoading(true);
+      const data = {
+        databaseConnectionString: form.getFieldValue('redisConnectionString'),
+        isRedis: true,
+      };
+
+      const res = await databaseConnect(data);
+      if (res.success) {
+        message.success('连接成功');
+      } else {
+        message.error(res.message);
+      }
+    } catch (error) {
+      message.error(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const onMigrate = async (host: string, token: string) => {
     try {
@@ -530,26 +574,7 @@ const Setting: React.FC = () => {
                   name="databaseConnectionString"
                   extra={
                     <>
-                      <Button
-                        style={{ marginTop: 8 }}
-                        type="primary"
-                        onClick={() => {
-                          setLoading(true);
-                          mongoConnect().then((c) => {
-                            setLoading(false);
-                            if (c.success) {
-                              message.success(
-                                intl.formatMessage({ id: 'pages.setting.connectSuccess' }),
-                              );
-                            } else {
-                              message.error(
-                                c.message ||
-                                  intl.formatMessage({ id: 'pages.setting.connectError' }),
-                              );
-                            }
-                          });
-                        }}
-                      >
+                      <Button style={{ marginTop: 8 }} type="primary" onClick={onMongo}>
                         {intl.formatMessage({ id: 'pages.setting.testConnect' })}
                       </Button>
 
@@ -589,10 +614,44 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.redisConnectionString' })}
-                  name="redisConnectionString"
+                  label="启用 Redis"
+                  name="enableRedis"
+                  tooltip="启用 Redis 高性能模式，启用后支持分布式部署"
                 >
-                  <Input placeholder="127.0.0.1:6379,password=123,defaultDatabase=1,prefix=my_" />
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  shouldUpdate={(prevValues, currentValues) =>
+                    prevValues.enableRedis !== currentValues.enableRedis
+                  }
+                  noStyle
+                >
+                  {({ getFieldValue }) =>
+                    getFieldValue('enableRedis') ? (
+                      <Form.Item
+                        label={intl.formatMessage({ id: 'pages.setting.redisConnectionString' })}
+                        name="redisConnectionString"
+                        extra={
+                          <>
+                            <Button style={{ marginTop: 8 }} type="primary" onClick={onRedis}>
+                              {intl.formatMessage({ id: 'pages.setting.testConnect' })}
+                            </Button>
+
+                            {/* {form && !form.getFieldValue('isMongo') && (
+                              <Alert
+                                style={{ marginTop: 8 }}
+                                message={intl.formatMessage({ id: 'pages.setting.mongoNotUsed' })}
+                                type="warning"
+                              />
+                            )} */}
+                          </>
+                        }
+                      >
+                        <Input placeholder="127.0.0.1:6379,password=123,defaultDatabase=1,prefix=my_" />
+                      </Form.Item>
+                    ) : null
+                  }
                 </Form.Item>
 
                 <Form.Item
@@ -732,6 +791,74 @@ const Setting: React.FC = () => {
                   help={intl.formatMessage({ id: 'pages.setting.captchaNotifySecretTip' })}
                 >
                   <Input />
+                </Form.Item>
+
+                <Form.Item
+                  label="启用风控自动验证"
+                  name="enableRiskControlAutoCaptcha"
+                  tooltip="适用于官网 Cloudflare 验证"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  shouldUpdate={(prevValues, currentValues) =>
+                    prevValues.enableRiskControlAutoCaptcha !==
+                    currentValues.enableRiskControlAutoCaptcha
+                  }
+                  noStyle
+                >
+                  {({ getFieldValue }) =>
+                    getFieldValue('enableRiskControlAutoCaptcha') && (
+                      <Form.Item
+                        label="2Captcha Api Key"
+                        name="twoCaptchaKey"
+                        tooltip="2captcha.com"
+                      >
+                        <Input />
+                      </Form.Item>
+                    )
+                  }
+                </Form.Item>
+
+                <Form.Item
+                  shouldUpdate={(prevValues, currentValues) =>
+                    prevValues.enableRiskControlAutoCaptcha !==
+                    currentValues.enableRiskControlAutoCaptcha
+                  }
+                  noStyle
+                >
+                  {({ getFieldValue }) =>
+                    getFieldValue('enableRiskControlAutoCaptcha') && (
+                      <Form.Item
+                        label="风控预警次数"
+                        name="riskControlAutoCaptchaMaxCount"
+                        tooltip="触发超过多少次验证后，账号自动休眠"
+                      >
+                        <InputNumber min={0} max={100} defaultValue={2} />
+                      </Form.Item>
+                    )
+                  }
+                </Form.Item>
+
+                <Form.Item
+                  shouldUpdate={(prevValues, currentValues) =>
+                    prevValues.enableRiskControlAutoCaptcha !==
+                    currentValues.enableRiskControlAutoCaptcha
+                  }
+                  noStyle
+                >
+                  {({ getFieldValue }) =>
+                    getFieldValue('enableRiskControlAutoCaptcha') && (
+                      <Form.Item
+                        label="风控休眠分钟"
+                        name="riskControlAutoCaptchaSleepMinutes"
+                        tooltip="触发风控预警后自定休眠的时间，单位分钟"
+                      >
+                        <InputNumber min={0} max={14400} defaultValue={120} />
+                      </Form.Item>
+                    )
+                  }
                 </Form.Item>
               </Card>
             </Col>
