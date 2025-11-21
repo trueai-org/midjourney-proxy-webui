@@ -840,9 +840,9 @@ const Setting: React.FC = () => {
                   {({ getFieldValue }) =>
                     getFieldValue('enableRiskControlAutoCaptcha') && (
                       <Form.Item
-                        label="风控预警次数"
+                        label="风控验证次数"
                         name="riskControlAutoCaptchaMaxCount"
-                        tooltip="触发超过多少次验证后，账号自动休眠"
+                        tooltip="当日触发超过多少次验证后，账号自动禁用"
                       >
                         <InputNumber min={0} max={100} defaultValue={2} />
                       </Form.Item>
@@ -850,7 +850,7 @@ const Setting: React.FC = () => {
                   }
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   shouldUpdate={(prevValues, currentValues) =>
                     prevValues.enableRiskControlAutoCaptcha !==
                     currentValues.enableRiskControlAutoCaptcha
@@ -868,7 +868,7 @@ const Setting: React.FC = () => {
                       </Form.Item>
                     )
                   }
-                </Form.Item>
+                </Form.Item> */}
               </Card>
             </Col>
             <Col span={12}>
