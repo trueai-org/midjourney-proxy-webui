@@ -496,76 +496,21 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultConnectionString' })}
-                  name="mongoDefaultConnectionString"
-                  extra={
-                    <>
-                      <Button
-                        style={{ marginTop: 8 }}
-                        type="primary"
-                        onClick={() => {
-                          const mongoDefaultConnectionString = form.getFieldValue(
-                            'mongoDefaultConnectionString',
-                          );
-                          if (mongoDefaultConnectionString) {
-                            setLoading(true);
-                            mongoConnect().then((c) => {
-                              setLoading(false);
-                              if (c.success) {
-                                message.success(
-                                  intl.formatMessage({ id: 'pages.setting.connectSuccess' }),
-                                );
-                              } else {
-                                message.error(
-                                  c.message ||
-                                    intl.formatMessage({ id: 'pages.setting.connectError' }),
-                                );
-                              }
-                            });
-                          } else {
-                            message.warning(
-                              intl.formatMessage({
-                                id: 'pages.setting.mongoDefaultConnectionStringTips',
-                              }),
-                            );
-                          }
-                        }}
-                      >
-                        {intl.formatMessage({ id: 'pages.setting.testConnect' })}
-                      </Button>
-
-                      {form && !form.getFieldValue('isMongo') && (
-                        <Alert
-                          style={{ marginTop: 8 }}
-                          message={intl.formatMessage({ id: 'pages.setting.mongoNotUsed' })}
-                          type="warning"
-                        />
-                      )}
-                    </>
-                  }
-                >
-                  <Input placeholder="mongodb://mongoadmin:***admin@192.168.x.x" />
-                </Form.Item> */}
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultDatabase' })}
-                  name="mongoDefaultDatabase"
-                >
-                  <Input placeholder="mj" />
-                </Form.Item> */}
-
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.databaseType' })}
                   name="databaseType"
                 >
                   <Select allowClear>
-                    <Select.Option value="LiteDB">LiteDB</Select.Option>
-                    <Select.Option value="MongoDB">MongoDB</Select.Option>
                     <Select.Option value="SQLite">SQLite</Select.Option>
                     <Select.Option value="MySQL">MySQL</Select.Option>
                     <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
                     <Select.Option value="SQLServer">SQLServer</Select.Option>
+                    <Select.Option value="LiteDB">
+                      <span style={{ color: 'red' }}>LiteDB (v10废弃)</span>
+                    </Select.Option>
+                    <Select.Option value="MongoDB">
+                      <span style={{ color: 'red' }}>MongoDB (v10废弃)</span>
+                    </Select.Option>
                   </Select>
                 </Form.Item>
 
@@ -599,18 +544,40 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.isAutoMigrate' })}
+                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
+                  name="maxCount"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+
+                <Form.Item
+                  label="LiteDB 数据迁移"
                   name="isAutoMigrate"
-                  tooltip={intl.formatMessage({ id: 'pages.setting.isAutoMigrateTips' })}
+                  tooltip="启动时将 LiteDB 数据迁移到迁移到当前数据库"
                 >
                   <Switch />
                 </Form.Item>
 
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
-                  name="maxCount"
+                  label="MongoDB 数据迁移"
+                  name="isAutoMigrateMongo"
+                  tooltip="启动时将 MongoDB 数据迁移到迁移到当前数据库"
                 >
-                  <InputNumber min={-1} />
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultConnectionString' })}
+                  name="mongoDefaultConnectionString"
+                >
+                  <Input placeholder="mongodb://mongoadmin:***admin@192.168.x.x" />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.mongoDefaultDatabase' })}
+                  name="mongoDefaultDatabase"
+                >
+                  <Input placeholder="mj" />
                 </Form.Item>
 
                 <Form.Item
@@ -957,6 +924,22 @@ const Setting: React.FC = () => {
                   label="启用用户统计"
                   name="enableUserDrawStatistics"
                   help="启用后自动统计用户每日绘图和总绘图数量，默认：不开启"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="自动收录官网违禁词"
+                  name="enableAutoCollectOfficialBannedWords"
+                  help="启用后自动收录官网违禁词到违禁词库"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="自动清除用户违规词"
+                  name="enableAutoClearUserBannedWords"
+                  help="用户触发违规词后，自动清除用户的提示词中的违规词"
                 >
                   <Switch />
                 </Form.Item>
