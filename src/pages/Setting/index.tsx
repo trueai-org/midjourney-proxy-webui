@@ -1111,13 +1111,13 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
                   name="enableAutoSyncInfoSetting"
                   help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoExtendToken' })}
