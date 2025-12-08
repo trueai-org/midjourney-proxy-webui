@@ -428,6 +428,14 @@ export async function getConfig(options?: { [key: string]: any }) {
     ...(options || {}),
   });
 }
+// 从 Consul 加载配置
+export async function getConsulConfig(data: object,options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/load-consul-setting', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
 
 // 下载文件
 export async function downloadLogs(top: number, options?: { [key: string]: any }) {

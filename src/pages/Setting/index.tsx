@@ -4,6 +4,7 @@ import {
   checkUpdate,
   databaseConnect,
   getConfig,
+  getConsulConfig,
   migrateAccountAndTasks,
   restart,
   updateConfig,
@@ -48,6 +49,31 @@ const Setting: React.FC = () => {
 
   const [host, setHost] = useState('');
   const [token, setToken] = useState('');
+
+  const onLoadConsulSettings = async () => {
+    try {
+      // 获取当前 consul 配置
+      const consulOpt = form.getFieldValue('consulOptions');
+      if (!consulOpt) {
+        message.warning('请先填写 Consul 配置');
+        return;
+      }
+
+      setLoading(true);
+      const res = await getConsulConfig(consulOpt);
+      if (res.success) {
+        form.setFieldsValue(res.data);
+        setSetting(res.data);
+        message.success('加载成功');
+      } else {
+        message.error(res.message);
+      }
+    } catch (error) {
+      message.error(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const onMongo = async () => {
     try {
@@ -1057,6 +1083,17 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.consulOptions' })}
                   name="consulOptions"
+                  extra={
+                    <>
+                      <Button
+                        style={{ marginTop: 8 }}
+                        type="primary"
+                        onClick={onLoadConsulSettings}
+                      >
+                        加载 Consul 配置
+                      </Button>
+                    </>
+                  }
                 >
                   <JsonEditor />
                 </Form.Item>
