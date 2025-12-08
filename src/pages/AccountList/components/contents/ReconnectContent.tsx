@@ -121,7 +121,11 @@ const ReconnectContent = ({
                   <Switch />
                 </Form.Item>
 
-                <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.mode' })}
+                  name="mode"
+                  help="账号始终以此速度提交任务，忽略前台所有参数"
+                >
                   <Select allowClear>
                     <Select.Option value="RELAX">RELAX</Select.Option>
                     <Select.Option value="FAST">FAST</Select.Option>
@@ -147,6 +151,16 @@ const ReconnectContent = ({
                 >
                   <Switch />
                 </Form.Item>
+                {record.isYouChuan === true ? (
+                  <Form.Item
+                    label="优先消耗慢速"
+                    name="youChuanEnablePreferRelax"
+                    valuePropName="checked"
+                    help="非固定模式，优先消耗慢速，即：慢速则使用慢速，无慢速则使用快速"
+                  >
+                    <Switch />
+                  </Form.Item>
+                ) : null}
               </Card>
             </Col>
             <Col span={8}>
@@ -163,18 +177,23 @@ const ReconnectContent = ({
                 >
                   <InputNumber min={1} />
                 </Form.Item>
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.relaxCoreSize' })}
-                  name="relaxCoreSize"
-                >
-                  <InputNumber min={1} />
-                </Form.Item>
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.relaxQueueSize' })}
-                  name="relaxQueueSize"
-                >
-                  <InputNumber min={1} />
-                </Form.Item>
+
+                {record.isYouChuan === true && (
+                  <>
+                    <Form.Item
+                      label={intl.formatMessage({ id: 'pages.account.relaxCoreSize' })}
+                      name="relaxCoreSize"
+                    >
+                      <InputNumber min={1} />
+                    </Form.Item>
+                    <Form.Item
+                      label={intl.formatMessage({ id: 'pages.account.relaxQueueSize' })}
+                      name="relaxQueueSize"
+                    >
+                      <InputNumber min={1} />
+                    </Form.Item>
+                  </>
+                )}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.interval' })}

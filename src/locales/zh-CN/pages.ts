@@ -158,7 +158,7 @@ export default {
   'pages.account.enableFastToRelaxTips': '启用后，当快速模式用完后，自动切换到慢速模式',
   'pages.account.enableRelaxToFast': '自动切换快速',
   'pages.account.enableRelaxToFastTips': '启用后，当续订或拥有快速时长时，自动切换到快速模式',
-  'pages.account.enableAutoSetRelax': '自动设置慢速模式',
+  'pages.account.enableAutoSetRelax': '自动设置慢速',
   'pages.account.enableAutoSetRelaxTips':
     '启用后，当快速用时长完时，自动设置允许生成速度模式为 RELAX 模式',
   'pages.account.mjChannelId': 'MJ私信ID',
@@ -176,9 +176,9 @@ export default {
   'pages.account.relaxCoreSize': '并发数（慢速）',
   'pages.account.relaxQueueSize': '队列数（慢速）',
 
-  'pages.account.mode': '固定账号速度模式',
-  'pages.account.allowModes': '允许请求速度模式',
-  'pages.account.allowModesTip': '当前账号接受绘图任务的速度模式',
+  'pages.account.mode': '固定账号速度',
+  'pages.account.allowModes': '允许请求速度',
+  'pages.account.allowModesTip': '账号接受前台任务的请求速度，用于过滤账号',
 
   'pages.account.todayDraw': '今日绘图',
 

@@ -1339,6 +1339,16 @@ const Setting: React.FC = () => {
                       <Switch />
                     </Form.Item>
                   )}
+
+                  {setting.privateFeatures.includes('privateRemoveRequestSpeedMode') && (
+                    <Form.Item
+                      label="移除请求速度参数"
+                      name="privateRemoveRequestSpeedMode"
+                      help="当用户没有指定、没有提交、没有路径等包含速度模式时，移除最终提交任务的速度参数"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
                 </Card>
               </Col>
             </Row>
