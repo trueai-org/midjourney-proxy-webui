@@ -1090,7 +1090,7 @@ const Setting: React.FC = () => {
                         type="primary"
                         onClick={onLoadConsulSettings}
                       >
-                        加载 Consul 配置
+                        验证并加载远程 Consul 配置
                       </Button>
                     </>
                   }
