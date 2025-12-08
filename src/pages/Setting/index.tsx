@@ -1292,7 +1292,7 @@ const Setting: React.FC = () => {
                 <Card title="私人定制" bordered={false}>
                   {setting.privateFeatures.includes('privateEnableYouChuanAllowU') && (
                     <Form.Item
-                      label="悠船始终允许放大"
+                      label="始终允许放大"
                       name="privateEnableYouChuanAllowU"
                       help="悠船不判断账号是否有额度，始终允许 U 放大"
                     >
@@ -1302,7 +1302,7 @@ const Setting: React.FC = () => {
 
                   {setting.privateFeatures.includes('privateEnableYouChuanMergedCustomize') && (
                     <Form.Item
-                      label="悠船合成图片自定义路径"
+                      label="合成图片自定义路径"
                       name="privateEnableYouChuanMergedCustomize"
                       help="悠船自定义路径规则: 服务器id/频道id/提示词_uuid.png"
                     >
@@ -1312,7 +1312,7 @@ const Setting: React.FC = () => {
 
                   {setting.privateFeatures.includes('privateEnableYouChuanCustomLinkConvert') && (
                     <Form.Item
-                      label="悠船自定义返回链接"
+                      label="自定义返回链接"
                       name="privateEnableYouChuanCustomLinkConvert"
                       help="请求头 x-storage-options: 1 | 2, 1: 返回官方链接, 2: 返回合作商链接"
                     >
@@ -1322,7 +1322,7 @@ const Setting: React.FC = () => {
 
                   {setting.privateFeatures.includes('privateKeepFinalPromptRequestSpeedMode') && (
                     <Form.Item
-                      label="保持用户请求速度模式"
+                      label="保持用户请求速度"
                       name="privateKeepFinalPromptRequestSpeedMode"
                       help="当请求速度模式与最终速度模式不一致时，最终提示词中的速度使用用户请求的速度模式"
                     >

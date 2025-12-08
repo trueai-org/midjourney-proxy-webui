@@ -173,7 +173,7 @@ const AddContent = ({
                     label="优先消耗慢速"
                     name="youChuanEnablePreferRelax"
                     valuePropName="checked"
-                    help="非固定模式，优先消耗慢速，即：慢速则使用慢速，无慢速则使用快速"
+                    help="非固定速度，优先消耗慢速，即：有快速和慢速时优先使用慢速绘图"
                   >
                     <Switch />
                   </Form.Item>
