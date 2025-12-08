@@ -9,7 +9,7 @@ import {
   restart,
   updateConfig,
 } from '@/services/mj/api';
-import { CloudDownloadOutlined, SaveOutlined, SyncOutlined } from '@ant-design/icons';
+import { CloudDownloadOutlined, RedoOutlined, SaveOutlined, SyncOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import {
@@ -261,6 +261,29 @@ const Setting: React.FC = () => {
     });
   };
 
+  const restartAllApplication = async () => {
+    Modal.confirm({
+      title: '确认重启所有节点',
+      content: `确认重启所有节点吗？`,
+      okText: '立即重启',
+      cancelText: '取消',
+      onOk: async () => {
+        try {
+          restart(true).then((c) => {
+            setLoading(false);
+            if (c.success) {
+              message.success(c.message || '操作失败');
+            } else {
+              message.error(c.message || '操作失败');
+            }
+          });
+        } catch (error) {
+          message.error('重启失败');
+        }
+      },
+    });
+  };
+
   // 清理定时器
   useEffect(() => {
     return () => {
@@ -332,13 +355,29 @@ const Setting: React.FC = () => {
                 style={{ paddingTop: '4px', paddingBottom: '4px' }}
                 description={intl.formatMessage({ id: 'pages.setting.tips' })}
               />
+
+              <Tooltip
+                title="当开启 Consul 分布式部署时，重启将作用于所有节点，谨慎操作！"
+                placement="bottom"
+              >
+                <Button
+                  loading={loading}
+                  type="primary"
+                  danger
+                  icon={<RedoOutlined spin={loading} />}
+                  onClick={restartAllApplication}
+                >
+                  重启所有节点
+                </Button>
+              </Tooltip>
+
               <Tooltip
                 title={intl.formatMessage({ id: 'pages.setting.restartServiceTips' })}
                 placement="bottom"
               >
                 <Button
                   loading={loading}
-                  type="primary"
+                  type="dashed"
                   danger
                   icon={<SyncOutlined spin={loading} />}
                   onClick={() => {
@@ -357,12 +396,11 @@ const Setting: React.FC = () => {
                     });
                   }}
                 >
-                  {intl.formatMessage({ id: 'pages.setting.restartService' })}
+                  重启当前节点
                 </Button>
               </Tooltip>
 
               <Button
-                danger
                 type="dashed"
                 icon={<CloudDownloadOutlined />}
                 onClick={checkForUpdates}

@@ -429,7 +429,7 @@ export async function getConfig(options?: { [key: string]: any }) {
   });
 }
 // 从 Consul 加载配置
-export async function getConsulConfig(data: object,options?: { [key: string]: any }) {
+export async function getConsulConfig(data: object, options?: { [key: string]: any }) {
   return request<API.Result>('/mj/admin/load-consul-setting', {
     method: 'POST',
     data: data,
@@ -456,8 +456,8 @@ export async function updateConfig(data: object, options?: { [key: string]: any 
 }
 
 // 重启
-export async function restart(options?: { [key: string]: any }) {
-  return request<API.Result>('/mj/admin/restart', {
+export async function restart(all = false, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/restart?all=' + (all ? 'true' : 'false'), {
     method: 'POST',
     ...(options || {}),
   });
