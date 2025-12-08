@@ -1294,7 +1294,7 @@ const Setting: React.FC = () => {
                     <Form.Item
                       label="始终允许放大"
                       name="privateEnableYouChuanAllowU"
-                      help="悠船不判断账号是否有额度，始终允许 U 放大"
+                      help="悠船/官方不判断账号是否有额度，始终允许 U 放大"
                     >
                       <Switch />
                     </Form.Item>
@@ -1304,7 +1304,7 @@ const Setting: React.FC = () => {
                     <Form.Item
                       label="合成图片自定义路径"
                       name="privateEnableYouChuanMergedCustomize"
-                      help="悠船自定义路径规则: 服务器id/频道id/提示词_uuid.png"
+                      help="悠船/官方自定义路径规则: 服务器id/频道id/提示词_uuid.png"
                     >
                       <Switch />
                     </Form.Item>
@@ -1334,7 +1334,7 @@ const Setting: React.FC = () => {
                     <Form.Item
                       label="开启官方个性化配置"
                       name="privateEnableOfficialPersonalize"
-                      help="开启后可使用个性化配置 API"
+                      help="开启后官方账号可使用个性化配置 API"
                     >
                       <Switch />
                     </Form.Item>
