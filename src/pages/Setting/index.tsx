@@ -1019,6 +1019,16 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
+
+                <Form.Item
+                  label="返回官方 cdn 地址"
+                  name="enableFillOfficialCdn"
+                  help="绘图完成时对 imageUrls 和 videoUrls 填充 cdn.midjourney.com 的官方 cdn 地址"
+                >
+                  <Switch />
+                </Form.Item>
+
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}
                   name="isVerticalDomain"
