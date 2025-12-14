@@ -915,6 +915,17 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
+                <Form.Item
+                  label="更新包源"
+                  name="upgradePackageSource"
+                  help="更新包来源，国内用户推荐使用阿里云包源"
+                >
+                  <Select>
+                    <Select.Option value="GITHUB">GitHub</Select.Option>
+                    <Select.Option value="ALIYUN">阿里云</Select.Option>
+                  </Select>
+                </Form.Item>
+
                 <Form.Item label="日志级别" name="logEventLevel">
                   <Select>
                     <Select.Option value="Debug">Debug</Select.Option>
