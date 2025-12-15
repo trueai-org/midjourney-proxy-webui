@@ -187,7 +187,7 @@ export default {
   'pages.account.dateCreated': '添加时间',
   'pages.account.mjSettings': 'MJ设置',
   'pages.account.nijiSettings': 'Niji设置',
-  'pages.account.updateNotice': '注意：更新账号并重连后，该账号执行中的任务将会丢失！',
+  'pages.account.updateNotice': '注意：更新账号重连后，该账号执行中的任务可能会丢失，开启 Redis 会自动恢复任务！',
 
   'pages.account.poolsize': '账号池配置',
   'pages.account.isBlend': '开启 Blend',
