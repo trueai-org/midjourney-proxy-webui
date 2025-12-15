@@ -4,7 +4,7 @@ import AddContent from '@/pages/AccountList/components/contents/AddContent';
 import CfContent from '@/pages/AccountList/components/contents/CfContent';
 import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
-import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
+// import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
 import {
   createAccount,
   loginAccountGetToken,
@@ -621,7 +621,7 @@ const AccountList: React.FC = () => {
                     }}
                   />
                 </Tooltip>
-                <Button
+                {/* <Button
                   key="Update"
                   icon={<EditOutlined />}
                   onClick={() =>
@@ -636,7 +636,7 @@ const AccountList: React.FC = () => {
                       1200,
                     )
                   }
-                />
+                /> */}
               </>
             )}
 

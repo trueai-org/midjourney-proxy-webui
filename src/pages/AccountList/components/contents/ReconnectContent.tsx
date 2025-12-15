@@ -263,10 +263,20 @@ const ReconnectContent = ({
             </Col>
             <Col span={8}>
               <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
+                {record.isOfficial && (
+                  <Form.Item
+                    label="个性化配置"
+                    name="officialEnablePersonalize"
+                    help="启用后可以通过 api 生成 -p 个性化配置"
+                  >
+                    <Switch />
+                  </Form.Item>
+                )}
+
                 <Form.Item
-                  label="个性化配置"
-                  name="officialEnablePersonalize"
-                  help="启用后可以通过 api 生成 -p 个性化配置"
+                  label="启用草稿"
+                  name="isDraft"
+                  help="开启后当前账号所有绘图含提示词指令的操作都将自动添加 --draft 参数"
                 >
                   <Switch />
                 </Form.Item>
