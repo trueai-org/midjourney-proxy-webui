@@ -15,7 +15,7 @@ import {
 } from 'antd';
 import { useEffect, useState } from 'react';
 
-import { allDomain } from '@/services/mj/api';
+// import { allDomain } from '@/services/mj/api';
 import { FullscreenOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
 
@@ -40,14 +40,14 @@ const ReconnectContent = ({
     form.setFieldsValue(record);
   }, [r]);
 
-  const [opts, setOpts] = useState([]);
-  useEffect(() => {
-    allDomain().then((res) => {
-      if (res.success) {
-        setOpts(res.data);
-      }
-    });
-  }, []);
+  // const [opts, setOpts] = useState([]);
+  // useEffect(() => {
+  //   allDomain().then((res) => {
+  //     if (res.success) {
+  //       setOpts(res.data);
+  //     }
+  //   });
+  // }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [subChannels, setSubChannels] = useState('');

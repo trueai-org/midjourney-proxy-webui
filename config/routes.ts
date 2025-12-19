@@ -38,12 +38,12 @@ export default [
     path: '/account',
     component: './AccountList',
   },
-  {
-    name: 'list.domain-list',
-    icon: 'tag',
-    path: '/domain',
-    component: './DomainList/List',
-  },
+  // {
+  //   name: 'list.domain-list',
+  //   icon: 'tag',
+  //   path: '/domain',
+  //   component: './DomainList/List',
+  // },
   {
     name: 'list.user-list',
     icon: 'user',

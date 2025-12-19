@@ -290,13 +290,14 @@ export async function deleteDomain(id: string, options?: { [key: string]: any })
     ...(options || {}),
   });
 }
-/** 所有领域 */
-export async function allDomain(options?: { [key: string]: any }) {
-  return request<API.Result>('/mj/admin/domain-tags', {
-    method: 'GET',
-    ...(options || {}),
-  });
-}
+
+// /** 所有领域 */
+// export async function allDomain(options?: { [key: string]: any }) {
+//   return request<API.Result>('/mj/admin/domain-tags', {
+//     method: 'GET',
+//     ...(options || {}),
+//   });
+// }
 
 /** 创建/编辑领域 */
 export async function createDomain(data: object, options?: { [key: string]: any }) {
