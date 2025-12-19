@@ -513,6 +513,14 @@ const AddContent = ({
             <Col span={8}>
               <Card type="inner" title={intl.formatMessage({ id: 'pages.account.otherInfo' })}>
                 <Form.Item
+                  label="启用草稿"
+                  name="isDraft"
+                  help="开启后当前账号所有绘图含提示词指令的操作都将自动添加 --draft 参数"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.mjChannelId' })}
                   name="privateChannelId"
                 >
