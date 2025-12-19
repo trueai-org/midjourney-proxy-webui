@@ -538,7 +538,7 @@ const AddContent = ({
                 >
                   <Input />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.isVerticalDomain' })}
                   name="isVerticalDomain"
                 >
@@ -549,7 +549,7 @@ const AddContent = ({
                   name="verticalDomainIds"
                 >
                   <Select options={opts} allowClear mode="multiple"></Select>
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.sort' })} name="sort">
                   <InputNumber />

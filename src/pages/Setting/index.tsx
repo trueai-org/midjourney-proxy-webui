@@ -1029,13 +1029,13 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}
                   name="isVerticalDomain"
                   help={intl.formatMessage({ id: 'pages.setting.isVerticalDomainTips' })}
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableRegister' })}
