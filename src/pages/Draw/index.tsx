@@ -1281,7 +1281,7 @@ const Draw: React.FC = () => {
         { value: 'blend', label: '/blend' },
         { value: 'describe', label: '/describe' },
         { value: 'shorten', label: '/shorten' },
-        { value: 'showjobid', label: '/show job_id' },
+        // { value: 'showjobid', label: '/show job_id' },
         { value: 'show', label: '/show task_id' },
       ];
     }

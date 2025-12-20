@@ -131,6 +131,9 @@ export default {
   'pages.account.officialAccountTitle': '添加官方账号',
   'pages.account.officialAccount': '添加官方账号',
 
+  'pages.account.discordAccountTitle': '添加 Discord 账号',
+  'pages.account.discordAccount': '添加 Discord 账号',
+
   'pages.account.sync': '同步',
   'pages.account.sponsorAccount': '赞助',
   'pages.account.sponsorAccountTitle': '赞助账号（感谢您的慷慨和赞助）',

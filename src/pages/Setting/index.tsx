@@ -411,7 +411,7 @@ const Setting: React.FC = () => {
             </Space>
 
             <Space>
-              <Tooltip
+              {/* <Tooltip
                 placement="bottom"
                 title={
                   <div
@@ -440,7 +440,7 @@ const Setting: React.FC = () => {
                 <Button loading={loading} type="primary" ghost onClick={onMigrateClick}>
                   {intl.formatMessage({ id: 'pages.setting.migrate' })}
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
 
               <Button loading={loading} icon={<SaveOutlined />} type={'primary'} onClick={onFinish}>
                 {intl.formatMessage({ id: 'pages.setting.save' })}
@@ -569,11 +569,11 @@ const Setting: React.FC = () => {
                     <Select.Option value="MySQL">MySQL</Select.Option>
                     <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
                     <Select.Option value="SQLServer">SQLServer</Select.Option>
-                    <Select.Option value="LiteDB">
+                    {/* <Select.Option value="LiteDB">
                       <span style={{ color: 'red' }}>LiteDB (v10废弃)</span>
-                    </Select.Option>
+                    </Select.Option> */}
                     <Select.Option value="MongoDB">
-                      <span style={{ color: 'red' }}>MongoDB (v10废弃)</span>
+                      <span style={{ color: 'orange' }}>MongoDB</span>
                     </Select.Option>
                   </Select>
                 </Form.Item>
@@ -614,13 +614,13 @@ const Setting: React.FC = () => {
                   <InputNumber min={-1} />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label="LiteDB 数据迁移"
                   name="isAutoMigrate"
                   tooltip="启动时将 LiteDB 数据迁移到迁移到当前数据库"
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label="MongoDB 数据迁移"
@@ -950,13 +950,13 @@ const Setting: React.FC = () => {
                   <Switch className="demo-mode" />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAccountSponsor' })}
                   name="enableAccountSponsor"
                   help={intl.formatMessage({ id: 'pages.setting.enableAccountSponsorTips' })}
                 >
                   <Switch />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableOfficial' })}
@@ -1019,7 +1019,6 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-
                 <Form.Item
                   label="返回官方 cdn 地址"
                   name="enableFillOfficialCdn"
@@ -1027,7 +1026,6 @@ const Setting: React.FC = () => {
                 >
                   <Switch />
                 </Form.Item>
-
 
                 {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.isVerticalDomain' })}

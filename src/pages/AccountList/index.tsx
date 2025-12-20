@@ -748,38 +748,38 @@ const AccountList: React.FC = () => {
               {intl.formatMessage({ id: 'pages.account.youchuanAccount' })}
             </Button>,
 
-            <Button
-              key="sponsor"
-              type={'dashed'}
-              icon={<HeartTwoTone twoToneColor="#eb2f96" />}
-              onClick={() => {
-                openModal(
-                  intl.formatMessage({ id: 'pages.account.sponsorAccountTitle' }),
-                  <AddContent
-                    r={Math.random()}
-                    form={form}
-                    onSubmit={(values) => handleAdd({ ...values, isSponsor: true })}
-                  />,
-                  1600,
-                );
-              }}
-            >
-              {intl.formatMessage({ id: 'pages.account.sponsorAccount' })}
-            </Button>,
+            // <Button
+            //   key="sponsor"
+            //   type={'dashed'}
+            //   icon={<HeartTwoTone twoToneColor="#eb2f96" />}
+            //   onClick={() => {
+            //     openModal(
+            //       intl.formatMessage({ id: 'pages.account.sponsorAccountTitle' }),
+            //       <AddContent
+            //         r={Math.random()}
+            //         form={form}
+            //         onSubmit={(values) => handleAdd({ ...values, isSponsor: true })}
+            //       />,
+            //       1600,
+            //     );
+            //   }}
+            // >
+            //   {intl.formatMessage({ id: 'pages.account.sponsorAccount' })}
+            // </Button>,
 
             <Button
               key="primary"
-              type={'primary'}
+              type={'dashed'}
               icon={<UserAddOutlined />}
               onClick={() => {
                 openModal(
-                  intl.formatMessage({ id: 'pages.account.add' }),
+                  intl.formatMessage({ id: 'pages.account.discordAccountTitle' }),
                   <AddContent r={Math.random()} form={form} onSubmit={handleAdd} />,
                   1600,
                 );
               }}
             >
-              {intl.formatMessage({ id: 'pages.add' })}
+              {intl.formatMessage({ id: 'pages.account.discordAccount' })}
             </Button>,
           ]}
           request={async (params, sort) => {

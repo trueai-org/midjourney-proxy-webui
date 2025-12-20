@@ -397,7 +397,11 @@ const AddContent = ({
                   <Switch />
                 </Form.Item>
 
-                <Form.Item label={intl.formatMessage({ id: 'pages.account.mode' })} name="mode">
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.account.mode' })}
+                  name="mode"
+                  help="账号始终以此速度提交任务，忽略前台所有参数"
+                >
                   <Select allowClear>
                     <Select.Option value="RELAX">RELAX</Select.Option>
                     <Select.Option value="FAST">FAST</Select.Option>
