@@ -572,9 +572,9 @@ const Setting: React.FC = () => {
                     {/* <Select.Option value="LiteDB">
                       <span style={{ color: 'red' }}>LiteDB (v10废弃)</span>
                     </Select.Option> */}
-                    <Select.Option value="MongoDB">
+                    {/* <Select.Option value="MongoDB">
                       <span style={{ color: 'orange' }}>MongoDB</span>
-                    </Select.Option>
+                    </Select.Option> */}
                   </Select>
                 </Form.Item>
 
@@ -600,20 +600,14 @@ const Setting: React.FC = () => {
                   <Input />
                 </Form.Item>
 
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.databaseName' })}
                   name="databaseName"
                 >
                   <Input />
-                </Form.Item>
+                </Form.Item> */}
 
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
-                  name="maxCount"
-                >
-                  <InputNumber min={-1} />
-                </Form.Item>
-
+         
                 {/* <Form.Item
                   label="LiteDB 数据迁移"
                   name="isAutoMigrate"
@@ -622,7 +616,7 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item> */}
 
-                <Form.Item
+                {/* <Form.Item
                   label="MongoDB 数据迁移"
                   name="isAutoMigrateMongo"
                   tooltip="启动时将 MongoDB 数据迁移到迁移到当前数据库"
@@ -642,7 +636,7 @@ const Setting: React.FC = () => {
                   name="mongoDefaultDatabase"
                 >
                   <Input placeholder="mj" />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item
                   label="启用 Redis"
@@ -684,6 +678,15 @@ const Setting: React.FC = () => {
                     ) : null
                   }
                 </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.maxCount' })}
+                  name="maxCount"
+                  help="保留最大任务数（-1：不限制）"
+                >
+                  <InputNumber min={-1} />
+                </Form.Item>
+
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
