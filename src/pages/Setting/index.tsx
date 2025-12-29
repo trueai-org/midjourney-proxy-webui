@@ -607,7 +607,6 @@ const Setting: React.FC = () => {
                   <Input />
                 </Form.Item> */}
 
-         
                 {/* <Form.Item
                   label="LiteDB 数据迁移"
                   name="isAutoMigrate"
@@ -686,7 +685,6 @@ const Setting: React.FC = () => {
                 >
                   <InputNumber min={-1} />
                 </Form.Item>
-
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.accountChooseRule' })}
@@ -1192,6 +1190,14 @@ const Setting: React.FC = () => {
                 title={intl.formatMessage({ id: 'pages.setting.discordSetting' })}
                 bordered={false}
               >
+                <Form.Item
+                  label="启用 Discord 防撞图机制"
+                  name="enableDiscordAppendSeed"
+                  help="对提示词添加 --seed 参数，避免多任务撞图，默认：true"
+                >
+                  <Switch />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoGetPrivateId' })}
                   name="enableAutoGetPrivateId"
