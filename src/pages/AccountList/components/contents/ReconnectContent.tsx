@@ -355,12 +355,12 @@ const ReconnectContent = ({
                 >
                   <Input />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.account.botToken' })}
                   name="botToken"
                 >
                   <Input />
-                </Form.Item>
+                </Form.Item> */}
 
                 <Form.Item label="User Agent" name="userAgent">
                   <Input />

@@ -144,9 +144,9 @@ const MoreContent: React.FC<MoreContentProps> = ({ record, onSuccess }) => {
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.userToken' })}>
             {getTooltip(record.userToken)}
           </Descriptions.Item>
-          <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.botToken' })}>
+          {/* <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.botToken' })}>
             {getTooltip(record.botToken)}
-          </Descriptions.Item>
+          </Descriptions.Item> */}
           <Descriptions.Item label="User Agent">{getTooltip(record.userAgent)} </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}>
             {getStatusTag(
