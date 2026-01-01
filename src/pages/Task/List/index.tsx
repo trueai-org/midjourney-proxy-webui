@@ -121,57 +121,61 @@ const List: React.FC = () => {
       align: 'center',
       request: async () => [
         {
-          label: 'Imagine',
+          label: 'IMAGINE (想象)',
           value: 'IMAGINE',
         },
         {
-          label: 'Upscale',
+          label: 'UPSCALE (放大)',
           value: 'UPSCALE',
         },
         {
-          label: 'Variation',
+          label: 'UPSCALE_HD (高清)',
+          value: 'UPSCALE_HD',
+        },
+        {
+          label: 'VARIATION (变化)',
           value: 'VARIATION',
         },
         {
-          label: 'Zoom',
+          label: 'ZOOM (变焦)',
           value: 'ZOOM',
         },
         {
-          label: 'Pan',
+          label: 'PAN (平移)',
           value: 'PAN',
         },
         {
-          label: 'Describe',
+          label: 'DESCRIBE (图生文)',
           value: 'DESCRIBE',
         },
         {
-          label: 'Blend',
+          label: 'BLEND (混图)',
           value: 'BLEND',
         },
         {
-          label: 'Shorten',
+          label: 'SHORTEN (简化)',
           value: 'SHORTEN',
         },
+      
         {
-          label: 'SwapFace',
-          value: 'SWAP_FACE',
-        },
-        {
-          label: 'SwapVideoFace',
-          value: 'SWAP_VIDEO_FACE',
-        },
-        {
-          label: 'Video',
+          label: 'VIDEO (视频)',
           value: 'VIDEO',
         },
-  
         {
-          label: 'Edit',
+          label: 'EDIT (编辑)',
           value: 'EDIT',
         },
         {
-          label: 'Retexture',
+          label: 'RETEXTURE (转绘)',
           value: 'RETEXTURE',
+        },
+        {
+          label: 'SWAP_FACE (图片换脸)',
+          value: 'SWAP_FACE',
+        },
+        {
+          label: 'SWAP_VIDEO_FACE (视频换脸)',
+          value: 'SWAP_VIDEO_FACE',
         },
       ],
       render: (text, record) => record['displays']['action'],
@@ -296,31 +300,31 @@ const List: React.FC = () => {
       align: 'center',
       request: async () => [
         {
-          label: intl.formatMessage({ id: 'pages.task.NOT_START' }),
+          label: 'NOT_START (未开始)',
           value: 'NOT_START',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.SUBMITTED' }),
+          label: 'SUBMITTED (已提交)',
           value: 'SUBMITTED',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.MODAL' }),
+          label: 'MODAL (弹窗等待)',
           value: 'MODAL',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.IN_PROGRESS' }),
+          label: 'IN_PROGRESS (执行中)',
           value: 'IN_PROGRESS',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.FAILURE' }),
+          label: 'FAILURE (失败)',
           value: 'FAILURE',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.SUCCESS' }),
+          label: 'SUCCESS (成功)',
           value: 'SUCCESS',
         },
         {
-          label: intl.formatMessage({ id: 'pages.task.CANCEL' }),
+          label: 'CANCEL (已取消)',
           value: 'CANCEL',
         },
       ],
