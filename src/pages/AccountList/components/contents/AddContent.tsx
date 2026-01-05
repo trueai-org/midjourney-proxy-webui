@@ -396,6 +396,7 @@ const AddContent = ({
                   label={intl.formatMessage({ id: 'pages.account.remixAutoSubmit' })}
                   name="remixAutoSubmit"
                   valuePropName="checked"
+                  help="强烈建议账号开启 Remix 模式，Remix 自动提交根据业务自行开启"
                 >
                   <Switch />
                 </Form.Item>

@@ -563,6 +563,18 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.databaseType' })}
                   name="databaseType"
+                  help={
+                    <div>
+                      配置说明，文档：
+                      <a
+                        href="https://github.com/trueai-org/midjourney-proxy/wiki"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        WIKI
+                      </a>
+                    </div>
+                  }
                 >
                   <Select allowClear>
                     <Select.Option value="SQLite">SQLite</Select.Option>
@@ -640,7 +652,18 @@ const Setting: React.FC = () => {
                 <Form.Item
                   label="启用 Redis"
                   name="enableRedis"
-                  tooltip="启用 Redis 高性能模式，启用后支持分布式部署"
+                  help={
+                    <div>
+                      务必配置，文档：
+                      <a
+                        href="https://github.com/trueai-org/midjourney-proxy/wiki"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        WIKI
+                      </a>
+                    </div>
+                  }
                 >
                   <Switch />
                 </Form.Item>
