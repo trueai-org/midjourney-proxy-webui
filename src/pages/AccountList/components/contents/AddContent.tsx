@@ -212,26 +212,29 @@ const AddContent = ({
                   </>
                 )}
 
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.interval' })}
-                  name="interval"
-                >
-                  <InputNumber min={0} />
-                </Form.Item>
-
-                <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
-                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Space>
-                      <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
-                        <InputNumber min={0} placeholder="Min" />
-                      </Form.Item>
-                      ~
-                      <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
-                        <InputNumber min={0} placeholder="Max" />
-                      </Form.Item>
-                    </Space>
-                  </div>
-                </Form.Item>
+                {!isYouChuan && (
+                  <>
+                    <Form.Item
+                      label={intl.formatMessage({ id: 'pages.account.interval' })}
+                      name="interval"
+                    >
+                      <InputNumber min={0} />
+                    </Form.Item>
+                    <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
+                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <Space>
+                          <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
+                            <InputNumber min={0} placeholder="Min" />
+                          </Form.Item>
+                          ~
+                          <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
+                            <InputNumber min={0} placeholder="Max" />
+                          </Form.Item>
+                        </Space>
+                      </div>
+                    </Form.Item>
+                  </>
+                )}
 
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
                   <InputNumber min={1} />
@@ -444,26 +447,29 @@ const AddContent = ({
                   <InputNumber min={1} />
                 </Form.Item>
 
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.account.interval' })}
-                  name="interval"
-                >
-                  <InputNumber min={0} />
-                </Form.Item>
-
-                <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
-                  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <Space>
-                      <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
-                        <InputNumber min={0} placeholder="Min" />
-                      </Form.Item>
-                      ~
-                      <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
-                        <InputNumber min={0} placeholder="Max" />
-                      </Form.Item>
-                    </Space>
-                  </div>
-                </Form.Item>
+                {!isYouChuan && (
+                  <>
+                    <Form.Item
+                      label={intl.formatMessage({ id: 'pages.account.interval' })}
+                      name="interval"
+                    >
+                      <InputNumber min={0} />
+                    </Form.Item>
+                    <Form.Item label={intl.formatMessage({ id: 'pages.account.intervalAfter' })}>
+                      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                        <Space>
+                          <Form.Item name="afterIntervalMin" style={{ margin: 0 }}>
+                            <InputNumber min={0} placeholder="Min" />
+                          </Form.Item>
+                          ~
+                          <Form.Item name="afterIntervalMax" style={{ margin: 0 }}>
+                            <InputNumber min={0} placeholder="Max" />
+                          </Form.Item>
+                        </Space>
+                      </div>
+                    </Form.Item>
+                  </>
+                )}
 
                 <Form.Item label={intl.formatMessage({ id: 'pages.account.weight' })} name="weight">
                   <InputNumber min={1} />
