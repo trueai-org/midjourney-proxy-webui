@@ -446,6 +446,74 @@ const Welcome: React.FC = () => {
         </div>
       </Card>
 
+      {/* 今日可用剩余额度 */}
+      {data && (
+        <Card
+          title={`今日可用绘图`}
+          style={{
+            borderRadius: 8,
+            marginTop: 16,
+          }}
+          bodyStyle={{
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          }}
+        >
+          <div style={{ marginBottom: 8 }}>
+            <div style={{ display: 'flex', gap: 16 }}>
+              <div
+                style={{
+                  border: '1px dashed #cfc7c7',
+                  borderRadius: 6,
+                  padding: '8px 12px',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                  width: 150,
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: 14, color: token.colorText }}>快速可用次数</div>
+                <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                  {data.fastAvailableCount}
+                </div>
+              </div>
+              <div
+                style={{
+                  border: '1px dashed #cfc7c7',
+                  borderRadius: 6,
+                  padding: '8px 12px',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                  width: 150,
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: 14, color: token.colorText }}>慢速可用次数</div>
+                <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                  {data.relaxAvailableCount <= -1 ? '∞' : data.relaxAvailableCount}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  border: '1px dashed #cfc7c7',
+                  borderRadius: 6,
+                  padding: '8px 12px',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                  width: 150,
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: 14, color: token.colorText }}>悠船慢速可用次数</div>
+                <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                  {data.youChuanRelaxAvailableCount}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+      )}
+
       {/* 今日成功绘图 */}
       {data && data.todayCounter && (
         <Card
