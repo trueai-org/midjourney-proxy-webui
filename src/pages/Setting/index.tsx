@@ -578,7 +578,7 @@ const Setting: React.FC = () => {
                 >
                   <Select allowClear>
                     <Select.Option value="SQLite">SQLite</Select.Option>
-                    <Select.Option value="MySQL">MySQL</Select.Option>
+                    <Select.Option value="MySQL">MySQL/MariaDB</Select.Option>
                     <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
                     <Select.Option value="SQLServer">SQLServer</Select.Option>
                     {/* <Select.Option value="LiteDB">
