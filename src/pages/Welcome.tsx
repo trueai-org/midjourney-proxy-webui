@@ -632,6 +632,55 @@ const Welcome: React.FC = () => {
           </div>
         </Card>
       )}
+      {/* 系统今日错误统计 */}
+      {data && (
+        <Card
+          title={`系统运行统计`}
+          style={{
+            borderRadius: 8,
+            marginTop: 16,
+          }}
+          bodyStyle={{
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          }}
+        >
+          <div style={{ display: 'flex', gap: 16 }}>
+            <div
+              style={{
+                border: '1px dashed #cfc7c7',
+                borderRadius: 6,
+                padding: '8px 12px',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                width: 150,
+                textAlign: 'center',
+              }}
+            >
+              <div style={{ fontSize: 14, color: token.colorText }}>今日错误数</div>
+              <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                {data.todayErrorCount}
+              </div>
+            </div>
+            <div
+              style={{
+                border: '1px dashed #cfc7c7',
+                borderRadius: 6,
+                padding: '8px 12px',
+                boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                width: 150,
+                textAlign: 'center',
+              }}
+            >
+              <div style={{ fontSize: 14, color: token.colorText }}>今日警告数</div>
+              <div style={{ fontSize: 20, fontWeight: 'bold', color: token.colorPrimary }}>
+                {data.todayWarningCount}
+              </div>
+            </div>
+          </div>
+        </Card>
+      )}
 
       {/* 系统信息卡片 */}
       {data && data.systemInfo && (
