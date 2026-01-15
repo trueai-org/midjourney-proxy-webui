@@ -814,6 +814,34 @@ const Setting: React.FC = () => {
                 <Form.Item label={intl.formatMessage({ id: 'pages.setting.smtp' })} name="smtp">
                   <JsonEditor />
                 </Form.Item>
+
+                <Form.Item
+                  label="号池预警通知"
+                  name="alertNotify"
+                  help={
+                    <div>
+                      <div>当可用账号数低于设定值时，发送邮件通知管理员。</div>
+                      <div>说明：</div>
+                      <div>1. 可配置 SMTP 邮件服务</div>
+                      <div>2. 可配置自定义 HOOK</div>
+                      <div>3. 每小时最多通知 10 次，每天最多 100 次</div>
+                      <div>
+                        4. 字段说明
+                        <ul>
+                          <li>enabled：是否启用 true | false</li>
+                          <li>availableAccountThreshold：可用账号数阈值</li>
+                          <li>fastRemainingThreshold：快速账号剩余数阈值</li>
+                          <li>relaxedRemainingThreshold：慢速账号剩余数阈值</li>
+                          <li>errorCountThreshold：错误日志数阈值</li>
+                          <li>warningCountThreshold：警告日志数阈值</li>
+                        </ul>
+                      </div>
+                    </div>
+                  }
+                >
+                  <JsonEditor />
+                </Form.Item>
+
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.notifyHook' })}
                   name="notifyHook"
