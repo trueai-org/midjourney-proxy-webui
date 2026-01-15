@@ -831,8 +831,8 @@ const Setting: React.FC = () => {
                           <li>enabled：是否启用 true | false</li>
                           <li>notifyHook：回调通知地址 POST 方式</li>
                           <li>availableAccountCount：可用账号数阈值</li>
-                          <li>fastRemaining：快速账号剩余数阈值</li>
-                          <li>relaxedRemaining：慢速账号剩余数阈值</li>
+                          <li>fastRemaining：快速剩余次数阈值</li>
+                          <li>relaxedRemaining：慢速剩余次数阈值</li>
                           <li>errorCount：错误日志数阈值</li>
                           <li>warningCount：警告日志数阈值</li>
                         </ul>
