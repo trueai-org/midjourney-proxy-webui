@@ -829,11 +829,12 @@ const Setting: React.FC = () => {
                         4. 字段说明
                         <ul>
                           <li>enabled：是否启用 true | false</li>
-                          <li>availableAccountThreshold：可用账号数阈值</li>
-                          <li>fastRemainingThreshold：快速账号剩余数阈值</li>
-                          <li>relaxedRemainingThreshold：慢速账号剩余数阈值</li>
-                          <li>errorCountThreshold：错误日志数阈值</li>
-                          <li>warningCountThreshold：警告日志数阈值</li>
+                          <li>notifyHook：回调通知地址 POST 方式</li>
+                          <li>availableAccountCount：可用账号数阈值</li>
+                          <li>fastRemaining：快速账号剩余数阈值</li>
+                          <li>relaxedRemaining：慢速账号剩余数阈值</li>
+                          <li>errorCount：错误日志数阈值</li>
+                          <li>warningCount：警告日志数阈值</li>
                         </ul>
                       </div>
                     </div>
