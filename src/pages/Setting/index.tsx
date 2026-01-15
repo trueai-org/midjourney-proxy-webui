@@ -820,7 +820,7 @@ const Setting: React.FC = () => {
                   name="alertNotify"
                   help={
                     <div>
-                      <div>当可用账号数低于设定值时，发送邮件通知管理员。</div>
+                      <div>当触发阈值时，发送邮件/HOOK通知管理员。</div>
                       <div>说明：</div>
                       <div>1. 可配置 SMTP 邮件服务</div>
                       <div>2. 可配置自定义 HOOK</div>
@@ -829,7 +829,7 @@ const Setting: React.FC = () => {
                         4. 字段说明
                         <ul>
                           <li>enabled：是否启用 true | false</li>
-                          <li>notifyHook：回调通知地址 POST 方式</li>
+                          <li>notifyHook：POST 回调通知地址</li>
                           <li>availableAccountCount：可用账号数阈值</li>
                           <li>fastRemaining：快速剩余次数阈值</li>
                           <li>relaxedRemaining：慢速剩余次数阈值</li>
