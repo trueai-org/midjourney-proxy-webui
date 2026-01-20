@@ -98,6 +98,28 @@ const Setting: React.FC = () => {
     }
   };
 
+  const onMigrateDatabaseConnection = async () => {
+    try {
+      setLoading(true);
+      const data = {
+        databaseConnectionString: form.getFieldValue('migrateDatabaseConnectionString'),
+        databaseType: form.getFieldValue('migrateDatabaseType'),
+        isRedis: false,
+      };
+
+      const res = await databaseConnect(data);
+      if (res.success) {
+        message.success('连接成功');
+      } else {
+        message.error(res.message);
+      }
+    } catch (error) {
+      message.error(error as string);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const onRedis = async () => {
     try {
       setLoading(true);
@@ -620,14 +642,6 @@ const Setting: React.FC = () => {
                 </Form.Item> */}
 
                 {/* <Form.Item
-                  label="LiteDB 数据迁移"
-                  name="isAutoMigrate"
-                  tooltip="启动时将 LiteDB 数据迁移到迁移到当前数据库"
-                >
-                  <Switch />
-                </Form.Item> */}
-
-                {/* <Form.Item
                   label="MongoDB 数据迁移"
                   name="isAutoMigrateMongo"
                   tooltip="启动时将 MongoDB 数据迁移到迁移到当前数据库"
@@ -699,6 +713,41 @@ const Setting: React.FC = () => {
                       </Form.Item>
                     ) : null
                   }
+                </Form.Item>
+
+                <Form.Item
+                  label="源数据迁移"
+                  name="isAutoMigrate"
+                  help="启动时将源数据迁移到迁移到当前数据库"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item label="源数据库类型" name="migrateDatabaseType">
+                  <Select allowClear>
+                    <Select.Option value="SQLite">SQLite</Select.Option>
+                    <Select.Option value="MySQL">MySQL/MariaDB</Select.Option>
+                    <Select.Option value="PostgreSQL">PostgreSQL</Select.Option>
+                    <Select.Option value="SQLServer">SQLServer</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  label="源数据库连接字符串"
+                  name="migrateDatabaseConnectionString"
+                  extra={
+                    <>
+                      <Button
+                        style={{ marginTop: 8 }}
+                        type="primary"
+                        onClick={onMigrateDatabaseConnection}
+                      >
+                        {intl.formatMessage({ id: 'pages.setting.testConnect' })}
+                      </Button>
+                    </>
+                  }
+                >
+                  <Input />
                 </Form.Item>
 
                 <Form.Item
