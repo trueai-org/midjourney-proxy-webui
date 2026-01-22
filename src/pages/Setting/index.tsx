@@ -1553,6 +1553,16 @@ const Setting: React.FC = () => {
                       <Switch />
                     </Form.Item>
                   )}
+
+                  {setting.privateFeatures.includes('privateEnableOfficialAccountSurvey') && (
+                    <Form.Item
+                      label="启用官方账号自动调查"
+                      name="privateEnableOfficialAccountSurvey"
+                      help="启用后自动完成调查问卷并获得快速时长奖励"
+                    >
+                      <Switch />
+                    </Form.Item>
+                  )}
                 </Card>
               </Col>
             </Row>
