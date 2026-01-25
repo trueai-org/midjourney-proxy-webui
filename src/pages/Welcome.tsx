@@ -5,16 +5,22 @@ import {
   CloudServerOutlined,
   DatabaseOutlined,
   DesktopOutlined,
+  NodeIndexOutlined,
+  SwapOutlined,
 } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
 import { useIntl, useModel } from '@umijs/max';
 import {
   Alert,
+  Button,
   Card,
   Col,
   Divider,
+  Dropdown,
   List,
+  message,
   Row,
+  Space,
   Statistic,
   Tag,
   theme,
@@ -103,6 +109,132 @@ const InfoCard: React.FC<{
         {intl.formatMessage({ id: 'pages.welcome.learnMore' })} {'>'}
       </a>
     </div>
+  );
+};
+
+/**
+ * 节点切换组件
+ */
+const NodeSwitcher: React.FC<{
+  nodes: string[];
+  currentNode: string | null;
+}> = ({ nodes, currentNode }) => {
+  const intl = useIntl();
+  const { token } = theme.useToken();
+
+  // 获取当前节点（从 URL 路径中提取）
+  const getCurrentNodeFromUrl = (): string | null => {
+    const path = window.location.pathname;
+    const match = path.match(/^\/ip\/([^/]+)/);
+    return match ? match[1] : null;
+  };
+
+  const activeNode = getCurrentNodeFromUrl();
+
+  const handleNodeSwitch = (node: string) => {
+    // 切换到指定节点
+    const newPath = `/ip/${node}/`;
+    window.location.href = window.location.origin + newPath;
+    message.success(intl.formatMessage({ id: 'pages.welcome.nodeSwitchSuccess' }));
+  };
+
+  const handleSwitchToDefault = () => {
+    // 返回默认节点
+    window.location.href = window.location.origin;
+    message.success(intl.formatMessage({ id: 'pages.welcome.nodeSwitchSuccess' }));
+  };
+
+  const menuItems = [
+    {
+      key: 'default',
+      label: (
+        <Space>
+          <SwapOutlined />
+          {intl.formatMessage({ id: 'pages.welcome.defaultNode' })}
+          {!activeNode && <Tag color="green">当前</Tag>}
+        </Space>
+      ),
+      onClick: handleSwitchToDefault,
+    },
+    { type: 'divider' as const },
+    ...nodes.map((node) => ({
+      key: node,
+      label: (
+        <Space>
+          <NodeIndexOutlined />
+          {node}
+          {activeNode === node && <Tag color="green">当前</Tag>}
+        </Space>
+      ),
+      onClick: () => handleNodeSwitch(node),
+    })),
+  ];
+
+  return (
+    <Card
+      style={{
+        borderRadius: 8,
+        marginBottom: 16,
+      }}
+      bodyStyle={{ padding: '16px 24px' }}
+    >
+      <Row align="middle" justify="space-between">
+        <Col>
+          <Space size="large">
+            <Space>
+              <NodeIndexOutlined style={{ fontSize: 20, color: token.colorPrimary }} />
+              <Text strong style={{ fontSize: 16 }}>
+                {intl.formatMessage({ id: 'pages.welcome.nodeSwitch' })}
+              </Text>
+            </Space>
+            <Space>
+              <Text type="secondary">
+                {intl.formatMessage({ id: 'pages.welcome.currentNode' })}:
+              </Text>
+              <Tag color="blue" style={{ fontSize: 14, padding: '2px 8px' }}>
+                {activeNode || intl.formatMessage({ id: 'pages.welcome.defaultNode' })}
+              </Tag>
+            </Space>
+          </Space>
+        </Col>
+        <Col>
+          <Space>
+            <Tooltip title={intl.formatMessage({ id: 'pages.welcome.nodeSwitchTip' })}>
+              <Dropdown menu={{ items: menuItems }} placement="bottomRight">
+                <Button type="primary" icon={<SwapOutlined />}>
+                  {intl.formatMessage({ id: 'pages.welcome.switchNode' })}
+                </Button>
+              </Dropdown>
+            </Tooltip>
+            {activeNode && (
+              <Button icon={<SwapOutlined />} onClick={handleSwitchToDefault}>
+                {intl.formatMessage({ id: 'pages.welcome.switchToDefault' })}
+              </Button>
+            )}
+          </Space>
+        </Col>
+      </Row>
+      <div style={{ marginTop: 12 }}>
+        <Text type="secondary" style={{ fontSize: 13 }}>
+          {intl.formatMessage({ id: 'pages.welcome.nodeSwitchTip' })}
+        </Text>
+        <div style={{ marginTop: 8, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+          {nodes.map((node) => (
+            <Tag
+              key={node}
+              color={activeNode === node ? 'green' : 'default'}
+              style={{ cursor: 'pointer', padding: '4px 12px' }}
+              onClick={() => handleNodeSwitch(node)}
+            >
+              <Space size={4}>
+                <NodeIndexOutlined />
+                {node}
+              </Space>
+            </Tag>
+          ))}
+        </div>
+      </div>
+    </Card>
   );
 };
 
@@ -375,6 +507,11 @@ const Welcome: React.FC = () => {
             marginBottom: 16,
           }}
         />
+      )}
+
+      {/* 节点切换 - 仅在有多个节点时显示 */}
+      {data?.nodes && data.nodes.length > 0 && (
+        <NodeSwitcher nodes={data.nodes} currentNode={data.privateIp} />
       )}
 
       <Card

@@ -604,4 +604,13 @@ export default {
   'pages.setting.homeTopCount.required': 'Please enter the default count for homepage statistics',
   'pages.setting.homeTopCount.range': 'Count range must be between 1-100',
   'pages.setting.homeTopCount.placeholder': 'Please enter TOP count',
+
+    // Node Switch
+  'pages.welcome.nodeSwitch': 'Node Switch',
+  'pages.welcome.currentNode': 'Current Node',
+  'pages.welcome.defaultNode': 'Default Node',
+  'pages.welcome.switchNode': 'Switch Node',
+  'pages.welcome.switchToDefault': 'Back to Default',
+  'pages.welcome.nodeSwitchSuccess': 'Node switched successfully',
+  'pages.welcome.nodeSwitchTip': 'Click to switch to the corresponding node',
 };

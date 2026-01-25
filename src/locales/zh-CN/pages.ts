@@ -560,5 +560,14 @@ export default {
   "pages.setting.homeTopCount.tooltip": "设置首页统计显示的TOP数量，默认为10条",
   "pages.setting.homeTopCount.required": "请输入首页统计默认数量",
   "pages.setting.homeTopCount.range": "数量范围必须在1-100之间",
-  "pages.setting.homeTopCount.placeholder": "请输入TOP数量"
+  "pages.setting.homeTopCount.placeholder": "请输入TOP数量",
+
+    // 节点切换
+  "pages.welcome.nodeSwitch": "节点切换",
+  "pages.welcome.currentNode": "当前节点",
+  "pages.welcome.defaultNode": "默认节点",
+  "pages.welcome.switchNode": "切换节点",
+  "pages.welcome.switchToDefault": "返回默认",
+  "pages.welcome.nodeSwitchSuccess": "节点切换成功",
+  "pages.welcome.nodeSwitchTip": "点击切换到对应节点",
 };
