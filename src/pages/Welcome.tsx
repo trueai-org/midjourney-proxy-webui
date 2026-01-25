@@ -498,7 +498,7 @@ const Welcome: React.FC = () => {
 
   return (
     <PageContainer>
-      {data && data.notify && (
+      {/* {data && data.notify && (
         <Alert
           description={data.notify}
           banner
@@ -507,7 +507,7 @@ const Welcome: React.FC = () => {
             marginBottom: 16,
           }}
         />
-      )}
+      )} */}
 
       {/* 节点切换 - 仅在有多个节点时显示 */}
       {data?.nodes && data.nodes.length > 0 && (

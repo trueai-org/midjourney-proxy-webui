@@ -1,0 +1,268 @@
+// 顶部公告按钮 - 与语言切换同一行样式
+.global-announcement-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 12px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+
+  .announcement-icon {
+    color: #00000073;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: color 0.3s;
+  }
+
+}
+
+// 公告弹窗样式
+.global-announcement-modal {
+  .ant-modal-content {
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .ant-modal-body {
+    padding: 0;
+  }
+
+  .ant-modal-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  // 头部样式
+  .announcement-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+
+    .header-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .anticon {
+        font-size: 20px;
+        color: #1890ff;
+      }
+    }
+
+    .header-title {
+      margin: 0 !important;
+      font-size: 16px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+  }
+
+  // 内容区域
+  .announcement-body {
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+    line-height: 1.75;
+    font-size: 14px;
+    color: #444;
+
+    // 滚动条美化
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border-radius: 3px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 14px;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    h1 { font-size: 20px; }
+    h2 { font-size: 17px; }
+    h3 { font-size: 15px; }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    code {
+      background: #f5f5f5;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: Consolas, Monaco, monospace;
+      font-size: 13px;
+      color: #d63384;
+    }
+
+    pre {
+      background: #f6f8fa;
+      padding: 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 10px 0;
+
+      code {
+        background: transparent;
+        padding: 0;
+        color: #24292f;
+      }
+    }
+
+    a {
+      color: #1890ff;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    blockquote {
+      border-left: 3px solid #1890ff;
+      padding: 8px 12px;
+      margin: 12px 0;
+      background: #f9f9f9;
+      border-radius: 0 4px 4px 0;
+      color: #666;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0;
+
+      th, td {
+        border: 1px solid #eee;
+        padding: 8px 12px;
+        text-align: left;
+      }
+
+      th {
+        background: #fafafa;
+        font-weight: 500;
+      }
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 16px 0;
+    }
+  }
+
+  // 底部按钮区域
+  .announcement-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 20px;
+    border-top: 1px solid #f0f0f0;
+  }
+}
+
+// 暗色主题适配
+.ant-layout-header[style*="dark"],
+[data-theme="dark"] {
+  .global-announcement-action {
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .announcement-icon {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    &:hover .announcement-icon {
+      color: #40a9ff;
+    }
+  }
+}
+
+// 暗色主题弹窗适配
+@media (prefers-color-scheme: dark) {
+  .global-announcement-modal {
+    .announcement-header {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+
+      .header-title {
+        color: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      .header-icon .anticon {
+        color: #40a9ff;
+      }
+    }
+
+    .announcement-body {
+      color: rgba(255, 255, 255, 0.8);
+
+      h1, h2, h3, h4, h5, h6 {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      code {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ff79c6;
+      }
+
+      pre {
+        background: rgba(255, 255, 255, 0.05);
+
+        code {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      blockquote {
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      table {
+        th, td {
+          border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        th {
+          background: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
+
+    .announcement-footer {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
