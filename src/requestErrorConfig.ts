@@ -6,6 +6,12 @@ import { history } from '@umijs/max';
 
 const loginPath = '/user/login';
 
+// 获取当前节点前缀
+const getNodePrefix = (): string => {
+  const path = window.location.pathname;
+  const match = path.match(/^(\/ip\/[^/]+)/);
+  return match ? match[1] : '';
+};
 
 // 错误处理方案： 错误类型
 enum ErrorShowType {
@@ -109,12 +115,22 @@ export const errorConfig: RequestConfig = {
     (config: RequestOptions) => {
       const MJ_API_SECRET = sessionStorage.getItem('mj-api-secret') || ''; // 获取保存的密码
       const locale = getLocale();
+
+          // 获取节点前缀并添加到 URL
+      const nodePrefix = getNodePrefix();
+      let url = config.url || '';
+      
+      // 如果 URL 以 /mj 开头，添加节点前缀
+      if (url.startsWith('/mj') && nodePrefix) {
+        url = nodePrefix + url;
+      }
+
       config.headers = {
         ...config.headers,
         'mj-api-secret': MJ_API_SECRET, // 将密码作为自定义头部
         'Accept-Language': locale === 'zh-CN' ? 'zh-CN' : 'en-US',
       };
-      return { ...config };
+      return { ...config, url };
     },
   ],
 
