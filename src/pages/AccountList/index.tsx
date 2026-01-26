@@ -260,6 +260,8 @@ const AccountList: React.FC = () => {
       width: 200,
       align: 'center',
       sorter: true,
+      // 冻结
+      fixed: 'left',
       render: (text: string, record: Record<string, any>) =>
         record.isYouChuan || record.isOfficial ? (
           <> {text}</>
@@ -286,6 +288,8 @@ const AccountList: React.FC = () => {
       align: 'center',
       width: 200,
       sorter: true,
+      // 冻结
+      fixed: 'left',
     } as ColumnType<Record<string, any>>,
     // {
     //   title: intl.formatMessage({ id: 'pages.account.username' }),
@@ -464,7 +468,24 @@ const AccountList: React.FC = () => {
         );
       },
     } as ColumnType<Record<string, any>>,
-
+    {
+      title: '今日成功同步',
+      dataIndex: 'todaySyncCount',
+      align: 'center',
+      width: 160,
+      render: (value: number, record: any) => {
+        if (!value || value < 0) {
+          return '-';
+        }
+        return (
+          <>
+          <Tooltip title="今日同步信息成功的次数">
+            {value}
+          </Tooltip>
+          </>
+        );
+      },
+    } as ColumnType<Record<string, any>>,
     {
       title: intl.formatMessage({ id: 'pages.account.renewDate' }),
       dataIndex: 'renewDate',
