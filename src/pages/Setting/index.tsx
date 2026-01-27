@@ -62,7 +62,7 @@ const Setting: React.FC = () => {
       setLoading(true);
       const res = await getConsulConfig(consulOpt);
       if (res.success) {
-        message.info('连接成功...');
+        message.info('连接成功');
 
         if (res.data) {
           form.setFieldsValue(res.data);
