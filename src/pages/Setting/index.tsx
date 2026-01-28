@@ -771,6 +771,10 @@ const Setting: React.FC = () => {
                     <Select.Option value="Random">Random</Select.Option>
                     <Select.Option value="Weight">Weight</Select.Option>
                     <Select.Option value="Polling">Polling</Select.Option>
+
+                    {setting && setting.privateFeatures.includes('privateAccountFillRule') && (
+                      <Select.Option value="AccountFill">AccountFill</Select.Option>
+                    )}
                   </Select>
                 </Form.Item>
 
