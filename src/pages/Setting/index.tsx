@@ -555,7 +555,7 @@ const Setting: React.FC = () => {
                 )}
 
                 {upgradeInfo.body && (
-                  <div className="markdown-content" style={{ overflowY: 'auto' }}>
+                  <div className="markdown-content" style={{ overflowY: 'auto',maxHeight: '520px' }}>
                     <Markdown>{upgradeInfo.body}</Markdown>
                   </div>
                 )}
