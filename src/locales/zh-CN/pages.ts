@@ -437,8 +437,8 @@ export default {
   'pages.setting.enableAutoVerifyAccount': '自动验证账号',
   'pages.setting.enableAutoVerifyAccountTips':
     '账号启动连接时自动验证账号是否可用（可能触发手机验证，近期谨慎开启！）',
-  'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
-  'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 6~12 小时自动同步一次账号信息和设置',
+  'pages.setting.enableAutoSyncInfoSetting': 'Discord 自动同步信息',
+  'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 3~12 小时自动同步一次账号信息和设置，默认：true',
 
   'pages.setting.enableAutoExtendToken': '自动续期令牌',
   'pages.setting.enableAutoExtendTokenTips': '启用后随机每 1~10 分钟自动续期一次 Token',

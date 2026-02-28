@@ -467,7 +467,7 @@ export default {
   'pages.setting.enableAutoVerifyAccount': 'Enable automatic account verification',
   'pages.setting.enableAutoVerifyAccountTips':
     'Automatically verify whether the account is normal when the program starts (may trigger mobile phone verification)',
-  'pages.setting.enableAutoSyncInfoSetting': 'Enable automatic information synchronization',
+  'pages.setting.enableAutoSyncInfoSetting': 'Discord Enable automatic information synchronization',
   'pages.setting.enableAutoSyncInfoSettingTips':
     'After this function is enabled, the account information and account Settings are automatically synchronized every 6 to 12 hours',
 

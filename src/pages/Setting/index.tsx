@@ -1323,13 +1323,33 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
 
-                {/* <Form.Item
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
                   name="enableAutoSyncInfoSetting"
                   help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
                 >
                   <Switch />
-                </Form.Item> */}
+                </Form.Item>
+
+                <Form.Item
+                  label='快速绘图消耗时长'
+                  name="fastDrawDuration"
+                  rules={[
+                    {
+                      type: 'number',
+                      min: 45,
+                      max: 60,
+                    },
+                  ]}
+                  help="一次快速绘图大概使用的时间，用于计算快速时长剩余次数，默认：60s，取值范围：45-60s，如果默认60s，则15小时约900次快速；如果45s就是约1200次快速"
+                >
+                  <InputNumber
+                    min={45}
+                    max={60}
+                    defaultValue={60}
+                    addonAfter="s"
+                  />
+                </Form.Item>
 
                 {/* <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoExtendToken' })}
