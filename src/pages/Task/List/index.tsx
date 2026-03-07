@@ -7,6 +7,7 @@ import { useIntl } from '@umijs/max';
 import {
   Button,
   Card,
+  Descriptions,
   Form,
   Image,
   Modal,
@@ -33,6 +34,13 @@ const List: React.FC = () => {
   const [api, contextHolder] = notification.useNotification();
 
   const actionRef = useRef();
+
+  // 统计数据
+  const [statData, setStatData] = useState<{
+    total?: number;
+    actionStats?: Record<string, number>;
+    actionUseCount?: number;
+  }>({});
 
   const hideModal = () => {
     setModalContent({});
@@ -92,6 +100,24 @@ const List: React.FC = () => {
   const [videoModalVisible, setVideoModalVisible] = useState(false);
   const [currentVideoUrl, setCurrentVideoUrl] = useState('');
 
+  // 操作类型标签映射
+  const actionLabelMap: Record<string, string> = {
+    IMAGINE: 'IMAGINE',
+    UPSCALE: 'UPSCALE',
+    UPSCALE_HD: 'UPSCALE_HD',
+    VARIATION: 'VARIATION',
+    ZOOM: 'ZOOM',
+    PAN: 'PAN',
+    DESCRIBE: 'DESCRIBE',
+    BLEND: 'BLEND',
+    SHORTEN: 'SHORTEN',
+    VIDEO: 'VIDEO',
+    EDIT: 'EDIT',
+    RETEXTURE: 'RETEXTURE',
+    SWAP_FACE: 'SWAP_FACE',
+    SWAP_VIDEO_FACE: 'SWAP_VIDEO_FACE',
+  };
+
   const columns = [
     {
       title: 'ID',
@@ -120,63 +146,20 @@ const List: React.FC = () => {
       width: 140,
       align: 'center',
       request: async () => [
-        {
-          label: 'IMAGINE (想象)',
-          value: 'IMAGINE',
-        },
-        {
-          label: 'UPSCALE (放大)',
-          value: 'UPSCALE',
-        },
-        {
-          label: 'UPSCALE_HD (高清)',
-          value: 'UPSCALE_HD',
-        },
-        {
-          label: 'VARIATION (变化)',
-          value: 'VARIATION',
-        },
-        {
-          label: 'ZOOM (变焦)',
-          value: 'ZOOM',
-        },
-        {
-          label: 'PAN (平移)',
-          value: 'PAN',
-        },
-        {
-          label: 'DESCRIBE (图生文)',
-          value: 'DESCRIBE',
-        },
-        {
-          label: 'BLEND (混图)',
-          value: 'BLEND',
-        },
-        {
-          label: 'SHORTEN (简化)',
-          value: 'SHORTEN',
-        },
-      
-        {
-          label: 'VIDEO (视频)',
-          value: 'VIDEO',
-        },
-        {
-          label: 'EDIT (编辑)',
-          value: 'EDIT',
-        },
-        {
-          label: 'RETEXTURE (转绘)',
-          value: 'RETEXTURE',
-        },
-        {
-          label: 'SWAP_FACE (图片换脸)',
-          value: 'SWAP_FACE',
-        },
-        {
-          label: 'SWAP_VIDEO_FACE (视频换脸)',
-          value: 'SWAP_VIDEO_FACE',
-        },
+        { label: 'IMAGINE (想象)', value: 'IMAGINE' },
+        { label: 'UPSCALE (放大)', value: 'UPSCALE' },
+        { label: 'UPSCALE_HD (高清)', value: 'UPSCALE_HD' },
+        { label: 'VARIATION (变化)', value: 'VARIATION' },
+        { label: 'ZOOM (变焦)', value: 'ZOOM' },
+        { label: 'PAN (平移)', value: 'PAN' },
+        { label: 'DESCRIBE (图生文)', value: 'DESCRIBE' },
+        { label: 'BLEND (混图)', value: 'BLEND' },
+        { label: 'SHORTEN (简化)', value: 'SHORTEN' },
+        { label: 'VIDEO (视频)', value: 'VIDEO' },
+        { label: 'EDIT (编辑)', value: 'EDIT' },
+        { label: 'RETEXTURE (转绘)', value: 'RETEXTURE' },
+        { label: 'SWAP_FACE (图片换脸)', value: 'SWAP_FACE' },
+        { label: 'SWAP_VIDEO_FACE (视频换脸)', value: 'SWAP_VIDEO_FACE' },
       ],
       render: (text, record) => record['displays']['action'],
     },
@@ -188,7 +171,6 @@ const List: React.FC = () => {
       hideInSearch: true,
       render: (text, record, index) => {
         if (record.action === 'SWAP_VIDEO_FACE') {
-          // 点击图片显示视频
           return (
             record.thumbnailUrl && (
               <Image
@@ -220,10 +202,7 @@ const List: React.FC = () => {
           );
         }
 
-        // 如果是视频
         if (record.contentType === 'video/mp4') {
-          // 点击查看播放视频，使用视频组件
-          // 点击才显示视频
           return (
             <div
               style={{
@@ -294,39 +273,44 @@ const List: React.FC = () => {
       render: (text, record) => record['displays']['submitTime'],
     },
     {
+      title: '开始时间',
+      dataIndex: 'submitTimeStart',
+      valueType: 'date',
+      hideInTable: true,
+      fieldProps: {
+        placeholder: '开始日期',
+      },
+    },
+    {
+      title: '结束时间',
+      dataIndex: 'submitTimeEnd',
+      valueType: 'date',
+      hideInTable: true,
+      fieldProps: {
+        placeholder: '结束日期',
+      },
+    },
+    {
+      title: '用户 ID',
+      dataIndex: 'userId',
+      hideInTable: true,
+      fieldProps: {
+        placeholder: '请输入用户 ID',
+      },
+    },
+    {
       title: intl.formatMessage({ id: 'pages.task.status' }),
       dataIndex: 'status',
       width: 90,
       align: 'center',
       request: async () => [
-        {
-          label: 'NOT_START (未开始)',
-          value: 'NOT_START',
-        },
-        {
-          label: 'SUBMITTED (已提交)',
-          value: 'SUBMITTED',
-        },
-        {
-          label: 'MODAL (弹窗等待)',
-          value: 'MODAL',
-        },
-        {
-          label: 'IN_PROGRESS (执行中)',
-          value: 'IN_PROGRESS',
-        },
-        {
-          label: 'FAILURE (失败)',
-          value: 'FAILURE',
-        },
-        {
-          label: 'SUCCESS (成功)',
-          value: 'SUCCESS',
-        },
-        {
-          label: 'CANCEL (已取消)',
-          value: 'CANCEL',
-        },
+        { label: 'NOT_START (未开始)', value: 'NOT_START' },
+        { label: 'SUBMITTED (已提交)', value: 'SUBMITTED' },
+        { label: 'MODAL (弹窗等待)', value: 'MODAL' },
+        { label: 'IN_PROGRESS (执行中)', value: 'IN_PROGRESS' },
+        { label: 'FAILURE (失败)', value: 'FAILURE' },
+        { label: 'SUCCESS (成功)', value: 'SUCCESS' },
+        { label: 'CANCEL (已取消)', value: 'CANCEL' },
       ],
       render: (text, record) => {
         let color = 'default';
@@ -354,18 +338,9 @@ const List: React.FC = () => {
       width: 90,
       align: 'center',
       request: async () => [
-        {
-          label: 'RELAX',
-          value: 'RELAX',
-        },
-        {
-          label: 'FAST',
-          value: 'FAST',
-        },
-        {
-          label: 'TURBO',
-          value: 'TURBO',
-        },
+        { label: 'RELAX', value: 'RELAX' },
+        { label: 'FAST', value: 'FAST' },
+        { label: 'TURBO', value: 'TURBO' },
       ],
       render: (text: string, record: any) => {
         return record.mode || 'FAST';
@@ -434,6 +409,25 @@ const List: React.FC = () => {
   return (
     <PageContainer>
       {contextHolder}
+
+      {/* 统计信息展示 */}
+      {(statData.total && statData.actionStats) && (
+        <Card style={{ marginBottom: 16 }}>
+          <Descriptions title="查询统计" column={6} bordered size="small">
+            <Descriptions.Item label="总记录数">{statData.total ?? '-'}</Descriptions.Item>
+            <Descriptions.Item label="总消耗数">
+              {statData.actionUseCount ?? '-'}
+            </Descriptions.Item>
+            {statData.actionStats &&
+              Object.entries(statData.actionStats).map(([action, count]) => (
+                <Descriptions.Item key={action} label={actionLabelMap[action] || action}>
+                  {count}
+                </Descriptions.Item>
+              ))}
+          </Descriptions>
+        </Card>
+      )}
+
       <Card>
         <ProTable
           columns={columns}
@@ -447,12 +441,41 @@ const List: React.FC = () => {
           rowKey="id"
           actionRef={actionRef}
           request={async (params) => {
-            const res = await queryTask({ ...params, pageNumber: params.current - 1 });
+            const queryParams: any = {
+              ...params,
+              pageNumber: params.current - 1,
+            };
+
+            // 传递提交时间范围参数
+            if (params.submitTimeStart) {
+              queryParams.submitTimeStart = params.submitTimeStart;
+            }
+            if (params.submitTimeEnd) {
+              queryParams.submitTimeEnd = params.submitTimeEnd;
+            }
+            // 传递用户 ID 参数
+            if (params.userId) {
+              queryParams.userId = params.userId;
+            }
+
+            const res = await queryTask(queryParams);
             const images = res.list.map((item) => item.imageUrl || '').filter((item) => item != '');
             const list = res.list;
             list.forEach((item, index) => {
               item.images = images;
             });
+
+            // 保存统计数据
+            if (res.extendData) {
+              setStatData({
+                total: res.extendData.total,
+                actionStats: res.extendData.actionStats,
+                actionUseCount: res.extendData.actionUseCount,
+              });
+            } else {
+              setStatData({});
+            }
+
             return {
               data: list,
               total: res.pagination.total,
