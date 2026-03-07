@@ -409,15 +409,12 @@ const List: React.FC = () => {
   return (
     <PageContainer>
       {contextHolder}
-
       {/* 统计信息展示 */}
-      {(statData.total && statData.actionStats) && (
+      {statData.total && statData.total > 0 && statData.actionStats ? (
         <Card style={{ marginBottom: 16 }}>
-          <Descriptions title="查询统计" column={6} bordered size="small">
+          <Descriptions title="用户统计" column={6} bordered size="small">
             <Descriptions.Item label="总记录数">{statData.total ?? '-'}</Descriptions.Item>
-            <Descriptions.Item label="总消耗数">
-              {statData.actionUseCount ?? '-'}
-            </Descriptions.Item>
+            <Descriptions.Item label="总消耗数">{statData.actionUseCount ?? '-'}</Descriptions.Item>
             {statData.actionStats &&
               Object.entries(statData.actionStats).map(([action, count]) => (
                 <Descriptions.Item key={action} label={actionLabelMap[action] || action}>
@@ -426,8 +423,7 @@ const List: React.FC = () => {
               ))}
           </Descriptions>
         </Card>
-      )}
-
+      ) : null}
       <Card>
         <ProTable
           columns={columns}
@@ -484,7 +480,6 @@ const List: React.FC = () => {
           }}
         />
       </Card>
-
       <MyModal
         title={title}
         modalVisible={modalVisible}
@@ -493,7 +488,6 @@ const List: React.FC = () => {
         footer={footer}
         modalWidth={modalWidth}
       ></MyModal>
-
       <Modal
         title="视频播放"
         open={videoModalVisible}
