@@ -122,22 +122,27 @@ const List: React.FC = () => {
     {
       title: 'ID',
       dataIndex: 'id',
-      width: 160,
+      width: 180,
       align: 'center',
       fixed: 'left',
       render: (text, record) => (
-        <a
-          onClick={() =>
-            openModal(
-              intl.formatMessage({ id: 'pages.task.info' }),
-              <TaskContent record={record} />,
-              null,
-              1100,
-            )
-          }
-        >
-          {text}
-        </a>
+        <>
+          <a
+            onClick={() =>
+              openModal(
+                intl.formatMessage({ id: 'pages.task.info' }),
+                <TaskContent record={record} />,
+                null,
+                1100,
+              )
+            }
+          >
+            {text}
+          </a>
+          {record.isThirdParty && (
+            <Tag color="orange" style={{ marginLeft: 4, fontSize: 10 }}>外</Tag>
+          )}
+        </>
       ),
     },
     {
@@ -299,6 +304,19 @@ const List: React.FC = () => {
       },
     },
     {
+      title: '第三方任务',
+      dataIndex: 'isThirdParty',
+      hideInTable: true,
+      valueType: 'select',
+      fieldProps: {
+        placeholder: '是否第三方任务/外部任务',
+        options: [
+          { label: '是', value: 'true' },
+          { label: '否', value: 'false' },
+        ],
+      },
+    },
+    {
       title: intl.formatMessage({ id: 'pages.task.status' }),
       dataIndex: 'status',
       width: 90,
@@ -452,6 +470,10 @@ const List: React.FC = () => {
             // 传递用户 ID 参数
             if (params.userId) {
               queryParams.userId = params.userId;
+            }
+            // 传递第三方任务参数
+            if (params.isThirdParty !== undefined && params.isThirdParty !== null) {
+              queryParams.isThirdParty = params.isThirdParty === 'true';
             }
 
             const res = await queryTask(queryParams);

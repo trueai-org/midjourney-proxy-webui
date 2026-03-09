@@ -214,7 +214,14 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
         style={{ margin: '10px' }}
       >
         <Descriptions column={2}>
-          <Descriptions.Item label="ID">{record.id}</Descriptions.Item>
+          <Descriptions.Item label="ID">
+            {record.id}
+            {record.isThirdParty && (
+              <Tag color="orange" style={{ marginLeft: 4, fontSize: 10 }}>
+                第三方任务
+              </Tag>
+            )}
+          </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.type' })}>
             {record['displays']['action']}
           </Descriptions.Item>
