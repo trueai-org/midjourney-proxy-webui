@@ -108,6 +108,14 @@ export async function queryAccounts(
   });
 }
 
+export async function accountsEnable(ids: string[], options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/accounts-enable', {
+    method: 'POST',
+    data: ids,
+    ...(options || {}),
+  });
+}
+
 /**  POST /mj/account/{id}/sync-info */
 export async function refreshAccount(id: string, options?: { [key: string]: any }) {
   return request<API.Result>(`/mj/admin/account-sync/${id}`, {

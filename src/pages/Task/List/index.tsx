@@ -32,6 +32,7 @@ const List: React.FC = () => {
   const imagePrefix = sessionStorage.getItem('mj-image-prefix') || '';
 
   const [api, contextHolder] = notification.useNotification();
+  const [pageSize, setPageSize] = useState(10);
 
   const actionRef = useRef();
 
@@ -448,9 +449,17 @@ const List: React.FC = () => {
           scroll={{ x: 1000 }}
           search={{ defaultCollapsed: true }}
           pagination={{
-            pageSize: 10,
-            showQuickJumper: false,
-            showSizeChanger: false,
+            pageSize,
+            pageSizeOptions: [10, 20, 50, 100, 200],
+            showQuickJumper: true,
+            showSizeChanger: true,
+            showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条/总共 ${total} 条`,
+            onShowSizeChange: (_, size) => {
+              setPageSize(size);
+            },
+            onChange: (_, size) => {
+              setPageSize(size);
+            },
           }}
           rowKey="id"
           actionRef={actionRef}

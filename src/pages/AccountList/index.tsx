@@ -6,6 +6,7 @@ import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 // import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
 import {
+  accountsEnable,
   createAccount,
   loginAccountGetToken,
   queryAccounts,
@@ -13,7 +14,9 @@ import {
   updateAndReconnect,
 } from '@/services/mj/api';
 import {
+  CheckCircleOutlined,
   ClockCircleOutlined,
+  ClearOutlined,
   CrownTwoTone,
   EditOutlined,
   HeartTwoTone,
@@ -25,7 +28,7 @@ import {
   UnlockOutlined,
   UserAddOutlined,
 } from '@ant-design/icons';
-import { PageContainer, ProTable } from '@ant-design/pro-components';
+import { ActionType, PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button, Card, Form, Modal, notification, Space, Tag, Tooltip } from 'antd';
 import { ColumnType } from 'antd/lib/table';
@@ -42,10 +45,14 @@ const AccountList: React.FC = () => {
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
   const [modalSubmitLoading, setModalSubmitLoading] = useState(false);
+  const [batchEnableLoading, setBatchEnableLoading] = useState(false);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [selectedRows, setSelectedRows] = useState<Record<string, any>[]>([]);
+  const [pageSize, setPageSize] = useState(10);
 
   const intl = useIntl();
 
-  const actionRef = useRef();
+  const actionRef = useRef<ActionType>();
 
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(false);
@@ -94,6 +101,70 @@ const AccountList: React.FC = () => {
     // fetchData();
     actionRef.current?.reload();
   };
+
+  const clearSelection = () => {
+    setSelectedRowKeys([]);
+    setSelectedRows([]);
+  };
+
+  const handleBatchEnable = () => {
+    const disabledAccounts = selectedRows.filter((item) => !item.enable);
+    const alreadyEnabledCount = selectedRows.length - disabledAccounts.length;
+
+    if (!disabledAccounts.length) {
+      api.warning({
+        message: intl.formatMessage({ id: 'pages.account.batchEnable' }),
+        description: intl.formatMessage({ id: 'pages.account.batchEnableNoDisabled' }),
+      });
+      return;
+    }
+
+    Modal.confirm({
+      title: intl.formatMessage({ id: 'pages.account.batchEnableConfirmTitle' }),
+      content: intl.formatMessage(
+        { id: 'pages.account.batchEnableConfirmContent' },
+        {
+          count: disabledAccounts.length,
+          ignored: alreadyEnabledCount,
+        },
+      ),
+      okText: intl.formatMessage({ id: 'pages.submit' }),
+      cancelText: intl.formatMessage({ id: 'pages.cancel' }),
+      okButtonProps: {
+        loading: batchEnableLoading,
+      },
+      onOk: async () => {
+        try {
+          setBatchEnableLoading(true);
+          const res = await accountsEnable(disabledAccounts.map((item) => item.id));
+          if (res.success) {
+            api.success({
+              message: intl.formatMessage({ id: 'pages.account.batchEnable' }),
+              description:
+                res.message ||
+                intl.formatMessage(
+                  { id: 'pages.account.batchEnableSuccess' },
+                  { count: disabledAccounts.length },
+                ),
+            });
+            clearSelection();
+            actionRef.current?.reload();
+            return;
+          }
+
+          api.error({
+            message: intl.formatMessage({ id: 'pages.account.batchEnable' }),
+            description: res.message,
+          });
+          throw new Error(res.message || 'batch enable failed');
+        } finally {
+          setBatchEnableLoading(false);
+        }
+      },
+    });
+  };
+
+  const disabledSelectedCount = selectedRows.filter((item) => !item.enable).length;
 
   const handleAdd = async (values: Record<any, any>) => {
     try {
@@ -718,17 +789,59 @@ const AccountList: React.FC = () => {
         /> */}
 
         <ProTable
-          columns={columns}
+          columns={columns as any}
           scroll={{ x: 1000 }}
           search={{ defaultCollapsed: true }}
           pagination={{
-            pageSize: 10,
-            showQuickJumper: false,
-            showSizeChanger: false,
+            pageSize,
+            pageSizeOptions: [10, 20, 50, 100, 200],
+            showQuickJumper: true,
+            showSizeChanger: true,
+            showTotal: (total, range) => `第 ${range[0]}-${range[1]} 条/总共 ${total} 条`,
+            onShowSizeChange: (_, size) => {
+              setPageSize(size);
+            },
+            onChange: (_, size) => {
+              setPageSize(size);
+            },
           }}
           rowKey="id"
           actionRef={actionRef}
+          rowSelection={{
+            selectedRowKeys,
+            onChange: (keys, rows) => {
+              setSelectedRowKeys(keys);
+              setSelectedRows(rows as Record<string, any>[]);
+            },
+          }}
+          tableAlertRender={false}
           toolBarRender={() => [
+            <Button
+              key="batch-enable"
+              type={'primary'}
+              icon={<CheckCircleOutlined />}
+              loading={batchEnableLoading}
+              disabled={!selectedRowKeys.length || !disabledSelectedCount}
+              onClick={handleBatchEnable}
+            >
+              {selectedRowKeys.length
+                ? intl.formatMessage(
+                    { id: 'pages.account.enableSelectedSummary' },
+                    {
+                      total: selectedRowKeys.length,
+                      count: disabledSelectedCount,
+                    },
+                  )
+                : intl.formatMessage({ id: 'pages.account.enableSelected' })}
+            </Button>,
+            <Button
+              key="clear-selection"
+              icon={<ClearOutlined />}
+              disabled={!selectedRowKeys.length}
+              onClick={clearSelection}
+            >
+              {intl.formatMessage({ id: 'pages.account.clearSelection' })}
+            </Button>,
             <Button
               key="official"
               type={'dashed'}

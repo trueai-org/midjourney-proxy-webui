@@ -154,6 +154,18 @@ export default {
   'pages.account.delete': 'Delete Account',
   'pages.account.deleteTitle': 'Confirm delete this account?',
   'pages.account.deleteSuccess': 'Delete account successful',
+  'pages.account.batchEnable': 'Batch Enable Accounts',
+  'pages.account.batchEnableAction': 'Batch Enable ({count})',
+  'pages.account.batchEnableConfirmTitle': 'Enable the selected accounts?',
+  'pages.account.batchEnableConfirmContent':
+    'This action enables {count} disabled accounts and ignores {ignored} accounts that are already enabled.',
+  'pages.account.batchEnableSuccess': 'Successfully enabled {count} accounts',
+  'pages.account.batchEnableNoDisabled':
+    'All selected accounts are already enabled. Please select disabled accounts.',
+  'pages.account.clearSelection': 'Clear Selection',
+  'pages.account.selectedSummary': '{total} selected, {count} can be enabled',
+  'pages.account.enableSelected': 'Enable Selected',
+  'pages.account.enableSelectedSummary': 'Enable Selected ({count}/{total})',
 
   'pages.task.delete': 'Delete Task',
   'pages.task.deleteTitle': 'Confirm delete this task?',
