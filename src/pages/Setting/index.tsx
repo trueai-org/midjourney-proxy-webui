@@ -555,7 +555,10 @@ const Setting: React.FC = () => {
                 )}
 
                 {upgradeInfo.body && (
-                  <div className="markdown-content" style={{ overflowY: 'auto',maxHeight: '520px' }}>
+                  <div
+                    className="markdown-content"
+                    style={{ overflowY: 'auto', maxHeight: '520px' }}
+                  >
                     <Markdown>{upgradeInfo.body}</Markdown>
                   </div>
                 )}
@@ -1013,60 +1016,13 @@ const Setting: React.FC = () => {
               </Card>
             </Col>
             <Col span={12}>
-              <Card
-                title={intl.formatMessage({ id: 'pages.setting.otherSetting' })}
-                bordered={false}
-              >
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableUpdateCheck' })}
-                  name="enableUpdateCheck"
-                  help={intl.formatMessage({ id: 'pages.setting.enableUpdateCheckTips' })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label="更新包源"
-                  name="upgradePackageSource"
-                  help="更新包来源，国内用户推荐使用阿里云包源"
-                >
-                  <Select>
-                    <Select.Option value="GITHUB">GitHub</Select.Option>
-                    <Select.Option value="ALIYUN">阿里云</Select.Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item label="日志级别" name="logEventLevel">
-                  <Select>
-                    <Select.Option value="Debug">Debug</Select.Option>
-                    <Select.Option value="Information">Information</Select.Option>
-                    <Select.Option value="Warning">Warning</Select.Option>
-                    <Select.Option value="Error">Error</Select.Option>
-                  </Select>
-                </Form.Item>
-
+              <Card title="绘图配置" bordered={false}>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.licenseKey' })}
                   name="licenseKey"
                 >
                   <Input />
                 </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.isDemoMode' })}
-                  name="isDemoMode"
-                  help={intl.formatMessage({ id: 'pages.setting.isDemoModeTips' })}
-                >
-                  <Switch className="demo-mode" />
-                </Form.Item>
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableAccountSponsor' })}
-                  name="enableAccountSponsor"
-                  help={intl.formatMessage({ id: 'pages.setting.enableAccountSponsorTips' })}
-                >
-                  <Switch />
-                </Form.Item> */}
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableOfficial' })}
@@ -1106,6 +1062,154 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label="清除用户违规词"
+                  name="enableAutoClearUserBannedWords"
+                  help="用户触发违规词后，自动清除用户的提示词中的违规词"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="返回官网地址"
+                  name="enableFillOfficialCdn"
+                  help="绘图完成时对 imageUrls 和 videoUrls 填充 cdn.midjourney.com 的官方 cdn 地址"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="转换提示词链接"
+                  name="enableConvertPromptLinkStorage"
+                  help="启用后转换提示词中的链接到云存储，例如：垫图、混图、参考图等"
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableUserCustomUploadBase64' })}
+                  name="enableUserCustomUploadBase64"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableUserCustomUploadBase64Tips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
+                  name="enableAutoSyncInfoSetting"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="快速绘图消耗时长"
+                  name="fastDrawDuration"
+                  rules={[
+                    {
+                      type: 'number',
+                      min: 45,
+                      max: 60,
+                    },
+                  ]}
+                  help="一次快速绘图大概使用的时间，用于计算快速时长剩余次数，默认：60s，取值范围：45-60s，如果默认60s，则15小时约900次快速；如果45s就是约1200次快速"
+                >
+                  <InputNumber min={45} max={60} defaultValue={60} addonAfter="s" />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableConvertNijiToMj' })}
+                  name="enableConvertNijiToMj"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableConvertNijiToMjTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableSaveGeneratedImage' })}
+                  name="enableSaveGeneratedImage"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableSaveGeneratedImageTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableMjTranslate' })}
+                  name="enableMjTranslate"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableMjTranslateTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableNijiTranslate' })}
+                  name="enableNijiTranslate"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableNijiTranslateTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+              </Card>
+            </Col>
+
+            <Col span={12} style={{ marginTop: '16px' }}>
+              <Card
+                title={intl.formatMessage({ id: 'pages.setting.otherSetting' })}
+                bordered={false}
+              >
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableUpdateCheck' })}
+                  name="enableUpdateCheck"
+                  help={intl.formatMessage({ id: 'pages.setting.enableUpdateCheckTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label="更新包源"
+                  name="upgradePackageSource"
+                  help="更新包来源，国内用户推荐使用阿里云包源"
+                >
+                  <Select>
+                    <Select.Option value="GITHUB">GitHub</Select.Option>
+                    <Select.Option value="ALIYUN">阿里云</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item label="日志级别" name="logEventLevel">
+                  <Select>
+                    <Select.Option value="Debug">Debug</Select.Option>
+                    <Select.Option value="Information">Information</Select.Option>
+                    <Select.Option value="Warning">Warning</Select.Option>
+                    <Select.Option value="Error">Error</Select.Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.isDemoMode' })}
+                  name="isDemoMode"
+                  help={intl.formatMessage({ id: 'pages.setting.isDemoModeTips' })}
+                >
+                  <Switch className="demo-mode" />
+                </Form.Item>
+
+                {/* <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableAccountSponsor' })}
+                  name="enableAccountSponsor"
+                  help={intl.formatMessage({ id: 'pages.setting.enableAccountSponsorTips' })}
+                >
+                  <Switch />
+                </Form.Item> */}
+
+                <Form.Item
                   label="启用用户统计"
                   name="enableUserDrawStatistics"
                   help="启用后自动统计用户每日绘图和总绘图数量，默认：不开启"
@@ -1117,22 +1221,6 @@ const Setting: React.FC = () => {
                   label="自动收录官网违禁词"
                   name="enableAutoCollectOfficialBannedWords"
                   help="启用后自动收录官网违禁词到违禁词库"
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label="自动清除用户违规词"
-                  name="enableAutoClearUserBannedWords"
-                  help="用户触发违规词后，自动清除用户的提示词中的违规词"
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label="返回官方 cdn 地址"
-                  name="enableFillOfficialCdn"
-                  help="绘图完成时对 imageUrls 和 videoUrls 填充 cdn.midjourney.com 的官方 cdn 地址"
                 >
                   <Switch />
                 </Form.Item>
@@ -1291,16 +1379,14 @@ const Setting: React.FC = () => {
                 </Form.Item>
               </Card>
             </Col>
-          </Row>
 
-          <Row gutter={16} style={{ marginTop: '16px' }}>
-            <Col span={12}>
+            <Col span={12} style={{ marginTop: '16px' }}>
               <Card
                 title={intl.formatMessage({ id: 'pages.setting.discordSetting' })}
                 bordered={false}
               >
                 <Form.Item
-                  label="启用 Discord 防撞图机制"
+                  label="防撞图机制"
                   name="enableDiscordAppendSeed"
                   help="对提示词添加 --seed 参数，避免多任务撞图，默认：true"
                 >
@@ -1324,136 +1410,10 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
-                  name="enableAutoSyncInfoSetting"
-                  help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label='快速绘图消耗时长'
-                  name="fastDrawDuration"
-                  rules={[
-                    {
-                      type: 'number',
-                      min: 45,
-                      max: 60,
-                    },
-                  ]}
-                  help="一次快速绘图大概使用的时间，用于计算快速时长剩余次数，默认：60s，取值范围：45-60s，如果默认60s，则15小时约900次快速；如果45s就是约1200次快速"
-                >
-                  <InputNumber
-                    min={45}
-                    max={60}
-                    defaultValue={60}
-                    addonAfter="s"
-                  />
-                </Form.Item>
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableAutoExtendToken' })}
-                  name="enableAutoExtendToken"
-                  help={intl.formatMessage({ id: 'pages.setting.enableAutoExtendTokenTips' })}
-                >
-                  <Switch />
-                </Form.Item> */}
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableUserCustomUploadBase64' })}
-                  name="enableUserCustomUploadBase64"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableUserCustomUploadBase64Tips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableSaveUserUploadBase64' })}
-                  name="enableSaveUserUploadBase64"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableSaveUserUploadBase64Tips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableSaveUserUploadLink' })}
-                  name="enableSaveUserUploadLink"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableSaveUserUploadLinkTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableSaveGeneratedImage' })}
-                  name="enableSaveGeneratedImage"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableSaveGeneratedImageTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableSaveIntermediateImage' })}
                   name="enableSaveIntermediateImage"
                   help={intl.formatMessage({
                     id: 'pages.setting.enableSaveIntermediateImageTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableConvertOfficialLink' })}
-                  name="enableConvertOfficialLink"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableConvertOfficialLinkTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                {/* <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableConvertAliyunLink' })}
-                  name="enableConvertAliyunLink"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableConvertAliyunLinkTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item> */}
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableMjTranslate' })}
-                  name="enableMjTranslate"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableMjTranslateTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableNijiTranslate' })}
-                  name="enableNijiTranslate"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableNijiTranslateTips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableConvertNijiToMj' })}
-                  name="enableConvertNijiToMj"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableConvertNijiToMjTips',
                   })}
                 >
                   <Switch />
@@ -1480,11 +1440,9 @@ const Setting: React.FC = () => {
                 </Form.Item>
               </Card>
             </Col>
-          </Row>
 
-          <Row gutter={16} style={{ marginTop: '16px' }}>
-            <Col span={12}>
-              <Card title="悠船/官网配置" bordered={false}>
+            <Col span={12} style={{ marginTop: '16px' }}>
+              <Card title="悠船配置" bordered={false}>
                 <Form.Item
                   label="转换悠船官网链接"
                   name="enableYouChuanPromptLink"
@@ -1516,11 +1474,9 @@ const Setting: React.FC = () => {
                 </Form.Item>
               </Card>
             </Col>
-          </Row>
 
-          {setting && setting.privateFeatures && setting.privateFeatures.length > 0 && (
-            <Row gutter={16} style={{ marginTop: '16px' }}>
-              <Col span={12}>
+            {setting && setting.privateFeatures && setting.privateFeatures.length > 0 && (
+              <Col span={12} style={{ marginTop: '16px' }}>
                 <Card title="私人定制" bordered={false}>
                   {setting.privateFeatures.includes('privateEnableYouChuanAllowU') && (
                     <Form.Item
@@ -1593,8 +1549,8 @@ const Setting: React.FC = () => {
                   )}
                 </Card>
               </Col>
-            </Row>
-          )}
+            )}
+          </Row>
         </Spin>
       </Form>
     </PageContainer>

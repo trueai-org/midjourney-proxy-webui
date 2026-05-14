@@ -447,13 +447,13 @@ export default {
   'pages.setting.enableAutoVerifyAccount': '自动验证账号',
   'pages.setting.enableAutoVerifyAccountTips':
     '账号启动连接时自动验证账号是否可用（可能触发手机验证，近期谨慎开启！）',
-  'pages.setting.enableAutoSyncInfoSetting': 'Discord 自动同步信息',
+  'pages.setting.enableAutoSyncInfoSetting': '自动同步信息',
   'pages.setting.enableAutoSyncInfoSettingTips': '启用后随机每 3~12 小时自动同步一次账号信息和设置，默认：true',
 
   'pages.setting.enableAutoExtendToken': '自动续期令牌',
   'pages.setting.enableAutoExtendTokenTips': '启用后随机每 1~10 分钟自动续期一次 Token',
 
-  'pages.setting.enableUserCustomUploadBase64': '用户上传 Base64 图片',
+  'pages.setting.enableUserCustomUploadBase64': '上传 Base64 图片',
   'pages.setting.enableUserCustomUploadBase64Tips': '启用后允许用户上传 Base64 图片',
 
   'pages.setting.enableSaveUserUploadBase64': '转换用户 Base64 图片',
@@ -465,7 +465,7 @@ export default {
     '启用后保存用户提交的 Link 到文件存储（例如：Describe）',
 
   'pages.setting.enableSaveGeneratedImage': '保存最终图片',
-  'pages.setting.enableSaveGeneratedImageTips': '启用后保存 Discord 最终图片到文件存储',
+  'pages.setting.enableSaveGeneratedImageTips': '启用后保存最终图片到文件存储',
 
   'pages.setting.enableSaveIntermediateImage': '保存进度图片',
   'pages.setting.enableSaveIntermediateImageTips': '启用后保存 Discord  进度图片到文件存储',

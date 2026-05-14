@@ -501,7 +501,7 @@ export default {
 
   'pages.setting.enableSaveGeneratedImage': 'Save the final picture',
   'pages.setting.enableSaveGeneratedImageTips':
-    'After enabling, save the final discord image to the file store',
+    'After enabling, save the final image to the file store',
 
   'pages.setting.enableSaveIntermediateImage': 'Save the progress picture',
   'pages.setting.enableSaveIntermediateImageTips':
