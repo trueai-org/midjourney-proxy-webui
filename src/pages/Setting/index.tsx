@@ -1109,18 +1109,18 @@ const Setting: React.FC = () => {
                   rules={[
                     {
                       type: 'number',
-                      min: 45,
+                      min: 15,
                       max: 60,
                     },
                   ]}
-                  help="一次快速绘图大概使用的时间，用于计算快速时长剩余次数，默认：60s，取值范围：45-60s，如果默认60s，则15小时约900次快速；如果45s就是约1200次快速"
+                  help="一次快速绘图大概使用的时间，用于计算快速时长剩余次数，默认：45-60s，取值范围：15-60s，如果默认60s，则15小时约15*60*60/60=900次快速；如果45s就是15*60*60/45=1200次快速"
                 >
-                  <InputNumber min={45} max={60} defaultValue={60} addonAfter="s" />
+                  <InputNumber min={15} max={60} defaultValue={60} addonAfter="s" />
                 </Form.Item>
 
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableConvertNijiToMj' })}
-                  name="enableConvertNijiToMj"
+                  name="enableConvertNijiToMj"  
                   help={intl.formatMessage({
                     id: 'pages.setting.enableConvertNijiToMjTips',
                   })}
