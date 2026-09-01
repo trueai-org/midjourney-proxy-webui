@@ -1451,6 +1451,13 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
                 <Form.Item
+                  label="悠船图生文链接转换"
+                  name="enableYouChuanDescribeLink"
+                  help="启用后悠船图生文时，图片地址默认替换为悠船自己的 CDN 链接"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
                   label="悠船失败自动重试"
                   name="enableYouChuanRetry"
                   help="启用后悠船绘图失败时（额度不足或 Relax 上限），自动使用其他账号重试任务"
