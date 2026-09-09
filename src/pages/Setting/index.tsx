@@ -1465,6 +1465,20 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
                 <Form.Item
+                  label="强制优先慢速"
+                  name="youChuanForcePreferRelax"
+                  help="开启后，快速/极速请求优先以慢速选中开启「优先消耗慢速」的账号（任务按慢速提交，走慢速队列与慢速计数）；这些账号慢速总剩余小于等于阈值或没有可用慢速时，按原有速度逻辑分配。推荐号池 > 50 个以上的场景适用。"
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label="强制优先慢速阈值"
+                  name="youChuanForcePreferRelaxThreshold"
+                  help="开启「优先消耗慢速」的账号慢速总剩余次数大于该值时生效，默认 120（并发越高，此值越大）"
+                >
+                  <InputNumber min={0} precision={0} />
+                </Form.Item>
+                <Form.Item
                   label="悠船重启继续任务"
                   name="enableYouChuanRestartContinue"
                   help="启用后程序重启后，继续悠船未完成的任务"
