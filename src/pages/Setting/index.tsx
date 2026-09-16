@@ -1086,6 +1086,16 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label="自定义垫图替换规则"
+                  name="convertPromptLinkReplaceRules"
+                  help={
+                    '配置后转换提示词中的链接到指定链接，例如：垫图、混图、参考图等，支持配置多个 key value，如：{"cdn.a.cn":"cdn.a.com"}'
+                  }
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableUserCustomUploadBase64' })}
                   name="enableUserCustomUploadBase64"
                   help={intl.formatMessage({
