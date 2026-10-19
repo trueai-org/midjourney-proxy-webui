@@ -1086,10 +1086,20 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
-                  label="自定义垫图替换规则"
+                  label="输入链接替换规则"
                   name="convertPromptLinkReplaceRules"
                   help={
-                    '配置后转换提示词中的链接到指定链接，例如：垫图、混图、参考图等，支持配置多个 key value，如：{"cdn.a.cn":"cdn.a.com"}'
+                    '提交前转换提示词中的输入链接（垫图、混图、参考图等）到指定链接，命中的链接将不再抓取/上传云存储，支持配置多个 key value，如：{"cdn.a.cn":"cdn.a.com"}'
+                  }
+                >
+                  <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
+                  label="输出链接替换规则"
+                  name="convertPromptOutputLinkReplaceRules"
+                  help={
+                    '当上游任务进度中、完成时，将最终提示词、prompt、promptEn 以及结果图片/视频中的链接替换为指定链接，支持配置多个 key value，如：{"cdn.a.cn":"cdn.a.com"}'
                   }
                 >
                   <JsonEditor />
