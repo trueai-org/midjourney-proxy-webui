@@ -26,8 +26,10 @@ cd midjourney-proxy-webui/
 
 **(2) 安装依赖 ：**
 
+本项目统一使用 yarn 1.22.22，不使用 pnpm / npm。
+
 ```bash
-yarn
+yarn install
 ```
 
 ## 2.配置

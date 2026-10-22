@@ -885,11 +885,13 @@ const Setting: React.FC = () => {
                       <div>1. 可配置 SMTP 邮件服务</div>
                       <div>2. 可配置自定义 HOOK</div>
                       <div>3. 每小时最多通知 10 次，每天最多 100 次</div>
+                      <div>4. 冷却时间内不会重复通知</div>
                       <div>
-                        4. 字段说明
+                        5. 字段说明
                         <ul>
                           <li>enabled：是否启用 true | false</li>
                           <li>notifyHook：POST 回调通知地址</li>
+                          <li>cooldownMinutes：通知冷却时间（分钟），默认 30，范围 1 - 1440</li>
                           <li>availableAccountCount：可用账号数阈值</li>
                           <li>fastRemaining：快速剩余次数阈值</li>
                           <li>relaxedRemaining：慢速剩余次数阈值</li>
@@ -901,6 +903,15 @@ const Setting: React.FC = () => {
                   }
                 >
                   <JsonEditor />
+                </Form.Item>
+
+                <Form.Item
+                  label="冷却(分钟)"
+                  name={['alertNotify', 'cooldownMinutes']}
+                  tooltip="每多少分钟最多预警一次，默认 30，范围 1 - 1440；修改后从下一次预警开始生效"
+                  rules={[{ required: true, message: '请输入预警通知冷却时间' }]}
+                >
+                  <InputNumber min={1} max={1440} precision={0} style={{ width: '100%' }} />
                 </Form.Item>
 
                 <Form.Item
