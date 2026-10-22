@@ -16,14 +16,12 @@ import {
   Alert,
   Button,
   Card,
-  Col,
   Form,
   Input,
   InputNumber,
   message,
   Modal,
   Progress,
-  Row,
   Select,
   Space,
   Spin,
@@ -368,14 +366,19 @@ const Setting: React.FC = () => {
     <PageContainer>
       <Form
         form={form}
+        className="setting-form"
         labelAlign="left"
         layout="horizontal"
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 18 }}
       >
         <Spin spinning={loading}>
-          <Space style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between' }}>
-            <Space>
+          <Space
+            className="setting-toolbar"
+            style={{ marginBottom: '10px', display: 'flex', justifyContent: 'space-between' }}
+            wrap
+          >
+            <Space wrap>
               <Alert
                 type="info"
                 style={{ paddingTop: '4px', paddingBottom: '4px' }}
@@ -436,7 +439,7 @@ const Setting: React.FC = () => {
               </Button>
             </Space>
 
-            <Space>
+            <Space wrap>
               {/* <Tooltip
                 placement="bottom"
                 title={
@@ -566,8 +569,8 @@ const Setting: React.FC = () => {
             </Card>
           )}
 
-          <Row gutter={16}>
-            <Col span={12}>
+          <div className="settings-grid">
+            <div className="settings-grid-item">
               <Card
                 title={intl.formatMessage({ id: 'pages.setting.accountSetting' })}
                 bordered={false}
@@ -780,7 +783,13 @@ const Setting: React.FC = () => {
                     )}
                   </Select>
                 </Form.Item>
-
+              </Card>
+            </div>
+            <div className="settings-grid-item">
+              <Card
+                title={intl.formatMessage({ id: 'pages.setting.storageIntegration' })}
+                bordered={false}
+              >
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.discordConfig' })}
                   name="ngDiscord"
@@ -851,7 +860,13 @@ const Setting: React.FC = () => {
                 >
                   <JsonEditor />
                 </Form.Item>
-
+              </Card>
+            </div>
+            <div className="settings-grid-item">
+              <Card
+                title={intl.formatMessage({ id: 'pages.setting.translateAndMessage' })}
+                bordered={false}
+              >
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.translate' })}
                   name="translateWay"
@@ -926,6 +941,13 @@ const Setting: React.FC = () => {
                 >
                   <InputNumber />
                 </Form.Item>
+              </Card>
+            </div>
+            <div className="settings-grid-item">
+              <Card
+                title={intl.formatMessage({ id: 'pages.setting.validationAndRisk' })}
+                bordered={false}
+              >
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.captchaServer' })}
                   name="captchaServer"
@@ -1025,8 +1047,8 @@ const Setting: React.FC = () => {
                   }
                 </Form.Item> */}
               </Card>
-            </Col>
-            <Col span={12}>
+            </div>
+            <div className="settings-grid-item">
               <Card title="绘图配置" bordered={false}>
                 <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.licenseKey' })}
@@ -1094,6 +1116,24 @@ const Setting: React.FC = () => {
                   help="启用后转换提示词中的链接到云存储，例如：垫图、混图、参考图等"
                 >
                   <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enablePromptImageWebp' })}
+                  name="enablePromptImageWebp"
+                  help={intl.formatMessage({ id: 'pages.setting.enablePromptImageWebpTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.promptImageWebpIgnoreFormats' })}
+                  name="promptImageWebpIgnoreFormats"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.promptImageWebpIgnoreFormatsTips',
+                  })}
+                >
+                  <Select mode="tags" allowClear tokenSeparators={[',', ' ']} placeholder=".gif" />
                 </Form.Item>
 
                 <Form.Item
@@ -1189,9 +1229,9 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
               </Card>
-            </Col>
+            </div>
 
-            <Col span={12} style={{ marginTop: '16px' }}>
+            <div className="settings-grid-item">
               <Card
                 title={intl.formatMessage({ id: 'pages.setting.otherSetting' })}
                 bordered={false}
@@ -1409,9 +1449,9 @@ const Setting: React.FC = () => {
                   <Input.TextArea autoSize={{ minRows: 1, maxRows: 10 }} />
                 </Form.Item>
               </Card>
-            </Col>
+            </div>
 
-            <Col span={12} style={{ marginTop: '16px' }}>
+            <div className="settings-grid-item">
               <Card
                 title={intl.formatMessage({ id: 'pages.setting.discordSetting' })}
                 bordered={false}
@@ -1470,9 +1510,9 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
               </Card>
-            </Col>
+            </div>
 
-            <Col span={12} style={{ marginTop: '16px' }}>
+            <div className="settings-grid-item">
               <Card title="悠船配置" bordered={false}>
                 <Form.Item
                   label="转换悠船官网链接"
@@ -1525,10 +1565,10 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
               </Card>
-            </Col>
+            </div>
 
             {setting && setting.privateFeatures && setting.privateFeatures.length > 0 && (
-              <Col span={12} style={{ marginTop: '16px' }}>
+              <div className="settings-grid-item">
                 <Card title="私人定制" bordered={false}>
                   {setting.privateFeatures.includes('privateEnableYouChuanAllowU') && (
                     <Form.Item
@@ -1600,9 +1640,9 @@ const Setting: React.FC = () => {
                     </Form.Item>
                   )}
                 </Card>
-              </Col>
+              </div>
             )}
-          </Row>
+          </div>
         </Spin>
       </Form>
     </PageContainer>

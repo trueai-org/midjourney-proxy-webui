@@ -465,6 +465,9 @@ export default {
   'pages.setting.saveFailed': 'Save Failed',
   'pages.setting.otherSetting': 'Other Setting',
   'pages.setting.accountSetting': 'Account Setting',
+  'pages.setting.storageIntegration': 'Storage & Integrations',
+  'pages.setting.translateAndMessage': 'Translation & Messages',
+  'pages.setting.validationAndRisk': 'Verification & Risk Control',
   'pages.setting.tips':
     'Note: Modifying the account configuration requires restarting the service. Other configuration modifications take effect in real time without restarting the service.',
   'pages.setting.migrate': 'Migrate',
@@ -490,6 +493,13 @@ export default {
   'pages.setting.enableUserCustomUploadBase64': 'User upload base64 image',
   'pages.setting.enableUserCustomUploadBase64Tips':
     'After this function is enabled, users can upload base64 images',
+
+  'pages.setting.enablePromptImageWebp': 'Prompt images to WebP',
+  'pages.setting.enablePromptImageWebpTips':
+    'After enabling, user-uploaded base64 images (reference, blend, description, edit, etc.) and images re-fetched and uploaded from prompts (requires prompt link storage or YouChuan link conversion) are converted to WebP. Inpainting masks always remain PNG. Unknown or undecodable formats are kept as-is.',
+  'pages.setting.promptImageWebpIgnoreFormats': 'WebP ignored formats',
+  'pages.setting.promptImageWebpIgnoreFormatsTips':
+    'Image formats that are not converted to WebP, such as gif or .gif (case-insensitive). Default: .gif; multi-frame GIF/APNG is never converted to avoid losing animation.',
 
   'pages.setting.enableSaveUserUploadBase64': 'Convert the user base64 image',
   'pages.setting.enableSaveUserUploadBase64Tips':

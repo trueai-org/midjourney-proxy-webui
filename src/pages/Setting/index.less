@@ -67,3 +67,79 @@
     color: #666;
   }
 }
+
+// 系统设置：两列瀑布流卡片，避免长短卡片互相撑出大片空白
+.settings-grid {
+  column-count: 2;
+  column-gap: 16px;
+
+  @media (max-width: 1200px) {
+    column-count: 1;
+  }
+}
+
+.settings-grid-item {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+  break-inside: avoid;
+}
+
+.setting-form {
+  .ant-card-head {
+    min-height: 44px;
+    padding: 0 20px;
+  }
+
+  .ant-card-head-title {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .ant-card-body {
+    padding: 16px 20px 2px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 18px;
+  }
+
+  .ant-form-item-extra {
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  // 开关类配置：标签靠左，开关靠右，避免中间出现大片空白
+  .ant-form-item-row:has(.ant-switch) {
+    .ant-form-item-control-input {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
+
+// 顶部操作区吸顶跟随，保留毛玻璃卡片，顶部间隙不绘制背景
+.setting-toolbar {
+  position: sticky;
+  top: 68px;
+  z-index: 20;
+  padding: 10px 16px;
+  margin: 0 0 12px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(5, 5, 5, 0.06);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  row-gap: 8px;
+
+  .ant-alert {
+    flex: 1 1 360px;
+    min-width: 280px;
+  }
+
+  @media (max-width: 992px) {
+    position: static;
+  }
+}
