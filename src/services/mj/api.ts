@@ -396,6 +396,74 @@ export async function createIllegalWord(data: object, options?: { [key: string]:
   });
 }
 
+/**
+ * 创建违规词测试批次
+ * @param data 违规词、提示词模板、并发数
+ * @param options
+ * @returns 批次 ID 与新增任务数
+ */
+export async function createBannedWordTest(
+  data: { words: string[]; template?: string; concurrency?: number },
+  options?: { [key: string]: any },
+) {
+  return request<API.Result>('/mj/admin/banned-word-test', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
+/**
+ * 查询违规词测试任务
+ * @param data 分页、敏感词、状态筛选条件
+ * @param options
+ * @returns 测试任务分页与全量统计
+ */
+export async function queryBannedWordTests(data: any, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/banned-word-tests', {
+    method: 'POST',
+    data: data,
+    ...(options || {}),
+  });
+}
+
+/**
+ * 重试所有测试失败的任务
+ * @param options
+ * @returns
+ */
+export async function retryFailedBannedWordTests(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/banned-word-test/retry-failed', {
+    method: 'POST',
+    ...(options || {}),
+  });
+}
+
+/**
+ * 清空所有违规词测试记录
+ * @param options
+ * @returns
+ */
+export async function clearBannedWordTests(options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/banned-word-test', {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+
+/**
+ * 删除单条违规词测试任务记录
+ * @param taskId 测试任务 ID
+ * @param options
+ * @returns
+ */
+export async function deleteBannedWordTest(taskId: string, options?: { [key: string]: any }) {
+  return request<API.Result>(`/mj/admin/banned-word-test/${taskId}`, {
+    method: 'DELETE',
+    ...(options || {}),
+  });
+}
+
 export async function queryTaskByIds(ids: string[], options?: { [key: string]: any }) {
   return request<any>('/mj/task/list-by-ids', {
     method: 'POST',

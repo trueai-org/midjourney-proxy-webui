@@ -1,7 +1,8 @@
 import MyModal from '@/pages/components/Modal';
 import AddContent from '@/pages/DomainList/components/AddContent';
+import BannedWordTestModal from '@/pages/BannedWordList/components/TestModal';
 import { createIllegalWord, deleteIllegalWord, queryIllegalWord } from '@/services/mj/api';
-import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ExperimentOutlined, PlusOutlined } from '@ant-design/icons';
 import { PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
 import { Button, Card, Form, notification, Popconfirm, Space, Switch } from 'antd';
@@ -14,6 +15,7 @@ const UserList: React.FC = () => {
   const [title, setTitle] = useState<string>('');
   const [footer, setFooter] = useState({});
   const [modalWidth, setModalWidth] = useState(1000);
+  const [testVisible, setTestVisible] = useState(false);
   const [form] = Form.useForm();
   const intl = useIntl();
 
@@ -139,13 +141,6 @@ const UserList: React.FC = () => {
       },
     },
     {
-      title: intl.formatMessage({ id: 'pages.word.weight' }),
-      dataIndex: 'weight',
-      width: 80,
-      align: 'left',
-      hideInSearch: true,
-    },
-    {
       title: intl.formatMessage({ id: 'pages.word.createTime' }),
       dataIndex: 'createTimeFormat',
       width: 140,
@@ -211,6 +206,9 @@ const UserList: React.FC = () => {
           rowKey="id"
           actionRef={actionRef}
           toolBarRender={() => [
+            <Button key="test" icon={<ExperimentOutlined />} onClick={() => setTestVisible(true)}>
+              {intl.formatMessage({ id: 'pages.word.test' })}
+            </Button>,
             <Button
               key="primary"
               type={'primary'}
@@ -251,6 +249,7 @@ const UserList: React.FC = () => {
         footer={footer}
         modalWidth={modalWidth}
       ></MyModal>
+      <BannedWordTestModal open={testVisible} onClose={() => setTestVisible(false)} />
     </PageContainer>
   );
 };
