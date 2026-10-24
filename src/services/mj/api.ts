@@ -75,6 +75,33 @@ export async function createAccount(data: object, options?: { [key: string]: any
   });
 }
 
+/**
+ * 预览悠船账号 Excel 导入。
+ * 以 multipart/form-data 上传 .xlsx，后端只解析并返回新增/更新/无效标记，不写数据库。
+ */
+export async function previewYouChuanAccountImport(
+  data: FormData,
+  options?: { [key: string]: any },
+) {
+  return request<API.Result>('/mj/admin/account-import/youchuan/preview', {
+    method: 'POST',
+    data,
+    ...(options || {}),
+  });
+}
+
+/**
+ * 导入悠船账号。
+ * 后端按虚拟号匹配：重复账号更新凭证和账号池参数，新账号新增并启用；返回逐行成功/失败统计。
+ */
+export async function importYouChuanAccounts(data: object, options?: { [key: string]: any }) {
+  return request<API.Result>('/mj/admin/account-import/youchuan', {
+    method: 'POST',
+    data,
+    ...(options || {}),
+  });
+}
+
 /**  POST /mj/account/query */
 export async function queryAccount(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/mj/admin/accounts', {

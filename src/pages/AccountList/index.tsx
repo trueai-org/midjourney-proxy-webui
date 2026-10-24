@@ -2,6 +2,7 @@ import DelButton from '@/pages/AccountList/components/button/DelButton';
 import SyncButton from '@/pages/AccountList/components/button/SyncButton';
 import AddContent from '@/pages/AccountList/components/contents/AddContent';
 import CfContent from '@/pages/AccountList/components/contents/CfContent';
+import ImportContent from '@/pages/AccountList/components/contents/ImportContent';
 import MoreContent from '@/pages/AccountList/components/contents/MoreContent';
 import ReconnectContent from '@/pages/AccountList/components/contents/ReconnectContent';
 // import UpdateContent from '@/pages/AccountList/components/contents/UpdateContent';
@@ -15,11 +16,10 @@ import {
 } from '@/services/mj/api';
 import {
   CheckCircleOutlined,
-  ClockCircleOutlined,
   ClearOutlined,
+  ClockCircleOutlined,
   CrownTwoTone,
-  EditOutlined,
-  HeartTwoTone,
+  ImportOutlined,
   LockOutlined,
   LoginOutlined,
   RocketTwoTone,
@@ -38,6 +38,7 @@ import React, { useEffect, useRef, useState } from 'react';
 const AccountList: React.FC = () => {
   // 初始化 dataSource 状态为空数组
   const [modalVisible, setModalVisible] = useState(false);
+  const [importVisible, setImportVisible] = useState(false);
   const [modalReadonly, setModalReadonly] = useState(false);
   const [modalContent, setModalContent] = useState(<></>);
   const [title, setTitle] = useState<string>('');
@@ -550,9 +551,7 @@ const AccountList: React.FC = () => {
         }
         return (
           <>
-          <Tooltip title="今日同步信息成功的次数">
-            {value}
-          </Tooltip>
+            <Tooltip title="今日同步信息成功的次数">{value}</Tooltip>
           </>
         );
       },
@@ -915,6 +914,15 @@ const AccountList: React.FC = () => {
             >
               {intl.formatMessage({ id: 'pages.account.discordAccount' })}
             </Button>,
+
+            <Button
+              key="import"
+              type={'dashed'}
+              icon={<ImportOutlined />}
+              onClick={() => setImportVisible(true)}
+            >
+              {intl.formatMessage({ id: 'pages.account.import' })}
+            </Button>,
           ]}
           request={async (params, sort) => {
             const kys = Object.keys(sort);
@@ -940,6 +948,39 @@ const AccountList: React.FC = () => {
         width={modalWidth}
       >
         {modalContent}
+      </Modal>
+      {/* 导入结果通知由页面级 notification 展示，避免弹窗关闭后通知随子组件卸载；点击遮罩不关闭，避免误触丢失预览 */}
+      <Modal
+        title={intl.formatMessage({ id: 'pages.account.importTitle' })}
+        open={importVisible}
+        onCancel={() => setImportVisible(false)}
+        footer={null}
+        width={900}
+        maskClosable={false}
+        destroyOnClose
+      >
+        {/* 右侧预留滚动条间距，避免预览表和参数表单贴边 */}
+        <div style={{ maxHeight: 'calc(100vh - 220px)', overflowY: 'auto', paddingRight: 12 }}>
+          <ImportContent
+            onCancel={() => setImportVisible(false)}
+            onSuccess={(outcome) => {
+              setImportVisible(false);
+              actionRef.current?.reload();
+              if (outcome.failed > 0) {
+                api.warning({
+                  message: intl.formatMessage({ id: 'pages.account.importResult' }),
+                  description: outcome.description,
+                  duration: 8,
+                });
+              } else {
+                api.success({
+                  message: intl.formatMessage({ id: 'pages.account.importResult' }),
+                  description: outcome.description,
+                });
+              }
+            }}
+          />
+        </div>
       </Modal>
     </PageContainer>
   );
