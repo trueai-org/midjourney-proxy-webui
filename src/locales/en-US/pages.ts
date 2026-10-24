@@ -490,10 +490,6 @@ export default {
   'pages.setting.enableAutoExtendTokenTips':
     'After this function is enabled, the Token is automatically renewed every 1 to 10 minutes',
 
-  'pages.setting.enableUserCustomUploadBase64': 'User upload base64 image',
-  'pages.setting.enableUserCustomUploadBase64Tips':
-    'After this function is enabled, users can upload base64 images',
-
   'pages.setting.enablePromptImageWebp': 'Prompt images to WebP',
   'pages.setting.enablePromptImageWebpTips':
     'After enabling, user-uploaded base64 images (reference, blend, description, edit, etc.) and images re-fetched and uploaded from prompts (requires prompt link storage or YouChuan link conversion) are converted to WebP. Inpainting masks always remain PNG. Unknown or undecodable formats are kept as-is.',

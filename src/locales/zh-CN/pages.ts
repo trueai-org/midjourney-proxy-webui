@@ -456,9 +456,6 @@ export default {
   'pages.setting.enableAutoExtendToken': '自动续期令牌',
   'pages.setting.enableAutoExtendTokenTips': '启用后随机每 1~10 分钟自动续期一次 Token',
 
-  'pages.setting.enableUserCustomUploadBase64': '上传 Base64 图片',
-  'pages.setting.enableUserCustomUploadBase64Tips': '启用后允许用户上传 Base64 图片',
-
   'pages.setting.enablePromptImageWebp': '垫图转 WebP',
   'pages.setting.enablePromptImageWebpTips':
     '启用后，用户上传的 Base64 图片（垫图、混图、参考图、图生文、编辑等）以及提示词中被重新抓取上传的图片（需开启转换提示词链接或悠船链接转换）会转为 WebP；局部重绘蒙版始终保留 PNG；未知或无法解码的格式保持原样',

@@ -1157,16 +1157,6 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
-                  label={intl.formatMessage({ id: 'pages.setting.enableUserCustomUploadBase64' })}
-                  name="enableUserCustomUploadBase64"
-                  help={intl.formatMessage({
-                    id: 'pages.setting.enableUserCustomUploadBase64Tips',
-                  })}
-                >
-                  <Switch />
-                </Form.Item>
-
-                <Form.Item
                   label={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSetting' })}
                   name="enableAutoSyncInfoSetting"
                   help={intl.formatMessage({ id: 'pages.setting.enableAutoSyncInfoSettingTips' })}
