@@ -345,7 +345,8 @@ const Setting: React.FC = () => {
       .validateFields()
       .then((values) => {
         setLoading(true);
-        updateConfig(values).then((c) => {
+        // revision 是后端 Consul CAS 的版本号，表单未注册该字段，必须显式带回，避免旧版本覆盖新配置
+        updateConfig({ ...values, revision: setting?.revision ?? 0 }).then((c) => {
           setLoading(false);
           if (c.success) {
             // 提示成功
