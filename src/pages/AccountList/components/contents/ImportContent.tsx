@@ -1,3 +1,4 @@
+import AccountTypeIcon from '@/components/AccountTypeIcon';
 import { importYouChuanAccounts, previewYouChuanAccountImport } from '@/services/mj/api';
 import { InboxOutlined } from '@ant-design/icons';
 import { useIntl } from '@umijs/max';
@@ -563,18 +564,34 @@ const ImportContent = ({ onCancel, onSuccess }: ImportContentProps) => {
         items={[
           {
             key: 'youchuan',
-            label: intl.formatMessage({ id: 'pages.account.importYouchuanTab' }),
+            // 每个导入页签前加账号类型图标，与列表/按钮保持同一套标识
+            label: (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <AccountTypeIcon type="youChuan" size={14} tooltip={false} />
+                {intl.formatMessage({ id: 'pages.account.importYouchuanTab' })}
+              </span>
+            ),
             children: youChuanContent,
           },
           {
             key: 'discord',
-            label: intl.formatMessage({ id: 'pages.account.importDiscordTab' }),
+            label: (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <AccountTypeIcon type="discord" size={14} tooltip={false} />
+                {intl.formatMessage({ id: 'pages.account.importDiscordTab' })}
+              </span>
+            ),
             disabled: true,
             children: null,
           },
           {
             key: 'midjourney',
-            label: intl.formatMessage({ id: 'pages.account.importMidjourneyTab' }),
+            label: (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <AccountTypeIcon type="official" size={14} tooltip={false} />
+                {intl.formatMessage({ id: 'pages.account.importMidjourneyTab' })}
+              </span>
+            ),
             disabled: true,
             children: null,
           },

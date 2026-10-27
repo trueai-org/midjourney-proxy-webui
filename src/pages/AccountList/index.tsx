@@ -1,3 +1,4 @@
+import AccountTypeIcon from '@/components/AccountTypeIcon';
 import DelButton from '@/pages/AccountList/components/button/DelButton';
 import SyncButton from '@/pages/AccountList/components/button/SyncButton';
 import AddContent from '@/pages/AccountList/components/contents/AddContent';
@@ -18,15 +19,12 @@ import {
   CheckCircleOutlined,
   ClearOutlined,
   ClockCircleOutlined,
-  CrownTwoTone,
   ImportOutlined,
   LockOutlined,
   LoginOutlined,
-  RocketTwoTone,
   SyncOutlined,
   ToolOutlined,
   UnlockOutlined,
-  UserAddOutlined,
 } from '@ant-design/icons';
 import { ActionType, PageContainer, ProTable } from '@ant-design/pro-components';
 import { useIntl } from '@umijs/max';
@@ -35,13 +33,28 @@ import { ColumnType } from 'antd/lib/table';
 import moment from 'moment';
 import React, { useEffect, useRef, useState } from 'react';
 
+/**
+ * 弹窗标题：账号类型图标 + 文案。
+ * 添加 / 编辑 / 账号信息 / CF 验证等弹窗统一使用，保证与列表中的类型图标一致。
+ */
+const ModalTitleWithTypeIcon: React.FC<{ icon: React.ReactNode; text: React.ReactNode }> = ({
+  icon,
+  text,
+}) => (
+  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+    {icon}
+    {text}
+  </span>
+);
+
 const AccountList: React.FC = () => {
   // 初始化 dataSource 状态为空数组
   const [modalVisible, setModalVisible] = useState(false);
   const [importVisible, setImportVisible] = useState(false);
   const [modalReadonly, setModalReadonly] = useState(false);
   const [modalContent, setModalContent] = useState(<></>);
-  const [title, setTitle] = useState<string>('');
+  // 弹窗标题支持传入带图标的 ReactNode（账号类型标识）
+  const [title, setTitle] = useState<React.ReactNode>('');
   const [modalWidth, setModalWidth] = useState(1000);
   const [form] = Form.useForm();
   const [api, contextHolder] = notification.useNotification();
@@ -72,7 +85,7 @@ const AccountList: React.FC = () => {
     setModalReadonly(false);
   };
 
-  const openModal = (title: string, content: any, modalWidth: number) => {
+  const openModal = (title: React.ReactNode, content: any, modalWidth: number) => {
     form.resetFields();
     setTitle(title);
     setModalContent(content);
@@ -343,7 +356,10 @@ const AccountList: React.FC = () => {
               onClick={() => {
                 setModalReadonly(true);
                 openModal(
-                  intl.formatMessage({ id: 'pages.account.info' }) + ' - ' + record.id,
+                  <ModalTitleWithTypeIcon
+                    icon={<AccountTypeIcon record={record} tooltip={false} />}
+                    text={intl.formatMessage({ id: 'pages.account.info' }) + ' - ' + record.id}
+                  />,
                   <MoreContent record={record} onSuccess={triggerRefreshAccount} />,
                   1100,
                 );
@@ -362,6 +378,16 @@ const AccountList: React.FC = () => {
       sorter: true,
       // 冻结
       fixed: 'left',
+      // 频道 ID 前加账号类型小图标（Discord / 悠船 / Midjourney 官方），hover 显示类型名称。
+      // 图标与文本放在同一个 inline-flex 行内并用 align-items:center 居中，避免外层拉伸导致图标相对文字偏高
+      render: (text: string, record: Record<string, any>) => (
+        <span
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 4, verticalAlign: 'middle' }}
+        >
+          <AccountTypeIcon record={record} />
+          <span>{text}</span>
+        </span>
+      ),
     } as ColumnType<Record<string, any>>,
     // {
     //   title: intl.formatMessage({ id: 'pages.account.username' }),
@@ -652,7 +678,10 @@ const AccountList: React.FC = () => {
                       // 传一个随机数，保证每次都渲染
 
                       openModal(
-                        intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
+                        <ModalTitleWithTypeIcon
+                          icon={<AccountTypeIcon record={record} tooltip={false} />}
+                          text={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}
+                        />,
                         <ReconnectContent
                           r={Math.random()}
                           form={form}
@@ -683,7 +712,10 @@ const AccountList: React.FC = () => {
                     type={'dashed'}
                     onClick={() =>
                       openModal(
-                        intl.formatMessage({ id: 'pages.account.cfmodal' }),
+                        <ModalTitleWithTypeIcon
+                          icon={<AccountTypeIcon record={record} tooltip={false} />}
+                          text={intl.formatMessage({ id: 'pages.account.cfmodal' })}
+                        />,
                         <CfContent form={form} record={record} onSubmit={handleCfOk} />,
                         1000,
                       )
@@ -700,7 +732,10 @@ const AccountList: React.FC = () => {
                       // 传一个随机数，保证每次都渲染
 
                       openModal(
-                        intl.formatMessage({ id: 'pages.account.updateAndReconnect' }),
+                        <ModalTitleWithTypeIcon
+                          icon={<AccountTypeIcon record={record} tooltip={false} />}
+                          text={intl.formatMessage({ id: 'pages.account.updateAndReconnect' })}
+                        />,
                         <ReconnectContent
                           r={Math.random()}
                           form={form}
@@ -844,10 +879,13 @@ const AccountList: React.FC = () => {
             <Button
               key="official"
               type={'dashed'}
-              icon={<CrownTwoTone />}
+              icon={<AccountTypeIcon type="official" tooltip={false} />}
               onClick={() => {
                 openModal(
-                  intl.formatMessage({ id: 'pages.account.officialAccountTitle' }),
+                  <ModalTitleWithTypeIcon
+                    icon={<AccountTypeIcon type="official" tooltip={false} />}
+                    text={intl.formatMessage({ id: 'pages.account.officialAccountTitle' })}
+                  />,
                   <AddContent
                     r={Math.random()}
                     form={form}
@@ -864,10 +902,13 @@ const AccountList: React.FC = () => {
             <Button
               key="youchuan"
               type={'dashed'}
-              icon={<RocketTwoTone twoToneColor="#52c41a" />}
+              icon={<AccountTypeIcon type="youChuan" tooltip={false} />}
               onClick={() => {
                 openModal(
-                  intl.formatMessage({ id: 'pages.account.youchuanAccountTitle' }),
+                  <ModalTitleWithTypeIcon
+                    icon={<AccountTypeIcon type="youChuan" tooltip={false} />}
+                    text={intl.formatMessage({ id: 'pages.account.youchuanAccountTitle' })}
+                  />,
                   <AddContent
                     r={Math.random()}
                     form={form}
@@ -903,10 +944,13 @@ const AccountList: React.FC = () => {
             <Button
               key="primary"
               type={'dashed'}
-              icon={<UserAddOutlined />}
+              icon={<AccountTypeIcon type="discord" tooltip={false} />}
               onClick={() => {
                 openModal(
-                  intl.formatMessage({ id: 'pages.account.discordAccountTitle' }),
+                  <ModalTitleWithTypeIcon
+                    icon={<AccountTypeIcon type="discord" tooltip={false} />}
+                    text={intl.formatMessage({ id: 'pages.account.discordAccountTitle' })}
+                  />,
                   <AddContent r={Math.random()} form={form} onSubmit={handleAdd} />,
                   1600,
                 );

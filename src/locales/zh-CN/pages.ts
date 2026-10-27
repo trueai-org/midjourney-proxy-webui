@@ -106,6 +106,9 @@ export default {
   'pages.account.queueCount': '队列中任务数',
   'pages.account.guildId': '服务器ID',
   'pages.account.channelId': '频道ID',
+  'pages.account.type.discord': 'Discord 账号',
+  'pages.account.type.youChuan': '悠船账号',
+  'pages.account.type.official': 'Midjourney 官方账号',
   'pages.account.username': '账号名',
   'pages.account.userToken': '用户Token',
   'pages.account.botToken': '机器人Token',
@@ -664,6 +667,21 @@ export default {
   'pages.welcome.runningEnvironment': '运行环境',
   'pages.welcome.dockerContainer': 'Docker容器',
   'pages.welcome.physicalMachine': '物理机/虚拟机',
+
+  // 首页实时并发与队列
+  'pages.welcome.runtime.title': '实时并发与队列',
+  'pages.welcome.runtime.fastConcurrency': '快速并发',
+  'pages.welcome.runtime.fastConcurrency.tooltip':
+    '绿色为可用快速并发数、蓝色为已用快速并发数、灰色为快速总并发数；仅当账号快速剩余次数 ≥ 8 次时才计入可用数',
+  'pages.welcome.runtime.fastQueue': '快速队列',
+  'pages.welcome.runtime.fastQueue.tooltip':
+    '绿色为可用快速队列数、蓝色为已用快速队列数、灰色为快速总队列数；仅当账号快速剩余次数 ≥ 8 次时才计入可用数',
+  'pages.welcome.runtime.youChuanRelaxConcurrency': '悠船慢速并发',
+  'pages.welcome.runtime.youChuanRelaxConcurrency.tooltip':
+    '仅统计悠船账号：绿色为可用慢速并发数、蓝色为已用慢速并发数、灰色为悠船慢速总并发数；慢速剩余次数 > 0 时才计入可用数',
+  'pages.welcome.runtime.youChuanRelaxQueue': '悠船慢速队列',
+  'pages.welcome.runtime.youChuanRelaxQueue.tooltip':
+    '仅统计悠船账号：绿色为可用慢速队列数、蓝色为已用慢速队列数、灰色为悠船慢速总队列数；慢速剩余次数 > 0 时才计入可用数',
 
   "pages.setting.homeDisplayRealIP": "首页显示完整 IP",
   "pages.setting.homeDisplayRealIP.tooltip": "开启后，首页统计将显示访问者的真实IP地址",

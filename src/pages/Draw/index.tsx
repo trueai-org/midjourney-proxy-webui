@@ -1,3 +1,4 @@
+import AccountTypeIcon from '@/components/AccountTypeIcon';
 import {
   cancelTask,
   queryAccount,
@@ -1289,7 +1290,14 @@ const Draw: React.FC = () => {
     const accountOpts = accounts.map((account: any) => {
       return {
         value: account.channelId,
-        label: account.channelId + ' - ' + (account.remark || ''),
+        // 账号类型小图标 + 频道 ID + 备注；类型由后端 isYouChuan / isOfficial 判定
+        // 下拉浮层内不再叠加 Tooltip（下拉内浮层会偏离图标），类型说明统一在账号管理表格中查看
+        label: (
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <AccountTypeIcon record={account} size={14} tooltip={false} />
+            <span>{account.channelId + ' - ' + (account.remark || '')}</span>
+          </span>
+        ),
         disabled: !account.enable || !account.running,
       };
     });

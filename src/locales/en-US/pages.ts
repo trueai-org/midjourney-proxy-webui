@@ -113,6 +113,9 @@ export default {
   'pages.account.queueCount': 'Queue Task Count',
   'pages.account.guildId': 'Guild ID',
   'pages.account.channelId': 'Channel ID',
+  'pages.account.type.discord': 'Discord account',
+  'pages.account.type.youChuan': 'YouChuan account',
+  'pages.account.type.official': 'Midjourney official account',
   'pages.account.username': 'Username',
   'pages.account.userToken': 'User Token',
   'pages.account.botToken': 'Bot Token',
@@ -706,6 +709,21 @@ export default {
   'pages.welcome.runningEnvironment': 'Environment',
   'pages.welcome.dockerContainer': 'Docker Container',
   'pages.welcome.physicalMachine': 'Physical/Virtual Machine',
+
+  // Runtime concurrency & queue
+  'pages.welcome.runtime.title': 'Realtime concurrency & queue',
+  'pages.welcome.runtime.fastConcurrency': 'Fast concurrency',
+  'pages.welcome.runtime.fastConcurrency.tooltip':
+    'Green = available, blue = in use, gray = total fast concurrency. Only accounts with at least 8 fast draws remaining are counted as available',
+  'pages.welcome.runtime.fastQueue': 'Fast queue',
+  'pages.welcome.runtime.fastQueue.tooltip':
+    'Green = available, blue = in use, gray = total fast queue. Only accounts with at least 8 fast draws remaining are counted as available',
+  'pages.welcome.runtime.youChuanRelaxConcurrency': 'YouChuan relax concurrency',
+  'pages.welcome.runtime.youChuanRelaxConcurrency.tooltip':
+    'YouChuan accounts only: green = available, blue = in use, gray = total relax concurrency. Only accounts with relax draws remaining > 0 are counted as available',
+  'pages.welcome.runtime.youChuanRelaxQueue': 'YouChuan relax queue',
+  'pages.welcome.runtime.youChuanRelaxQueue.tooltip':
+    'YouChuan accounts only: green = available, blue = in use, gray = total relax queue. Only accounts with relax draws remaining > 0 are counted as available',
 
   'pages.setting.homeDisplayRealIP': 'Home Display Real IP',
   'pages.setting.homeDisplayRealIP.tooltip':

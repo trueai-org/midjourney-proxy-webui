@@ -19,6 +19,7 @@ import {
   Dropdown,
   List,
   message,
+  Progress,
   Row,
   Space,
   Statistic,
@@ -496,6 +497,48 @@ const Welcome: React.FC = () => {
     });
   }, []);
 
+  // 实时并发与队列概览：可能因 Redis 未启用或读取失败而缺失，缺失时整块不渲染
+  const runtimeOverview: API.HomeRuntimeOverview | undefined = data?.runtimeOverview;
+  // 每组指标均为「可用 / 已用 / 总数」；undefined/null/NaN 统一兜底为 0，避免 NaN/Infinity
+  const runtimeItems = [
+    {
+      key: 'fastConcurrency',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.fastConcurrency' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.fastConcurrency.tooltip' }),
+      // 快速并发：可用（快速剩余 >= 8 次的账号才计入）/ 已用 / 总上限
+      available: Number(runtimeOverview?.fastConcurrencyAvailable) || 0,
+      used: Number(runtimeOverview?.fastConcurrency) || 0,
+      total: Number(runtimeOverview?.fastConcurrencyTotal) || 0,
+    },
+    {
+      key: 'fastQueueCount',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.fastQueue' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.fastQueue.tooltip' }),
+      // 快速队列：可用（快速剩余 >= 8 次的账号才计入）/ 已用 / 总上限
+      available: Number(runtimeOverview?.fastQueueAvailable) || 0,
+      used: Number(runtimeOverview?.fastQueueCount) || 0,
+      total: Number(runtimeOverview?.fastQueueCountTotal) || 0,
+    },
+    {
+      key: 'youChuanRelaxConcurrency',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanRelaxConcurrency' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanRelaxConcurrency.tooltip' }),
+      // 悠船慢速并发：可用（慢速剩余 > 0 的账号才计入）/ 已用 / 总上限
+      available: Number(runtimeOverview?.youChuanRelaxConcurrencyAvailable) || 0,
+      used: Number(runtimeOverview?.youChuanRelaxConcurrency) || 0,
+      total: Number(runtimeOverview?.youChuanRelaxConcurrencyTotal) || 0,
+    },
+    {
+      key: 'youChuanRelaxQueueCount',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanRelaxQueue' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanRelaxQueue.tooltip' }),
+      // 悠船慢速队列：可用（慢速剩余 > 0 的账号才计入）/ 已用 / 总上限
+      available: Number(runtimeOverview?.youChuanRelaxQueueAvailable) || 0,
+      used: Number(runtimeOverview?.youChuanRelaxQueueCount) || 0,
+      total: Number(runtimeOverview?.youChuanRelaxQueueCountTotal) || 0,
+    },
+  ];
+
   return (
     <PageContainer>
       {/* {data && data.notify && (
@@ -599,7 +642,7 @@ const Welcome: React.FC = () => {
           }}
         >
           <div style={{ marginBottom: 8 }}>
-            <div style={{ display: 'flex', gap: 16 }}>
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <div
                 style={{
                   border: '1px dashed #cfc7c7',
@@ -651,6 +694,90 @@ const Welcome: React.FC = () => {
         </Card>
       )}
 
+      {/* 实时并发与队列 */}
+      {runtimeOverview && (
+        <Card
+          title={intl.formatMessage({ id: 'pages.welcome.runtime.title' })}
+          style={{
+            borderRadius: 8,
+            marginTop: 16,
+          }}
+          bodyStyle={{
+            backgroundImage:
+              initialState?.settings?.navTheme === 'realDark'
+                ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'
+                : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
+          }}
+        >
+          <Row gutter={[16, 16]}>
+            {runtimeItems.map((item) => {
+              // 上限为 0 时按 0% 处理；有余量时向上取整，最多 100%，避免出现 NaN/Infinity
+              const percent =
+                item.total > 0 ? Math.min(100, Math.ceil((item.used / item.total) * 100)) : 0;
+              const strokeColor =
+                percent >= 100
+                  ? token.colorError
+                  : percent >= 80
+                  ? token.colorWarning
+                  : token.colorSuccess;
+              return (
+                <Col key={item.key} xs={24} sm={12} xl={6}>
+                  <div
+                    style={{
+                      border: '1px dashed #cfc7c7',
+                      borderRadius: 6,
+                      padding: '10px 12px',
+                      boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+                      height: '100%',
+                    }}
+                  >
+                    <Tooltip title={item.tip}>
+                      <div
+                        style={{
+                          fontSize: 14,
+                          color: token.colorText,
+                          cursor: 'help',
+                          textDecoration: 'underline dashed',
+                          textUnderlineOffset: 3,
+                        }}
+                      >
+                        {item.label}
+                      </div>
+                    </Tooltip>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'baseline',
+                        gap: 4,
+                        margin: '6px 0',
+                      }}
+                    >
+                      {/* 绿色=可用，蓝色=已用，灰色=总数 */}
+                      <span style={{ fontSize: 20, fontWeight: 'bold', color: '#52c41a' }}>
+                        {item.available}
+                      </span>
+                      <span style={{ fontSize: 14, color: token.colorTextSecondary }}>/</span>
+                      <span style={{ fontSize: 20, fontWeight: 'bold', color: '#1677ff' }}>
+                        {item.used}
+                      </span>
+                      <span style={{ fontSize: 14, color: token.colorTextSecondary }}>
+                        / {item.total}
+                      </span>
+                    </div>
+                    <Progress
+                      percent={percent}
+                      size="small"
+                      showInfo={false}
+                      strokeColor={strokeColor}
+                    />
+                  </div>
+                </Col>
+              );
+            })}
+          </Row>
+        </Card>
+      )}
+
       {/* 今日成功绘图 */}
       {data && data.todayCounter && (
         <Card
@@ -671,7 +798,7 @@ const Welcome: React.FC = () => {
               <div style={{ fontWeight: 'bold', color: token.colorTextSecondary, marginBottom: 8 }}>
                 {mode}
               </div>
-              <div style={{ display: 'flex', gap: 16 }}>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 {Object.entries(actions as any).map(([action, count]) => (
                   <div
                     key={action}
@@ -710,7 +837,7 @@ const Welcome: React.FC = () => {
                 : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
           }}
         >
-          <div style={{ display: 'flex', gap: 16 }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {Object.entries(data.todayFailCounter).map(([action, count]) => (
               <div
                 key={action}
@@ -747,7 +874,7 @@ const Welcome: React.FC = () => {
                 : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
           }}
         >
-          <div style={{ display: 'flex', gap: 16 }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {Object.entries(data.todayCancelCounter).map(([action, count]) => (
               <div
                 key={action}
@@ -784,7 +911,7 @@ const Welcome: React.FC = () => {
                 : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',
           }}
         >
-          <div style={{ display: 'flex', gap: 16 }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <div
               style={{
                 border: '1px dashed #cfc7c7',
