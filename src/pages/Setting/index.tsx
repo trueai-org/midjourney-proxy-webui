@@ -1148,6 +1148,23 @@ const Setting: React.FC = () => {
                 </Form.Item>
 
                 <Form.Item
+                  label={intl.formatMessage({
+                    id: 'pages.setting.convertPromptLinkWhitelistDomains',
+                  })}
+                  name="convertPromptLinkWhitelistDomains"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.convertPromptLinkWhitelistDomainsTips',
+                  })}
+                >
+                  <Select
+                    mode="tags"
+                    allowClear
+                    tokenSeparators={[',', ' ']}
+                    placeholder="cdn.huanwangai.com"
+                  />
+                </Form.Item>
+
+                <Form.Item
                   label="输出链接替换规则"
                   name="convertPromptOutputLinkReplaceRules"
                   help={

@@ -555,6 +555,10 @@ export default {
   'pages.setting.promptImageWebpIgnoreFormatsTips':
     '不转为 WebP 的图片格式，支持 gif 或 .gif，不区分大小写；默认忽略 .gif，多帧 GIF/APNG 始终不转换，避免动图丢失动画',
 
+  'pages.setting.convertPromptLinkWhitelistDomains': '输入链接白名单规则',
+  'pages.setting.convertPromptLinkWhitelistDomainsTips':
+    '提交前判断提示词中的输入链接（垫图、混图、参考图、编辑/转绘基础图、视频首尾帧、图生文等），域名命中白名单时不再抓取/转存（云存储、悠船链接），并完全保留原链接；在输入链接替换规则之后执行，按域名精确匹配（不区分大小写，不含子域名）。例如：cdn.huanwangai.com',
+
   'pages.setting.enableSaveUserUploadBase64': '转换用户 Base64 图片',
   'pages.setting.enableSaveUserUploadBase64Tips':
     '启用后保存用户上传的 Base64 到文件存储（例如：垫图、混图等）',

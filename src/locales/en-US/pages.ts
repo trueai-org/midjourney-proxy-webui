@@ -590,6 +590,10 @@ export default {
   'pages.setting.promptImageWebpIgnoreFormatsTips':
     'Image formats that are not converted to WebP, such as gif or .gif (case-insensitive). Default: .gif; multi-frame GIF/APNG is never converted to avoid losing animation.',
 
+  'pages.setting.convertPromptLinkWhitelistDomains': 'Input Link Whitelist',
+  'pages.setting.convertPromptLinkWhitelistDomainsTips':
+    'Before submission, input links in the prompt (image prompts, blends, references, edit/retexture base images, video start/end frames, describe, etc.) are checked. When the host matches the whitelist, the link is not fetched or transferred (cloud storage or YouChuan CDN) and is kept unchanged. Applied after the input link replacement rules, with exact host matching (case-insensitive, subdomains not included). Example: cdn.huanwangai.com',
+
   'pages.setting.enableSaveUserUploadBase64': 'Convert the user base64 image',
   'pages.setting.enableSaveUserUploadBase64Tips':
     'After enabling, save the base64 uploaded by the user to file storage (such as pad maps, mixed images, etc.)',
