@@ -499,8 +499,19 @@ const Welcome: React.FC = () => {
 
   // 实时并发与队列概览：可能因 Redis 未启用或读取失败而缺失，缺失时整块不渲染
   const runtimeOverview: API.HomeRuntimeOverview | undefined = data?.runtimeOverview;
+
+  /** 单个实时指标卡片的数据结构：三个数字依次为可用 / 已用 / 总数 */
+  type RuntimeItem = {
+    key: string;
+    label: string;
+    tip: string;
+    available: number;
+    used: number;
+    total: number;
+  };
+
   // 每组指标均为「可用 / 已用 / 总数」；undefined/null/NaN 统一兜底为 0，避免 NaN/Infinity
-  const runtimeItems = [
+  const generationRuntimeItems: RuntimeItem[] = [
     {
       key: 'fastConcurrency',
       label: intl.formatMessage({ id: 'pages.welcome.runtime.fastConcurrency' }),
@@ -538,6 +549,89 @@ const Welcome: React.FC = () => {
       total: Number(runtimeOverview?.youChuanRelaxQueueCountTotal) || 0,
     },
   ];
+
+  // 图生文（describe）：只统计开启图生文的账号；悠船为每账号每日 200 次固定额度，官方/Discord 不限
+  const describeRuntimeItems: RuntimeItem[] = [
+    {
+      key: 'describeConcurrency',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.describeConcurrency' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.describeConcurrency.tooltip' }),
+      available: Number(runtimeOverview?.describeConcurrencyAvailable) || 0,
+      used: Number(runtimeOverview?.describeConcurrency) || 0,
+      total: Number(runtimeOverview?.describeConcurrencyTotal) || 0,
+    },
+    {
+      key: 'describeQueueCount',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.describeQueue' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.describeQueue.tooltip' }),
+      available: Number(runtimeOverview?.describeQueueAvailable) || 0,
+      used: Number(runtimeOverview?.describeQueueCount) || 0,
+      total: Number(runtimeOverview?.describeQueueCountTotal) || 0,
+    },
+    {
+      key: 'youChuanDescribeQuota',
+      label: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanDescribeQuota' }),
+      tip: intl.formatMessage({ id: 'pages.welcome.runtime.youChuanDescribeQuota.tooltip' }),
+      // 悠船图生文额度：可用=剩余次数、已用=今日已用、总数=账号数 × 200
+      available: Number(runtimeOverview?.youChuanDescribeQuotaRemaining) || 0,
+      used: Number(runtimeOverview?.youChuanDescribeQuotaUsed) || 0,
+      total: Number(runtimeOverview?.youChuanDescribeQuotaTotal) || 0,
+    },
+  ];
+
+  /**
+   * 渲染单个实时指标卡片：三个数字按「可用（绿） / 已用（蓝） / 总数（灰）」展示，
+   * 进度条表示已用占比（上限为 0 时按 0%，最多 100%）。
+   */
+  const renderRuntimeItem = (item: RuntimeItem, col: { xs: number; sm: number; xl: number }) => {
+    const percent = item.total > 0 ? Math.min(100, Math.ceil((item.used / item.total) * 100)) : 0;
+    const strokeColor =
+      percent >= 100 ? token.colorError : percent >= 80 ? token.colorWarning : token.colorSuccess;
+    return (
+      <Col key={item.key} xs={col.xs} sm={col.sm} xl={col.xl}>
+        <div
+          style={{
+            border: '1px dashed #cfc7c7',
+            borderRadius: 6,
+            padding: '10px 12px',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
+            height: '100%',
+          }}
+        >
+          <Tooltip title={item.tip}>
+            <div
+              style={{
+                fontSize: 14,
+                color: token.colorText,
+                cursor: 'help',
+                textDecoration: 'underline dashed',
+                textUnderlineOffset: 3,
+              }}
+            >
+              {item.label}
+            </div>
+          </Tooltip>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 4,
+              margin: '6px 0',
+            }}
+          >
+            {/* 绿色=可用，蓝色=已用，灰色=总数 */}
+            <span style={{ fontSize: 20, fontWeight: 'bold', color: '#52c41a' }}>
+              {item.available}
+            </span>
+            <span style={{ fontSize: 14, color: token.colorTextSecondary }}>/</span>
+            <span style={{ fontSize: 20, fontWeight: 'bold', color: '#1677ff' }}>{item.used}</span>
+            <span style={{ fontSize: 14, color: token.colorTextSecondary }}>/ {item.total}</span>
+          </div>
+          <Progress percent={percent} size="small" showInfo={false} strokeColor={strokeColor} />
+        </div>
+      </Col>
+    );
+  };
 
   return (
     <PageContainer>
@@ -710,70 +804,13 @@ const Welcome: React.FC = () => {
           }}
         >
           <Row gutter={[16, 16]}>
-            {runtimeItems.map((item) => {
-              // 上限为 0 时按 0% 处理；有余量时向上取整，最多 100%，避免出现 NaN/Infinity
-              const percent =
-                item.total > 0 ? Math.min(100, Math.ceil((item.used / item.total) * 100)) : 0;
-              const strokeColor =
-                percent >= 100
-                  ? token.colorError
-                  : percent >= 80
-                  ? token.colorWarning
-                  : token.colorSuccess;
-              return (
-                <Col key={item.key} xs={24} sm={12} xl={6}>
-                  <div
-                    style={{
-                      border: '1px dashed #cfc7c7',
-                      borderRadius: 6,
-                      padding: '10px 12px',
-                      boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-                      height: '100%',
-                    }}
-                  >
-                    <Tooltip title={item.tip}>
-                      <div
-                        style={{
-                          fontSize: 14,
-                          color: token.colorText,
-                          cursor: 'help',
-                          textDecoration: 'underline dashed',
-                          textUnderlineOffset: 3,
-                        }}
-                      >
-                        {item.label}
-                      </div>
-                    </Tooltip>
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'baseline',
-                        gap: 4,
-                        margin: '6px 0',
-                      }}
-                    >
-                      {/* 绿色=可用，蓝色=已用，灰色=总数 */}
-                      <span style={{ fontSize: 20, fontWeight: 'bold', color: '#52c41a' }}>
-                        {item.available}
-                      </span>
-                      <span style={{ fontSize: 14, color: token.colorTextSecondary }}>/</span>
-                      <span style={{ fontSize: 20, fontWeight: 'bold', color: '#1677ff' }}>
-                        {item.used}
-                      </span>
-                      <span style={{ fontSize: 14, color: token.colorTextSecondary }}>
-                        / {item.total}
-                      </span>
-                    </div>
-                    <Progress
-                      percent={percent}
-                      size="small"
-                      showInfo={false}
-                      strokeColor={strokeColor}
-                    />
-                  </div>
-                </Col>
-              );
-            })}
+            {generationRuntimeItems.map((item) => renderRuntimeItem(item, { xs: 24, sm: 12, xl: 6 }))}
+          </Row>
+          <Divider orientation="left" orientationMargin={0} style={{ margin: '16px 0 12px', fontSize: 13 }}>
+            {intl.formatMessage({ id: 'pages.welcome.runtime.describeGroup' })}
+          </Divider>
+          <Row gutter={[16, 16]}>
+            {describeRuntimeItems.map((item) => renderRuntimeItem(item, { xs: 24, sm: 12, xl: 8 }))}
           </Row>
         </Card>
       )}

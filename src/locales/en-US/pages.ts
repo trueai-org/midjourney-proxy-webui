@@ -724,6 +724,16 @@ export default {
   'pages.welcome.runtime.youChuanRelaxQueue': 'YouChuan relax queue',
   'pages.welcome.runtime.youChuanRelaxQueue.tooltip':
     'YouChuan accounts only: green = available, blue = in use, gray = total relax queue. Only accounts with relax draws remaining > 0 are counted as available',
+  'pages.welcome.runtime.describeGroup': 'Describe (image to text)',
+  'pages.welcome.runtime.describeConcurrency': 'Describe concurrency',
+  'pages.welcome.runtime.describeConcurrency.tooltip':
+    'Accounts with Describe enabled only: green = available, blue = in use, gray = total describe concurrency. YouChuan availability is capped by the remaining submittable calls today (200 minus used today, running concurrency and queued tasks; 0 once the daily reset flag is set); official/Discord accounts have no limit',
+  'pages.welcome.runtime.describeQueue': 'Describe queue',
+  'pages.welcome.runtime.describeQueue.tooltip':
+    'Accounts with Describe enabled only: green = available, blue = in use, gray = total describe queue. For YouChuan, idle concurrency is filled with the remaining quota first and only the rest counts as available queue (200 minus used today, running concurrency and queued tasks); official/Discord accounts have no limit',
+  'pages.welcome.runtime.youChuanDescribeQuota': 'YouChuan describe quota',
+  'pages.welcome.runtime.youChuanDescribeQuota.tooltip':
+    'YouChuan accounts with Describe enabled only: each account has a fixed 200 calls per day. Green = remaining, blue = used today, gray = total (accounts x 200). Remaining is 0 once the daily reset flag is set',
 
   'pages.setting.homeDisplayRealIP': 'Home Display Real IP',
   'pages.setting.homeDisplayRealIP.tooltip':

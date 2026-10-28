@@ -682,6 +682,16 @@ export default {
   'pages.welcome.runtime.youChuanRelaxQueue': '悠船慢速队列',
   'pages.welcome.runtime.youChuanRelaxQueue.tooltip':
     '仅统计悠船账号：绿色为可用慢速队列数、蓝色为已用慢速队列数、灰色为悠船慢速总队列数；慢速剩余次数 > 0 时才计入可用数',
+  'pages.welcome.runtime.describeGroup': '图生文（Describe）',
+  'pages.welcome.runtime.describeConcurrency': '图生文并发',
+  'pages.welcome.runtime.describeConcurrency.tooltip':
+    '仅统计开启图生文的账号：绿色为可用图生文并发数、蓝色为已用图生文并发数、灰色为图生文总并发数；悠船可用数不超过当日剩余可提交次数（200 次额度扣除今日已用、运行中并发和排队数，重置当天为 0），官方/Discord 不限额',
+  'pages.welcome.runtime.describeQueue': '图生文队列',
+  'pages.welcome.runtime.describeQueue.tooltip':
+    '仅统计开启图生文的账号：绿色为可用图生文队列数、蓝色为已用图生文队列数、灰色为图生文总队列数；悠船先扣除空闲并发可用的额度，剩余可提交次数才计入队列可用（200 次额度扣除今日已用、运行中并发和排队数），官方/Discord 不限额',
+  'pages.welcome.runtime.youChuanDescribeQuota': '悠船图生文剩余',
+  'pages.welcome.runtime.youChuanDescribeQuota.tooltip':
+    '仅统计开启图生文的悠船账号：悠船每账号每日固定 200 次；绿色为剩余次数、蓝色为今日已用次数、灰色为总次数（账号数 × 200）；当日已触发上限重置时剩余按 0 计',
 
   "pages.setting.homeDisplayRealIP": "首页显示完整 IP",
   "pages.setting.homeDisplayRealIP.tooltip": "开启后，首页统计将显示访问者的真实IP地址",

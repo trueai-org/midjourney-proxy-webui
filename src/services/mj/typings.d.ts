@@ -141,5 +141,23 @@ declare namespace API {
     youChuanRelaxQueueCountTotal?: number;
     /** 可用悠船慢速队列数：悠船慢速剩余次数 > 0 的账号按 (RelaxQueueSize - 已用) 累加 */
     youChuanRelaxQueueAvailable?: number;
+    /** 已用图生文并发数：仅 IsDescribe 开启的账号，已占用的 describe 并发槽位数之和 */
+    describeConcurrency?: number;
+    /** 图生文总并发数：仅 IsDescribe 开启的账号 CoreSize 之和 */
+    describeConcurrencyTotal?: number;
+    /** 可用图生文并发数：悠船按当日剩余可提交次数截断（200 次额度扣除已用、运行中并发和排队数），官方/Discord 不限额，按 (CoreSize - 已用) 累加 */
+    describeConcurrencyAvailable?: number;
+    /** 已用图生文队列数：仅 IsDescribe 开启的账号，describe 队列待处理任务数之和 */
+    describeQueueCount?: number;
+    /** 图生文总队列数：仅 IsDescribe 开启的账号 QueueSize 之和 */
+    describeQueueCountTotal?: number;
+    /** 可用图生文队列数：悠船先扣除可用于空闲并发的额度，剩余可提交次数才计入队列可用；官方/Discord 不限额，按 (QueueSize - 已用) 累加 */
+    describeQueueAvailable?: number;
+    /** 悠船图生文已用次数：仅悠船且 IsDescribe 开启的账号，今日已用次数之和 */
+    youChuanDescribeQuotaUsed?: number;
+    /** 悠船图生文总额度：仅悠船且 IsDescribe 开启的账号，每账号每日 200 次 */
+    youChuanDescribeQuotaTotal?: number;
+    /** 悠船图生文剩余次数：仅悠船且 IsDescribe 开启的账号，max(0, 200 - 已用) 之和，重置当天为 0 */
+    youChuanDescribeQuotaRemaining?: number;
   };
 }
