@@ -643,6 +643,12 @@ export default {
 
   'pages.setting.enableOfficial': 'Enable Official Drawing',
   'pages.setting.enableYouChuan': 'Enable YouChuan Drawing',
+  'pages.setting.enableYouChuanDescribeMultiGroups': 'Return 4 prompt sets for YouChuan describe',
+  'pages.setting.enableYouChuanDescribeMultiGroupsTips':
+    'When enabled, each describe task calls the YouChuan API 4 times in parallel and merges up to 4 prompt sets. This consumes 4 of the daily describe quota. When disabled, only one call is made and 1 prompt set is returned.',
+  'pages.setting.translateYouChuanDescribeEnglish': 'Translate YouChuan describe to English when not zh',
+  'pages.setting.translateYouChuanDescribeEnglishTips':
+    'When enabled and the request does not specify language=zh/zh_cn, YouChuan describe results are translated to English using the configured Baidu/GPT translation service. Requests with language=zh keep the Chinese translation. If no translation service is configured, the original text is kept.',
   'pages.setting.enableVideo': 'Enable Video Drawing',
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',

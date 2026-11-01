@@ -1537,6 +1537,28 @@ const Setting: React.FC = () => {
                   <Switch />
                 </Form.Item>
                 <Form.Item
+                  label={intl.formatMessage({
+                    id: 'pages.setting.enableYouChuanDescribeMultiGroups',
+                  })}
+                  name="enableYouChuanDescribeMultiGroups"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.enableYouChuanDescribeMultiGroupsTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({
+                    id: 'pages.setting.translateYouChuanDescribeEnglish',
+                  })}
+                  name="translateYouChuanDescribeEnglish"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.translateYouChuanDescribeEnglishTips',
+                  })}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
                   label="悠船失败自动重试"
                   name="enableYouChuanRetry"
                   help="启用后悠船绘图失败时（额度不足或 Relax 上限），自动使用其他账号重试任务"

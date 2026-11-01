@@ -604,6 +604,12 @@ export default {
 
   'pages.setting.enableOfficial': '启用官方绘图',
   'pages.setting.enableYouChuan': '启用悠船绘图',
+  'pages.setting.enableYouChuanDescribeMultiGroups': '悠船图生文返回 4 组词',
+  'pages.setting.enableYouChuanDescribeMultiGroupsTips':
+    '开启后每次图生文并行调用 4 次悠船接口，合并后最多返回 4 组提示词，并按实际调用次数消耗悠船每日图生文额度（4 组消耗 4 次）；关闭时只调用 1 次、返回 1 组',
+  'pages.setting.translateYouChuanDescribeEnglish': '悠船图生文翻译英文',
+  'pages.setting.translateYouChuanDescribeEnglishTips':
+    '开启后，当请求未指定 language=zh/zh_cn 时，悠船图生文结果会翻译为英文；请求 language=zh 时保持翻译为中文。需要在翻译设置中配置百度或 GPT 翻译，未配置时保留原文',
   'pages.setting.enableVideo': '启用视频生成',
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
