@@ -649,6 +649,16 @@ export default {
   'pages.setting.translateYouChuanDescribeEnglish': 'Translate YouChuan describe to English when not zh',
   'pages.setting.translateYouChuanDescribeEnglishTips':
     'When enabled and the request does not specify language=zh/zh_cn, YouChuan describe results are translated to English using the configured Baidu/GPT translation service. Requests with language=zh keep the Chinese translation. If no translation service is configured, the original text is kept.',
+  'pages.setting.youChuanDefaultMjVersion': 'YouChuan default MJ version',
+  'pages.setting.youChuanDefaultMjVersionTips':
+    'Automatically append --v when the prompt does not declare a version, e.g. 8.2. Leave empty to disable. Only applies to YouChuan accounts.',
+  'pages.setting.youChuanDefaultNijiVersion': 'YouChuan default Niji version',
+  'pages.setting.youChuanDefaultNijiVersionTips':
+    'Automatically complete --niji <version> when the prompt uses --niji without a version, e.g. 7. Leave empty to disable. Only applies to YouChuan accounts.',
+  'pages.setting.enableYouChuanRemoveHd': 'Automatically remove --hd',
+  'pages.setting.enableYouChuanRemoveHdTips':
+    'When enabled, --hd is removed from prompts before submitting to YouChuan to avoid extra HD billing. Disabled by default. Only applies to YouChuan accounts.',
+  'pages.setting.versionFormatError': 'Please enter a numeric version, e.g. 8.2 or 7',
   'pages.setting.enableVideo': 'Enable Video Drawing',
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',

@@ -1523,6 +1523,55 @@ const Setting: React.FC = () => {
             <div className="settings-grid-item">
               <Card title="悠船配置" bordered={false}>
                 <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.youChuanDefaultMjVersion' })}
+                  name="youChuanDefaultMjVersion"
+                  help={intl.formatMessage({ id: 'pages.setting.youChuanDefaultMjVersionTips' })}
+                  normalize={(value) => (typeof value === 'string' ? value.trim() : value)}
+                  rules={[
+                    {
+                      validator: (_, value) =>
+                        !value || /^\d+(\.\d+)?$/.test(String(value))
+                          ? Promise.resolve()
+                          : Promise.reject(
+                              new Error(
+                                intl.formatMessage({ id: 'pages.setting.versionFormatError' }),
+                              ),
+                            ),
+                    },
+                  ]}
+                >
+                  <Input placeholder="例如：8.2" allowClear />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.youChuanDefaultNijiVersion' })}
+                  name="youChuanDefaultNijiVersion"
+                  help={intl.formatMessage({
+                    id: 'pages.setting.youChuanDefaultNijiVersionTips',
+                  })}
+                  normalize={(value) => (typeof value === 'string' ? value.trim() : value)}
+                  rules={[
+                    {
+                      validator: (_, value) =>
+                        !value || /^\d+(\.\d+)?$/.test(String(value))
+                          ? Promise.resolve()
+                          : Promise.reject(
+                              new Error(
+                                intl.formatMessage({ id: 'pages.setting.versionFormatError' }),
+                              ),
+                            ),
+                    },
+                  ]}
+                >
+                  <Input placeholder="例如：7" allowClear />
+                </Form.Item>
+                <Form.Item
+                  label={intl.formatMessage({ id: 'pages.setting.enableYouChuanRemoveHd' })}
+                  name="enableYouChuanRemoveHd"
+                  help={intl.formatMessage({ id: 'pages.setting.enableYouChuanRemoveHdTips' })}
+                >
+                  <Switch />
+                </Form.Item>
+                <Form.Item
                   label="转换悠船官网链接"
                   name="enableYouChuanPromptLink"
                   help="启用后悠船绘图时将 prompt 提示词中的链接转为悠船官网链接"

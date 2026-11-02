@@ -610,6 +610,16 @@ export default {
   'pages.setting.translateYouChuanDescribeEnglish': '悠船图生文翻译英文',
   'pages.setting.translateYouChuanDescribeEnglishTips':
     '开启后，当请求未指定 language=zh/zh_cn 时，悠船图生文结果会翻译为英文；请求 language=zh 时保持翻译为中文。需要在翻译设置中配置百度或 GPT 翻译，未配置时保留原文',
+  'pages.setting.youChuanDefaultMjVersion': '悠船 MJ 默认版本',
+  'pages.setting.youChuanDefaultMjVersionTips':
+    '用户提示词未声明 --v 时，提交悠船前自动追加 --v 版本，例如 8.2；留空表示不追加。仅对悠船账号生效',
+  'pages.setting.youChuanDefaultNijiVersion': '悠船 Niji 默认版本',
+  'pages.setting.youChuanDefaultNijiVersionTips':
+    '用户提示词只写了 --niji 未声明具体版本时，自动补全为 --niji 版本，例如 7；留空表示不补全。仅对悠船账号生效',
+  'pages.setting.enableYouChuanRemoveHd': '自动清除 --hd 参数',
+  'pages.setting.enableYouChuanRemoveHdTips':
+    '开启后提交悠船前移除提示词中的 --hd，避免高清出图额外计费；默认关闭，保留用户传入的 --hd。仅对悠船账号生效',
+  'pages.setting.versionFormatError': '请输入数字版本号，例如 8.2 或 7',
   'pages.setting.enableVideo': '启用视频生成',
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
