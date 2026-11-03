@@ -665,6 +665,20 @@ export default {
   'pages.setting.enableAccountSponsor': 'Sponsor account',
   'pages.setting.enableAccountSponsorTips': 'After enabling sponsor can add sponsor account',
 
+  'pages.setting.upstreamSubscription': 'Upstream Subscription',
+  'pages.setting.upstreamSubscriptionConfig': 'Upstream subscription config',
+  'pages.setting.upstreamSubscriptionHelpTitle': 'Configuration guide',
+  'pages.setting.upstreamSubscriptionHelpUrl':
+    'url only needs the upstream root address, e.g. https://circle.huanwangai.com/; /mj/admin/accounts is appended automatically.',
+  'pages.setting.upstreamSubscriptionHelpToken':
+    'Fill in the admin token for each upstream; multiple upstreams are supported.',
+  'pages.setting.upstreamSubscriptionHelpInterval':
+    'syncIntervalMinutes defaults to 5 and accepts 1-60.',
+  'pages.setting.upstreamSubscriptionHelpSpeed':
+    'defaultMode and defaultAllowModes override the upstream values; leave empty for unrestricted or allow-all.',
+  'pages.setting.upstreamSubscriptionHelpSync':
+    'Accounts are de-duplicated by login account, tokens are refreshed and kept enabled; login password is not synced; accounts removed upstream are kept locally.',
+
   'pages.setting.consulOptions': 'Consul Options',
 
   'pages.setting.isDemoMode': 'Demo Mode',

@@ -626,6 +626,19 @@ export default {
   'pages.setting.enableAccountSponsor': '赞助账号',
   'pages.setting.enableAccountSponsorTips': '启用后赞助商可以添加赞助账号',
 
+  'pages.setting.upstreamSubscription': '上游订阅',
+  'pages.setting.upstreamSubscriptionConfig': '上游订阅配置',
+  'pages.setting.upstreamSubscriptionHelpTitle': '配置说明',
+  'pages.setting.upstreamSubscriptionHelpUrl':
+    'url 只需填写上游根地址，例如 https://circle.huanwangai.com/，会自动补全为 /mj/admin/accounts。',
+  'pages.setting.upstreamSubscriptionHelpToken': '每个上游填写管理员 token，支持配置多个上游。',
+  'pages.setting.upstreamSubscriptionHelpInterval':
+    '同步间隔 syncIntervalMinutes 默认 5 分钟，可设置 1-60 分钟。',
+  'pages.setting.upstreamSubscriptionHelpSpeed':
+    '固定速度 defaultMode、允许速度 defaultAllowModes 以这里为准；留空表示不限定、全部允许。',
+  'pages.setting.upstreamSubscriptionHelpSync':
+    '按登录账号去重，自动更新 token 并保持启用；登录密码不同步；上游已删除的账号会保留在本地。',
+
   'pages.setting.consulOptions': 'Consul 配置',
 
   'pages.setting.isDemoMode': '演示模式',

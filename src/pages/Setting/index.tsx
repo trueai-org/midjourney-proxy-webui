@@ -186,7 +186,8 @@ const Setting: React.FC = () => {
       try {
         const cfg = await getConfig();
         if (cfg.success) {
-          const result = cfg?.data.upgradeInfo || {};
+          // 配置可能为空或字段缺失，这里用可选链兜底，避免读取 upgradeInfo 时报错
+          const result = cfg?.data?.upgradeInfo || {};
           setUpgradeInfo(result);
 
           // 如果下载完成或出错，停止定时器
@@ -246,7 +247,7 @@ const Setting: React.FC = () => {
         try {
           const cfg = await getConfig();
           if (cfg.success) {
-            const result = cfg?.data.upgradeInfo || {};
+            const result = cfg?.data?.upgradeInfo || {};
             setUpgradeInfo(result);
           }
         } catch (error) {
@@ -321,14 +322,15 @@ const Setting: React.FC = () => {
     setLoading(true);
     getConfig().then((c) => {
       setLoading(false);
-      if (c.success) {
+      // 配置可能为空或字段缺失，这里统一做空值兜底，避免读取 upgradeInfo 时报错
+      if (c.success && c.data) {
         form.setFieldsValue(c.data);
         setSetting(c.data);
 
         // 检查更新状态
-        setUpgradeInfo(c.data.upgradeInfo || {});
+        setUpgradeInfo(c.data?.upgradeInfo || {});
 
-        if (c.data.upgradeInfo.status === 'Downloading') {
+        if (c.data?.upgradeInfo?.status === 'Downloading') {
           startUpdateMonitoring();
         }
       }
@@ -1645,6 +1647,54 @@ const Setting: React.FC = () => {
                 </Form.Item>
               </Card>
             </div>
+
+            {/* 访客模式下后端返回 {}，这里同时判断是否有字段，避免展示空板块 */}
+            {setting?.upstreamSubscription &&
+              Object.keys(setting.upstreamSubscription).length > 0 && (
+                <div className="settings-grid-item">
+                  <Card
+                    title={intl.formatMessage({ id: 'pages.setting.upstreamSubscription' })}
+                    bordered={false}
+                  >
+                    <Form.Item
+                      label={intl.formatMessage({ id: 'pages.setting.upstreamSubscriptionConfig' })}
+                      name="upstreamSubscription"
+                    >
+                      <JsonEditor />
+                    </Form.Item>
+
+                    {/* 配置说明统一放在底部，按条目展示，便于阅读 */}
+                    <div className="upstream-subscription-help">
+                      <div className="upstream-subscription-help-title">
+                        {intl.formatMessage({ id: 'pages.setting.upstreamSubscriptionHelpTitle' })}
+                      </div>
+                      <ul>
+                        <li>
+                          {intl.formatMessage({ id: 'pages.setting.upstreamSubscriptionHelpUrl' })}
+                        </li>
+                        <li>
+                          {intl.formatMessage({
+                            id: 'pages.setting.upstreamSubscriptionHelpToken',
+                          })}
+                        </li>
+                        <li>
+                          {intl.formatMessage({
+                            id: 'pages.setting.upstreamSubscriptionHelpInterval',
+                          })}
+                        </li>
+                        <li>
+                          {intl.formatMessage({
+                            id: 'pages.setting.upstreamSubscriptionHelpSpeed',
+                          })}
+                        </li>
+                        <li>
+                          {intl.formatMessage({ id: 'pages.setting.upstreamSubscriptionHelpSync' })}
+                        </li>
+                      </ul>
+                    </div>
+                  </Card>
+                </div>
+              )}
 
             {setting && setting.privateFeatures && setting.privateFeatures.length > 0 && (
               <div className="settings-grid-item">
