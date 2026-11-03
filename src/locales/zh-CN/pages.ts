@@ -289,6 +289,8 @@ export default {
   'pages.task.messageContent': '消息内容',
   'pages.task.finalPrompt': '最终提示词',
   'pages.task.finalPromptZh': '最终提示词-中文',
+  'pages.task.copy': '复制',
+  'pages.task.copied': '已复制',
   'pages.task.actionId': '动作ID',
   'pages.task.modalConfirm': 'Modal确认',
   'pages.task.imageSeed': '图片seed',

@@ -16,6 +16,8 @@ import {
   Progress,
   Spin,
   Tag,
+  Tooltip,
+  Typography,
 } from 'antd';
 import React, { useRef, useState } from 'react';
 
@@ -117,6 +119,52 @@ const List: React.FC = () => {
     RETEXTURE: 'RETEXTURE',
     SWAP_FACE: 'SWAP_FACE',
     SWAP_VIDEO_FACE: 'SWAP_VIDEO_FACE',
+  };
+
+  /**
+   * 获取列表中需要复制的提示词。
+   * 优先级：最终提示词（properties.finalPrompt）> 英文提示词（promptEn）> 默认提示词（prompt）。
+   */
+  const getCopyPrompt = (record: any): string =>
+    record?.properties?.finalPrompt || record?.promptEn || record?.prompt || '';
+
+  /**
+   * 渲染描述列：描述过长时按固定宽度省略，避免撑破列表宽度；存在提示词时在末尾显示复制图标。
+   */
+  const renderDescription = (record: any) => {
+    const description = record.description || '';
+    const copyPrompt = getCopyPrompt(record);
+    const displayText = description || copyPrompt;
+    if (!displayText) return '-';
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        <Tooltip title={displayText}>
+          <span
+            style={{
+              display: 'inline-block',
+              maxWidth: 200,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {displayText}
+          </span>
+        </Tooltip>
+        {copyPrompt && (
+          <Typography.Text
+            copyable={{
+              text: copyPrompt,
+              tooltips: [
+                intl.formatMessage({ id: 'pages.task.copy' }),
+                intl.formatMessage({ id: 'pages.task.copied' }),
+              ],
+            }}
+            style={{ flex: 'none' }}
+          />
+        )}
+      </div>
+    );
   };
 
   const columns = [
@@ -394,8 +442,9 @@ const List: React.FC = () => {
     {
       title: intl.formatMessage({ id: 'pages.task.description' }),
       dataIndex: 'description',
-      width: 250,
+      width: 260,
       ellipsis: true,
+      render: (_, record) => renderDescription(record),
     },
     {
       title: intl.formatMessage({ id: 'pages.task.failReason' }),

@@ -301,6 +301,8 @@ export default {
   'pages.task.messageContent': 'Message Content',
   'pages.task.finalPrompt': 'Final Prompt',
   'pages.task.finalPromptZh': 'Final Prompt-Zh',
+  'pages.task.copy': 'Copy',
+  'pages.task.copied': 'Copied',
   'pages.task.actionId': 'Action ID',
   'pages.task.modalConfirm': 'Modal Confirm',
   'pages.task.imageSeed': 'Image Seed',

@@ -1,9 +1,15 @@
 import { useIntl } from '@umijs/max';
-import { Card, Descriptions, Flex, Image, Progress, Spin, Tag, Tooltip } from 'antd';
+import { Card, Descriptions, Flex, Image, Progress, Spin, Tag, Tooltip, Typography } from 'antd';
 
 const TaskContent = ({ record }: { record: Record<string, any> }) => {
   const intl = useIntl();
   const imagePrefix = sessionStorage.getItem('mj-image-prefix') || '';
+
+  // 复制图标的中文/英文提示文案
+  const copyTooltips = [
+    intl.formatMessage({ id: 'pages.task.copy' }),
+    intl.formatMessage({ id: 'pages.task.copied' }),
+  ];
 
   const getStatusTag = (text: string) => {
     let color = 'default';
@@ -46,6 +52,20 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
   const getTooltip = (text: string) => {
     if (!text || text.length < 30) return text;
     return <Tooltip title={text}>{text.substring(0, 30) + '...'}</Tooltip>;
+  };
+
+  /**
+   * 渲染可复制的文本：内容超过 30 个字符时截断并用 Tooltip 展示全文，末尾追加复制图标。
+   * 无内容时返回 `-`，避免出现空白的复制图标。
+   */
+  const getCopyableText = (text?: string) => {
+    if (!text) return '-';
+    return (
+      <Flex align="center" gap={4} style={{ maxWidth: 420 }}>
+        {getTooltip(text)}
+        <Typography.Text copyable={{ text, tooltips: copyTooltips }} style={{ flex: 'none' }} />
+      </Flex>
+    );
   };
 
   const getImage = (url: string) => {
@@ -232,13 +252,13 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
             {getProgress(record.progress)}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.prompt' })}>
-            {getTooltip(record.prompt)}
+            {getCopyableText(record.prompt)}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.promptEn' })}>
-            {getTooltip(record.promptEn)}
+            {getCopyableText(record.promptEn)}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.description' })}>
-            {getTooltip(record.description)}
+            {getCopyableText(record.description)}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.submitTime' })}>
             {record['displays']['submitTime']}
@@ -287,24 +307,32 @@ const TaskContent = ({ record }: { record: Record<string, any> }) => {
       >
         <Descriptions column={2}>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.botType' })}>
-            {getBotTypeTag(record.botType)}
+            <Flex align="center" gap={4}>
+              {getBotTypeTag(record.botType)}
+              {record.botType && (
+                <Typography.Text
+                  copyable={{ text: record.botType, tooltips: copyTooltips }}
+                  style={{ flex: 'none' }}
+                />
+              )}
+            </Flex>
           </Descriptions.Item>
           <Descriptions.Item label="Nonce">{record.nonce}</Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.account.channelId' })}>
-            {record['properties']['discordInstanceId']}
+            {getCopyableText(record['properties']['discordInstanceId'])}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.instanceId' })}>
-            {record['properties']['discordInstanceId']}
+            {getCopyableText(record['properties']['discordInstanceId'])}
           </Descriptions.Item>
           <Descriptions.Item label="Hash">{record['properties']['messageHash']}</Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.messageContent' })}>
-            {getTooltip(record['properties']['messageContent'])}
+            {getCopyableText(record['properties']['messageContent'])}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.finalPrompt' })}>
-            {getTooltip(record['properties']['finalPrompt'])}
+            {getCopyableText(record['properties']['finalPrompt'])}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.finalPromptZh' })}>
-            {getTooltip(record.promptCn || '-')}
+            {getCopyableText(record.promptCn)}
           </Descriptions.Item>
           <Descriptions.Item label={intl.formatMessage({ id: 'pages.task.actionId' })}>
             {getTooltip(record['properties']['custom_id'] || '-')}
