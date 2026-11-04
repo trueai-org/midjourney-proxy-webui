@@ -677,7 +677,7 @@ export default {
   'pages.setting.upstreamSubscriptionHelpSpeed':
     'defaultMode and defaultAllowModes override the upstream values; leave empty for unrestricted or allow-all.',
   'pages.setting.upstreamSubscriptionHelpSync':
-    'Accounts are de-duplicated by login account, tokens are refreshed and kept enabled; login password is not synced; accounts removed upstream are kept locally.',
+    'Accounts are de-duplicated by login account; when the account and token match, nothing is changed; when the token differs it is refreshed and the account stays enabled; login password is not synced; accounts removed upstream are kept locally.',
 
   'pages.setting.consulOptions': 'Consul Options',
 

@@ -637,7 +637,7 @@ export default {
   'pages.setting.upstreamSubscriptionHelpSpeed':
     '固定速度 defaultMode、允许速度 defaultAllowModes 以这里为准；留空表示不限定、全部允许。',
   'pages.setting.upstreamSubscriptionHelpSync':
-    '按登录账号去重，自动更新 token 并保持启用；登录密码不同步；上游已删除的账号会保留在本地。',
+    '按登录账号去重；账号与 token 一致时不做任何改动；token 变化时更新 token 并保持启用；登录密码不同步；上游已删除的账号会保留在本地。',
 
   'pages.setting.consulOptions': 'Consul 配置',
 
